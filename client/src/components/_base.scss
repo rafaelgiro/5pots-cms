@@ -1,0 +1,24 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  background-color: $color-background;
+
+  @media only screen and (max-width: $mid-desktop) {
+    font-size: 55%;
+  }
+
+  @media only screen and (max-width: $tab-port) {
+    font-size: 50%;
+  }
+}
+
+body {
+  font-family: $font-primary;
+}

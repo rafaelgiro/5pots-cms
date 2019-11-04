@@ -1,4 +1,11 @@
 @import "./variables";
 @import "./base";
 
+@import "./atoms/HeaderSearchbar/header-searchbar";
+@import "./atoms/Logo/logo";
+
+@import "./molecules/HeaderNav/header-nav";
+
+@import "./organisms/Header/header";
+
 @import "./templates/Homepage/homepage";

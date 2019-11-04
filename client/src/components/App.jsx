@@ -2,17 +2,19 @@ import React from "react";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Homepage from "./templates/Homepage";
+import Header from "./organisms/Header";
 
-function App() {
+const App = () => {
   return (
     <Router>
       <Switch>
+        <Header />
         <Route path="/">
           <Homepage />
         </Route>
       </Switch>
     </Router>
   );
-}
+};
 
 export default App;

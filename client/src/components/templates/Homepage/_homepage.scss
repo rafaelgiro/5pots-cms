@@ -1,2 +1,19 @@
 .homepage {
+  height: 70vh;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url("https://lolstatic-a.akamaihd.net/frontpage/apps/prod/artbook/pt_BR/f31d8b829b603b4b65fdff2475bd0803ced0179d/assets/content/summoners_rift/08_baron/baron_03.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    background-color: $color-background;
+    opacity: 0.1;
+  }
 }

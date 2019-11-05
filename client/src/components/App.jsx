@@ -7,8 +7,8 @@ import Header from "./organisms/Header";
 const App = () => {
   return (
     <Router>
+      <Header />
       <Switch>
-        <Header />
         <Route path="/">
           <Homepage />
         </Route>

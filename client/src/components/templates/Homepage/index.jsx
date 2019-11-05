@@ -1,10 +1,10 @@
 import React from "react";
+import PostFeatured from "../../organisms/PostFeatured";
 
 const Homepage = () => {
   return (
     <div className="homepage">
-      <p>Hello There :D</p>
-      wtfffffffffffffffff
+      <PostFeatured />
     </div>
   );
 };

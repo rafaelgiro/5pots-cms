@@ -1,4 +1,49 @@
 .post-featured {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 3fr 4fr;
+
+  height: 80vh;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url("https://lolstatic-a.akamaihd.net/frontpage/apps/prod/artbook/pt_BR/f31d8b829b603b4b65fdff2475bd0803ced0179d/assets/content/summoners_rift/08_baron/baron_03.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    background-color: $color-background;
+    opacity: 0.1;
+  }
+
+  &__image-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__image {
+    height: 56rem;
+    width: 27.2rem;
+    border-radius: 0.8rem;
+    background-image: url("https://br.leagueoflegends.com/sites/default/files/styles/scale_xlarge/public/upload/10y_header.jpg");
+    background-size: cover;
+    &-1 {
+      background-position-x: left;
+      background-position-y: top 44.29%;
+      transform: translateY(1.6rem);
+    }
+    &-2 {
+      background-position-x: center;
+      background-position-y: center;
+      transform: translateY(3.2rem);
+    }
+    &-3 {
+      background-position-x: right;
+      background-position-y: center;
+    }
+  }
 }

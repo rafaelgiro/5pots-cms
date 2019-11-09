@@ -16,13 +16,13 @@
   &__auth-links {
     display: flex;
     justify-content: space-between;
-    min-width: 16rem;
+    min-width: 18rem;
   }
 
   &__link {
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     letter-spacing: 0.1rem;
     text-decoration: none;
     color: $color-grey-dark;

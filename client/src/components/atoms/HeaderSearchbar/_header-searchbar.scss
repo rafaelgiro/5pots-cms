@@ -3,7 +3,7 @@
   align-items: center;
   margin-left: 1.6rem;
   &__input {
-    height: 2.6rem;
+    height: 3.2rem;
     border-radius: 2.4rem;
     border: none;
     border: 1px solid rgba($color-gold-dark, 0.25);
@@ -13,7 +13,7 @@
     font-size: 1.6rem;
     padding-right: 2.4rem;
     color: $color-grey-dark;
-    font-weight: 200;
+    font-weight: 400;
 
     &::placeholder {
       color: rgba($color-grey-dark, 0.5);

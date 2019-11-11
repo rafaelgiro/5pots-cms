@@ -1,9 +1,8 @@
 .post-featured {
   display: grid;
   grid-template-columns: 3fr 4fr;
-
-  height: 80vh;
   position: relative;
+  align-items: center;
 
   &::after {
     content: "";
@@ -17,35 +16,8 @@
     background-repeat: no-repeat;
     background-blend-mode: darken;
     background-color: $color-background;
-    opacity: 0.2;
+    opacity: 0.1;
     z-index: -1;
-    height: 130%;
-  }
-
-  &__image-container {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &__image {
-    height: 56rem;
-    width: 27.2rem;
-    border-radius: 0.8rem;
-    background-image: url("https://br.leagueoflegends.com/sites/default/files/styles/scale_xlarge/public/upload/10y_header.jpg");
-    background-size: cover;
-    &-1 {
-      background-position-x: left;
-      background-position-y: center;
-      transform: translateY(1.6rem);
-    }
-    &-2 {
-      background-position-x: center;
-      background-position-y: center;
-      transform: translateY(3.2rem);
-    }
-    &-3 {
-      background-position-x: right;
-      background-position-y: center;
-    }
+    height: 150%;
   }
 }

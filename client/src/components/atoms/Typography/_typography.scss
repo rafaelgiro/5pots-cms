@@ -1,0 +1,26 @@
+.typography {
+  color: $color-grey-dark;
+
+  &__h1 {
+    font-size: 5.6rem;
+    font-weight: 700;
+  }
+
+  &__p {
+    font-size: 1.6rem;
+  }
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+a,
+li {
+  &::selection {
+    background: $color-grey-dark;
+    color: $color-background;
+  }
+}

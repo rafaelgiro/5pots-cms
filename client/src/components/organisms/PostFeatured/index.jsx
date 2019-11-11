@@ -1,15 +1,13 @@
 import React from "react";
+import PostFeaturedImage from "../../molecules/PostFeaturedImage";
+import PostFeaturedText from "../../molecules/PostFeaturedText";
 
 const PostFeatured = () => {
   return (
-    <div className="post-featured">
-      <div>Texto</div>
-      <div className="post-featured__image-container">
-        <div className="post-featured__image post-featured__image-1" />
-        <div className="post-featured__image post-featured__image-2" />
-        <div className="post-featured__image post-featured__image-3" />
-      </div>
-    </div>
+    <section className="post-featured">
+      <PostFeaturedText />
+      <PostFeaturedImage />
+    </section>
   );
 };
 

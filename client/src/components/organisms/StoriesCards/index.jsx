@@ -1,12 +1,16 @@
 import React from "react";
+import StoriesController from "../../molecules/StoriesController";
+import StoriesSelfCard from "../../molecules/StoriesSelfCard";
 
-const StoriesCards = () => {
+const Stories = () => {
   return (
-    <section>
-      <div>Seletor</div>
-      <div>Cards</div>
+    <section className="stories">
+      <StoriesController />
+      <div className="stories__cards">
+        <StoriesSelfCard />
+      </div>
     </section>
   );
 };
 
-export default StoriesCards;
+export default Stories;

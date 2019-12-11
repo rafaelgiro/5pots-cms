@@ -1,4 +1,5 @@
 .post-list {
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -7,6 +8,9 @@
   margin-top: 4.8rem;
 
   &__cover {
+    height: 301px;
+    position: relative;
+
     img {
       width: 100%;
     }
@@ -22,27 +26,30 @@
     &.riot {
       border-top: 0.8rem solid $color-riot;
     }
-  }
 
-  &__text {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-
-    &__wrap {
+    &__title {
+      position: absolute;
+      right: 0;
+      bottom: 0;
       align-self: flex-end;
       max-width: 724px;
       text-align: right;
     }
   }
 
+  &__text {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+
   &__title {
     display: inline;
-    padding: 12px 12px 5px 12px;
+    padding: 12px 12px 3px 12px;
     align-self: flex-end;
     font-size: 40px;
     line-height: 45px;
-    background: $color-pbe;
+    background: $color-background;
   }
 
   &__description {

@@ -49,10 +49,8 @@ export default function PostList() {
         <section className="post-list">
           <div className={`post-list__cover ${post.color}`}>
             <img src={post.image} alt={post.title} />
-          </div>
 
-          <div className="post-list__text">
-            <div className="post-list__text__wrap">
+            <div className="post-list__cover__title">
               <Typography
                 component="h2"
                 variant="h4"
@@ -61,7 +59,9 @@ export default function PostList() {
                 {post.title}
               </Typography>
             </div>
+          </div>
 
+          <div className="post-list__text">
             <Typography
               component="p"
               variant="p"

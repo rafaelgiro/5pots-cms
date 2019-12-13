@@ -8,7 +8,7 @@
   margin-top: 4.8rem;
 
   &__cover {
-    height: 301px;
+    height: 30.1rem;
     position: relative;
 
     img {
@@ -32,7 +32,7 @@
       right: 0;
       bottom: 0;
       align-self: flex-end;
-      max-width: 724px;
+      max-width: 72.4rem;
       text-align: right;
     }
   }
@@ -45,21 +45,21 @@
 
   &__title {
     display: inline;
-    padding: 12px 12px 3px 12px;
+    padding: 1.2rem 1.2rem 0.3rem 1.2rem;
     align-self: flex-end;
-    font-size: 40px;
-    line-height: 45px;
+    font-size: 4rem;
+    line-height: 4.5rem;
     background: $color-background;
   }
 
   &__description {
     margin-top: 1.625rem;
-    font-size: 18px;
-    line-height: 18px;
+    font-size: 1.8rem;
+    line-height: 1.8rem;
   }
 
   &__actions {
-    margin-top: 24px;
+    margin-top: 2.4rem;
     justify-content: space-between;
     width: 100%;
     display: flex;
@@ -144,12 +144,13 @@
 
     &__comments,
     &__more {
-      font-size: 18px;
-      line-height: 18px;
+      font-size: 1.8rem;
+      line-height: 1.8rem;
       font-weight: bold;
-      border-radius: 7px;
-      margin: 0 20px 10px;
+      border-radius: 0.7rem;
+      margin: 0 2rem 1rem;
       outline: 0;
+      transition: all 0.2s ease-out !important;
 
       &:hover {
         cursor: pointer;
@@ -157,11 +158,11 @@
     }
 
     &__comments {
-      padding: 16px 16px;
+      padding: 1.6rem 1.6rem;
     }
 
     &__more {
-      padding: 16px 38px;
+      padding: 1.6rem 3.8rem;
     }
   }
 }

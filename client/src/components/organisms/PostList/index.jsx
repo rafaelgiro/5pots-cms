@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import Typography from "../../atoms/Typography";
+import Typography from '../../atoms/Typography';
 
-import api from "../../../services/api";
+import api from '../../../services/api';
 
 export default function PostList() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     async function loadPosts() {
-      const response = await api.get("/posts");
+      const response = await api.get('/posts');
 
       setPosts(response.data);
     }
@@ -25,22 +25,14 @@ export default function PostList() {
             <img src={post.image} alt={post.title} />
 
             <div className="post-list__cover__title">
-              <Typography
-                component="h2"
-                variant="h4"
-                className="post-list__title"
-              >
+              <Typography component="h2" variant="h4" className="post-list__title">
                 {post.title}
               </Typography>
             </div>
           </div>
 
           <div className="post-list__text">
-            <Typography
-              component="p"
-              variant="p"
-              className="post-list__description"
-            >
+            <Typography component="p" variant="p" className="post-list__description">
               {post.description}
             </Typography>
           </div>

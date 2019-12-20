@@ -13,7 +13,8 @@ const StoriesSelfCard = () => {
         />
         <div>
           <Typography component="p" variant="p">
-            Postado por: <strong>datFranky</strong>
+            Postado por:
+            <strong>datFranky</strong>
           </Typography>
           <Typography
             className="stories__self-card__author__tag"
@@ -25,7 +26,7 @@ const StoriesSelfCard = () => {
         </div>
       </div>
       <Typography component="h3" variant="h4">
-        Atualização do PBE 11/11: Sion e Ivern eu te amo
+        Atualização do PBE 11/11: Sion eu te amo
       </Typography>
     </div>
   );

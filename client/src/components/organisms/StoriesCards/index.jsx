@@ -1,6 +1,7 @@
 import React from "react";
 import StoriesController from "../../molecules/StoriesController";
 import StoriesSelfCard from "../../molecules/StoriesSelfCard";
+import StoriesLinkCard from "../../molecules/StoriesLinkCard";
 
 const Stories = () => {
   return (
@@ -8,6 +9,8 @@ const Stories = () => {
       <StoriesController />
       <div className="stories__cards">
         <StoriesSelfCard />
+        <StoriesLinkCard />
+        <StoriesLinkCard />
       </div>
     </section>
   );

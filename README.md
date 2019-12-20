@@ -34,7 +34,7 @@ Suba as imagens
 docker-compose -f docker-compose_dev.yml up
 ```
 
-acesse o http://localhost e se divirta :D. Não se esqueça de ir para a branch "dev" para contribuir com o desenvolvimento do projeto.
+acesse o http://localhost (ou o IP que o Docker Toolbox te der) e se divirta :D. Não se esqueça de ir para a branch "dev" para contribuir com o desenvolvimento do projeto.
 
 <br>
 

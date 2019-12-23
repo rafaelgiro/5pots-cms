@@ -4,6 +4,7 @@
 @import "./atoms/HeaderSearchbar/header-searchbar";
 @import "./atoms/Logo/logo";
 @import "./atoms/Typography/typography";
+@import "./atoms/Button/button";
 
 @import "./molecules/HeaderNav/header-nav";
 @import "./molecules/PostFeaturedImage/post-featured-image";
@@ -11,6 +12,8 @@
 @import "./molecules/StoriesController/stories-controller";
 @import "./molecules/StoriesSelfCard/stories-self-card";
 @import "./molecules/StoriesLinkCard/stories-link-card";
+@import "./molecules/PostClassic/post-classic";
+@import "./molecules/PostCard/post-card";
 
 @import "./organisms/Header/header";
 @import "./organisms/PostFeatured/post-featured";

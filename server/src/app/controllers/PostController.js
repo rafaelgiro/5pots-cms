@@ -8,9 +8,10 @@ class BankController {
       elementos ascenderão na segunda temporada! Sendo nosso primeiro novo 
       conjunto, A Ascensão dos Elementos muda completamente os Campeões, as 
       Origens e as Classes que você conheceu durante o beta.`,
-        image: "https://i.imgur.com/YLdeUgB.png",
+        image:
+          "https://nexus.leagueoflegends.com/wp-content/uploads/2019/10/LOL_CMS_314_Tile_01-Feature_H40-V50-min_94ucpce02v5cgf3ootvq.jpg",
         commentsCount: 24,
-        color: "default"
+        category: "artigo"
       },
       {
         title: "ATUALIZAÇÃO DO PBE 25/10 NOVAS ARENAS DO TFT",
@@ -18,19 +19,87 @@ class BankController {
       elementos ascenderão na segunda temporada! Sendo nosso primeiro novo 
       conjunto, A Ascensão dos Elementos muda completamente os Campeões, as 
       Origens e as Classes que você conheceu durante o beta.`,
-        image: "https://i.imgur.com/7AxcReo.png",
+        image:
+          "https://nexus.leagueoflegends.com/wp-content/uploads/2019/12/HQ_Header_Ask_Riot_Preseaosn_f8i1ljevnti7wpo7oh2n.png",
         commentsCount: 12,
-        color: "pbe"
+        category: "pbe"
       },
       {
-        title: "TEMA DA CAMPEÃ SENNA",
+        title: "Pergunte a riot: Skin decente pro Ivern",
         description: `A fase beta de Teamfight Tactics chegou ao fim, e os 
       elementos ascenderão na segunda temporada! Sendo nosso primeiro novo 
       conjunto, A Ascensão dos Elementos muda completamente os Campeões, as 
       Origens e as Classes que você conheceu durante o beta.`,
-        image: "https://i.imgur.com/q2dnH94.png",
+        image:
+          "https://nexus.leagueoflegends.com/wp-content/uploads/2019/08/Banner_Image_Ask_Riot_zp7rnwkbgfttb0v5frin.jpg",
         commentsCount: 345,
-        color: "riot"
+        category: "riot"
+      },
+      {
+        title: "TEAMFIGHT TACTICS: A ASCENSÃO DOS ELEMENTOS",
+        description: `A fase beta de Teamfight Tactics chegou ao fim, e os 
+      elementos ascenderão na segunda temporada! Sendo nosso primeiro novo 
+      conjunto, A Ascensão dos Elementos muda completamente os Campeões, as 
+      Origens e as Classes que você conheceu durante o beta.`,
+        image:
+          "https://nexus.leagueoflegends.com/wp-content/uploads/2019/10/LOL_CMS_314_Tile_01-Feature_H40-V50-min_94ucpce02v5cgf3ootvq.jpg",
+        commentsCount: 24,
+        category: "artigo"
+      },
+      {
+        title: "ATUALIZAÇÃO DO PBE 25/10 NOVAS ARENAS DO TFT",
+        description: `A fase beta de Teamfight Tactics chegou ao fim, e os 
+      elementos ascenderão na segunda temporada! Sendo nosso primeiro novo 
+      conjunto, A Ascensão dos Elementos muda completamente os Campeões, as 
+      Origens e as Classes que você conheceu durante o beta.`,
+        image:
+          "https://nexus.leagueoflegends.com/wp-content/uploads/2019/12/HQ_Header_Ask_Riot_Preseaosn_f8i1ljevnti7wpo7oh2n.png",
+        commentsCount: 12,
+        category: "pbe"
+      },
+      {
+        title: "Pergunte a riot: Skin decente pro Ivern",
+        description: `A fase beta de Teamfight Tactics chegou ao fim, e os 
+      elementos ascenderão na segunda temporada! Sendo nosso primeiro novo 
+      conjunto, A Ascensão dos Elementos muda completamente os Campeões, as 
+      Origens e as Classes que você conheceu durante o beta.`,
+        image:
+          "https://nexus.leagueoflegends.com/wp-content/uploads/2019/08/Banner_Image_Ask_Riot_zp7rnwkbgfttb0v5frin.jpg",
+        commentsCount: 345,
+        category: "riot"
+      },
+      {
+        title: "TEAMFIGHT TACTICS: A ASCENSÃO DOS ELEMENTOS",
+        description: `A fase beta de Teamfight Tactics chegou ao fim, e os 
+      elementos ascenderão na segunda temporada! Sendo nosso primeiro novo 
+      conjunto, A Ascensão dos Elementos muda completamente os Campeões, as 
+      Origens e as Classes que você conheceu durante o beta.`,
+        image:
+          "https://nexus.leagueoflegends.com/wp-content/uploads/2019/10/LOL_CMS_314_Tile_01-Feature_H40-V50-min_94ucpce02v5cgf3ootvq.jpg",
+        commentsCount: 24,
+        category: "artigo"
+      },
+      {
+        title: "ATUALIZAÇÃO DO PBE 25/10 NOVAS ARENAS DO TFT",
+        description: `A fase beta de Teamfight Tactics chegou ao fim, e os 
+      elementos ascenderão na segunda temporada! Sendo nosso primeiro novo 
+      conjunto, A Ascensão dos Elementos muda completamente os Campeões, as 
+      Origens e as Classes que você conheceu durante o beta.`,
+        image:
+          "https://nexus.leagueoflegends.com/wp-content/uploads/2019/12/HQ_Header_Ask_Riot_Preseaosn_f8i1ljevnti7wpo7oh2n.png",
+        commentsCount: 12,
+        category: "pbe"
+      },
+      {
+        title: "Pergunte a riot: Skin decente pro Ivern",
+        description: `A fase beta de Teamfight Tactics chegou ao fim, e os 
+      elementos ascenderão na segunda temporada! Sendo nosso primeiro novo 
+      conjunto, A Ascensão dos Elementos muda completamente os Campeões, as 
+      Origens e as Classes que você conheceu durante o beta.`,
+        image:
+          "https://nexus.leagueoflegends.com/wp-content/uploads/2019/08/Banner_Image_Ask_Riot_zp7rnwkbgfttb0v5frin.jpg",
+        commentsCount: 345,
+        category: "riot"
       }
     ];
 

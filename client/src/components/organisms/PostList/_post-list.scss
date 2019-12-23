@@ -8,8 +8,17 @@
   }
 
   &--card {
-    width: 90%;
     margin: 8rem auto;
-    position: relative;
+    padding: 0 8rem;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    &__column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 }

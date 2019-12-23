@@ -1,12 +1,40 @@
 .post-card {
-  position: absolute;
-  width: 33.33333%;
+  //margin: 1.2rem;
+  border-radius: 0.8rem;
+  width: 90%;
 
   &__bg {
+    border-top: 1.2rem solid $color-grey-dark;
+    width: 100%;
     background-position: center;
     background-size: cover;
+    border-radius: 0.8rem 0.8rem 0 0;
+
+    &--pbe {
+      border-color: $color-pbe;
+    }
+
+    &--artigo {
+      border-color: $color-gold;
+    }
+
+    &--riot {
+      border-color: $color-riot;
+    }
   }
 
   &__title {
+    transform: translateY(-12rem);
+    margin-bottom: -4.8rem;
+    text-align: right;
+    margin-right: -0.1rem;
+    text-transform: uppercase;
+    font-size: 2.4rem;
+    line-height: 4.4rem;
+
+    span {
+      background-color: rgba($color-background, 1);
+      padding: 1rem;
+    }
   }
 }

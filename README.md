@@ -1,4 +1,5 @@
 # 5Pots
+
 > Portal de notícias de League of Legends
 
 ![5PotsSite](https://imgur.com/n7KVuuj.png)
@@ -7,49 +8,55 @@
 
 ## 🚀 Getting Started
 
+O projeto está em containers, por isso instale o [Docker](https://docs.docker.com/get-started/) de acordo com seu sistema operacional. Para Windows 10 home ou menor, utilize o [Docker Toolbox (Windows 10 home ou menor)](https://docs.docker.com/toolbox/toolbox_install_windows/).
+
 Clone o projeto
 
 ```
 git clone https://github.com/RafaelGiro/5pots
 ```
-Entre na branch dev
+
+Entre na pasta
 
 ```
-git checkout dev
+cd 5pots
 ```
 
-Por enquanto só estamos desenvolvendo o Front então acesse a pasta `client`
+Builde as imagens do Docker utilizando o Docker Compose
 
 ```
-cd client
+docker-compose -f docker-compose_dev.yml build
 ```
 
-Instale as dependências
+Suba as imagens
 
 ```
-yarn
+docker-compose -f docker-compose_dev.yml up
 ```
 
-Rode o projeto com
-
-```
-yarn start
-```
+acesse o http://localhost (ou o IP que o Docker Toolbox te der) e se divirta :D. Não se esqueça de ir para a branch "dev" para contribuir com o desenvolvimento do projeto.
 
 <br>
 
 ## ⚙️ Feito com
 
-* Front-end
-  * [React](https://pt-br.reactjs.org/)
-    * [React Dom](https://pt-br.reactjs.org/docs/react-dom.html)
-    * [React Router Dom](https://reacttraining.com/react-router/web/guides/quick-start)
-    
-<br>    
+- Front-end
+  - [React](https://pt-br.reactjs.org/)
+    - [React Dom](https://pt-br.reactjs.org/docs/react-dom.html)
+    - [React Router Dom](https://reacttraining.com/react-router/web/guides/quick-start)
+  - [SCSS](https://sass-lang.com/guide)
+- Back-end
+  - [Node.js](https://nodejs.org/en/)
+    - [Express](https://expressjs.com/pt-br/)
+  - [Docker](https://www.docker.com/)
+    - [Docker Compose](https://docs.docker.com/compose/)
+    - [Docker Toolbox (Windows 10 home ou menor)](https://docs.docker.com/toolbox/toolbox_install_windows/)
+      <br>
+  - [NGINX](https://www.nginx.com/)
 
 ## ✔️ À fazer
 
-- [x] Melhorar o Readme
+Verifique nossos [issues](https://github.com/RafaelGiro/5pots/issues)!
 
 <br>
 

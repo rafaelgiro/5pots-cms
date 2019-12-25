@@ -1,0 +1,35 @@
+.header {
+  padding: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  border-top: 0.8rem solid $color-grey-dark;
+
+  // Container para o Logo e a caixa de busca
+  &__left-actions {
+    display: flex;
+    align-items: center;
+  }
+
+  // Container para os links de ação de autenticação
+  &__auth-links {
+    display: flex;
+    justify-content: space-between;
+    min-width: 18rem;
+  }
+
+  &__link {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    letter-spacing: 0.1rem;
+    text-decoration: none;
+    color: $color-grey-dark;
+    transition: color 0.2s ease-out;
+
+    &:hover {
+      color: $color-gold-dark;
+    }
+  }
+}

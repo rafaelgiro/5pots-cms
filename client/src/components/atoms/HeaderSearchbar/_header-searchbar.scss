@@ -1,0 +1,34 @@
+.header__searchbar {
+  display: flex;
+  align-items: center;
+  margin-left: 1.6rem;
+  &__input {
+    height: 3.2rem;
+    border-radius: 2.4rem;
+    border: none;
+    border: 1px solid rgba($color-gold-dark, 0.25);
+    min-width: 20rem;
+    padding-left: 1rem;
+    font-family: $font-primary;
+    font-size: 1.6rem;
+    padding-right: 2.4rem;
+    color: $color-grey-dark;
+    font-weight: 400;
+
+    &::placeholder {
+      color: rgba($color-grey-dark, 0.5);
+    }
+  }
+
+  &__button {
+    font-size: 1.6rem;
+    border: none;
+    background-color: rgba(#fff, 0);
+    transform: translateX(-2.4rem);
+    margin-top: 0.6rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

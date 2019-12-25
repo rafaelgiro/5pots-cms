@@ -1,0 +1,23 @@
+.post-featured {
+  display: grid;
+  grid-template-columns: 3fr 4fr;
+  position: relative;
+  align-items: center;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url("https://i.imgur.com/v2dTJgL.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    background-color: $color-background;
+    opacity: 0.1;
+    z-index: -1;
+    height: 150%;
+  }
+}

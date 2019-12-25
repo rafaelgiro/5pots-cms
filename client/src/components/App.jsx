@@ -2,10 +2,12 @@ import React from "react";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Homepage from "./templates/Homepage";
+import Header from "./organisms/Header";
 
-function App() {
+const App = () => {
   return (
     <Router>
+      <Header />
       <Switch>
         <Route path="/">
           <Homepage />
@@ -13,6 +15,6 @@ function App() {
       </Switch>
     </Router>
   );
-}
+};
 
 export default App;

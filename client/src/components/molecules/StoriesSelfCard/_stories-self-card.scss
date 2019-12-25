@@ -1,0 +1,28 @@
+.stories__self-card {
+  width: 30.4rem;
+
+  &__img {
+    height: 40rem;
+    width: 34rem;
+    border-radius: 0.4rem;
+    background-image: url("https://playruneterra.com/assets/48b7bffe8468c1a99fabdd06f1897e8a709e3343/static/image/champions/Yasuo.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+
+  &__author {
+    padding: 0 1.6rem;
+    display: flex;
+    margin-top: 0.4rem;
+    &__img {
+      transform: translateY(-50%);
+      border-radius: 50%;
+      height: 4.8rem;
+      margin-right: 0.8rem;
+    }
+
+    &__tag {
+      color: rgba($color-grey-dark, 0.5);
+    }
+  }
+}

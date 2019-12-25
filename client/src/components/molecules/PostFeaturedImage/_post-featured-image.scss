@@ -1,0 +1,26 @@
+.post-featured__image-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-featured__image {
+  height: 56rem;
+  width: 32%;
+  border-radius: 0.8rem;
+  background-image: url("https://br.leagueoflegends.com/sites/default/files/styles/scale_xlarge/public/upload/10y_header.jpg");
+  background-size: cover;
+  &-1 {
+    background-position-x: left;
+    background-position-y: center;
+    transform: translateY(0.8rem);
+  }
+  &-2 {
+    background-position-x: center;
+    background-position-y: center;
+    transform: translateY(1.6rem);
+  }
+  &-3 {
+    background-position-x: right;
+    background-position-y: center;
+  }
+}

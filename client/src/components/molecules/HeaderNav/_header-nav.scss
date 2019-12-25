@@ -1,0 +1,13 @@
+.header__nav {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  min-width: 46.4rem;
+  justify-self: center;
+
+  //Pra ficar exatamente no centro sempre
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: -0.8rem;
+}

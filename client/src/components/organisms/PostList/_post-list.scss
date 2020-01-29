@@ -4,8 +4,27 @@
 
   &__cards-container {
     display: flex;
+<<<<<<< HEAD
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 0 auto;
+=======
+    flex-direction: column;
+  }
+
+  &--card {
+    margin: 8rem auto;
+    padding: 0 8rem;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    &__column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+>>>>>>> 6e9d422f9708b8a681019303f820fba55cb9b499
   }
 }

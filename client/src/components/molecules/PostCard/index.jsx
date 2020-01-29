@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-import Typography from "../../atoms/Typography";
+import Typography from '../../atoms/Typography';
 
 const PostCard = props => {
   const { post, className, number, heightSize, setHeightSize } = props;
@@ -10,36 +10,19 @@ const PostCard = props => {
     return Math.round(Math.random() * (max - min) + min);
   };
 
-  const left = ((number + 1) % 3) * 33.3333;
-  const height = getRandomHeight(600, 700);
-  const top = heightSize[Math.floor(number / 3)];
-
-  console.log(Math.floor(number / 3));
-
-  useEffect(() => {
-    if (number % 3 === 0) {
-      setHeightSize([heightSize[0] + height, heightSize[1], heightSize[2]]);
-    } else if (number % 3 === 1) {
-      setHeightSize([heightSize[0], heightSize[1] + height, heightSize[2]]);
-    } else {
-      setHeightSize([heightSize[0], heightSize[1], heightSize[2] + height]);
-    }
-  }, []);
+  const height = getRandomHeight(375, 475);
 
   return (
-    <div
-      className={`post-card ${className}`}
-      style={{
-        backgroundImage: `url(${post.image})`,
-        height: `${height}px`,
-        left: `${left}%`,
-        top: `${top}px`
-      }}
-    >
-      <div className="post-card__bg" />
+    <div className={`post-card ${className}`}>
+      <div
+        className={`post-card__bg post-card__bg--${post.category}`}
+        style={{
+          backgroundImage: `url(${post.image})`,
+          height: `${height}px`
+        }}
+      />
       <Typography component="h2" variant="h4" className="post-card__title">
-        {post.title}
-        {top}
+        <span>{post.title}</span>
       </Typography>
     </div>
   );
@@ -60,7 +43,7 @@ PostCard.propTypes = {
 };
 
 PostCard.defaultProps = {
-  className: ""
+  className: ''
 };
 
 export default PostCard;

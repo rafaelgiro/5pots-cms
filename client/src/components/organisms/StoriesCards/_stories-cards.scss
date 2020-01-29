@@ -13,5 +13,9 @@
     width: 120%;
     display: flex;
     justify-content: space-evenly;
+
+    :last-child {
+      margin-left: 0rem !important;
+    }
   }
 }

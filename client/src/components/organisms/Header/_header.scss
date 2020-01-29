@@ -32,4 +32,12 @@
       color: $color-gold-dark;
     }
   }
+
+  &--mobile {
+    justify-content: center;
+
+    .header__logo {
+      height: 8rem;
+    }
+  }
 }

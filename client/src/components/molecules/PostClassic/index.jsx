@@ -1,50 +1,42 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 import Typography from "../../atoms/Typography";
-import Button from "../../atoms/Button";
+
+import colors from "../../../constants/colors";
 
 const PostClassic = props => {
   const { post, className } = props;
 
   return (
-    <div className={`post-classic ${className}`}>
-      <div className={`post-classic__cover ${post.category}`}>
-        <img src={post.image} alt={post.title} />
-
-        <div className="post-classic__cover__title">
-          <Typography
-            component="h2"
-            variant="h4"
-            className="post-classic__title"
-          >
-            {post.title}
-          </Typography>
-        </div>
-      </div>
-
-      <div className="post-classic__text">
+    <div
+      style={{
+        backgroundImage: `url(${post.image})`,
+        borderColor: colors[post.category]
+      }}
+      className={`post-classic ${className}`}
+    >
+      <div className="post-classic__container">
+        <Typography component="h3" variant="h3" className="post-classic__title">
+          {post.title}
+        </Typography>
         <Typography
           component="p"
           variant="p"
-          className="post-classic__description"
+          className="post-classic__category"
         >
+          Patch: 10.2 PBE - Postado por Dantenor Francisco
+        </Typography>
+        <Typography component="p" variant="p" className="post-classic__desc">
           {post.description}
         </Typography>
-      </div>
-
-      <div className={`post-classic__actions ${post.category}`}>
-        <Button
-          color={post.category}
-          variant="outline"
-          className="post-classic__actions__comments"
-        >
-          {post.commentsCount}
-          COMENTÁRIOS
-        </Button>
-        <Button color={post.category} className="post-classic__actions__more">
-          LEIA MAIS
-        </Button>
+        <div className="post-classic__link-container">
+          <Typography component="p" variant="p" className="post-classic__link">
+            Leia mais
+          </Typography>
+          <MdKeyboardArrowRight className="post-classic__link--arrow" />
+        </div>
       </div>
     </div>
   );

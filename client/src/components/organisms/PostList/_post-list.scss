@@ -1,15 +1,11 @@
 .post-list {
   width: 100%;
-  margin-top: 2.4rem;
+  grid-column: content-start / content-end;
 
-  &--classic {
+  &__cards-container {
     display: flex;
-    flex-direction: column;
-  }
-
-  &--card {
-    width: 90%;
-    margin: 8rem auto;
-    position: relative;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
   }
 }

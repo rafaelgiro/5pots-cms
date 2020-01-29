@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 import api from "../../../services/api";
-import PostCard from "../../molecules/PostCard";
+import PostClassic from "../../molecules/PostClassic";
+import StoriesSelfCard from "../../molecules/StoriesSelfCard";
 
 export default function PostList() {
   const [posts, setPosts] = useState();
-  // eslint-disable-next-line no-unused-vars
-  const [postType, setPostType] = useState("card");
-  const [heightSize, setHeightSize] = useState([0, 0, 0]);
 
   // Carrega os posts
   useEffect(() => {
@@ -25,15 +23,7 @@ export default function PostList() {
     // Verifica se os posts foram carregados
     if (posts) {
       const postsList = posts.map((post, index) => {
-        return (
-          <PostCard
-            key={index}
-            post={post}
-            number={index}
-            heightSize={heightSize}
-            setHeightSize={setHeightSize}
-          />
-        );
+        return <PostClassic post={post} />;
       });
       return postsList;
     }
@@ -42,8 +32,8 @@ export default function PostList() {
   };
 
   return (
-    <section className={`post-list post-list--${postType}`}>
-      {renderPosts()}
+    <section className={`post-list`}>
+      <div className="post-list__cards-container">{renderPosts()}</div>
     </section>
   );
 }

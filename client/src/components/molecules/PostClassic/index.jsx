@@ -21,11 +21,7 @@ const PostClassic = props => {
         <Typography component="h3" variant="h3" className="post-classic__title">
           {post.title}
         </Typography>
-        <Typography
-          component="p"
-          variant="p"
-          className="post-classic__category"
-        >
+        <Typography component="p" variant="sub">
           Patch: 10.2 PBE - Postado por Dantenor Francisco
         </Typography>
         <Typography component="p" variant="p" className="post-classic__desc">

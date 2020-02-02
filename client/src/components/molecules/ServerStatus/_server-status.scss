@@ -1,0 +1,32 @@
+.server-status {
+  &__icon {
+    font-size: 2.4rem;
+    margin-right: 0.8rem;
+    margin-top: 0.8rem;
+    transform: translateY(0.4rem); // Arruma centralização vertical
+
+    &--online {
+      fill: $color-server-online;
+    }
+
+    &--offline {
+      fill: $color-server-offline;
+    }
+  }
+
+  &__server-name {
+    font-size: 2.4rem;
+    font-weight: 600;
+  }
+
+  &__time-ago {
+    margin-top: 0.4rem;
+    margin-left: 3.2rem;
+  }
+
+  &__desc {
+    margin-left: 2.4rem;
+    border-left: 0.2rem solid $color-grey-dark;
+    padding-left: 0.6rem;
+  }
+}

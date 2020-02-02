@@ -1,7 +1,12 @@
 import React from "react";
+import ServerStatus from "../../molecules/ServerStatus";
 
-const Sidebar = props => {
-  return <div className="sidebar"></div>;
+const Sidebar = () => {
+  return (
+    <div className="sidebar">
+      <ServerStatus />
+    </div>
+  );
 };
 
 export default Sidebar;

@@ -33,7 +33,10 @@ h3,
 h4,
 h5,
 a,
-li {
+li,
+span,
+img,
+strong {
   &::selection {
     background: $color-grey-dark;
     color: $color-background;

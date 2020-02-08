@@ -1,0 +1,44 @@
+.sidebar-social {
+  margin-top: 8rem;
+  font-size: 5.6rem;
+  color: $color-grey-dark;
+  color: $color-grey-dark;
+
+  position: sticky;
+  top: 4rem;
+
+  &__icons {
+    display: flex;
+
+    a {
+      text-decoration: none;
+      color: $color-grey-dark;
+    }
+
+    svg {
+      margin-right: 1.6rem;
+      cursor: pointer;
+      transition: fill 0.3s ease-out;
+    }
+
+    &--discord {
+      margin-top: 0.4rem;
+
+      &:hover {
+        fill: $color-discord;
+      }
+    }
+
+    &--twitter {
+      &:hover {
+        fill: $color-twitter;
+      }
+    }
+
+    &--facebook {
+      &:hover {
+        fill: $color-facebook;
+      }
+    }
+  }
+}

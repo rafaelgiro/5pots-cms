@@ -1,0 +1,38 @@
+.footer {
+  background-color: $color-grey-dark;
+  padding: 4rem 8rem;
+  color: $color-background;
+  border-top: 16rem solid $color-grey;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__logo-container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo {
+    fill: $color-background;
+    height: 8rem;
+  }
+
+  &__5pots {
+    color: $color-background;
+    margin-left: 2.4rem;
+    transform: translateY(0.8rem);
+    font-size: 4.8rem;
+  }
+
+  &__links {
+    a {
+      text-decoration: none;
+    }
+  }
+
+  &__link {
+    color: $color-background;
+    font-weight: 300;
+    font-size: 2.4rem;
+  }
+}

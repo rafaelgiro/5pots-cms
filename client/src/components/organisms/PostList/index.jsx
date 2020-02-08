@@ -22,7 +22,7 @@ const PostList = () => {
     // Verifica se os posts foram carregados
     if (posts) {
       const postsList = posts.map(post => {
-        return <PostClassic post={post} />;
+        return <PostClassic key={post.title} post={post} />;
       });
       return postsList;
     }

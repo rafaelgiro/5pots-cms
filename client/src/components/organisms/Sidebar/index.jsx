@@ -1,11 +1,17 @@
 import React from "react";
 import ServerStatus from "../../molecules/ServerStatus";
+import SkinSlideshow from "../../molecules/SkinSlideshow";
+import BCOverview from "../../molecules/BalanceChangesOverview";
+import SidebarSocialMedia from "../../molecules/SidebarSocialMedia";
 
 const Sidebar = () => {
   return (
-    <div className="sidebar">
+    <section className="sidebar">
       <ServerStatus />
-    </div>
+      <SkinSlideshow />
+      <BCOverview />
+      <SidebarSocialMedia />
+    </section>
   );
 };
 

@@ -4,6 +4,7 @@ import PostFeatured from "../../organisms/PostFeatured";
 import StoriesCards from "../../organisms/StoriesCards";
 import PostList from "../../organisms/PostList";
 import Sidebar from "../../organisms/Sidebar";
+import Footer from "../../organisms/Footer";
 
 const renderHome = () => {
   if (window.innerWidth < 900) {
@@ -26,6 +27,7 @@ const renderHome = () => {
           <Sidebar />
           <PostList />
         </div>
+        <Footer />
       </div>
     );
   }

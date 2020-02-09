@@ -1,17 +1,4 @@
 .homepage {
-  &--mobile {
-    text-align: center;
-    font-size: 4rem;
-    color: $color-grey-dark;
-
-    p {
-      margin-top: 8rem;
-
-      a {
-        color: rgba($color-grey-dark, 0.5);
-      }
-    }
-  }
 }
 
 .main-content {
@@ -20,6 +7,12 @@
   width: 100%;
   margin-top: 8rem;
   position: relative;
+
+  @media only screen and (max-width: $tab-port) {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: 1.6rem;
+  }
 
   &::after {
     content: "";
@@ -34,5 +27,9 @@
     background-color: $color-background;
     opacity: 0.08;
     z-index: -1;
+
+    @media only screen and (max-width: $tab-port) {
+      top: -240rem;
+    }
   }
 }

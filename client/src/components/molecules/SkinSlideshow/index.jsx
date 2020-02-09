@@ -16,26 +16,28 @@ const SkinSlideshow = () => {
 
   // Atualiza os bullet points quando mudar o estado
   useEffect(() => {
-    const bullets = document.querySelectorAll(
-      ".skin-slideshow__controls__bullet"
-    );
-    const arrowUp = document.querySelector("#skin-slideshow__arrow-up");
-    const arrowDown = document.querySelector("#skin-slideshow__arrow-down");
+    if (window.innerWidth > 900) {
+      const bullets = document.querySelectorAll(
+        ".skin-slideshow__controls__bullet"
+      );
+      const arrowUp = document.querySelector("#skin-slideshow__arrow-up");
+      const arrowDown = document.querySelector("#skin-slideshow__arrow-down");
 
-    bullets.forEach(bullet => {
-      // eslint-disable-next-line no-param-reassign
-      bullet.style.opacity = 0.3;
-    });
-    bullets[currentIndex].style.opacity = 1;
+      bullets.forEach(bullet => {
+        // eslint-disable-next-line no-param-reassign
+        bullet.style.opacity = 0.3;
+      });
+      bullets[currentIndex].style.opacity = 1;
 
-    if (currentIndex === 0) {
-      arrowUp.style.opacity = 0.3;
-      arrowDown.style.opacity = 1;
-    } else if (currentIndex === skins.length - 1) {
-      arrowDown.style.opacity = 0.3;
-    } else {
-      arrowUp.style.opacity = 1;
-      arrowDown.style.opacity = 1;
+      if (currentIndex === 0) {
+        arrowUp.style.opacity = 0.3;
+        arrowDown.style.opacity = 1;
+      } else if (currentIndex === skins.length - 1) {
+        arrowDown.style.opacity = 0.3;
+      } else {
+        arrowUp.style.opacity = 1;
+        arrowDown.style.opacity = 1;
+      }
     }
   });
 
@@ -96,49 +98,53 @@ const SkinSlideshow = () => {
     return bullets;
   };
 
-  return (
-    <div className="skins-sidebar">
-      <Typography className="sidebar__title" component="h4" variant="h4">
-        Novas skins no PBE
-      </Typography>
-      <div className="skin-slideshow__general-container">
-        <div className="skin-slideshow">
-          <div style={wrapperStyles} className="skin-slideshow__wrapper">
-            {renderSkins()}
+  if (window.innerWidth < 900) {
+    return <div />;
+  } else {
+    return (
+      <div className="skins-sidebar">
+        <Typography className="sidebar__title" component="h4" variant="h4">
+          Novas skins no PBE
+        </Typography>
+        <div className="skin-slideshow__general-container">
+          <div className="skin-slideshow">
+            <div style={wrapperStyles} className="skin-slideshow__wrapper">
+              {renderSkins()}
+            </div>
+            <div className="skin-slideshow__details">
+              <Typography component="p" variant="p">
+                <span className="skin-slideshow__details__title">
+                  {skins[currentIndex].name}
+                </span>
+                <span className="skin-slideshow__details__tier">
+                  Skin {skins[currentIndex].tier} -{" "}
+                </span>
+                {skins[currentIndex].price}
+                <img
+                  alt={skins[currentIndex].name}
+                  className="skin-slideshow__details__currency"
+                  src={skins[currentIndex].currency}
+                />
+              </Typography>
+            </div>
           </div>
-          <div className="skin-slideshow__details">
-            <Typography component="p" variant="p">
-              <span className="skin-slideshow__details__title">
-                {skins[currentIndex].name}
-              </span>
-              <span className="skin-slideshow__details__tier">
-                Skin {skins[currentIndex].tier} -{" "}
-              </span>
-              {skins[currentIndex].price}
-              <img
-                alt={skins[currentIndex].name}
-                className="skin-slideshow__details__currency"
-                src={skins[currentIndex].currency}
-              />
-            </Typography>
+          <div className="skin-slideshow__controls">
+            <MdKeyboardArrowUp
+              id="skin-slideshow__arrow-up"
+              className="skin-slideshow__controls__arrow"
+              onClick={goToPrevSlide}
+            />
+            {renderBulletPoints()}
+            <MdKeyboardArrowDown
+              id="skin-slideshow__arrow-down"
+              className="skin-slideshow__controls__arrow"
+              onClick={goToNextSlide}
+            />
           </div>
-        </div>
-        <div className="skin-slideshow__controls">
-          <MdKeyboardArrowUp
-            id="skin-slideshow__arrow-up"
-            className="skin-slideshow__controls__arrow"
-            onClick={goToPrevSlide}
-          />
-          {renderBulletPoints()}
-          <MdKeyboardArrowDown
-            id="skin-slideshow__arrow-down"
-            className="skin-slideshow__controls__arrow"
-            onClick={goToNextSlide}
-          />
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 // Componente de helper pra fazer o Slide individual

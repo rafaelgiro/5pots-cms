@@ -4,6 +4,12 @@
   position: relative;
   align-items: center;
 
+  @media only screen and (max-width: $tab-port) {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: normal;
+  }
+
   &::after {
     content: "";
     position: absolute;
@@ -19,5 +25,9 @@
     opacity: 0.1;
     z-index: -1;
     height: 150%;
+
+    @media only screen and (max-width: $tab-port) {
+      top: -8rem;
+    }
   }
 }

@@ -6,18 +6,35 @@
   justify-content: space-evenly;
   align-items: flex-end;
 
+  @media only screen and (max-width: $tab-port) {
+    padding: 2.4rem;
+  }
+
   &__title {
     text-align: right;
+
+    @media only screen and (max-width: $tab-port) {
+      font-size: 4.8rem;
+    }
   }
 
   &__desc {
     font-size: 2.4rem;
     font-style: italic;
+
+    @media only screen and (max-width: $tab-port) {
+      margin-top: 1.8rem;
+    }
   }
 
   &__link-container {
     display: flex;
     align-items: center;
+
+    @media only screen and (max-width: $tab-port) {
+      margin-top: 1.8rem;
+      display: none;
+    }
 
     &:hover {
       cursor: pointer;

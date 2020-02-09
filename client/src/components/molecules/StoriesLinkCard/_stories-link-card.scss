@@ -7,6 +7,10 @@
   margin-left: 4rem;
   margin-right: -1rem; // llgambi
 
+  @media only screen and (max-width: $tab-port) {
+    margin: 2.4rem 0;
+  }
+
   &__img {
     height: 40rem;
     width: 34rem;

@@ -6,6 +6,9 @@
     font-weight: 600;
     margin-bottom: 0.8rem;
   }
+
+  @media only screen and (max-width: $tab-port) {
+  }
 }
 
 .sidebar-beta {

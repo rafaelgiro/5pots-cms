@@ -1,9 +1,13 @@
 .skin-slideshow {
   position: relative;
-  width: 28rem;
+  width: 80%;
   height: 40rem;
   overflow: hidden;
   white-space: nowrap;
+
+  @media only screen and (max-width: $tab-port) {
+    display: none;
+  }
 
   &__general-container {
     display: flex;

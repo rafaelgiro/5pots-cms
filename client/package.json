@@ -15,7 +15,7 @@
     "react-scripts": "3.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "HOST=0.0.0.0 react-scripts start",
     "server": "cd ../server && nodemon ./src/server.js",
     "dev": "run-p server start",
     "build": "react-scripts build",

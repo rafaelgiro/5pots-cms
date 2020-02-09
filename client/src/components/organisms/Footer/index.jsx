@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="footer__logo-container">
         <Logo className="footer__logo" />
         <Typography className="footer__5pots" component="p" variant="h1">
-          5POTS
+          SION TE AMO
         </Typography>
       </div>
       <div className="footer__links">

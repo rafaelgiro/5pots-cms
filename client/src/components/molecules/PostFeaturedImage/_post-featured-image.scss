@@ -1,6 +1,11 @@
 .post-featured__image-container {
   display: flex;
   justify-content: space-between;
+
+  @media only screen and (max-width: $tab-port) {
+    flex-direction: column;
+    align-items: flex-end;
+  }
 }
 
 .post-featured__image {
@@ -9,18 +14,45 @@
   border-radius: 0.8rem;
   background-image: url("https://br.leagueoflegends.com/sites/default/files/styles/scale_xlarge/public/upload/10y_header.jpg");
   background-size: cover;
+
+  @media only screen and (max-width: $tab-port) {
+    width: 90vw;
+    height: 15vh;
+    background-size: 84vh;
+    margin: 0.4rem;
+  }
+
   &-1 {
     background-position-x: left;
     background-position-y: center;
     transform: translateY(0.8rem);
+
+    @media only screen and (max-width: $tab-port) {
+      width: 94vw;
+      transform: translateY(0rem);
+      background-position-x: center;
+      background-position-y: top;
+    }
   }
   &-2 {
     background-position-x: center;
     background-position-y: center;
     transform: translateY(1.6rem);
+
+    @media only screen and (max-width: $tab-port) {
+      width: 86vw;
+      transform: translateY(0rem);
+      background-position-x: center;
+      background-position-y: center;
+    }
   }
   &-3 {
     background-position-x: right;
     background-position-y: center;
+
+    @media only screen and (max-width: $tab-port) {
+      background-position-x: center;
+      background-position-y: bottom;
+    }
   }
 }

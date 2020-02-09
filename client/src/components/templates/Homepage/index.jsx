@@ -6,6 +6,7 @@ import PostList from "../../organisms/PostList";
 import Sidebar from "../../organisms/Sidebar";
 import Footer from "../../organisms/Footer";
 
+
 const renderHome = () => {
   return (
     <main className="homepage">

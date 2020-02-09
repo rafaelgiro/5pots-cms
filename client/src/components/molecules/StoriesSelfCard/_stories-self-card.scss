@@ -1,6 +1,10 @@
 .stories__self-card {
   width: 30.4rem;
 
+  @media only screen and (max-width: $tab-port) {
+    margin-left: -3.2rem;
+  }
+
   &__img {
     height: 40rem;
     width: 34rem;

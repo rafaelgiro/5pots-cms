@@ -1,0 +1,7 @@
+.bc-overview {
+  margin-top: 8rem;
+
+  @media only screen and (max-width: $tab-port) {
+    display: none;
+  }
+}

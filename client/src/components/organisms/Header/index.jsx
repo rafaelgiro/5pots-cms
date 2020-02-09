@@ -5,7 +5,7 @@ import Logo from "../../atoms/Logo";
 import HeaderNav from "../../molecules/HeaderNav";
 import HeaderSearchbar from "../../atoms/HeaderSearchbar";
 
-const Header = () => {
+const renderHeader = () => {
   return (
     <header className="header">
       <div className="header__left-actions">
@@ -27,6 +27,10 @@ const Header = () => {
       </div>
     </header>
   );
+};
+
+const Header = () => {
+  return <>{renderHeader()}</>;
 };
 
 export default Header;

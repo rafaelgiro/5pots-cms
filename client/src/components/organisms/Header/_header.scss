@@ -6,6 +6,10 @@
   position: relative;
   border-top: 0.8rem solid $color-grey-dark;
 
+  @media only screen and (max-width: $tab-port) {
+    justify-content: center;
+  }
+
   // Container para o Logo e a caixa de busca
   &__left-actions {
     display: flex;
@@ -17,6 +21,10 @@
     display: flex;
     justify-content: space-between;
     min-width: 18rem;
+
+    @media only screen and (max-width: $tab-port) {
+      display: none;
+    }
   }
 
   &__link {
@@ -27,6 +35,10 @@
     text-decoration: none;
     color: $color-grey-dark;
     transition: color 0.2s ease-out;
+
+    @media only screen and (max-width: $tab-port) {
+      display: none;
+    }
 
     &:hover {
       color: $color-gold-dark;

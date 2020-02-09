@@ -1,2 +1,35 @@
 .homepage {
 }
+
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr [sidebar-start] 3fr [sidebar-end] 1fr [content-start] 9fr [content-end] 1fr;
+  width: 100%;
+  margin-top: 8rem;
+  position: relative;
+
+  @media only screen and (max-width: $tab-port) {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: 1.6rem;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: -16rem;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url("https://i.imgur.com/1p55Cod.jpg");
+    background-size: contain;
+    background-blend-mode: darken;
+    background-color: $color-background;
+    opacity: 0.08;
+    z-index: -1;
+
+    @media only screen and (max-width: $tab-port) {
+      top: -240rem;
+    }
+  }
+}

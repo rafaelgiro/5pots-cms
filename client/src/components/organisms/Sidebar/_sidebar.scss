@@ -1,0 +1,17 @@
+.sidebar {
+  grid-column: sidebar-start / sidebar-end;
+
+  &__title {
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+
+  @media only screen and (max-width: $tab-port) {
+  }
+}
+
+.sidebar-beta {
+  margin-top: 8rem;
+  font-style: oblique;
+}

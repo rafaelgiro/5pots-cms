@@ -13,5 +13,19 @@
     width: 120%;
     display: flex;
     justify-content: space-evenly;
+
+    @media only screen and (max-width: $tab-port) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @media only screen and (max-width: $tab-land) {
+      width: 100%;
+    }
+
+    :last-child {
+      margin-left: 0rem !important;
+    }
   }
 }

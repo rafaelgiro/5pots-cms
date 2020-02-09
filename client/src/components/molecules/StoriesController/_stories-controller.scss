@@ -2,6 +2,11 @@
   display: flex;
   align-items: center;
 
+  @media only screen and (max-width: $tab-port) {
+    flex-direction: column;
+    justify-content: center;
+  }
+
   &__sub-title {
     font-size: 2.4rem;
   }
@@ -18,5 +23,10 @@
     border-left: 2px solid $color-grey-dark;
     padding: 1.6rem 0 1.6rem 3.2rem;
     margin-left: 3.2rem;
+
+    @media only screen and (max-width: $tab-port) {
+      border-left: none;
+      width: 80vw;
+    }
   }
 }

@@ -1,0 +1,11 @@
+.champion-icon {
+  width: 5.6rem;
+  height: 5.6rem;
+  border-radius: 50%;
+  margin: 0.6rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-out;
+  &:hover {
+    transform: translateY(-0.2rem);
+  }
+}

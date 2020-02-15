@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "repository": "https://github.com/RafaelGiro/5pots",
   "author": "Rafael Giro",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/RafaelGiro/5pots/raw/master/LICENSE"
+    }
+  ],
   "dependencies": {
     "axios": "^0.19.0",
     "dotenv": "^8.2.0",
@@ -12,7 +18,7 @@
     "react-dom": "^16.11.0",
     "react-icons": "^3.8.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.4.0"
   },
   "scripts": {
     "start": "HOST=0.0.0.0 react-scripts start",

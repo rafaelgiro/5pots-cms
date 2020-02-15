@@ -4,6 +4,12 @@
   "main": "src/server.js",
   "repository": "https://github.com/RafaelGiro/5pots",
   "author": "Rafael Giro",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/RafaelGiro/5pots/raw/master/LICENSE"
+    }
+  ],
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",

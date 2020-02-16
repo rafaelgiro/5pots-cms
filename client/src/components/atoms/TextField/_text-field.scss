@@ -1,0 +1,61 @@
+.text-field {
+  position: relative;
+  font-size: 1.6rem;
+  width: 100%;
+  margin: 0.8rem 0;
+
+  &__icon {
+    position: absolute;
+    top: 0.8rem;
+    left: 0.8rem;
+    font-size: 3.2rem;
+    fill: $color-grey-dark;
+    z-index: 10;
+  }
+
+  &__label {
+    position: absolute;
+    top: 1.8rem;
+    left: 4.8rem;
+    transition: transform 0.1s ease-out;
+  }
+
+  &__input {
+    height: 3rem; // O navegador adiciona 2px por algum motivo - padding top
+    width: calc(
+      100% - 5.2rem
+    ); // Width inteiro menos o padding esquerdo e bordas
+
+    border-radius: 0.4rem;
+    border: none;
+    border: 2px solid rgba($color-grey-dark, 0);
+    background-color: $color-grey;
+    transition: all 0.2s ease-out;
+    padding-left: 4.8rem;
+    padding-top: 1.6rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: $color-grey-dark;
+
+    &:focus {
+      border-color: $color-grey-dark;
+      background-color: #fff;
+
+      & + label {
+        color: rgba($color-grey-dark, 0.9);
+        transform: translateY(-1.4rem) translateX(-0.4rem);
+      }
+    }
+
+    &:valid + label {
+      color: rgba($color-grey-dark, 0.9);
+      transform: translateY(-1.4rem) translateX(-0.4rem);
+    }
+
+    &:invalid {
+      box-shadow: none;
+      //border-color: rgba($color-riot, 0.8);
+      //background-color: rgba($color-background, 0.8);
+    }
+  }
+}

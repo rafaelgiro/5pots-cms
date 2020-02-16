@@ -20,7 +20,7 @@ const BCOverview = () => {
   const [champions, setChampions] = useState(championsHC);
   const renderIcons = () => {
     const icons = champions.map(champion => {
-      return <ChampionIcon name={champion} />;
+      return <ChampionIcon key={champion} name={champion} />;
     });
 
     return icons;
@@ -28,16 +28,15 @@ const BCOverview = () => {
 
   if (window.innerWidth < 900) {
     return <div />;
-  } else {
-    return (
-      <div className="bc-overview">
-        <Typography className="sidebar__title" component="h4" variant="h4">
-          Tentativas de Balanceamento
-        </Typography>
-        {renderIcons()}
-      </div>
-    );
   }
+  return (
+    <div className="bc-overview">
+      <Typography className="sidebar__title" component="h4" variant="h4">
+        Tentativas de Balanceamento
+      </Typography>
+      {renderIcons()}
+    </div>
+  );
 };
 
 export default BCOverview;

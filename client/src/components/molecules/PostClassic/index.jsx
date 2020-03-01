@@ -28,11 +28,31 @@ const PostClassic = props => {
           {post.description}
         </Typography>
         <div className="post-classic__link-container">
-          <Typography link={post.link} component="a" variant="a" className="post-classic__link">
-              Leia mais
+          <Typography
+            link={post.link}
+            component="a"
+            variant="a"
+            className="post-classic__link"
+          >
+            Leia mais
           </Typography>
           <MdKeyboardArrowRight className="post-classic__link--arrow" />
         </div>
+      </div>
+    </div>
+  );
+};
+
+export const PostClassicSkeleton = () => {
+  return (
+    <div className="post-classic__skeleton">
+      <div className="post-classic__skeleton-1" />
+      <div className="post-classic__skeleton-2" />
+      <div className="post-classic__skeleton__container">
+        <div className="post-classic__skeleton__title" />
+        <div className="post-classic__skeleton__desc post-classic__skeleton__desc-1" />
+        <div className="post-classic__skeleton__desc post-classic__skeleton__desc-2" />
+        <div className="post-classic__skeleton__link" />
       </div>
     </div>
   );
@@ -44,7 +64,7 @@ PostClassic.propTypes = {
     category: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired
   }).isRequired,
   // Classes extras para o component
   className: PropTypes.string

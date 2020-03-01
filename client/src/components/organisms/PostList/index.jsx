@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import api from "../../../services/api";
-import PostClassic from "../../molecules/PostClassic";
+import PostClassic, { PostClassicSkeleton } from "../../molecules/PostClassic";
 
 const PostList = () => {
   const [posts, setPosts] = useState();
@@ -26,8 +26,14 @@ const PostList = () => {
       });
       return postsList;
     }
-    // TODO: componente esqueleto
-    return "loading...";
+
+    return (
+      <>
+        <PostClassicSkeleton />
+        <PostClassicSkeleton />
+        <PostClassicSkeleton />
+      </>
+    );
   };
 
   return (

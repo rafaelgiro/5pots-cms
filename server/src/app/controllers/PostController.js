@@ -1,25 +1,36 @@
-import RiotApi from '../../services/api/riot';
+import RiotApi from "../../services/api/riot";
 
 class PostController {
-
   async index(req, res) {
-    const response = await RiotApi.page('news').get();
+    const response = await RiotApi.page("news").get();
 
-    const { result: { pageContext: { data: { sections } } } }  = response.data;
-
-    const filter = sections.filter(section => section.type === 'news_latest')[0].props.articles;
-
-    const posts = filter.map(post => (
-      {
-        title: post.title,
-        description: post.text,
-        image: post.imageUrl,
-        author: post.authors ? post.authors[0] : 'Riot Games',
-        category: 'riot',
-        tag: post.category,
-        link: `https://br.leagueoflegends.com/pt-br${post.link.url}`
+    const {
+      result: {
+        pageContext: {
+          data: { sections }
+        }
       }
-    ));
+    } = response.data;
+
+    const filter = sections.filter(section => section.type === "news_latest")[0]
+      .props.articles;
+
+    console.log(response.data);
+
+    const posts = filter.reduce((posts, post) => {
+      if (post.category !== "Comunidade") {
+        posts.push({
+          title: post.title,
+          description: post.text,
+          image: post.imageUrl,
+          author: post.authors ? post.authors[0] : "Riot Games",
+          category: "riot",
+          tag: post.category,
+          link: `https://br.leagueoflegends.com/pt-br${post.link.url}`
+        });
+      }
+      return posts;
+    }, []);
 
     return res.json(posts);
   }

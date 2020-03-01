@@ -2,7 +2,22 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Typography = props => {
-  const { component, variant, children, className } = props;
+  const { component, variant, children, className, link } = props;
+  
+  if (link) {
+    const Link = component;
+
+    return (
+      <Link 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        href={link} 
+        className={`typography typography__${variant} ${className}`}>
+        {children}
+      </Link>
+    );
+  }
+  
   const Text = component;
 
   return (

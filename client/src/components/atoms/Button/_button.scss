@@ -86,3 +86,10 @@
     color: $color-background;
   }
 }
+//////////////////////////////////////// Botão Quadradinho com ícone
+.btn--icon {
+  &--default {
+    border-color: $color-grey-dark;
+    background-color: $color-grey-dark;
+  }
+}

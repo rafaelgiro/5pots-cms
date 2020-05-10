@@ -1,0 +1,113 @@
+.auth-page {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  display: grid;
+  grid-template-columns: [side-start] 24rem [side-end form-start] 3fr [img-start] 1fr [form-end] 5fr [img-end ];
+  grid-template-rows: 1fr;
+  grid-gap: 6rem;
+  background-image: linear-gradient(
+      rgba($color-background, 0.8),
+      rgba($color-background, 0.8)
+    ),
+    url("https://lolstatic-a.akamaihd.net/frontpage/apps/prod/artbook/pt_BR/f31d8b829b603b4b65fdff2475bd0803ced0179d/assets/content/champion/13_sion/sion_03.jpg");
+  background-repeat: no-repeat;
+  align-items: center;
+
+  @media only screen and (max-width: $tab-land) {
+    grid-template-columns: [form-start] 2fr [img-start] 1fr [form-end] 4fr [img-end ];
+  }
+
+  @media only screen and (max-width: $tab-port) {
+    grid-template-columns: [form-start img-start] 1fr [form-end img-end];
+  }
+
+  &__sion-te-amo {
+    font-size: 3rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+    letter-spacing: 0.6rem;
+    transform: rotate(270deg);
+    color: $color-grey-dark;
+    justify-self: center;
+    margin-right: 60%;
+
+    @media only screen and (max-width: $tab-land) {
+      display: none;
+    }
+  }
+
+  &__right-image {
+    grid-row: 1 / -1;
+    grid-column: img-start / img-end;
+    max-height: 100%;
+    max-width: 95%;
+    z-index: 1;
+    justify-self: end;
+
+    @media only screen and (max-width: $tab-port) {
+      display: none;
+    }
+  }
+
+  &__form {
+    grid-row: 1 / -1;
+    grid-column: form-start / form-end;
+    background-color: #fff;
+    z-index: 2;
+    padding: 2rem 7rem;
+
+    &__title {
+      text-transform: uppercase;
+      color: $color-grey-dark;
+    }
+  }
+
+  &__cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.4rem;
+    &__icon {
+      font-size: 4.8rem;
+      fill: $color-grey-dark;
+      cursor: pointer;
+      transition: fill 0.2s ease-out;
+
+      &--facebook {
+        &:hover {
+          fill: $color-facebook;
+        }
+      }
+
+      &--twitter {
+        &:hover {
+          fill: $color-twitter;
+        }
+      }
+
+      &--google {
+        &:hover {
+          fill: $color-google;
+        }
+      }
+    }
+
+    &__btn {
+      margin: 0;
+      font-size: 4.8rem;
+      padding: 0rem;
+
+      svg {
+        transition: transform 0.2s ease-out;
+      }
+
+      &:hover svg {
+        transform: translateX(0.2rem);
+      }
+    }
+  }
+}

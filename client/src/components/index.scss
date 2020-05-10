@@ -6,6 +6,7 @@
 @import "./atoms/Typography/typography";
 @import "./atoms/Button/button";
 @import "./atoms/ChampionIcon/champion-icon";
+@import "./atoms/TextField/text-field";
 
 @import "./molecules/HeaderNav/header-nav";
 @import "./molecules/PostFeaturedImage/post-featured-image";
@@ -27,3 +28,4 @@
 @import "./organisms/Footer/footer";
 
 @import "./templates/Homepage/homepage";
+@import "./templates/AuthPage/auth";

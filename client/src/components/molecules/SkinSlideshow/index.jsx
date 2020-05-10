@@ -48,7 +48,7 @@ const SkinSlideshow = () => {
 
   // Calcula o tanto que tem que andar
   const slideHeight = () => {
-    return document.querySelector(".skin-slideshow__slide").clientHeight / 10;
+    return 40; // 40rem
   };
 
   // Muda para o slide anterior se não estiver no primeiro
@@ -100,51 +100,50 @@ const SkinSlideshow = () => {
 
   if (window.innerWidth < 900) {
     return <div />;
-  } else {
-    return (
-      <div className="skins-sidebar">
-        <Typography className="sidebar__title" component="h4" variant="h4">
-          Novas skins no PBE
-        </Typography>
-        <div className="skin-slideshow__general-container">
-          <div className="skin-slideshow">
-            <div style={wrapperStyles} className="skin-slideshow__wrapper">
-              {renderSkins()}
-            </div>
-            <div className="skin-slideshow__details">
-              <Typography component="p" variant="p">
-                <span className="skin-slideshow__details__title">
-                  {skins[currentIndex].name}
-                </span>
-                <span className="skin-slideshow__details__tier">
-                  Skin {skins[currentIndex].tier} -{" "}
-                </span>
-                {skins[currentIndex].price}
-                <img
-                  alt={skins[currentIndex].name}
-                  className="skin-slideshow__details__currency"
-                  src={skins[currentIndex].currency}
-                />
-              </Typography>
-            </div>
+  }
+  return (
+    <div className="skins-sidebar">
+      <Typography className="sidebar__title" component="h4" variant="h4">
+        Novas skins no PBE
+      </Typography>
+      <div className="skin-slideshow__general-container">
+        <div className="skin-slideshow">
+          <div style={wrapperStyles} className="skin-slideshow__wrapper">
+            {renderSkins()}
           </div>
-          <div className="skin-slideshow__controls">
-            <MdKeyboardArrowUp
-              id="skin-slideshow__arrow-up"
-              className="skin-slideshow__controls__arrow"
-              onClick={goToPrevSlide}
-            />
-            {renderBulletPoints()}
-            <MdKeyboardArrowDown
-              id="skin-slideshow__arrow-down"
-              className="skin-slideshow__controls__arrow"
-              onClick={goToNextSlide}
-            />
+          <div className="skin-slideshow__details">
+            <Typography component="p" variant="p">
+              <span className="skin-slideshow__details__title">
+                {skins[currentIndex].name}
+              </span>
+              <span className="skin-slideshow__details__tier">
+                Skin {skins[currentIndex].tier} -{" "}
+              </span>
+              {skins[currentIndex].price}
+              <img
+                alt={skins[currentIndex].name}
+                className="skin-slideshow__details__currency"
+                src={skins[currentIndex].currency}
+              />
+            </Typography>
           </div>
         </div>
+        <div className="skin-slideshow__controls">
+          <MdKeyboardArrowUp
+            id="skin-slideshow__arrow-up"
+            className="skin-slideshow__controls__arrow"
+            onClick={goToPrevSlide}
+          />
+          {renderBulletPoints()}
+          <MdKeyboardArrowDown
+            id="skin-slideshow__arrow-down"
+            className="skin-slideshow__controls__arrow"
+            onClick={goToNextSlide}
+          />
+        </div>
       </div>
-    );
-  }
+    </div>
+  );
 };
 
 // Componente de helper pra fazer o Slide individual

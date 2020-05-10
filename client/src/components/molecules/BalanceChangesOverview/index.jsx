@@ -12,15 +12,15 @@ const championsHC = [
   "Aphelios",
   "Leona",
   "Akali",
-  "Corki"
+  "Corki",
 ];
 
 const BCOverview = () => {
   // eslint-disable-next-line no-unused-vars
   const [champions, setChampions] = useState(championsHC);
   const renderIcons = () => {
-    const icons = champions.map(champion => {
-      return <ChampionIcon key={champion} name={champion} />;
+    const icons = champions.map((champion, index) => {
+      return <ChampionIcon key={index} name={champion} />;
     });
 
     return icons;

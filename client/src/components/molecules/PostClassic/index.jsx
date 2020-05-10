@@ -22,17 +22,37 @@ const PostClassic = props => {
           {post.title}
         </Typography>
         <Typography component="p" variant="sub">
-          Patch: 10.2 PBE - Postado por Dantenor Francisco
+          {post.tag} - Postado por {post.author}
         </Typography>
         <Typography component="p" variant="p" className="post-classic__desc">
           {post.description}
         </Typography>
         <div className="post-classic__link-container">
-          <Typography component="p" variant="p" className="post-classic__link">
+          <Typography
+            link={post.link}
+            component="a"
+            variant="a"
+            className="post-classic__link"
+          >
             Leia mais
           </Typography>
           <MdKeyboardArrowRight className="post-classic__link--arrow" />
         </div>
+      </div>
+    </div>
+  );
+};
+
+export const PostClassicSkeleton = () => {
+  return (
+    <div className="post-classic__skeleton">
+      <div className="post-classic__skeleton-1" />
+      <div className="post-classic__skeleton-2" />
+      <div className="post-classic__skeleton__container">
+        <div className="post-classic__skeleton__title" />
+        <div className="post-classic__skeleton__desc post-classic__skeleton__desc-1" />
+        <div className="post-classic__skeleton__desc post-classic__skeleton__desc-2" />
+        <div className="post-classic__skeleton__link" />
       </div>
     </div>
   );
@@ -44,8 +64,7 @@ PostClassic.propTypes = {
     category: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    commentsCount: PropTypes.number.isRequired
+    image: PropTypes.string.isRequired
   }).isRequired,
   // Classes extras para o component
   className: PropTypes.string

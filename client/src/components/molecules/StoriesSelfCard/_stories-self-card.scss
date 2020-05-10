@@ -1,5 +1,6 @@
 .stories__self-card {
   width: 30.4rem;
+  z-index: 1;
 
   @media only screen and (max-width: $tab-port) {
     margin-left: -3.2rem;
@@ -26,7 +27,7 @@
     }
 
     &__tag {
-      color: rgba($color-grey-dark, 0.5);
+      color: rgba(var(--color-primary), 0.5);
     }
   }
 }

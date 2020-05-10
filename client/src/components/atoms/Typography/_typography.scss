@@ -1,5 +1,5 @@
 .typography {
-  color: $color-grey-dark;
+  color: var(--color-primary);
 
   &__h1 {
     font-size: 5.6rem;
@@ -43,8 +43,8 @@ span,
 img,
 strong {
   &::selection {
-    background: $color-grey-dark;
-    color: $color-background;
+    background: var(--color-primary);
+    background-color: var(--color-background);
   }
 }
 

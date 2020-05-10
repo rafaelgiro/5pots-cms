@@ -1,5 +1,6 @@
 .sidebar {
   grid-column: sidebar-start / sidebar-end;
+  z-index: 1;
 
   &__title {
     text-transform: uppercase;

@@ -13,7 +13,7 @@
   }
 
   &__container {
-    background-color: $color-background;
+    background-color: var(--color-background);
     display: inline-block;
     padding: 1.6rem;
     max-width: 70%;
@@ -67,7 +67,7 @@
 
   &__link {
     font-size: 1.6rem;
-    border-bottom: 2px solid $color-grey-dark;
+    border-bottom: 2px solid var(--color-primary);
     line-height: 1.6rem;
     transition: all 0.2s ease-out;
 

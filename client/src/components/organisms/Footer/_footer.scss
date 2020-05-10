@@ -1,7 +1,7 @@
 .footer {
-  background-color: $color-grey-dark;
+  background-color: var(--color-primary);
   padding: 4rem 8rem;
-  color: $color-background;
+  color: var(--color-background);
   border-top: 16rem solid $color-grey;
   display: flex;
   justify-content: space-between;
@@ -19,12 +19,12 @@
   }
 
   &__logo {
-    fill: $color-background;
+    fill: var(--color-background);
     height: 6.4rem;
   }
 
   &__5pots {
-    color: $color-background;
+    color: var(--color-background);
     margin-left: 2.4rem;
     transform: translateY(0.8rem);
     font-size: 4.8rem;
@@ -41,7 +41,7 @@
   }
 
   &__link {
-    color: $color-background;
+    color: var(--color-background);
     font-weight: 300;
     font-size: 2.4rem;
 

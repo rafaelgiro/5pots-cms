@@ -1,6 +1,7 @@
 .post-featured__image-container {
   display: flex;
   justify-content: space-between;
+  z-index: 1;
 
   @media only screen and (max-width: $tab-port) {
     flex-direction: column;

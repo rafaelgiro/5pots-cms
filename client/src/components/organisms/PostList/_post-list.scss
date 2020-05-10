@@ -1,6 +1,7 @@
 .post-list {
   width: 100%;
   grid-column: content-start / content-end;
+  z-index: 1;
 
   &__cards-container {
     display: flex;

@@ -4,7 +4,8 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
-  border-top: 0.8rem solid $color-grey-dark;
+  border-top: 0.8rem solid var(--color-primary);
+  background: var(--color-background);
 
   @media only screen and (max-width: $tab-port) {
     justify-content: center;
@@ -33,7 +34,7 @@
     font-size: 1.6rem;
     letter-spacing: 0.1rem;
     text-decoration: none;
-    color: $color-grey-dark;
+    color: var(--color-primary);
     transition: color 0.2s ease-out;
 
     @media only screen and (max-width: $tab-port) {

@@ -12,7 +12,7 @@ const championsHC = [
   "Aphelios",
   "Leona",
   "Akali",
-  "Corki"
+  "Corki",
 ];
 
 const BCOverview = () => {
@@ -28,16 +28,15 @@ const BCOverview = () => {
 
   if (window.innerWidth < 900) {
     return <div />;
-  } else {
-    return (
-      <div className="bc-overview">
-        <Typography className="sidebar__title" component="h4" variant="h4">
-          Tentativas de Balanceamento
-        </Typography>
-        {renderIcons()}
-      </div>
-    );
   }
+  return (
+    <div className="bc-overview">
+      <Typography className="sidebar__title" component="h4" variant="h4">
+        Tentativas de Balanceamento
+      </Typography>
+      {renderIcons()}
+    </div>
+  );
 };
 
 export default BCOverview;

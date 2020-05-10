@@ -2,6 +2,7 @@
   width: 100%;
   grid-column: content-start / content-end;
   z-index: 1;
+  margin-bottom: 1rem;
 
   &__cards-container {
     display: flex;

@@ -7,7 +7,7 @@ export const ThemeContext = React.createContext(initialState);
 const AppTheme = (props) => {
   const { children } = props;
   const [theme, setTheme] = useState(initialState.theme);
-  console.log(theme);
+
   return (
     <ThemeContext.Provider value={(theme, setTheme)}>
       <div className={theme}>{children}</div>

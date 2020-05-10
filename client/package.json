@@ -11,12 +11,14 @@
   ],
   "dependencies": {
     "axios": "^0.19.2",
+    "clsx": "^1.1.0",
     "dotenv": "^8.2.0",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
+    "react-indiana-drag-scroll": "^1.6.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1"
   },
@@ -45,7 +47,7 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
-    "eslint": "^7.0.0",
+    "eslint": "^6.0.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.20.2",

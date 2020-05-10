@@ -6,14 +6,14 @@ import Typography from "../../atoms/Typography";
 
 import colors from "../../../constants/colors";
 
-const PostClassic = props => {
+const PostClassic = (props) => {
   const { post, className } = props;
 
   return (
     <div
       style={{
         backgroundImage: `url(${post.image})`,
-        borderColor: colors[post.category]
+        borderColor: colors[post.category],
       }}
       className={`post-classic ${className}`}
     >
@@ -64,14 +64,14 @@ PostClassic.propTypes = {
     category: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired
+    image: PropTypes.string.isRequired,
   }).isRequired,
   // Classes extras para o component
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 PostClassic.defaultProps = {
-  className: ""
+  className: "",
 };
 
 export default PostClassic;

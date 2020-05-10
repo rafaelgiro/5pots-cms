@@ -1,11 +1,23 @@
 .stories__controller {
   display: flex;
   align-items: center;
+  justify-content: center;
   z-index: 1;
+  width: 100%;
 
   @media only screen and (max-width: $tab-port) {
     flex-direction: column;
-    justify-content: center;
+  }
+
+  @media only screen and (max-width: $tab-port) {
+    div {
+      display: flex;
+      align-items: center;
+
+      :not(:last-child) {
+        margin-right: 2.4rem;
+      }
+    }
   }
 
   &__sub-title {
@@ -16,6 +28,9 @@
     font-size: 3.2rem;
     font-weight: bold;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &__desc {
@@ -24,6 +39,11 @@
     border-left: 2px solid var(--color-primary);
     padding: 1.6rem 0 1.6rem 3.2rem;
     margin-left: 3.2rem;
+
+    @media only screen and (max-width: $tab-port) {
+      margin: 0;
+      padding-top: 1.6;
+    }
 
     @media only screen and (max-width: $tab-port) {
       border-left: none;

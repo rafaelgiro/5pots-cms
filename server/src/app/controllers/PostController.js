@@ -7,13 +7,14 @@ class PostController {
     const {
       result: {
         pageContext: {
-          data: { sections }
-        }
-      }
+          data: { sections },
+        },
+      },
     } = response.data;
 
-    const filter = sections.filter(section => section.type === "news_latest")[0]
-      .props.articles;
+    const filter = sections.filter(
+      (section) => section.type === "news_latest"
+    )[0].props.articles;
 
     console.log(response.data);
 
@@ -26,7 +27,8 @@ class PostController {
           author: post.authors ? post.authors[0] : "Riot Games",
           category: "riot",
           tag: post.category,
-          link: `https://br.leagueoflegends.com/pt-br${post.link.url}`
+          small: Math.random() >= 0.8,
+          link: `https://br.leagueoflegends.com/pt-br${post.link.url}`,
         });
       }
       return posts;
@@ -51,7 +53,7 @@ class PostController {
        suspendisse curabitur.`,
       image: "https://i.imgur.com/YLdeUgB.png",
       commentsCount: 24,
-      color: "default"
+      color: "default",
     };
 
     return res.json({ response: `Retornaww o post de id ${id}` });

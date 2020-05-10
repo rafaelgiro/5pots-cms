@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 import api from "../../../services/api";
-import PostClassic, { PostClassicSkeleton } from "../../molecules/PostClassic";
+import { PostClassicSkeleton } from "../../molecules/PostClassic";
+import Post from "../../molecules/Post";
 
 const PostList = () => {
   const [posts, setPosts] = useState();
@@ -21,8 +22,8 @@ const PostList = () => {
   const renderPosts = () => {
     // Verifica se os posts foram carregados
     if (posts) {
-      const postsList = posts.map(post => {
-        return <PostClassic key={post.title} post={post} />;
+      const postsList = posts.map((post) => {
+        return <Post key={post.title} post={post} />;
       });
       return postsList;
     }

@@ -37,15 +37,13 @@
   }
 
   &:hover &__image {
-    background-size: 102%;
-
     @media only screen and (max-width: $tab-port) {
       background-size: cover;
     }
   }
 
   &:hover &__content {
-    transform: translateX(1rem);
+    transform: translateX(0.4rem);
 
     @media only screen and (max-width: $tab-port) {
       transform: translateX(0rem);

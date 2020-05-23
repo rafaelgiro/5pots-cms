@@ -12,24 +12,184 @@
 
   &__cards {
     margin-top: 3.2rem;
-    width: 100%;
+    width: 80%;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    align-items: center;
     z-index: 2;
-    padding-left: 4rem;
-
-    :first-child {
-      margin-right: 6.4rem;
-    }
-
-    :last-child {
-      margin-right: 4rem !important;
-    }
 
     @media only screen and (max-width: $tab-port) {
       justify-content: flex-start;
+    }
+  }
+}
+
+.stories__controller {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  width: 100%;
+
+  @media only screen and (max-width: $tab-port) {
+    flex-direction: column;
+  }
+
+  @media only screen and (max-width: $tab-port) {
+    div {
+      display: flex;
+      align-items: center;
+
+      :not(:last-child) {
+        margin-right: 2.4rem;
+      }
+    }
+  }
+
+  &__sub-title {
+    font-size: 2.4rem;
+  }
+
+  &__title {
+    font-size: 3.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__desc {
+    width: 60%;
+    font-style: italic;
+    border-left: 2px solid var(--color-primary);
+    padding: 1.6rem 0 1.6rem 3.2rem;
+    margin-left: 3.2rem;
+
+    @media only screen and (max-width: $tab-port) {
+      margin: 0;
+      padding-top: 1.6;
+    }
+
+    @media only screen and (max-width: $tab-port) {
+      border-left: none;
+      width: 80vw;
+    }
+  }
+}
+
+.stories__main-card {
+  height: 56.8rem;
+  width: 32.8rem;
+
+  &__image {
+    background-size: cover;
+    background-position: center;
+    border-radius: 4px;
+    height: 97%;
+  }
+
+  &__info {
+    background-color: var(--color-primary);
+    padding: 3.2rem 2.4rem 2.4rem 2.4rem;
+    position: relative;
+    transform: translateY(-7.2rem) translateX(0.4rem);
+    width: 26.4rem;
+
+    &__category {
+      position: absolute;
+      left: 0.8rem;
+      top: -1.6rem;
+      padding: 0.8rem;
+      background-color: $color-gold-dark;
+
+      p {
+        font-size: 1.6rem;
+        font-weight: normal;
+        color: var(--color-background);
+      }
+    }
+
+    h3 {
+      font-weight: normal;
+      color: var(--color-background);
+    }
+  }
+}
+
+.stories__self-card {
+  width: 31.2rem;
+
+  &__image {
+    width: 100%;
+    height: 40rem;
+    background-position: center;
+    background-size: cover;
+    border-radius: 4px;
+  }
+
+  &__info {
+    h3 {
+      font-weight: normal;
+      font-style: 2rem;
+    }
+
+    &__desc {
+      font-style: oblique;
+      font-weight: 200;
       margin-top: 0.8rem;
-      margin-right: 2rem;
+    }
+
+    &__tags {
+      display: flex;
+      align-items: center;
+      margin-top: -1.6rem;
+      margin-left: 1.6rem;
+      margin-bottom: 0.8rem;
+
+      div {
+        margin-top: 1.6rem;
+      }
+
+      img {
+        border-radius: 50%;
+        width: 4.8rem;
+        margin-right: 1.6rem;
+        margin-top: -0.8rem;
+      }
+    }
+  }
+}
+
+.stories__link-card {
+  width: 31.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__image {
+    width: 100%;
+    height: 40rem;
+    background-position: center;
+    background-size: cover;
+    border-radius: 4px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    h3 {
+      margin-bottom: 0.8rem;
+      font-weight: normal;
+    }
+
+    &__desc {
+      font-style: oblique;
+      font-weight: 200;
+      text-align: center;
+      margin-bottom: 0.8rem;
     }
   }
 }

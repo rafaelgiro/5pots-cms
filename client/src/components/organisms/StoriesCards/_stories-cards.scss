@@ -19,7 +19,13 @@
     z-index: 2;
 
     @media only screen and (max-width: $tab-port) {
+      width: 100%;
+      display: flex;
       justify-content: flex-start;
+
+      div {
+        margin: 0 0.8rem;
+      }
     }
   }
 }
@@ -80,7 +86,7 @@
 
 .stories__main-card {
   height: 56.8rem;
-  width: 32.8rem;
+  min-width: 32.8rem;
 
   &__image {
     background-size: cover;
@@ -118,7 +124,7 @@
 }
 
 .stories__self-card {
-  width: 31.2rem;
+  min-width: 31.2rem;
 
   &__image {
     width: 100%;
@@ -162,7 +168,7 @@
 }
 
 .stories__link-card {
-  width: 31.2rem;
+  min-width: 31.2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

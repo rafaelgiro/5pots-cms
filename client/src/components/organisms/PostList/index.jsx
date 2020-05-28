@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 import api from "../../../services/api";
-import { PostClassicSkeleton } from "../../molecules/PostClassic";
-import Post from "../../molecules/Post";
+import Post, { PostSkeleton } from "../../molecules/Post";
+import Typography from "../../atoms/Typography";
 
 const PostList = () => {
   const [posts, setPosts] = useState();
@@ -30,15 +30,40 @@ const PostList = () => {
 
     return (
       <>
-        <PostClassicSkeleton />
-        <PostClassicSkeleton />
-        <PostClassicSkeleton />
+        <PostSkeleton />
+        <PostSkeleton />
+        <PostSkeleton />
       </>
     );
   };
 
   return (
     <section className="post-list">
+      <div className="post-list__controller">
+        <div>
+          <Typography
+            className="stories__controller__sub-title"
+            component="p"
+            variant="p"
+          >
+            Todas as
+          </Typography>
+          <Typography
+            className="stories__controller__title"
+            component="p"
+            variant="p"
+          >
+            Postagens
+          </Typography>
+        </div>
+        <Typography
+          className="stories__controller__desc"
+          component="p"
+          variant="p"
+        >
+          Confira o restante das postagens da 5pots em ordem cronológica.
+        </Typography>
+      </div>
       <div className="post-list__cards-container">{renderPosts()}</div>
     </section>
   );

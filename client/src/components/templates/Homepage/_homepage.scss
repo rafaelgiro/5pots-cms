@@ -6,14 +6,14 @@
   display: grid;
   grid-template-columns: 0.5fr [content-start] 10fr [content-end] 1fr [sidebar-start] 3fr [sidebar-end] 0.5fr;
   width: 100%;
-  margin-top: 12rem;
+  margin-top: 6.4rem;
   position: relative;
   z-index: 1;
 
   @media only screen and (max-width: $tab-land) {
     display: flex;
     flex-direction: column-reverse;
-    margin-top: 8rem;
+    margin-top: 5.6rem;
   }
 
   &::after {

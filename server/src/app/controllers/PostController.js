@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import RiotApi from "../../services/api/riot";
 
 class PostController {
@@ -15,8 +16,6 @@ class PostController {
     const filter = sections.filter(
       (section) => section.type === "news_latest"
     )[0].props.articles;
-
-    console.log(response.data);
 
     const posts = filter.reduce((posts, post) => {
       if (post.category !== "Comunidade") {

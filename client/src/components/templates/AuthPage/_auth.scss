@@ -75,6 +75,14 @@
       text-transform: uppercase;
       color: var(--color-primary);
     }
+
+    &__sub-title {
+      margin-bottom: 1.6rem;
+    }
+
+    input:not(:last-child) {
+      margin-bottom: 0.8rem;
+    }
   }
 
   &__cta {
@@ -111,6 +119,12 @@
       margin: 0;
       font-size: 4.8rem;
       padding: 0rem;
+      color: var(--color-background);
+
+      &--forgot {
+        margin-left: auto;
+        margin-top: -1.6rem;
+      }
 
       svg {
         transition: transform 0.2s ease-out;
@@ -119,6 +133,16 @@
       &:hover svg {
         transform: translateX(0.2rem);
       }
+    }
+  }
+
+  &__recover-links {
+    span {
+      transition: opacity 0.1s ease-out;
+    }
+    span:hover {
+      opacity: 1;
+      cursor: pointer;
     }
   }
 }

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-import api from "../../../services/api";
 import Post, { PostSkeleton } from "../../molecules/Post";
 import Typography from "../../atoms/Typography";
+
+import api from "../../../services/api";
 
 const PostList = () => {
   const [posts, setPosts] = useState();

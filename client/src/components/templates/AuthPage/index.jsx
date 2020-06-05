@@ -1,8 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import FormLogin from "../../molecules/FormLogin";
-import FormRegister from "../../molecules/FormRegister";
+import FormLogin from "../../molecules/AuthForms/Login";
+import FormRegister from "../../molecules/AuthForms/Register";
+import FormForgot from "../../molecules/AuthForms/Forgot";
+import FormReset from "../../molecules/AuthForms/ResetPassword";
 
 const loginGallery = [
   "https://i.imgur.com/M9dYyaU.jpg",
@@ -10,7 +12,7 @@ const loginGallery = [
   "https://i.imgur.com/TpDGGtp.jpg",
   "https://i.imgur.com/adyjByb.jpg",
   "https://i.imgur.com/H8dbHe4.jpg",
-  "https://i.imgur.com/iX9pyAR.jpg"
+  "https://i.imgur.com/iX9pyAR.jpg",
 ];
 
 const AuthPage = () => {
@@ -22,6 +24,10 @@ const AuthPage = () => {
         return <FormLogin />;
       case "register":
         return <FormRegister />;
+      case "forgot":
+        return <FormForgot />;
+      case "reset":
+        return <FormReset />;
       default:
         return <div />;
     }

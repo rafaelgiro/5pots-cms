@@ -17,6 +17,10 @@ services:
     environment:
       - NODE_ENV=development
       - PORT=5000
+    depends_on:
+      - db
+    links:
+      - db
   client:
     build:
       dockerfile: Dockerfile.dev
@@ -25,3 +29,9 @@ services:
       - /app/node_modules
       - ./client:/app
     stdin_open: true
+  db:
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"

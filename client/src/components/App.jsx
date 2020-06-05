@@ -11,7 +11,7 @@ const App = () => {
     <Router>
       <Header />
       <Switch>
-        <Route path="/auth/:action">
+        <Route path="/auth/:action/:credential?">
           <AuthPage />
         </Route>
         <Route exact path="/">

@@ -3,13 +3,13 @@ import ReactDOM from "react-dom";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 
-import AppTheme from "./contexts/ThemeContext";
+import FivePotsProvider from "./contexts";
 import "./components/index.scss";
 
 ReactDOM.render(
-  <AppTheme>
+  <FivePotsProvider>
     <App />
-  </AppTheme>,
+  </FivePotsProvider>,
   document.getElementById("root")
 );
 

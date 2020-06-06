@@ -23,14 +23,13 @@ const FormReset = () => {
       .get(`/api/auth/confirmation/validate/${credential}`)
       .then((res) => {
         setError(false);
-        console.log(res.data);
         setStatus({ status: res.status, msg: res.data.msg });
       })
       .catch((err) => {
         setError(true);
         setStatus({ status: err.response.status, msg: err.response.data.msg });
       });
-  }, []);
+  }, [credential]);
 
   const onSubmit = async (data) => {
     axios

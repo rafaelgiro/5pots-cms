@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-import React from "react";
+import React, { useContext } from "react";
 import { AiFillGoogleSquare, AiFillFacebook } from "react-icons/ai";
 import { MdNavigateNext } from "react-icons/md";
 import { useForm } from "react-hook-form";
@@ -10,14 +10,20 @@ import TextField from "../../atoms/TextField";
 import Button from "../../atoms/Button";
 
 import api from "../../../services/api";
+import AuthContext from "../../../contexts/AuthContext";
 
 const FormLogin = () => {
   const { register, handleSubmit } = useForm();
+  const { setUser } = useContext(AuthContext);
 
   const onSubmit = async (data) => {
     const res = await api.post("/auth/login", data);
 
-    // Setar contexto
+    if (res.status === 200) {
+      setUser(res.data);
+    }
+
+    // FEEDBACK DO USUÁRIO
   };
 
   return (

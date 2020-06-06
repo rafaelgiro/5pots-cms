@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AiFillGoogleSquare, AiFillFacebook } from "react-icons/ai";
 import { MdNavigateNext } from "react-icons/md";
@@ -9,15 +9,27 @@ import TextField from "../../atoms/TextField";
 import Button from "../../atoms/Button";
 
 import api from "../../../services/api";
+import AuthContext from "../../../contexts/AuthContext";
 
 const FormRegister = () => {
   const { register, handleSubmit } = useForm();
-  const [username, setUsername] = useState("");
+  const [usernameText, setUsernameText] = useState("");
+  const { setUser } = useContext(AuthContext);
 
   const onSubmit = async (data) => {
-    const res = await api.post("/auth/register", data);
+    const { username, password, confirm, email, displayName } = data;
+    // Usa o objeto da form ou adiciona o username como displayName
+    const newUser = displayName
+      ? data
+      : { username, password, confirm, email, displayName: username };
 
-    // Setar contexto
+    const res = await api.post("/auth/register", newUser);
+
+    if (res.status === 200) {
+      setUser(res.data);
+    }
+
+    // FEEDBACK DO USUÁRIO
   };
   return (
     <div className=" auth-page__form">
@@ -36,7 +48,7 @@ const FormRegister = () => {
           icon="MdPerson"
           required
           ref={register}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => setUsernameText(e.target.value)}
         />
         <TextField
           name="password"
@@ -67,7 +79,7 @@ const FormRegister = () => {
           label="Nome de Exibição"
           type="text"
           icon="MdInsertEmoticon"
-          placeholder={username || `Pode ser seu nick no LoL`}
+          placeholder={usernameText || `Pode ser seu nick no LoL`}
           ref={register}
         />
         <div className="auth-page__cta">

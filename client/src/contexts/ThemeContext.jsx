@@ -1,22 +1,6 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 
 const initialState = { theme: "solari", setTheme: () => {} };
-export const ThemeContext = React.createContext(initialState);
+const ThemeContext = React.createContext(initialState);
 
-const AppTheme = (props) => {
-  const { children } = props;
-  const [theme, setTheme] = useState(initialState.theme);
-
-  return (
-    <ThemeContext.Provider value={(theme, setTheme)}>
-      <div className={theme}>{children}</div>
-    </ThemeContext.Provider>
-  );
-};
-
-AppTheme.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
-export default AppTheme;
+export default ThemeContext;

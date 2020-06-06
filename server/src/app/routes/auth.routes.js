@@ -19,13 +19,17 @@ routes.post(
   "/auth/login",
   passport.authenticate("local", { failureRedirect: "/login" }),
   (req, res) => {
-    res.send(req.user.id);
+    const { id, displayName, email, isAdmin, isVerified, username } = req.user;
+    res.send({ id, displayName, email, isAdmin, isVerified, username });
   }
 );
 
 routes.post("/auth/register", (req, res) => {
-  const { username, email, displayName } = req.body;
-  const newUser = new User({ username, email, displayName });
+  const newUser = new User({
+    username: req.body.username,
+    email: req.body.email,
+    displayName: req.body.displayName,
+  });
 
   // Insere o usuário no banco
   // eslint-disable-next-line no-unused-vars
@@ -37,7 +41,15 @@ routes.post("/auth/register", (req, res) => {
 
     // Autentica o usuário
     passport.authenticate("local")(req, res, () => {
-      res.send(req.user.id);
+      const {
+        id,
+        displayName,
+        email,
+        isAdmin,
+        isVerified,
+        username,
+      } = req.user;
+      res.send({ id, displayName, email, isAdmin, isVerified, username });
     });
   });
 });

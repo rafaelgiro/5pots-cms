@@ -26,8 +26,8 @@ const Header = () => {
             >
               {user.displayName}
             </Typography>
-            <Typography variant="p" component="p">
-              datFranky
+            <Typography variant="sub" component="p">
+              Configurar Perfil
             </Typography>
           </div>
           <a href="/api/logout">

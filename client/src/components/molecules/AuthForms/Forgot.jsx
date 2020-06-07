@@ -3,6 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useParams, Link } from "react-router-dom";
 import { MdNavigateNext } from "react-icons/md";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import Typography from "../../atoms/Typography";
 import TextField from "../../atoms/TextField";
@@ -13,6 +14,8 @@ import api from "../../../services/api";
 const FormForgot = () => {
   const { register, handleSubmit } = useForm();
   const { credential } = useParams();
+  const recaptchaRef = React.useRef();
+
   const title = credential === "password" ? "MINHA SENHA" : "MEU USUÁRIO";
   const linkText = credential === "password" ? "meu usuário" : "minha senha";
   const linkTo =
@@ -21,6 +24,8 @@ const FormForgot = () => {
       : "/auth/forgot/password";
 
   const onSubmit = async (data) => {
+    await recaptchaRef.current.executeAsync();
+
     api.post(`/auth/forgot/${credential}`, data);
   };
 
@@ -48,6 +53,11 @@ const FormForgot = () => {
           icon="MdEmail"
           ref={register}
           required
+        />
+        <ReCAPTCHA
+          ref={recaptchaRef}
+          size="invisible"
+          sitekey={process.env.REACT_APP_RECAPTCHA}
         />
         <div className="auth-page__recover-links">
           <Link to={linkTo}>

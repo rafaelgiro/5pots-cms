@@ -4,6 +4,8 @@ import { AiFillGoogleSquare, AiFillFacebook } from "react-icons/ai";
 import { MdNavigateNext } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useHistory } from "react-router-dom";
 
 import Typography from "../../atoms/Typography";
 import TextField from "../../atoms/TextField";
@@ -15,12 +17,17 @@ import AuthContext from "../../../contexts/AuthContext";
 const FormLogin = () => {
   const { register, handleSubmit } = useForm();
   const { setUser } = useContext(AuthContext);
+  const recaptchaRef = React.useRef();
+  const history = useHistory();
 
   const onSubmit = async (data) => {
+    await recaptchaRef.current.executeAsync();
+
     const res = await api.post("/auth/login", data);
 
     if (res.status === 200) {
       setUser(res.data);
+      history.push("/");
     }
 
     // FEEDBACK DO USUÁRIO
@@ -51,6 +58,11 @@ const FormLogin = () => {
           icon="MdLock"
           required
           ref={register}
+        />
+        <ReCAPTCHA
+          ref={recaptchaRef}
+          size="invisible"
+          sitekey={process.env.REACT_APP_RECAPTCHA}
         />
         <div className="auth-page__recover-links">
           <Link to="/auth/forgot/username">

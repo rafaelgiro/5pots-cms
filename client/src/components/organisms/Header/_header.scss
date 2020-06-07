@@ -50,13 +50,17 @@
     display: flex;
     align-items: center;
 
+    @media only screen and (max-width: $tab-port) {
+      display: none;
+    }
+
     &__notifications {
       width: 2.4rem;
       height: 2.4rem;
     }
 
     &__picture {
-      background-image: url("https://ddragon.leagueoflegends.com/cdn/10.5.1/img/profileicon/535.png");
+      background-image: url("https://imgur.com/nafqj1I.png");
       background-size: cover;
       width: 4rem;
       height: 4rem;
@@ -71,6 +75,12 @@
         font-size: 2rem;
         text-transform: uppercase;
       }
+    }
+
+    a,
+    a:link,
+    a:visited {
+      color: var(--color-primary) !important;
     }
 
     &__logout {

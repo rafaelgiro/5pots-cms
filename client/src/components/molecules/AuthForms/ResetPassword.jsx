@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { MdNavigateNext } from "react-icons/md";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import Typography from "../../atoms/Typography";
 import TextField from "../../atoms/TextField";
@@ -17,6 +18,7 @@ const FormReset = () => {
   });
   const { credential } = useParams();
   const { register, handleSubmit } = useForm();
+  const recaptchaRef = React.useRef();
 
   useEffect(() => {
     axios
@@ -32,6 +34,8 @@ const FormReset = () => {
   }, [credential]);
 
   const onSubmit = async (data) => {
+    await recaptchaRef.current.executeAsync();
+
     axios
       .post(`/api/auth/forgot/${credential}`, data)
       .then((res) => {
@@ -64,6 +68,11 @@ const FormReset = () => {
               icon="MdLockOutline"
               ref={register}
               required
+            />
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              size="invisible"
+              sitekey={process.env.REACT_APP_RECAPTCHA}
             />
             <div className="auth-page__cta">
               <Button

@@ -11,8 +11,10 @@ import Button from "../../atoms/Button";
 
 import api from "../../../services/api";
 
+import { emailValidation } from "../../../constants/formValidation";
+
 const FormForgot = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm();
   const { credential } = useParams();
   const recaptchaRef = React.useRef();
 
@@ -51,7 +53,8 @@ const FormForgot = () => {
           label="E-mail"
           type="email"
           icon="MdEmail"
-          ref={register}
+          ref={register(emailValidation)}
+          errors={errors}
           required
         />
         <ReCAPTCHA

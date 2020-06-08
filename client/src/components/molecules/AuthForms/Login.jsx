@@ -3,9 +3,8 @@ import React, { useContext } from "react";
 import { AiFillGoogleSquare, AiFillFacebook } from "react-icons/ai";
 import { MdNavigateNext } from "react-icons/md";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
-import { useHistory } from "react-router-dom";
 
 import Typography from "../../atoms/Typography";
 import TextField from "../../atoms/TextField";
@@ -13,9 +12,13 @@ import Button from "../../atoms/Button";
 
 import api from "../../../services/api";
 import AuthContext from "../../../contexts/AuthContext";
+import {
+  usernameValidation,
+  passwordValidation,
+} from "../../../constants/formValidation";
 
 const FormLogin = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm();
   const { setUser } = useContext(AuthContext);
   const recaptchaRef = React.useRef();
   const history = useHistory();
@@ -49,7 +52,8 @@ const FormLogin = () => {
           type="text"
           icon="MdPerson"
           required
-          ref={register}
+          errors={errors}
+          ref={register(usernameValidation)}
         />
         <TextField
           name="password"
@@ -57,7 +61,8 @@ const FormLogin = () => {
           type="password"
           icon="MdLock"
           required
-          ref={register}
+          errors={errors}
+          ref={register(passwordValidation)}
         />
         <ReCAPTCHA
           ref={recaptchaRef}

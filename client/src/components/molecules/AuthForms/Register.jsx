@@ -12,19 +12,35 @@ import Button from "../../atoms/Button";
 
 import api from "../../../services/api";
 import AuthContext from "../../../contexts/AuthContext";
+import {
+  usernameValidation,
+  passwordValidation,
+  emailValidation,
+} from "../../../constants/formValidation";
 
 const FormRegister = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors, watch } = useForm();
   const [usernameText, setUsernameText] = useState("");
   const { setUser } = useContext(AuthContext);
   const recaptchaRef = React.useRef();
   const history = useHistory();
+
+  const confirmValidation = {
+    minLength: {
+      value: 3,
+      message: "Hey, a senha precisa ter no mínimo 3 caracteres.",
+    },
+    required: "Confirme sua senha.",
+    validate: (value) =>
+      value === watch("password") || "As senhas informadas não são iguais",
+  };
 
   const onSubmit = async (data) => {
     await recaptchaRef.current.executeAsync();
 
     const { username, password, confirm, email, displayName } = data;
     // Usa o objeto da form ou adiciona o username como displayName
+
     const newUser = displayName
       ? data
       : { username, password, confirm, email, displayName: username };
@@ -53,9 +69,10 @@ const FormRegister = () => {
           label="Nome de Usuário"
           type="text"
           icon="MdPerson"
+          ref={register(usernameValidation)}
           required
-          ref={register}
           onChange={(e) => setUsernameText(e.target.value)}
+          errors={errors}
         />
         <TextField
           name="password"
@@ -63,7 +80,8 @@ const FormRegister = () => {
           type="password"
           icon="MdLock"
           required
-          ref={register}
+          ref={register(passwordValidation)}
+          errors={errors}
         />
         <TextField
           name="confirm"
@@ -71,7 +89,8 @@ const FormRegister = () => {
           type="password"
           icon="MdLockOutline"
           required
-          ref={register}
+          ref={register(confirmValidation)}
+          errors={errors}
         />
         <TextField
           name="email"
@@ -79,7 +98,8 @@ const FormRegister = () => {
           type="email"
           icon="MdEmail"
           placeholder="Só pra recuperar senha um dia"
-          ref={register}
+          ref={register(emailValidation)}
+          errors={errors}
         />
         <TextField
           name="displayName"
@@ -88,6 +108,7 @@ const FormRegister = () => {
           icon="MdInsertEmoticon"
           placeholder={usernameText || `Pode ser seu nick no LoL`}
           ref={register}
+          errors={errors}
         />
         <ReCAPTCHA
           ref={recaptchaRef}

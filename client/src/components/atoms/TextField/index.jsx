@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 // regras do Airbnb pede pro label encobrir o input além do id, mas vai zoar demais o css
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import * as MaterialIcons from "react-icons/md";
+import Typography from "../Typography";
 
 const TextField = React.forwardRef((props, ref) => {
   const {
@@ -15,16 +16,27 @@ const TextField = React.forwardRef((props, ref) => {
     icon,
     name,
     id,
+    errors,
     ...rest
   } = props;
   const Icon = icon ? MaterialIcons[icon] : undefined;
+  const [hideText, setHideText] = useState(type === "password");
+  const HideIcon = hideText
+    ? MaterialIcons.MdVisibilityOff
+    : MaterialIcons.MdVisibility;
 
   return (
-    <div className={`text-field ${className}`}>
+    <div
+      className={`text-field ${className} ${
+        errors[name]?.message && "text-field--error"
+      }`}
+    >
       {icon ? <Icon className="text-field__icon" /> : <></>}
       <input
-        type={type}
-        className="text-field__input"
+        type={hideText ? "password" : "text"}
+        className={`text-field__input ${
+          errors[name]?.message && "text-field__input--error"
+        }`}
         placeholder={placeholder}
         required={required}
         ref={ref}
@@ -34,6 +46,15 @@ const TextField = React.forwardRef((props, ref) => {
       <label className="text-field__label" htmlFor={name || id}>
         {label}
       </label>
+      {type === "password" && (
+        <HideIcon
+          onClick={() => setHideText(!hideText)}
+          className="text-field__view-password"
+        />
+      )}
+      <Typography component="span" variant="p" className="text-field__error">
+        {errors[name]?.message}
+      </Typography>
     </div>
   );
 });
@@ -55,6 +76,8 @@ TextField.propTypes = {
   id: PropTypes.string,
   // Name do textfield, mande ele ou o id
   name: PropTypes.string,
+  // errors do react hook form
+  errors: PropTypes.Object,
 };
 
 TextField.defaultProps = {
@@ -64,6 +87,7 @@ TextField.defaultProps = {
   className: "",
   id: "",
   name: "",
+  errors: {},
 };
 
 export default TextField;

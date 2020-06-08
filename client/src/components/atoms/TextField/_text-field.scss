@@ -4,6 +4,10 @@
   width: 100%;
   margin: 0.8rem 0;
 
+  &--error {
+    margin-bottom: 2.4rem;
+  }
+
   &__icon {
     position: absolute;
     top: 0.8rem;
@@ -18,6 +22,7 @@
     top: 1.8rem;
     left: 5.2rem;
     transition: transform 0.1s ease-out;
+    pointer-events: none;
   }
 
   &__input {
@@ -37,6 +42,11 @@
     font-family: $font-primary;
     color: var(--color-primary);
 
+    &--error {
+      border-right: 0.4rem solid $color-riot;
+      width: calc(100% - 5.6rem);
+    }
+
     &:focus {
       border-color: var(--color-primary);
       background-color: #fff;
@@ -49,13 +59,45 @@
       }
     }
 
+    &:placeholder-shown + label {
+      transform: translateY(-1.4rem) translateX(-0.4rem);
+    }
+
     &:valid + label {
       color: rgba(var(--color-primary), 0.9);
       transform: translateY(-1.4rem) translateX(-0.4rem);
+      font-size: 1.4rem;
     }
 
     &:invalid {
       box-shadow: none;
+      font-size: 1.4rem;
     }
+  }
+
+  &__view-password {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.6rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    fill: var(--color-primary);
+    opacity: 0.6;
+    transition: opacity 0.2s ease-out;
+
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+
+  &__error {
+    position: absolute;
+    bottom: -1rem;
+    right: 0.8rem;
+    font-size: 1.4rem;
+    color: $color-riot;
+    margin-top: -4rem !important;
+    z-index: 2;
   }
 }

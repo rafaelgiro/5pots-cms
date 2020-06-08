@@ -9,6 +9,8 @@ import Typography from "../../atoms/Typography";
 import TextField from "../../atoms/TextField";
 import Button from "../../atoms/Button";
 
+import { passwordValidation } from "../../../constants/formValidation";
+
 const FormReset = () => {
   // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState(null);
@@ -17,8 +19,17 @@ const FormReset = () => {
     msg: "Processando requisição",
   });
   const { credential } = useParams();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, watch, errors } = useForm();
   const recaptchaRef = React.useRef();
+  const confirmValidation = {
+    minLength: {
+      value: 3,
+      message: "Hey, a senha precisa ter no mínimo 3 caracteres.",
+    },
+    required: "Confirme sua senha.",
+    validate: (value) =>
+      value === watch("password") || "As senhas informadas não são iguais",
+  };
 
   useEffect(() => {
     axios
@@ -58,7 +69,8 @@ const FormReset = () => {
               label="Nova senha"
               type="password"
               icon="MdLock"
-              ref={register}
+              ref={register(passwordValidation)}
+              errors={errors}
               required
             />
             <TextField
@@ -66,7 +78,8 @@ const FormReset = () => {
               label="Confirme sua senha"
               type="password"
               icon="MdLockOutline"
-              ref={register}
+              ref={register(confirmValidation)}
+              errors={errors}
               required
             />
             <ReCAPTCHA

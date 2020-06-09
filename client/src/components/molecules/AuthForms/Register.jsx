@@ -9,6 +9,7 @@ import { useHistory } from "react-router-dom";
 import Typography from "../../atoms/Typography";
 import TextField from "../../atoms/TextField";
 import Button from "../../atoms/Button";
+import Snackbar from "../../atoms/Snackbar";
 
 import api from "../../../services/api";
 import AuthContext from "../../../contexts/AuthContext";
@@ -21,14 +22,16 @@ import {
 const FormRegister = () => {
   const { register, handleSubmit, errors, watch } = useForm();
   const [usernameText, setUsernameText] = useState("");
+  const [snackBar, setSnackBar] = useState(false);
+  const [snackBarMessage, setSnackBarMessage] = useState("");
   const { setUser } = useContext(AuthContext);
   const recaptchaRef = React.useRef();
   const history = useHistory();
 
   const confirmValidation = {
     minLength: {
-      value: 3,
-      message: "Hey, a senha precisa ter no mínimo 3 caracteres.",
+      value: 6,
+      message: "Hey, a senha precisa ter no mínimo 6 caracteres.",
     },
     required: "Confirme sua senha.",
     validate: (value) =>
@@ -49,7 +52,9 @@ const FormRegister = () => {
 
     if (res.status === 200) {
       setUser(res.data);
-      history.push("/");
+      setSnackBarMessage("Usuário criado com sucesso :)");
+      setSnackBar(true);
+      // history.push("/");
     }
 
     // FEEDBACK DO USUÁRIO
@@ -139,6 +144,11 @@ const FormRegister = () => {
           </div>
         </div>
       </form>
+      <Snackbar
+        visible={snackBar}
+        setVisible={setSnackBar}
+        info={snackBarMessage}
+      />
     </div>
   );
 };

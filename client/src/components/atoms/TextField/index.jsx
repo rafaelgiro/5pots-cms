@@ -77,7 +77,8 @@ TextField.propTypes = {
   // Name do textfield, mande ele ou o id
   name: PropTypes.string,
   // errors do react hook form
-  errors: PropTypes.Object,
+  // eslint-disable-next-line react/forbid-prop-types
+  errors: PropTypes.any,
 };
 
 TextField.defaultProps = {

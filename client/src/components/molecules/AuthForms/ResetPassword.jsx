@@ -23,8 +23,8 @@ const FormReset = () => {
   const recaptchaRef = React.useRef();
   const confirmValidation = {
     minLength: {
-      value: 3,
-      message: "Hey, a senha precisa ter no mínimo 3 caracteres.",
+      value: 6,
+      message: "Hey, a senha precisa ter no mínimo 6 caracteres.",
     },
     required: "Confirme sua senha.",
     validate: (value) =>

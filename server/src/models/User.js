@@ -4,7 +4,7 @@ import passportLocalMongoose from "passport-local-mongoose";
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  username: String,
+  username: { type: String, unique: true },
   displayName: String,
   email: String,
   password: String,

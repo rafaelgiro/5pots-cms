@@ -8,8 +8,8 @@ export const usernameValidation = {
 
 export const passwordValidation = {
   minLength: {
-    value: 3,
-    message: "A senha precisa ter no mínimo 3 caracteres.",
+    value: 6,
+    message: "A senha precisa ter no mínimo 6 caracteres.",
   },
   required: "A senha é obrigatória.",
 };

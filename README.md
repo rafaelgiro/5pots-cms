@@ -25,13 +25,13 @@ cd 5pots
 Builde as imagens do Docker utilizando o Docker Compose
 
 ```
-docker-compose -f docker-compose_dev.yml build
+docker-compose -f docker-compose-dev.yml build
 ```
 
 Suba as imagens
 
 ```
-docker-compose -f docker-compose_dev.yml up
+docker-compose -f docker-compose-dev.yml up
 ```
 
 acesse o http://localhost (ou o IP que o Docker Toolbox te der) e se divirta :D. Não se esqueça de ir para a branch "dev" para contribuir com o desenvolvimento do projeto.

@@ -1,0 +1,103 @@
+.text-field {
+  position: relative;
+  font-size: 1.6rem;
+  width: 100%;
+  margin: 0.8rem 0;
+
+  &--error {
+    margin-bottom: 2.4rem;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 0.8rem;
+    left: 0.8rem;
+    font-size: 3.2rem;
+    fill: var(--color-primary);
+    z-index: 10;
+  }
+
+  &__label {
+    position: absolute;
+    top: 1.8rem;
+    left: 5.2rem;
+    transition: transform 0.1s ease-out;
+    pointer-events: none;
+  }
+
+  &__input {
+    height: 3rem; // O navegador adiciona 2px por algum motivo - padding top
+    width: calc(
+      100% - 5.2rem
+    ); // Width inteiro menos o padding esquerdo e bordas
+
+    border-radius: 0.4rem;
+    border: none;
+    border: 2px solid rgba(var(--color-primary), 0);
+    background-color: $color-grey;
+    transition: all 0.2s ease-out;
+    padding-left: 4.8rem;
+    padding-top: 1.6rem;
+    font-size: 1.6rem;
+    font-family: $font-primary;
+    color: var(--color-primary);
+
+    &--error {
+      border-right: 0.4rem solid $color-riot;
+      width: calc(100% - 5.6rem);
+    }
+
+    &:focus {
+      border-color: var(--color-primary);
+      background-color: #fff;
+
+      & + label {
+        color: rgba(var(--color-primary), 0.5);
+        transform: translateY(-1.4rem) translateX(-0.4rem);
+
+        font-size: 1.4rem;
+      }
+    }
+
+    &:placeholder-shown + label {
+      transform: translateY(-1.4rem) translateX(-0.4rem);
+    }
+
+    &:valid + label {
+      color: rgba(var(--color-primary), 0.9);
+      transform: translateY(-1.4rem) translateX(-0.4rem);
+      font-size: 1.4rem;
+    }
+
+    &:invalid {
+      box-shadow: none;
+      font-size: 1.4rem;
+    }
+  }
+
+  &__view-password {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.6rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    fill: var(--color-primary);
+    opacity: 0.6;
+    transition: opacity 0.2s ease-out;
+
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+
+  &__error {
+    position: absolute;
+    bottom: -1rem;
+    right: 0.8rem;
+    font-size: 1.4rem;
+    color: $color-riot;
+    margin-top: -4rem !important;
+    z-index: 2;
+  }
+}

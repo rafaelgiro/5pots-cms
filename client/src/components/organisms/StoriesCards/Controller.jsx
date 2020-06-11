@@ -1,9 +1,10 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from "react";
 
 import { MdArrowDropDown } from "react-icons/md";
 import Typography from "../../atoms/Typography";
 
-const StoriesController = () => {
+const Controller = () => {
   return (
     <div className="stories__controller">
       <div>
@@ -34,4 +35,4 @@ const StoriesController = () => {
   );
 };
 
-export default StoriesController;
+export default Controller;

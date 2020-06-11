@@ -1,8 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Typography = props => {
-  const { component, variant, children, className } = props;
+const Typography = (props) => {
+  const { component, variant, children, className, link } = props;
+
+  if (link) {
+    const Link = component;
+
+    return (
+      <Link
+        target="_blank"
+        rel="noopener noreferrer"
+        href={link}
+        className={`typography typography__${variant} ${className}`}
+      >
+        {children}
+      </Link>
+    );
+  }
+
   const Text = component;
 
   return (
@@ -18,13 +34,14 @@ Typography.propTypes = {
   // Visual do componente
   variant: PropTypes.string.isRequired,
   // Texto a ser renderizado
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   // Classes extras para o component
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 Typography.defaultProps = {
-  className: ""
+  className: "",
+  children: "",
 };
 
 export default Typography;

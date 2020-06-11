@@ -1,18 +1,35 @@
-import React from "react";
-
+import React, { useEffect, useContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Homepage from "./templates/Homepage";
+
 import Header from "./organisms/Header";
+import Homepage from "./templates/Homepage";
+import AuthPage from "./templates/AuthPage";
+
+import AuthContext from "../contexts/AuthContext";
+import api from "../services/api";
+import Snackbar from "./atoms/Snackbar";
 
 const App = () => {
+  const { setUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    api.get("/current_user").then(({ data }) => {
+      if (data) setUser(data);
+    });
+  }, [setUser]);
+
   return (
     <Router>
       <Header />
       <Switch>
-        <Route path="/">
+        <Route path="/auth/:action/:credential?">
+          <AuthPage />
+        </Route>
+        <Route exact path="/">
           <Homepage />
         </Route>
       </Switch>
+      <Snackbar />
     </Router>
   );
 };

@@ -1,5 +1,5 @@
 .btn {
-  border: 2px solid $color-grey-dark;
+  border: 2px solid var(--color-primary);
   padding: 1.6rem 1.6rem;
   font-size: 1.6rem;
   line-height: 1.8rem;
@@ -8,7 +8,7 @@
   margin: 0 2rem 1rem;
   outline: 0;
   transition: all 0.2s ease-out !important;
-  color: $color-background;
+  background-color: var(--color-background);
 
   &:hover {
     cursor: pointer;
@@ -18,8 +18,8 @@
 //////////////////////////////////////// Botão Cheio
 .btn--normal {
   &--default {
-    border-color: $color-grey-dark;
-    background-color: $color-grey-dark;
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
   }
 
   &--artigo {
@@ -38,20 +38,20 @@
   }
 
   &:hover {
-    background-color: $color-grey-dark;
-    border-color: $color-grey-dark;
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
   }
 }
 
 //////////////////////////////////////// Botão Contornado
 .btn--outline {
-  background-color: $color-background;
+  background-color: var(--color-background);
   &--default {
-    border-color: $color-grey-dark;
-    color: $color-grey-dark;
+    border-color: var(--color-primary);
+    color: var(--color-primary);
 
     &:hover {
-      background-color: $color-grey-dark;
+      background-color: var(--color-primary);
     }
   }
 
@@ -83,6 +83,13 @@
   }
 
   &:hover {
-    color: $color-background;
+    background-color: var(--color-background);
+  }
+}
+//////////////////////////////////////// Botão Quadradinho com ícone
+.btn--icon {
+  &--default {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
   }
 }

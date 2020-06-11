@@ -6,15 +6,14 @@ import PostList from "../../organisms/PostList";
 import Sidebar from "../../organisms/Sidebar";
 import Footer from "../../organisms/Footer";
 
-
 const renderHome = () => {
   return (
     <main className="homepage">
       <PostFeatured />
       <StoriesCards />
       <div className="main-content">
-        <Sidebar />
         <PostList />
+        <Sidebar />
       </div>
       <Footer />
     </main>

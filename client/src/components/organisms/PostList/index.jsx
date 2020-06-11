@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 
+import Post, { PostSkeleton } from "../../molecules/Post";
+import Typography from "../../atoms/Typography";
+
 import api from "../../../services/api";
-import PostClassic from "../../molecules/PostClassic";
 
 const PostList = () => {
   const [posts, setPosts] = useState();
@@ -21,17 +23,48 @@ const PostList = () => {
   const renderPosts = () => {
     // Verifica se os posts foram carregados
     if (posts) {
-      const postsList = posts.map(post => {
-        return <PostClassic key={post.title} post={post} />;
+      const postsList = posts.map((post) => {
+        return <Post key={post.title} post={post} />;
       });
       return postsList;
     }
-    // TODO: componente esqueleto
-    return "loading...";
+
+    return (
+      <>
+        <PostSkeleton />
+        <PostSkeleton />
+        <PostSkeleton />
+      </>
+    );
   };
 
   return (
     <section className="post-list">
+      <div className="post-list__controller">
+        <div>
+          <Typography
+            className="stories__controller__sub-title"
+            component="p"
+            variant="p"
+          >
+            Todas as
+          </Typography>
+          <Typography
+            className="stories__controller__title"
+            component="p"
+            variant="p"
+          >
+            Postagens
+          </Typography>
+        </div>
+        <Typography
+          className="stories__controller__desc"
+          component="p"
+          variant="p"
+        >
+          Confira o restante das postagens da 5pots em ordem cronológica.
+        </Typography>
+      </div>
       <div className="post-list__cards-container">{renderPosts()}</div>
     </section>
   );

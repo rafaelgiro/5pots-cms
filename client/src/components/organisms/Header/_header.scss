@@ -4,7 +4,8 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
-  border-top: 0.8rem solid $color-grey-dark;
+  border-top: 0.8rem solid var(--color-primary);
+  background: var(--color-background);
 
   @media only screen and (max-width: $tab-port) {
     justify-content: center;
@@ -33,7 +34,7 @@
     font-size: 1.6rem;
     letter-spacing: 0.1rem;
     text-decoration: none;
-    color: $color-grey-dark;
+    color: var(--color-primary);
     transition: color 0.2s ease-out;
 
     @media only screen and (max-width: $tab-port) {
@@ -42,6 +43,56 @@
 
     &:hover {
       color: $color-gold-dark;
+    }
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+
+    @media only screen and (max-width: $tab-port) {
+      display: none;
+    }
+
+    &__notifications {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+
+    &__picture {
+      background-image: url("https://imgur.com/nafqj1I.png");
+      background-size: cover;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      margin-left: 1.6rem;
+    }
+
+    &__details {
+      margin-left: 0.8rem;
+      margin-top: 0.4rem;
+      &__display-name {
+        font-size: 2rem;
+        text-transform: uppercase;
+      }
+    }
+
+    a,
+    a:link,
+    a:visited {
+      color: var(--color-primary) !important;
+    }
+
+    &__logout {
+      width: 1.6rem;
+      height: 1.6rem;
+      margin-left: 1.6rem;
+      opacity: 0.5;
+      transition: opacity 0.2s ease-out;
+
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 }

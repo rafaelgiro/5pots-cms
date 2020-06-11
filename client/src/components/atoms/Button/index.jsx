@@ -19,7 +19,7 @@ Button.propTypes = {
   // Texto do botão
   children: PropTypes.node.isRequired,
   // Estilo do botão
-  variant: PropTypes.oneOf(["normal", "outline", "invisible"]),
+  variant: PropTypes.oneOf(["normal", "outline", "invisible", "icon"]),
   // Tipo do botão
   type: PropTypes.oneOf(["button", "submit", "reset"]),
   // Cor do botão

@@ -12,15 +12,15 @@ const championsHC = [
   "Aphelios",
   "Leona",
   "Akali",
-  "Corki"
+  "Corki",
 ];
 
 const BCOverview = () => {
   // eslint-disable-next-line no-unused-vars
   const [champions, setChampions] = useState(championsHC);
   const renderIcons = () => {
-    const icons = champions.map(champion => {
-      return <ChampionIcon name={champion} />;
+    const icons = champions.map((champion, index) => {
+      return <ChampionIcon key={index} name={champion} />;
     });
 
     return icons;
@@ -28,16 +28,15 @@ const BCOverview = () => {
 
   if (window.innerWidth < 900) {
     return <div />;
-  } else {
-    return (
-      <div className="bc-overview">
-        <Typography className="sidebar__title" component="h4" variant="h4">
-          Tentativas de Balanceamento
-        </Typography>
-        {renderIcons()}
-      </div>
-    );
   }
+  return (
+    <div className="bc-overview">
+      <Typography className="sidebar__title" component="h4" variant="h4">
+        Tentativas de Balanceamento
+      </Typography>
+      {renderIcons()}
+    </div>
+  );
 };
 
 export default BCOverview;

@@ -3,7 +3,9 @@
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": ["error"],
-    "no-plusplus": "off"
+    "no-plusplus": "off",
+    "consistent-return": "off",
+    "no-underscore-dangle": "off"
   },
   "parserOptions": {
     "ecmaVersion": 2017

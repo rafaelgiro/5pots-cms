@@ -17,7 +17,8 @@
     font-family: $font-primary;
     font-size: 1.6rem;
     padding-right: 2.4rem;
-    color: $color-grey-dark;
+    color: var(--color-primary);
+    background-color: var(--color-background);
     font-weight: 400;
 
     @media only screen and (max-width: $tab-land) {
@@ -26,7 +27,7 @@
     }
 
     &::placeholder {
-      color: rgba($color-grey-dark, 0.5);
+      color: rgba(var(--color-primary), 0.5);
     }
   }
 

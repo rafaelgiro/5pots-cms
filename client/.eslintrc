@@ -1,12 +1,13 @@
 {
-  "extends": ["airbnb", "prettier"],
-  "plugins": ["prettier"],
+  "parser": "babel-eslint",
+  "extends": ["airbnb", "plugin:prettier/recommended"],
+  "plugins": ["prettier", "babel"],
   "rules": {
     "prettier/prettier": ["error"],
     "no-plusplus": "off"
   },
   "parserOptions": {
-    "ecmaVersion": 2017
+    "ecmaVersion": 2020
   },
 
   "env": {

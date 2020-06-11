@@ -6,9 +6,9 @@ import Typography from "../../atoms/Typography";
 const PostFeaturedText = () => {
   // Objeto de post para fins de desenvolvimento
   const post = {
-    title: "Mural e presentes de Aniversário",
+    title: "MAPA DOS CAMPEÕES: JUNHO DE 2020",
     desc:
-      "Confira aqui quais as principais novidades anunciadas no Riot PLS edição aniversário de 10 anos."
+      "Uma caçadora onírica, um assassino mascarado e um atirador aventureiro. E de quem será a próxima AVM?",
   };
 
   return (

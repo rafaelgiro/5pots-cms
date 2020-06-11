@@ -1,6 +1,7 @@
 .post-featured__image-container {
   display: flex;
   justify-content: space-between;
+  z-index: 1;
 
   @media only screen and (max-width: $tab-port) {
     flex-direction: column;
@@ -12,7 +13,7 @@
   height: 56rem;
   width: 32%;
   border-radius: 0.8rem;
-  background-image: url("https://br.leagueoflegends.com/sites/default/files/styles/scale_xlarge/public/upload/10y_header.jpg");
+  background-image: url("https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt1924a65780dd45f8/5ed57a2f752a951015ce423a/02_Nunu_Willump.jpg");
   background-size: cover;
 
   @media only screen and (max-width: $tab-port) {

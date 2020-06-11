@@ -1,75 +1,94 @@
+/* eslint-disable react/jsx-props-no-spreading */
 // regras do Airbnb pede pro label encobrir o input além do id, mas vai zoar demais o css
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import * as MaterialIcons from "react-icons/md";
+import Typography from "../Typography";
 
-const TextField = props => {
+const TextField = React.forwardRef((props, ref) => {
   const {
     className,
-    id,
     type,
     placeholder,
     label,
-    initialValue,
-    onChange,
     required,
-    icon
+    icon,
+    name,
+    id,
+    errors,
+    ...rest
   } = props;
-  const [value, setValue] = useState(initialValue);
   const Icon = icon ? MaterialIcons[icon] : undefined;
-
-  const handleClick = e => {
-    setValue(e.target.value);
-    onChange(e.target.value);
-  };
+  const [hideText, setHideText] = useState(type === "password");
+  const HideIcon = hideText
+    ? MaterialIcons.MdVisibilityOff
+    : MaterialIcons.MdVisibility;
 
   return (
-    <div className={`text-field ${className}`}>
+    <div
+      className={`text-field ${className} ${
+        errors[name]?.message && "text-field--error"
+      }`}
+    >
       {icon ? <Icon className="text-field__icon" /> : <></>}
       <input
-        type={type}
-        className="text-field__input"
-        id={id}
-        value={value}
-        onChange={handleClick}
+        type={hideText ? "password" : "text"}
+        className={`text-field__input ${
+          errors[name]?.message && "text-field__input--error"
+        }`}
         placeholder={placeholder}
         required={required}
+        ref={ref}
+        name={name}
+        {...rest}
       />
-      <label className="text-field__label" htmlFor={id}>
+      <label className="text-field__label" htmlFor={name || id}>
         {label}
       </label>
+      {type === "password" && (
+        <HideIcon
+          onClick={() => setHideText(!hideText)}
+          className="text-field__view-password"
+        />
+      )}
+      <Typography component="span" variant="p" className="text-field__error">
+        {errors[name]?.message}
+      </Typography>
     </div>
   );
-};
+});
 
 TextField.propTypes = {
-  // ID para associar o input com a label
-  id: PropTypes.string.isRequired,
   // Label do input
   label: PropTypes.string.isRequired,
-  // Função pra retornar o estado do input
-  onChange: PropTypes.func.isRequired,
   // Se vai ver as letrinha, e se vai validar email
   type: PropTypes.oneOf(["text", "password", "email"]).isRequired,
   // Placeholder com texto exemplo
   placeholder: PropTypes.string,
-  // Valor inicial já escrito
-  initialValue: PropTypes.string,
   // Boolean se o campo é obrigatório ou não
   required: PropTypes.bool,
   // ícone do input (apenas do Material)
   icon: PropTypes.string,
   // Classes extras
-  className: PropTypes.string
+  className: PropTypes.string,
+  // ID do textField
+  id: PropTypes.string,
+  // Name do textfield, mande ele ou o id
+  name: PropTypes.string,
+  // errors do react hook form
+  // eslint-disable-next-line react/forbid-prop-types
+  errors: PropTypes.any,
 };
 
 TextField.defaultProps = {
   placeholder: "",
-  initialValue: "",
   required: false,
   icon: "",
-  className: ""
+  className: "",
+  id: "",
+  name: "",
+  errors: {},
 };
 
 export default TextField;

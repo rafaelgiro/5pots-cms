@@ -1,8 +1,8 @@
 .sidebar-social {
   margin-top: 8rem;
   font-size: 5.6rem;
-  color: $color-grey-dark;
-  color: $color-grey-dark;
+  color: var(--color-primary);
+  color: var(--color-primary);
 
   position: sticky;
   top: 4rem;
@@ -16,7 +16,7 @@
 
     a {
       text-decoration: none;
-      color: $color-grey-dark;
+      color: var(--color-primary);
     }
 
     svg {

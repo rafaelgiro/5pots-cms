@@ -7,6 +7,7 @@ import AuthPage from "./templates/AuthPage";
 
 import AuthContext from "../contexts/AuthContext";
 import api from "../services/api";
+import Snackbar from "./atoms/Snackbar";
 
 const App = () => {
   const { setUser } = useContext(AuthContext);
@@ -28,6 +29,7 @@ const App = () => {
           <Homepage />
         </Route>
       </Switch>
+      <Snackbar />
     </Router>
   );
 };

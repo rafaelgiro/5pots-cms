@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import PropTypes from "prop-types";
 
-import ThemeContext from "./ThemeContext";
+import UIContext, { initialState, reducer } from "./UIContext";
 import AuthContext from "./AuthContext";
 
 const FivePotsProvider = (props) => {
   const { children } = props;
-  const [theme, setTheme] = useState("solari");
   const [user, setUser] = useState();
+  const [uiState, uiDispatch] = useReducer(reducer, initialState);
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
-      <ThemeContext.Provider value={(theme, setTheme)}>
-        <div className={theme}>{children}</div>
-      </ThemeContext.Provider>
+      <UIContext.Provider value={{ state: uiState, dispatch: uiDispatch }}>
+        <div className={uiState.theme}>{children}</div>
+      </UIContext.Provider>
     </AuthContext.Provider>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import {
   IoMdCheckmarkCircleOutline,
@@ -6,13 +6,15 @@ import {
   IoMdInformationCircleOutline,
 } from "react-icons/io";
 
+import UIContext from "../../../contexts/UIContext";
 import Typography from "../Typography";
 
 const Snackbar = (props) => {
-  const { info, className, variant, visible, setVisible } = props;
+  const { className } = props;
+  const { state, dispatch } = useContext(UIContext);
 
   let Icon;
-  switch (variant) {
+  switch (state.snackbar.variant) {
     case "success":
       Icon = IoMdCheckmarkCircleOutline;
       break;
@@ -25,24 +27,23 @@ const Snackbar = (props) => {
   }
 
   useEffect(() => {
-    console.log("mostra aí chefe");
-
-    if (visible) {
+    if (state.snackbar.visible) {
       setTimeout(() => {
-        console.log("esconde ai chefe");
-        setVisible(false);
-      }, 4000);
+        dispatch({
+          type: "HIDE_SNACKBAR",
+        });
+      }, state.snackbar.time);
     }
-  }, [visible, setVisible]);
+  }, [state.snackbar.visible, state.snackbar.time, dispatch]);
 
   return (
     <div
-      className={`snackbar snackbar--${variant} ${
-        visible && "snackbar--visible"
+      className={`snackbar snackbar--${state.snackbar.variant} ${
+        state.snackbar.visible && "snackbar--visible"
       } ${className}`}
     >
       <Typography component="p" variant="p">
-        {info}
+        {state.snackbar.msg}
       </Typography>
       <Icon className="snackbar__icon" />
     </div>
@@ -51,15 +52,10 @@ const Snackbar = (props) => {
 
 Snackbar.propTypes = {
   className: PropTypes.string,
-  info: PropTypes.string.isRequired,
-  variant: PropTypes.oneOf(["success", "default", "error"]),
-  visible: PropTypes.bool.isRequired,
-  setVisible: PropTypes.func.isRequired,
 };
 
 Snackbar.defaultProps = {
   className: "",
-  variant: "default",
 };
 
 export default Snackbar;

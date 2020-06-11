@@ -13,6 +13,7 @@ import Snackbar from "../../atoms/Snackbar";
 
 import api from "../../../services/api";
 import AuthContext from "../../../contexts/AuthContext";
+import UIContext from "../../../contexts/UIContext";
 import {
   usernameValidation,
   passwordValidation,
@@ -25,6 +26,7 @@ const FormRegister = () => {
   const [snackBar, setSnackBar] = useState(false);
   const [snackBarMessage, setSnackBarMessage] = useState("");
   const { setUser } = useContext(AuthContext);
+  const { dispatch } = useContext(UIContext);
   const recaptchaRef = React.useRef();
   const history = useHistory();
 
@@ -40,24 +42,35 @@ const FormRegister = () => {
 
   const onSubmit = async (data) => {
     await recaptchaRef.current.executeAsync();
-
     const { username, password, confirm, email, displayName } = data;
-    // Usa o objeto da form ou adiciona o username como displayName
 
+    // Usa o objeto da form ou adiciona o username como displayName
     const newUser = displayName
       ? data
       : { username, password, confirm, email, displayName: username };
 
-    const res = await api.post("/auth/register", newUser);
-
-    if (res.status === 200) {
-      setUser(res.data);
-      setSnackBarMessage("Usuário criado com sucesso :)");
-      setSnackBar(true);
-      // history.push("/");
-    }
-
-    // FEEDBACK DO USUÁRIO
+    api
+      .post("/auth/register", newUser)
+      .then((res) => {
+        setUser(res.data);
+        dispatch({
+          type: "SHOW_SNACKBAR",
+          snackbar: {
+            msg: "Usuário cadastrado com sucesso, bem vindo!",
+            variant: "success",
+          },
+        });
+        history.push("/");
+      })
+      .catch((err) => {
+        dispatch({
+          type: "SHOW_SNACKBAR",
+          snackbar: {
+            msg: err.response.data.msg,
+            variant: "error",
+          },
+        });
+      });
   };
   return (
     <div className=" auth-page__form">

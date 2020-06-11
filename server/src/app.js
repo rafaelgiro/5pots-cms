@@ -28,7 +28,10 @@ class App {
     this.express.use(
       cookieSession({
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        keys: [keys.cookieKey],
+        keys: [
+          keys.cookieKey ||
+            "Hey! crie um dev.js na pasta config/keys com suas chaves",
+        ],
       })
     );
     this.express.use(passport.initialize());

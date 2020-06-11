@@ -26,8 +26,12 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.use(
   new GoogleStrategy(
     {
-      clientID: keys.googleClientID,
-      clientSecret: keys.googleClientSecret,
+      clientID:
+        keys.googleClientID ||
+        "Hey! crie um dev.js na pasta config/keys com suas chaves",
+      clientSecret:
+        keys.googleClientSecret ||
+        "Hey! crie um dev.js na pasta config/keys com suas chaves",
       callbackURL: `${url}/api/auth/google/callback`,
       proxy: true,
     },
@@ -53,8 +57,12 @@ passport.use(
 passport.use(
   new FacebookStrategy(
     {
-      clientID: keys.facebookClientID,
-      clientSecret: keys.facebookClientSecret,
+      clientID:
+        keys.facebookClientID ||
+        "Hey! crie um dev.js na pasta config/keys com suas chaves",
+      clientSecret:
+        keys.facebookClientSecret ||
+        "Hey! crie um dev.js na pasta config/keys com suas chaves",
       callbackURL: `${url}/api/auth/facebook/callback`,
       profileFields: ["id", "displayName", "photos", "email"],
       proxy: true,

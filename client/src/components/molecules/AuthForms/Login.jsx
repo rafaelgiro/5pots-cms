@@ -12,6 +12,8 @@ import Button from "../../atoms/Button";
 
 import api from "../../../services/api";
 import AuthContext from "../../../contexts/AuthContext";
+import UIContext from "../../../contexts/UIContext";
+
 import {
   usernameValidation,
   passwordValidation,
@@ -20,20 +22,35 @@ import {
 const FormLogin = () => {
   const { register, handleSubmit, errors } = useForm();
   const { setUser } = useContext(AuthContext);
+  const { dispatch } = useContext(UIContext);
   const recaptchaRef = React.useRef();
   const history = useHistory();
 
   const onSubmit = async (data) => {
     await recaptchaRef.current.executeAsync();
 
-    const res = await api.post("/auth/login", data);
-
-    if (res.status === 200) {
-      setUser(res.data);
-      history.push("/");
-    }
-
-    // FEEDBACK DO USUÁRIO
+    api
+      .post("/auth/login", data)
+      .then((res) => {
+        setUser(res.data);
+        dispatch({
+          type: "SHOW_SNACKBAR",
+          snackbar: {
+            msg: "Logado com sucesso.",
+            variant: "success",
+          },
+        });
+        history.push("/");
+      })
+      .catch(() => {
+        dispatch({
+          type: "SHOW_SNACKBAR",
+          snackbar: {
+            msg: "Usuário ou senha incorretos.",
+            variant: "error",
+          },
+        });
+      });
   };
 
   return (

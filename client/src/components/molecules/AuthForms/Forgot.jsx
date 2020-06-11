@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useParams, Link } from "react-router-dom";
 import { MdNavigateNext } from "react-icons/md";
@@ -10,6 +10,7 @@ import TextField from "../../atoms/TextField";
 import Button from "../../atoms/Button";
 
 import api from "../../../services/api";
+import UIContext from "../../../contexts/UIContext";
 
 import { emailValidation } from "../../../constants/formValidation";
 
@@ -17,6 +18,7 @@ const FormForgot = () => {
   const { register, handleSubmit, errors } = useForm();
   const { credential } = useParams();
   const recaptchaRef = React.useRef();
+  const { dispatch } = useContext(UIContext);
 
   const title = credential === "password" ? "MINHA SENHA" : "MEU USUÁRIO";
   const linkText = credential === "password" ? "meu usuário" : "minha senha";
@@ -28,7 +30,26 @@ const FormForgot = () => {
   const onSubmit = async (data) => {
     await recaptchaRef.current.executeAsync();
 
-    api.post(`/auth/forgot/${credential}`, data);
+    api
+      .post(`/auth/forgot/${credential}`, data)
+      .then((res) => {
+        dispatch({
+          type: "SHOW_SNACKBAR",
+          snackbar: {
+            msg: "Um email foi enviado para o endereço informado.",
+            variant: "success",
+          },
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: "SHOW_SNACKBAR",
+          snackbar: {
+            msg: err.response.data.msg,
+            variant: "error",
+          },
+        });
+      });
   };
 
   return (

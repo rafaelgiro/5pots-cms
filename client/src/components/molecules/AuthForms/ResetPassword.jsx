@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import axios from "axios";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { MdNavigateNext } from "react-icons/md";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -10,17 +10,18 @@ import TextField from "../../atoms/TextField";
 import Button from "../../atoms/Button";
 
 import { passwordValidation } from "../../../constants/formValidation";
+import UIContext from "../../../contexts/UIContext";
 
 const FormReset = () => {
   // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState(null);
-  const [status, setStatus] = useState({
-    status: 0,
-    msg: "Processando requisição",
-  });
+  const [status, setStatus] = useState(0);
   const { credential } = useParams();
   const { register, handleSubmit, watch, errors } = useForm();
-  const recaptchaRef = React.useRef();
+  const recaptchaRef = useRef();
+  const { dispatch } = useContext(UIContext);
+  const history = useHistory();
+
   const confirmValidation = {
     minLength: {
       value: 6,
@@ -35,30 +36,48 @@ const FormReset = () => {
     axios
       .get(`/api/auth/confirmation/validate/${credential}`)
       .then((res) => {
-        setError(false);
-        setStatus({ status: res.status, msg: res.data.msg });
+        setStatus(res.status);
       })
-      .catch((err) => {
+      .catch(() => {
         setError(true);
-        setStatus({ status: err.response.status, msg: err.response.data.msg });
+        dispatch({
+          type: "SHOW_SNACKBAR",
+          snackbar: {
+            msg: "O token informado não é mais válido :(",
+            variant: "error",
+          },
+        });
       });
-  }, [credential]);
+  }, [credential, dispatch]);
 
   const onSubmit = async (data) => {
     await recaptchaRef.current.executeAsync();
 
     axios
       .post(`/api/auth/forgot/${credential}`, data)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        dispatch({
+          type: "SHOW_SNACKBAR",
+          snackbar: {
+            msg: "Senha alterada com sucesso.",
+            variant: "success",
+          },
+        });
+        history.push("/auth/login");
       })
       .catch((err) => {
-        console.log(err);
+        dispatch({
+          type: "SHOW_SNACKBAR",
+          snackbar: {
+            msg: err.response.data.msg,
+            variant: "error",
+          },
+        });
       });
   };
 
   function renderContent() {
-    switch (status.status) {
+    switch (status) {
       case 0:
         return <div />;
       case 200:

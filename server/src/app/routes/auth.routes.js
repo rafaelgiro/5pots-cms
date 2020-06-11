@@ -94,57 +94,57 @@ routes.get(
 );
 
 // Rota para iniciar o fluxo de recuperação de senha
-routes.post(
-  "/auth/forgot/password",
-  // [body("email").isEmail().normalizeEmail()],
-  (req, res) => {
-    // Primeiro acha o usuário
-    User.findOne({ email: req.body.email }, (err, foundUser) => {
-      if (err) {
-        return res.status(500).send({ msg: err.message });
-      }
-      if (!foundUser) {
-        return res.status(400).send({ msg: "Usuário não encontrado" });
-      }
-      // Se estiver tudo certo cria um novo token e manda um novo email
-      const token = crypto.randomBytes(16).toString("hex");
+routes.post("/auth/forgot/password", (req, res) => {
+  // Primeiro acha o usuário
+  User.findOne({ email: req.body.email }, (err, foundUser) => {
+    if (err) {
+      return res.status(500).send({ msg: err.message });
+    }
+    if (!foundUser) {
+      return res.status(400).send({ msg: "Usuário não encontrado" });
+    }
+    // Se estiver tudo certo cria um novo token e manda um novo email
+    const token = crypto.randomBytes(16).toString("hex");
 
-      Token.create(
-        { _userId: foundUser._id, token, passwordReset: true },
-        (error, newToken) => {
-          if (error) {
-            return res.status(500).send({ msg: error.message || error });
-          }
-          // Envia o email de verificação
-          const transporter = nodemailer.createTransport(
-            sgTransport({
-              auth: {
-                api_user: keys.sendgridUsername,
-                api_key: keys.sendgridPassword,
-              },
-            })
-          );
-          const mailOptions = {
-            from: keys.sendgridEmail,
-            to: foundUser.email,
-            subject: "Seu token de recuperação de senha na 5Pots",
-            text: `Olá,
+    Token.create(
+      { _userId: foundUser._id, token, passwordReset: true },
+      (error, newToken) => {
+        if (error) {
+          return res.status(500).send({ msg: error.message || error });
+        }
+        // Envia o email de verificação
+        const transporter = nodemailer.createTransport(
+          sgTransport({
+            auth: {
+              api_user:
+                keys.sendgridUsername ||
+                "Hey! crie um dev.js na pasta config/keys com suas chaves",
+              api_key:
+                keys.sendgridPassword ||
+                "Hey! crie um dev.js na pasta config/keys com suas chaves",
+            },
+          })
+        );
+        const mailOptions = {
+          from: keys.sendgridEmail,
+          to: foundUser.email,
+          subject: "Seu token de recuperação de senha na 5Pots",
+          text: `Olá,
           Para redefinir sua senha clique no link abaixo: 
           ${url}/auth/reset/${newToken.token}`,
-          };
-          transporter.sendMail(mailOptions, (erro) => {
-            if (erro) {
-              return res.status(500).send({ msg: erro.message || erro });
-            }
-            return res.status(200).send({
-              msg: `Um email de verificação foi enviado para ${foundUser.username}.`,
-            });
+        };
+        transporter.sendMail(mailOptions, (erro) => {
+          if (erro) {
+            return res.status(500).send({ msg: erro.message || erro });
+          }
+          return res.status(200).send({
+            msg: `Um email de verificação foi enviado para ${foundUser.username}.`,
           });
-        }
-      );
-    });
-  }
-);
+        });
+      }
+    );
+  });
+});
 
 // Rota para iniciar o fluxo de recuperação de senha
 routes.post("/auth/forgot/username", (req, res) => {
@@ -165,8 +165,12 @@ routes.post("/auth/forgot/username", (req, res) => {
     const transporter = nodemailer.createTransport(
       sgTransport({
         auth: {
-          api_user: keys.sendgridUsername,
-          api_key: keys.sendgridPassword,
+          api_user:
+            keys.sendgridUsername ||
+            "Hey! crie um dev.js na pasta config/keys com suas chaves",
+          api_key:
+            keys.sendgridPassword ||
+            "Hey! crie um dev.js na pasta config/keys com suas chaves",
         },
       })
     );
@@ -188,7 +192,9 @@ Facebook: ${
     }`;
 
     const mailOptions = {
-      from: keys.sendgridEmail,
+      from:
+        keys.sendgridEmail ||
+        "Hey! crie um dev.js na pasta config/keys com suas chaves",
       to: foundUser[0].email || foundUser.email,
       subject: "Seu token de recuperação de senha na 5Pots",
       text: `Olá,
@@ -233,12 +239,18 @@ routes.post("/auth/confirmation/resend", (req, res) => {
       const transporter = nodemailer.createTransport({
         service: "Sendgrid",
         auth: {
-          user: keys.sendgridUsername,
-          pass: keys.sendgridPassword,
+          user:
+            keys.sendgridUsername ||
+            "Hey! crie um dev.js na pasta config/keys com suas chaves",
+          pass:
+            keys.sendgridPassword ||
+            "Hey! crie um dev.js na pasta config/keys com suas chaves",
         },
       });
       const mailOptions = {
-        from: "no-reply@5pots.com",
+        from:
+          keys.sendgridEmail ||
+          "Hey! crie um dev.js na pasta config/keys com suas chaves",
         to: foundUser.username,
         subject: "Bem-vindo a 5pots! Confirme seu email",
         text: `Olá,

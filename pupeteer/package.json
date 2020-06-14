@@ -6,11 +6,12 @@
   "author": "Rafael Giro",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "dependencies": {
     "himalaya": "^1.1.0",
+    "mongoose": "^5.9.18",
     "nodemon": "^2.0.4",
     "puppeteer": "^3.3.0"
   }

@@ -1,7 +1,16 @@
 const puppeteer = require("puppeteer");
+const mongoose = require("mongoose");
 const { parse } = require("himalaya");
+require("./models/Post");
+
+const keys = require("./config/keys");
+const Post = mongoose.model("posts");
 
 (async () => {
+  await mongoose.connect(keys.mongoURI || "mongodb://db:27017/5pots-dev", {
+    useNewUrlParser: true,
+  });
+
   // Inicia o browser, mudar headless pra falso para ver o chrome abrir
   const browser = await puppeteer.launch({
     headless: false,
@@ -52,6 +61,13 @@ const { parse } = require("himalaya");
         '[class*="MobileCategory"]',
         (el) => el.textContent
       );
+      const img = await page.$eval('[class*="NoScriptImg"]', (el) =>
+        el.getAttribute("src")
+      );
+      const postedAt = await page.$eval("time", (el) =>
+        el.getAttribute("datetime")
+      );
+      const url = page.url();
 
       // Array de seções
       const sections = await page.$$eval(".type-article_html", (nodes) => {
@@ -65,13 +81,19 @@ const { parse } = require("himalaya");
       //   sectionsJSON.push(parse(section));
       // }
 
-      console.log({
-        title,
-        blurb,
-        category,
-        author,
-        sections: sections.length, // JSON.stringify(sectionsJSON)
-      });
+      Post.create(
+        {
+          title,
+          img,
+          blurb,
+          category,
+          author,
+          sections,
+          url,
+          postedAt,
+        },
+        (err, newPost) => (err ? console.log(err) : console.log(newPost))
+      );
     }
   }
 

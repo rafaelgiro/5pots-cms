@@ -36,6 +36,7 @@ body {
   --sion-bg: url("https://lolstatic-a.akamaihd.net/frontpage/apps/prod/artbook/pt_BR/f31d8b829b603b4b65fdff2475bd0803ced0179d/assets/content/champion/13_sion/sion_03.jpg");
   --blend-background: darken;
   background-color: var(--color-background);
+  color: var(--color-primary);
 }
 
 .lunari {
@@ -49,4 +50,9 @@ body {
   --sion-bg: url("https://i.imgur.com/4U31EMl.jpg");
   --blend-background: screen;
   background-color: var(--color-background);
+  color: var(--color-primary);
+}
+
+.header-offset {
+  margin-top: 9.6rem;
 }

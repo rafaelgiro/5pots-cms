@@ -1,0 +1,4 @@
+.post-page > article {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+}

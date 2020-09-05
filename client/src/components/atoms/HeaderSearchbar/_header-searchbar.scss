@@ -2,9 +2,17 @@
   display: flex;
   align-items: center;
   margin-left: 1.6rem;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s ease-out;
 
   @media only screen and (max-width: $tab-port) {
     display: none;
+  }
+
+  &--hidden {
+    opacity: 0;
+    visibility: hidden;
   }
 
   &__input {

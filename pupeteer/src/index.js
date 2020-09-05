@@ -1,6 +1,5 @@
 const puppeteer = require("puppeteer");
 const mongoose = require("mongoose");
-const { parse } = require("himalaya");
 require("./models/Post");
 
 const keys = require("./config/keys");
@@ -31,16 +30,24 @@ const Post = mongoose.model("posts");
     // Espera as notícias serem renderizadas
     await page.waitForSelector("article");
     // Pega as notícias
-    const news = await page.$$("article");
+    const news = await page.$$('[class*="Item"]');
 
     const post = news[i];
+
+    // Garante que o link é local do site oficial
+    const link = await post.evaluate((a) =>
+      a.querySelector("a").getAttribute("href")
+    );
+    const expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+    const regex = new RegExp(expression);
+    const outsideLike = link && link.match(regex);
 
     const postCat = await post.$eval(
       '[class*="Category"]',
       (el) => el.textContent
     );
 
-    if (postCat === "Dev") {
+    if (postCat === "Dev" && !outsideLike) {
       post.click(); // Entra no Post
 
       await page.waitForSelector(".type-article_header");
@@ -53,13 +60,17 @@ const Post = mongoose.model("posts");
         '[class*="Blurb"]',
         (el) => el.textContent
       );
-      const author = await page.$eval(
-        '[class*="AuthorList"]',
-        (el) => el.textContent
-      );
-      const category = await page.$eval(
-        '[class*="MobileCategory"]',
-        (el) => el.textContent
+      let author;
+      try {
+        author = await page.$eval('[class*="Meta"]', (el) => {
+          return el.querySelector('[class*="AuthorList"]').textContent;
+        });
+      } catch (err) {
+        author = "Riot Games";
+      }
+
+      const category = await page.$eval('[class*="MobileCategory"]', (el) =>
+        el.textContent.toLowerCase()
       );
       const img = await page.$eval('[class*="NoScriptImg"]', (el) =>
         el.getAttribute("src")
@@ -71,7 +82,29 @@ const Post = mongoose.model("posts");
 
       // Array de seções
       const sections = await page.$$eval(".type-article_html", (nodes) => {
-        return nodes.map((node) => node.firstChild.innerHTML);
+        return nodes.map((node, index) => {
+          const titleEl = node.querySelectorAll("h1, h2, h3, h4, h5, h6");
+          let titles = [];
+          for (let i = 0; i < titleEl.length; i++) {
+            titles.push(titleEl[i].innerText);
+          }
+
+          const content = node.firstChild.innerHTML;
+
+          return { titles, content };
+        });
+      });
+
+      const subTitles = await page.$$eval(".type-article_html", (nodes) => {
+        return nodes.map((node, index) => {
+          const titleEl = node.querySelectorAll("h1, h2, h3, h4, h5, h6");
+          let titles = [];
+          for (let i = 0; i < titleEl.length; i++) {
+            titles.push(titleEl[i].innerText);
+          }
+
+          return titles;
+        });
       });
 
       // Transformar o HTML sem JSON se precisar, mas por enquanto o html de conteúdo é limpo
@@ -89,6 +122,7 @@ const Post = mongoose.model("posts");
           category,
           author,
           sections,
+          subTitles: subTitles && subTitles.flat(9999),
           url,
           postedAt,
         },

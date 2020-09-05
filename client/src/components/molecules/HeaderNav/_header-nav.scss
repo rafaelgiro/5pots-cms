@@ -10,4 +10,13 @@
   left: 50%;
   transform: translateX(-50%);
   margin-top: -0.8rem;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.4s ease-out;
+
+  &--hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(50%);
+  }
 }

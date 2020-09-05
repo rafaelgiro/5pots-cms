@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from "react";
 import PropTypes from "prop-types";
@@ -6,14 +7,15 @@ import clsx from "clsx";
 import Typography from "../../atoms/Typography";
 
 import colors from "../../../constants/colors";
+import TimeAgo from "../../../helpers/timeago";
+import { Link } from "react-router-dom";
 
 const Post = (props) => {
   const { post, className } = props;
-
-  const postClassName = clsx("post", className, post.small && "post__small");
-
+  const postClassName = clsx("post", className);
   const cat =
     (post.category === "riot" && "Notícia Oficial") ||
+    (post.category === "dev" && "Notícia Oficial") ||
     (post.category === "pbe" && "Atualização do PBE") ||
     (post.category === "artigo" && "Artigo") ||
     (post.category === "default" && "Sem categoria");
@@ -30,43 +32,45 @@ const Post = (props) => {
           component="h3"
           variant="h3"
         >
-          {post.title}
+          <Link to={`/posts/${post._id}`}>{post.title}</Link>
         </Typography>
         <Typography className="post__content__desc" variant="p" component="p">
-          {post.description}
+          {post.blurb}
         </Typography>
         <Typography
           className="post__content__read-more"
           variant="p"
           component="p"
         >
-          Leia mais &gt;
+          <Link to={`/posts/${post._id}`}>Leia mais &gt;</Link>
         </Typography>
       </div>
-      <div
-        style={{
-          backgroundImage: `url(${post.image})`,
-          borderColor: colors[post.category],
-        }}
-        className="post__image"
-      />
+      <Link to={`/posts/${post._id}`}>
+        <div
+          style={{
+            backgroundImage: `url(${post.img})`,
+            borderColor: colors[post.category],
+          }}
+          className="post__image"
+        />
+      </Link>
       <div className="post__details">
         <div>
           <Typography variant="p" component="p">
             <strong>Postado por:</strong>
-            <br /> datFranky
+            <br /> {post.author}
           </Typography>
         </div>
         <div>
           <Typography variant="p" component="p">
             <strong>Quando:</strong>
-            <br /> Há 31 minutos
+            <br /> {TimeAgo.inWords(Date.parse(post.postedAt))}
           </Typography>
         </div>
         <div>
           <Typography variant="p" component="p">
             <strong>Tags:</strong>
-            <br /> Post oficial, riot
+            <br /> {post.category}
           </Typography>
         </div>
       </div>
@@ -95,11 +99,14 @@ export const PostSkeleton = () => {
 Post.propTypes = {
   // Post a ser renderizado
   post: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    small: PropTypes.bool.isRequired,
+    blurb: PropTypes.string.isRequired,
+    img: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    url: PropTypes.string,
+    postedAt: PropTypes.string,
   }).isRequired,
   // Classes extras para o component
   className: PropTypes.string,

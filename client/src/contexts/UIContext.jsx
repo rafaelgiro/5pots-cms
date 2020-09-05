@@ -4,7 +4,8 @@ export const initialState = {
   theme: "solari",
   setTheme: () => {},
   snackbar: { msg: "", variant: "default", visible: false, time: 3000 },
-  setSnackbar: () => {},
+  menu: false,
+  setMenu: () => {},
 };
 
 export function reducer(state, action) {
@@ -30,6 +31,16 @@ export function reducer(state, action) {
         snackbar: {
           visible: false,
         },
+      };
+    case "OPEN_MENU":
+      return {
+        ...state,
+        menu: true,
+      };
+    case "CLOSE_MENU":
+      return {
+        ...state,
+        menu: false,
       };
     default:
       throw new Error("Passe um tipo de action para o dispatch");

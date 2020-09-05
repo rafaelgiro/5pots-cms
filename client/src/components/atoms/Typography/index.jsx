@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Typography = (props) => {
-  const { component, variant, children, className, link } = props;
+  const { component, variant, children, className, link, style } = props;
 
   if (link) {
     const Link = component;
@@ -22,7 +22,10 @@ const Typography = (props) => {
   const Text = component;
 
   return (
-    <Text className={`typography typography__${variant} ${className}`}>
+    <Text
+      style={style}
+      className={`typography typography__${variant} ${className}`}
+    >
       {children}
     </Text>
   );
@@ -37,11 +40,15 @@ Typography.propTypes = {
   children: PropTypes.node,
   // Classes extras para o component
   className: PropTypes.string,
+  // Estilos inline
+  // eslint-disable-next-line react/forbid-prop-types
+  style: PropTypes.object,
 };
 
 Typography.defaultProps = {
   className: "",
   children: "",
+  style: {},
 };
 
 export default Typography;

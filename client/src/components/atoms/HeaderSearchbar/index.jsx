@@ -1,10 +1,19 @@
 import React from "react";
+import PropTypes from "prop-types";
+import clsx from "clsx";
 
 import { MdSearch } from "react-icons/md";
 
-const Searchbar = () => {
+const Searchbar = (props) => {
+  const { isVisible } = props;
+
+  const className = clsx(
+    "header__searchbar",
+    !isVisible && "header__searchbar--hidden"
+  );
+
   return (
-    <form className="header__searchbar">
+    <form className={className}>
       <input
         className="header__searchbar__input"
         type="text"
@@ -15,6 +24,14 @@ const Searchbar = () => {
       </button>
     </form>
   );
+};
+
+Searchbar.propTypes = {
+  isVisible: PropTypes.bool,
+};
+
+Searchbar.defaultProps = {
+  isVisible: true,
 };
 
 export default Searchbar;

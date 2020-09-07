@@ -45,7 +45,14 @@ const PostHeader = (props) => {
             Por: <strong style={{ color: colors[category] }}>{author}</strong>
           </Typography>
           <Typography component="p" variant="p">
-            <em>Postado há {TimeAgo.inWords(Date.parse(postedAt))}</em>
+            <em>
+              Postado há {TimeAgo.inWords(Date.parse(postedAt))}{" "}
+              {url && (
+                <a href={url} target="_blank" rel="noopener noreferrer">
+                  no site oficial
+                </a>
+              )}
+            </em>
           </Typography>
         </div>
         <div className="post-header__content__social">

@@ -3,12 +3,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
+import { Link } from "react-router-dom";
 
 import Typography from "../../atoms/Typography";
 
 import colors from "../../../constants/colors";
 import TimeAgo from "../../../helpers/timeago";
-import { Link } from "react-router-dom";
 
 const Post = (props) => {
   const { post, className } = props;

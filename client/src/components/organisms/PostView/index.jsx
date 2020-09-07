@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import PostHeader from "./PostHeader";
-import Dev from "./Dev";
+import PostBody from "./PostBody";
 
 const PostView = (props) => {
   const { post } = props;
@@ -24,7 +24,7 @@ const PostView = (props) => {
       : subTitles;
 
   return (
-    <article className={`post ${post.category}`}>
+    <article className={`post-view ${post.category}`}>
       <PostHeader
         category={category}
         title={title}
@@ -34,7 +34,7 @@ const PostView = (props) => {
         url={url}
         postedAt={postedAt}
       />
-      <Dev sections={sections} titles={hasIntro} title={title} />
+      <PostBody sections={sections} titles={hasIntro} title={title} />
     </article>
   );
 };

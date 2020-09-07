@@ -6,6 +6,10 @@
   background-color: var(--color-primary);
   z-index: 1001;
 
+  @media only screen and (max-width: $tab-port) {
+    display: none;
+  }
+
   &__logo {
     fill: var(--color-background);
     width: 4.8rem;
@@ -89,6 +93,10 @@
     background-color: $color-grey;
     padding: 0rem 5rem 1rem 5rem;
     z-index: 999;
+
+    a {
+      color: var(--color-primary);
+    }
 
     display: flex;
     justify-content: center;

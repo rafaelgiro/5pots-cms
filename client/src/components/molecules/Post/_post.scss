@@ -18,7 +18,7 @@
   @media only screen and (max-width: $tab-port) {
     display: flex;
     flex-direction: column-reverse;
-    margin: 0 auto;
+    margin: 1.6rem auto;
   }
 
   &__image {
@@ -32,6 +32,11 @@
     &:hover {
       cursor: pointer;
       transform: scale(1.005);
+    }
+
+    @media only screen and (max-width: $tab-land) {
+      height: 28rem;
+      margin-bottom: 2.4rem;
     }
   }
 
@@ -68,6 +73,7 @@
       }
 
       @media only screen and (max-width: $tab-port) {
+        margin-top: 0.4rem;
         margin-bottom: -0.8rem;
       }
 
@@ -81,7 +87,7 @@
         background-color: var(--color-primary);
 
         @media only screen and (max-width: $tab-port) {
-          bottom: -1.6rem;
+          display: none;
         }
       }
     }

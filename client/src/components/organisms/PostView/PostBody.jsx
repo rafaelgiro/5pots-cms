@@ -4,7 +4,7 @@ import parse from "html-react-parser";
 import Section from "../Section";
 import ContentHeader from "../ContentHeader";
 
-const Dev = React.memo((props) => {
+const PostBody = React.memo((props) => {
   const { sections, titles, title } = props;
 
   const renderSections = () => {
@@ -26,15 +26,16 @@ const Dev = React.memo((props) => {
   return (
     <>
       <ContentHeader category="riot" titles={titles} title={title} />
+      {titles[0] === "Introdução" && <div id="introdução" />}
       <div className="view-post__content">{renderSections()}</div>
     </>
   );
 });
 
-Dev.propTypes = {
+PostBody.propTypes = {
   sections: PropTypes.arrayOf(object).isRequired,
   titles: PropTypes.arrayOf(string).isRequired,
   title: PropTypes.string.isRequired,
 };
 
-export default Dev;
+export default PostBody;

@@ -3,8 +3,11 @@ import { HashLink } from "react-router-hash-link";
 import { Link } from "react-router-dom";
 import PropTypes, { string } from "prop-types";
 import clsx from "clsx";
+import { MdNotificationsNone } from "react-icons/md";
+import { FiLogOut } from "react-icons/fi";
 
 import UIContext from "../../../contexts/UIContext";
+import AuthContext from "../../../contexts/AuthContext";
 import Typography from "../../atoms/Typography";
 import MenuButton from "../Header/MenuButton";
 
@@ -12,6 +15,7 @@ import Logo from "../../atoms/Logo";
 
 const ContentHeader = ({ titles, title }) => {
   const { menu } = useContext(UIContext).state;
+  const { user } = useContext(AuthContext);
   const [active, setActive] = useState(false);
   const className = clsx("content-header", menu && "content-header--hidden");
   const navClass = clsx(
@@ -38,6 +42,36 @@ const ContentHeader = ({ titles, title }) => {
         </HashLink>
       </div>
     ));
+  };
+
+  const renderAuth = () => {
+    if (user)
+      return (
+        <div className="header__profile-menu">
+          <MenuButton dark />
+          <div className="header__user header__user--hidden">
+            <MdNotificationsNone className="header__user__notifications header__user__notifications--dark" />
+            <div className="header__user__picture" />
+            <div className="header__user__details">
+              <Typography
+                className="header__user__details__display-name"
+                variant="h4"
+                component="p"
+              >
+                {user.displayName}
+              </Typography>
+              <Typography variant="sub" component="p">
+                Configurar Perfil
+              </Typography>
+            </div>
+            <a href="/api/logout">
+              <FiLogOut className="header__user__logout" />
+            </a>
+          </div>
+        </div>
+      );
+
+    return <MenuButton dark />;
   };
 
   useEffect(() => {
@@ -99,7 +133,7 @@ const ContentHeader = ({ titles, title }) => {
               </Typography>
             </div>
           </div>
-          <MenuButton dark />
+          {renderAuth()}
         </div>
       </header>
       <div className={navClass}>{renderTitles()}</div>

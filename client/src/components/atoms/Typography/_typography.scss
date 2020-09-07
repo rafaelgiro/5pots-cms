@@ -37,14 +37,17 @@ h2,
 h3,
 h4,
 h5,
-a,
 li,
 span,
 img,
-strong {
+strong,
+u,
+i,
+em,
+a {
   &::selection {
     color: var(--color-background);
-    background-color: var(--color-primary);
+    background-color: var(--color-primary) !important;
   }
 }
 

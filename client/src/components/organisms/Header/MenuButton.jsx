@@ -29,7 +29,11 @@ const MenuButton = (props) => {
         <span className="header__menu-btn__burguer-2" />
         <span className="header__menu-btn__burguer-3" />
       </div>
-      <Typography component="span" variant="p">
+      <Typography
+        component="span"
+        variant="p"
+        className="header__menu-btn__text"
+      >
         {state.menu ? "fechar" : "menu"}
       </Typography>
     </button>
@@ -37,12 +41,13 @@ const MenuButton = (props) => {
 };
 
 MenuButton.propTypes = {
-  onTop: PropTypes.bool.isRequired,
+  onTop: PropTypes.bool,
   dark: PropTypes.bool,
 };
 
 MenuButton.defaultProps = {
   dark: false,
+  onTop: false,
 };
 
 export default MenuButton;

@@ -20,10 +20,6 @@
     background-color: var(--color-primary);
   }
 
-  @media only screen and (max-width: $tab-port) {
-    justify-content: center;
-  }
-
   // Container para o Logo e a caixa de busca
   &__left-actions {
     margin-left: 4rem;
@@ -84,7 +80,8 @@
     transition: all 0.2s ease-out;
 
     @media only screen and (max-width: $tab-port) {
-      display: none;
+      transform: translateX(4.8rem) translateY(-50%);
+      left: -11.2rem;
     }
 
     &--hidden {
@@ -94,6 +91,11 @@
         background-color: var(--color-background);
         padding: 0.8rem;
         border-radius: 50%;
+
+        &--dark {
+          background-color: var(--color-primary);
+          color: var(--color-background);
+        }
       }
 
       .header__user__picture {
@@ -114,6 +116,10 @@
       width: 2.4rem;
       height: 2.4rem;
       transition: all 0.2s ease-out;
+
+      @media only screen and (max-width: $tab-port) {
+        display: none;
+      }
     }
 
     &__picture {
@@ -124,6 +130,14 @@
       border-radius: 50%;
       margin-left: 1.6rem;
       transition: all 0.2s ease-out;
+
+      @media only screen and (max-width: $tab-port) {
+        // border-top-right-radius: 0;
+        // border-bottom-right-radius: 0;
+        width: 4.8rem;
+        height: 4.8rem;
+        margin-left: 0;
+      }
     }
 
     &__details {
@@ -132,6 +146,10 @@
       transition: all 0.2s ease-out;
       visibility: visible;
       opacity: 1;
+
+      @media only screen and (max-width: $tab-port) {
+        display: none;
+      }
       &__display-name {
         font-size: 2rem;
         text-transform: uppercase;
@@ -151,6 +169,10 @@
       opacity: 0.5;
       transition: opacity 0.2s ease-out;
       visibility: visible;
+
+      @media only screen and (max-width: $tab-port) {
+        display: none;
+      }
 
       &:hover {
         opacity: 1;
@@ -176,18 +198,33 @@
     &--hidden {
       opacity: 0;
       visibility: hidden;
+
+      @media only screen and (max-width: $tab-port) {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
+    @media only screen and (max-width: $tab-port) {
+      width: 5.6rem;
+      .header__menu-btn__text {
+        display: none;
+      }
+
+      .header__menu-btn__burguer {
+        transform: scale(-1, 1);
+      }
+      .header__menu-btn__burguer-3 {
+        right: 0 !important;
+      }
     }
 
     &--dark {
       background-color: var(--color-primary);
       color: var(--color-background);
 
-      .header__menu-btn__burguer-1 {
-        background-color: var(--color-background) !important;
-      }
-      .header__menu-btn__burguer-2 {
-        background-color: var(--color-background) !important;
-      }
+      .header__menu-btn__burguer-1,
+      .header__menu-btn__burguer-2,
       .header__menu-btn__burguer-3 {
         background-color: var(--color-background) !important;
       }

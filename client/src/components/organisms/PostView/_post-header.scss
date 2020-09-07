@@ -7,6 +7,15 @@
   position: relative;
   z-index: 10;
 
+  @media only screen and (max-width: $tab-port) {
+    margin-top: 0;
+    grid-column: 1/-1;
+  }
+
+  a {
+    color: var(--color-category) !important;
+  }
+
   &__content {
     grid-column: 2/11;
 

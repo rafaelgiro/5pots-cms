@@ -1,0 +1,73 @@
+.full-screen-menu {
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  box-sizing: border-box;
+  z-index: -1;
+
+  &--z-index {
+    z-index: 1000;
+  }
+
+  h4 {
+    font-weight: normal;
+  }
+
+  &__wide {
+    box-sizing: border-box;
+    position: fixed;
+    right: 0;
+    z-index: 2000;
+    background-color: var(--color-background);
+    width: 70vw;
+    height: 100vh;
+    top: -100vh;
+    margin-top: 200vh;
+    bottom: 0;
+    transition: top 800ms ease-out, margin-top 800ms ease-out;
+    background-image: url("https://lolstatic-a.akamaihd.net/frontpage/apps/prod/artbook/pt_BR/f31d8b829b603b4b65fdff2475bd0803ced0179d/assets/content/summoners_rift/17_map/map_01.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    padding: 4rem;
+
+    &--open {
+      top: 0;
+      margin-top: 0;
+      transition: top 700ms ease-out;
+    }
+  }
+
+  &__local {
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    background-color: var(--color-primary);
+    width: 30vw;
+    height: 100vh;
+    top: -100vh;
+    margin-top: 200vh;
+    bottom: 0;
+    transition: top 600ms, margin-top 600ms;
+    transition-timing-function: cubic-bezier(0.36, 0.06, 0.23, 0.33);
+    padding: 4rem;
+
+    color: var(--color-background);
+
+    &--open {
+      top: 0;
+      margin-top: 0;
+      transition: top 600ms;
+      transition-timing-function: cubic-bezier(0.36, 0.06, 0.23, 0.33);
+    }
+  }
+
+  &__close-btn {
+    position: absolute;
+    right: 0;
+    top: 1.6rem;
+  }
+}

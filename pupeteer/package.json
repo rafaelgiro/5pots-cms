@@ -1,0 +1,19 @@
+{
+  "name": "5pots-puppeteer",
+  "version": "1.0.0",
+  "description": "Web scraping da 5pots",
+  "main": "index.js",
+  "author": "Rafael Giro",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "himalaya": "^1.1.0",
+    "jsdom": "^16.4.0",
+    "mongoose": "^5.9.18",
+    "nodemon": "^2.0.4",
+    "puppeteer": "^3.3.0"
+  }
+}

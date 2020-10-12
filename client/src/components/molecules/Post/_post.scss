@@ -6,6 +6,10 @@
   height: 100%;
   grid-template-columns: 2fr 3fr;
 
+  a {
+    color: var(--color-primary);
+  }
+
   @media only screen and (max-width: $tab-land) {
     width: 90%;
     margin: 0 auto 12rem auto;
@@ -14,7 +18,7 @@
   @media only screen and (max-width: $tab-port) {
     display: flex;
     flex-direction: column-reverse;
-    margin: 0 auto;
+    margin: 1.6rem auto;
   }
 
   &__image {
@@ -29,6 +33,11 @@
       cursor: pointer;
       transform: scale(1.005);
     }
+
+    @media only screen and (max-width: $tab-land) {
+      height: 28rem;
+      margin-bottom: 2.4rem;
+    }
   }
 
   &__content {
@@ -38,10 +47,12 @@
     justify-content: space-evenly;
     margin-top: 1.6rem;
     transition: all 0.2s ease-out;
+    padding-right: 1.6rem;
 
     @media only screen and (max-width: $tab-port) {
       margin-top: -0.8rem;
       margin-bottom: 4.8rem;
+      padding-right: 0;
     }
 
     &__desc {
@@ -62,6 +73,7 @@
       }
 
       @media only screen and (max-width: $tab-port) {
+        margin-top: 0.4rem;
         margin-bottom: -0.8rem;
       }
 
@@ -75,7 +87,7 @@
         background-color: var(--color-primary);
 
         @media only screen and (max-width: $tab-port) {
-          bottom: -1.6rem;
+          display: none;
         }
       }
     }

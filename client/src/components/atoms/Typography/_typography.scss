@@ -1,5 +1,5 @@
 .typography {
-  color: var(--color-primary);
+  color: inherit;
 
   &__h1 {
     font-size: 5.6rem;
@@ -22,7 +22,7 @@
   }
 
   &__p {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
   &__sub {
@@ -37,14 +37,17 @@ h2,
 h3,
 h4,
 h5,
-a,
 li,
 span,
 img,
-strong {
+strong,
+u,
+i,
+em,
+a {
   &::selection {
     color: var(--color-background);
-    background-color: var(--color-primary);
+    background-color: var(--color-primary) !important;
   }
 }
 

@@ -35,7 +35,7 @@ Typography.propTypes = {
   // Componente que vai ser renderizado no DOM ("p", "h1", "h2"...)
   component: PropTypes.string.isRequired,
   // Visual do componente
-  variant: PropTypes.string.isRequired,
+  variant: PropTypes.oneOf(["h1", "h2", "h3", "h4", "p", "sub"]).isRequired,
   // Texto a ser renderizado
   children: PropTypes.node,
   // Classes extras para o component

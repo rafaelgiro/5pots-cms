@@ -4,4 +4,5 @@ export default {
   riot: "#e03f3f",
   dev: "#e03f3f",
   default: "#3c353d",
+  success: "#42db96",
 };

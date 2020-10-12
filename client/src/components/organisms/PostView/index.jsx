@@ -19,7 +19,7 @@ const PostView = (props) => {
 
   // Checa se tem um parágrafo de introdução sem título
   const hasIntro =
-    sections[0].content.slice(0, 3) === "<p>"
+    sections.content && sections[0].content.slice(0, 3) === "<p>"
       ? ["Introdução", ...subTitles]
       : subTitles;
 
@@ -34,7 +34,12 @@ const PostView = (props) => {
         url={url}
         postedAt={postedAt}
       />
-      <PostBody sections={sections} titles={hasIntro} title={title} />
+      <PostBody
+        sections={sections}
+        titles={hasIntro}
+        title={title}
+        category={category}
+      />
     </article>
   );
 };

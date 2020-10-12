@@ -13,7 +13,7 @@ const notes = require("./scripts/notes");
 
   // Inicia o browser, mudar headless pra falso para ver o chrome abrir
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: false,
   });
 
   // Abre uma aba nova com um user agent pra não ser bot
@@ -28,6 +28,7 @@ const notes = require("./scripts/notes");
     await page.goto("https://br.leagueoflegends.com/pt-br/latest-news/", {
       waitUntil: "domcontentloaded",
     });
+
     // Espera as notícias serem renderizadas
     await page.waitForSelector("article");
     // Pega as notícias
@@ -53,8 +54,8 @@ const notes = require("./scripts/notes");
         case "Dev":
           await dev(post, page);
           break;
-        case "Atualizações do jogo":
-          await notes(post, page);
+        // case "Atualizações do jogo":
+        //   await notes(post, page);
         default:
           break;
       }
@@ -63,5 +64,5 @@ const notes = require("./scripts/notes");
 
   console.log("terminou de crawlar");
 
-  await browser.close();
+  // browser.close();
 })();

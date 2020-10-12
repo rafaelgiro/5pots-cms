@@ -339,6 +339,7 @@
   }
 
   &__profile-menu {
+    grid-column: 15/-1;
     display: flex;
     flex-direction: row-reverse;
     position: relative;

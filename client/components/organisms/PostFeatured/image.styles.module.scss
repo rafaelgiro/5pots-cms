@@ -1,0 +1,63 @@
+@import "../../../core/styles/variables";
+@import "../../../core/styles/mq";
+
+.featured-image-container {
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+
+  @include tab-port {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+
+.featured-image {
+  height: 56rem;
+  width: 32%;
+  border-radius: 0.8rem;
+  background-image: url("https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt1924a65780dd45f8/5ed57a2f752a951015ce423a/02_Nunu_Willump.jpg");
+  background-size: cover;
+
+  @include tab-port {
+    width: 90vw;
+    height: 20vh;
+    background-size: 110vh;
+    margin: 0.4rem;
+  }
+
+  &-1 {
+    background-position-x: left;
+    background-position-y: center;
+    transform: translateY(0.8rem);
+
+    @include tab-port {
+      width: 94vw;
+      transform: translateY(0rem);
+      background-position-x: center;
+      background-position-y: top;
+    }
+  }
+
+  &-2 {
+    background-position-x: center;
+    background-position-y: center;
+    transform: translateY(1.6rem);
+
+    @include tab-port {
+      width: 86vw;
+      transform: translateY(0rem);
+      background-position-x: center;
+      background-position-y: center;
+    }
+  }
+  &-3 {
+    background-position-x: right;
+    background-position-y: center;
+
+    @include tab-port {
+      background-position-x: center;
+      background-position-y: bottom;
+    }
+  }
+}

@@ -1,0 +1,156 @@
+@import "../../../core/styles/variables";
+@import "../../../core/styles/mq";
+
+.menu-btn {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-background);
+  color: var(--color-primary);
+  padding: 1.6rem;
+  margin-right: 4rem;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.4s ease-out;
+  z-index: 2;
+  border: none;
+  font-family: $font-primary;
+  outline: none;
+
+  &--hidden {
+    opacity: 0;
+    visibility: hidden;
+
+    @include tab-port {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  @include tab-port {
+    width: 5.6rem;
+    .menu-btn__text {
+      display: none;
+    }
+
+    .menu-btn__burguer {
+      transform: scale(-1, 1);
+    }
+    .menu-btn__burguer-3 {
+      right: 0 !important;
+    }
+  }
+
+  &--dark {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+
+    .menu-btn__burguer-1,
+    .menu-btn__burguer-2,
+    .menu-btn__burguer-3 {
+      background-color: var(--color-background) !important;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    .menu-btn__burguer-1 {
+      transform: translateX(1.6rem);
+    }
+
+    .menu-btn__burguer-2 {
+      transform: translateX(0.8rem);
+    }
+
+    .menu-btn__burguer-3 {
+      transform: translateX(-0.8rem);
+    }
+  }
+
+  &__burguer {
+    position: relative;
+    width: 4.8rem;
+    height: 1.6rem;
+
+    :nth-child(1) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1.6rem;
+      height: 2px;
+      background-color: var(--color-primary);
+      transform: translateX(0);
+      transition: all 0.2s ease-out;
+    }
+
+    :nth-child(2) {
+      position: absolute;
+      top: calc(50% - 1px);
+      left: 0;
+      width: 2.4rem;
+      height: 2px;
+      background-color: var(--color-primary);
+      transform: translateX(0);
+      transition: all 0.2s ease-out;
+    }
+
+    :nth-child(3) {
+      position: absolute;
+      bottom: 0;
+      right: 2.4rem;
+      width: 1.6rem;
+      height: 2px;
+      background-color: var(--color-primary);
+      transform: translateX(0);
+      transition: all 0.2s ease-out;
+    }
+  }
+
+  span {
+    font-size: 1.8rem;
+    letter-spacing: 0.8px;
+  }
+
+  &--close {
+    background-color: var(--color-primary);
+
+    &:hover {
+      .menu-btn__burguer-1 {
+        transform: rotate(45deg) translate(0px, -50%) scale(0.9);
+      }
+
+      .menu-btn__burguer-3 {
+        transform: rotate(-45deg) translate(0px, -50%) scale(0.9);
+      }
+    }
+
+    .menu-btn__burguer-1,
+    .menu-btn__burguer-2,
+    .menu-btn__burguer-3 {
+      background-color: var(--color-background);
+    }
+
+    .menu-btn__burguer-1 {
+      width: 2rem;
+      transform: rotate(45deg) translate(0px, -50%);
+      top: 50%;
+      left: 4px;
+      right: 0;
+    }
+    .menu-btn__burguer-2 {
+      width: 0;
+      top: 0;
+      left: 0;
+    }
+    .menu-btn__burguer-3 {
+      width: 2rem;
+      transform: rotate(-45deg) translate(0, -50%);
+      top: 50%;
+      left: 5px;
+      right: 1px;
+    }
+
+    span {
+      color: var(--color-background);
+    }
+  }
+}

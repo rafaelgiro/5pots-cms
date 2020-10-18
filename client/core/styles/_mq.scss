@@ -1,0 +1,46 @@
+$mq: (
+  "phone": 37.5em,
+  //600px
+  "tab-port": 56.25em,
+  //900px
+  "tab-land": 75em,
+  //1200px
+  "mid-desktop": 93.75em,
+  //1500px
+  "big-desktop": 112.5em,
+  //1800px
+);
+
+@mixin phone {
+  @media only screen and (max-width: mq("phone")) {
+    @content;
+  }
+}
+
+@mixin tab-port {
+  @media only screen and (max-width: mq("tab-port")) {
+    @content;
+  }
+}
+
+@mixin tab-land {
+  @media only screen and (max-width: mq("tab-land")) {
+    @content;
+  }
+}
+
+@mixin mid-desktop {
+  @media only screen and (max-width: mq("mid-desktop")) {
+    @content;
+  }
+}
+
+@mixin big-desktop {
+  @media only screen and (max-width: mq("big-desktop")) {
+    @content;
+  }
+}
+
+@function mq($mq-value) {
+  @return map-get($mq, $mq-value);
+}

@@ -1,0 +1,70 @@
+@import "../../../core/styles/mq";
+
+.post-list {
+  width: 100%;
+  grid-column: content-start / content-end;
+  z-index: 1;
+  margin-bottom: 16rem;
+
+  &__cards-container {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  &__controller {
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    width: 100%;
+    margin-bottom: 2.4rem;
+
+    @include tab-land {
+      margin-left: 3.2rem;
+    }
+
+    @include tab-port {
+      flex-direction: column;
+      margin-left: 0;
+    }
+
+    @include tab-port {
+      div {
+        display: flex;
+        align-items: center;
+
+        :not(:last-child) {
+          margin-right: 2.4rem;
+        }
+      }
+    }
+  }
+}
+
+.stories__controller {
+  &__title {
+    font-size: 3.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__desc {
+    width: 60%;
+    font-style: italic;
+    border-left: 2px solid var(--color-primary);
+    padding: 1.6rem 0 1.6rem 3.2rem;
+    margin-left: 3.2rem;
+
+    @include tab-port {
+      margin: 0;
+      padding-top: 1.6;
+    }
+
+    @include tab-port {
+      border-left: none;
+      width: 80vw;
+    }
+  }
+}

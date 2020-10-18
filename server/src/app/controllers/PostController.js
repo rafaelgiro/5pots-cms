@@ -47,9 +47,9 @@ class PostController {
   }
 
   async show(req, res) {
-    const { id } = req.params;
-
-    Post.findById(id, (err, post) => {
+    const { slug } = req.params;
+    const query = Post.where({ slug });
+    query.findOne((err, post) => {
       if (err) {
         console.log(err);
       }

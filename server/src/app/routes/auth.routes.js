@@ -131,7 +131,7 @@ routes.post("/auth/forgot/password", (req, res) => {
           subject: "Seu token de recuperação de senha na 5Pots",
           text: `Olá,
           Para redefinir sua senha clique no link abaixo: 
-          ${url}/auth/reset/${newToken.token}`,
+          ${url}/auth/reset?token=${newToken.token}`,
         };
         transporter.sendMail(mailOptions, (erro) => {
           if (erro) {

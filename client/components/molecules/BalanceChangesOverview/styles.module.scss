@@ -1,0 +1,9 @@
+@import "../../../core/styles/mq";
+
+.bc-overview {
+  margin-top: 8rem;
+
+  @include tab-port {
+    display: none;
+  }
+}

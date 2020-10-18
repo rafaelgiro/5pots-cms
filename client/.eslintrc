@@ -3,8 +3,10 @@
   "extends": ["airbnb", "plugin:prettier/recommended"],
   "plugins": ["prettier", "babel"],
   "rules": {
-    "prettier/prettier": ["error"],
-    "no-plusplus": "off"
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "prettier/prettier": ["error"]
   },
   "parserOptions": {
     "ecmaVersion": 2020

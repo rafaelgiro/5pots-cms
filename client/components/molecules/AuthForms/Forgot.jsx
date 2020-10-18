@@ -32,28 +32,27 @@ const FormForgot = (props) => {
       : "/auth/forgot/password";
 
   const onSubmit = async (data) => {
-    await recaptchaRef.current.executeAsync();
-
-    api
-      .post(`/auth/forgot/${credential}`, data)
-      .then((res) => {
-        dispatch({
-          type: "SHOW_SNACKBAR",
-          snackbar: {
-            msg: "Um email foi enviado para o endereço informado.",
-            variant: "success",
-          },
-        });
-      })
-      .catch((err) => {
-        dispatch({
-          type: "SHOW_SNACKBAR",
-          snackbar: {
-            msg: err.response.data.msg,
-            variant: "error",
-          },
-        });
-      });
+    // await recaptchaRef.current.executeAsync();
+    // api
+    //   .post(`/auth/forgot/${credential}`, data)
+    //   .then((res) => {
+    //     dispatch({
+    //       type: "SHOW_SNACKBAR",
+    //       snackbar: {
+    //         msg: "Um email foi enviado para o endereço informado.",
+    //         variant: "success",
+    //       },
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     dispatch({
+    //       type: "SHOW_SNACKBAR",
+    //       snackbar: {
+    //         msg: err.response.data.msg,
+    //         variant: "error",
+    //       },
+    //     });
+    //   });
   };
 
   return (

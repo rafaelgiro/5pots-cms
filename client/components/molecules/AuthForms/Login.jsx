@@ -31,30 +31,29 @@ const FormLogin = () => {
   const router = useRouter();
 
   const onSubmit = async (data) => {
-    await recaptchaRef.current.executeAsync();
-
-    api
-      .post("/auth/login", data)
-      .then((res) => {
-        setUser(res.data);
-        dispatch({
-          type: "SHOW_SNACKBAR",
-          snackbar: {
-            msg: "Logado com sucesso.",
-            variant: "success",
-          },
-        });
-        router.push("/");
-      })
-      .catch(() => {
-        dispatch({
-          type: "SHOW_SNACKBAR",
-          snackbar: {
-            msg: "Usuário ou senha incorretos.",
-            variant: "error",
-          },
-        });
-      });
+    // await recaptchaRef.current.executeAsync();
+    // api
+    //   .post("/auth/login", data)
+    //   .then((res) => {
+    //     setUser(res.data);
+    //     dispatch({
+    //       type: "SHOW_SNACKBAR",
+    //       snackbar: {
+    //         msg: "Logado com sucesso.",
+    //         variant: "success",
+    //       },
+    //     });
+    //     router.push("/");
+    //   })
+    //   .catch(() => {
+    //     dispatch({
+    //       type: "SHOW_SNACKBAR",
+    //       snackbar: {
+    //         msg: "Usuário ou senha incorretos.",
+    //         variant: "error",
+    //       },
+    //     });
+    //   });
   };
 
   return (

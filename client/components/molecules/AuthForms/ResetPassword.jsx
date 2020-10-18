@@ -56,29 +56,28 @@ const FormReset = () => {
   }, [token, dispatch]);
 
   const onSubmit = async (data) => {
-    await recaptchaRef.current.executeAsync();
-
-    axios
-      .post(`/api/auth/forgot/${token}`, data)
-      .then(() => {
-        dispatch({
-          type: "SHOW_SNACKBAR",
-          snackbar: {
-            msg: "Senha alterada com sucesso.",
-            variant: "success",
-          },
-        });
-        router.push("/auth/login");
-      })
-      .catch((err) => {
-        dispatch({
-          type: "SHOW_SNACKBAR",
-          snackbar: {
-            msg: err.response.data.msg,
-            variant: "error",
-          },
-        });
-      });
+    // await recaptchaRef.current.executeAsync();
+    // axios
+    //   .post(`/api/auth/forgot/${token}`, data)
+    //   .then(() => {
+    //     dispatch({
+    //       type: "SHOW_SNACKBAR",
+    //       snackbar: {
+    //         msg: "Senha alterada com sucesso.",
+    //         variant: "success",
+    //       },
+    //     });
+    //     router.push("/auth/login");
+    //   })
+    //   .catch((err) => {
+    //     dispatch({
+    //       type: "SHOW_SNACKBAR",
+    //       snackbar: {
+    //         msg: err.response.data.msg,
+    //         variant: "error",
+    //       },
+    //     });
+    //   });
   };
 
   function renderContent() {

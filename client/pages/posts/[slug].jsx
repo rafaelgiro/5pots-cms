@@ -17,7 +17,7 @@ function PostPage(props) {
 // This function gets called at build time
 export async function getStaticPaths() {
   // Call an external API endpoint to get posts
-  const res = await api.get("http://api:5000/posts");
+  const res = await api.get("/posts");
   const posts = res.data;
 
   // Get the paths we want to pre-render based on posts
@@ -31,7 +31,7 @@ export async function getStaticPaths() {
 
 // This also gets called at build time
 export async function getStaticProps({ params }) {
-  const res = await api.get(`http://api:5000/posts/${params.slug}`);
+  const res = await api.get(`/posts/${params.slug}`);
   const post = res.data;
 
   // Pass post data to the page via props

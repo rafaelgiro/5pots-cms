@@ -30,7 +30,7 @@ const Homepage = (props) => {
 };
 
 export async function getStaticProps() {
-  const res = await api.get("http://api:5000/posts");
+  const res = await api.get("/posts");
   const posts = res.data;
 
   return {

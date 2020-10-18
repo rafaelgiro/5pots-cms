@@ -43,9 +43,9 @@ const PostBody = (props) => {
 
   return (
     <>
-      <ContentHeader category="riot" titles={titles} title={title} />
+      {/* <ContentHeader category="riot" titles={titles} title={title} />
       {titles[0] === "Introdução" && <div id="introdução" />}
-      <div className={styles["view-post__content"]}>{renderSections()}</div>
+      <div className={styles["view-post__content"]}>{renderSections()}</div> */}
     </>
   );
 };

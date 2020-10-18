@@ -44,36 +44,34 @@ const FormRegister = () => {
   };
 
   const onSubmit = async (data) => {
-    await recaptchaRef.current.executeAsync();
-    const { username, password, confirm, email, displayName } = data;
-
-    // Usa o objeto da form ou adiciona o username como displayName
-    const newUser = displayName
-      ? data
-      : { username, password, confirm, email, displayName: username };
-
-    api
-      .post("/auth/register", newUser)
-      .then((res) => {
-        setUser(res.data);
-        dispatch({
-          type: "SHOW_SNACKBAR",
-          snackbar: {
-            msg: "Usuário cadastrado com sucesso, bem vindo!",
-            variant: "success",
-          },
-        });
-        router.push("/");
-      })
-      .catch((err) => {
-        dispatch({
-          type: "SHOW_SNACKBAR",
-          snackbar: {
-            msg: err.response.data.msg,
-            variant: "error",
-          },
-        });
-      });
+    // await recaptchaRef.current.executeAsync();
+    // const { username, password, confirm, email, displayName } = data;
+    // // Usa o objeto da form ou adiciona o username como displayName
+    // const newUser = displayName
+    //   ? data
+    //   : { username, password, confirm, email, displayName: username };
+    // api
+    //   .post("/auth/register", newUser)
+    //   .then((res) => {
+    //     setUser(res.data);
+    //     dispatch({
+    //       type: "SHOW_SNACKBAR",
+    //       snackbar: {
+    //         msg: "Usuário cadastrado com sucesso, bem vindo!",
+    //         variant: "success",
+    //       },
+    //     });
+    //     router.push("/");
+    //   })
+    //   .catch((err) => {
+    //     dispatch({
+    //       type: "SHOW_SNACKBAR",
+    //       snackbar: {
+    //         msg: err.response.data.msg,
+    //         variant: "error",
+    //       },
+    //     });
+    //   });
   };
   return (
     <div className={styles["auth-page__form"]}>

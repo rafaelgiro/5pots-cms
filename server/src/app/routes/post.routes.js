@@ -6,6 +6,6 @@ const routes = Router();
 
 routes.get("/posts", PostController.index);
 
-routes.get("/posts/:id", PostController.show);
+routes.get("/posts/:slug", PostController.show);
 
 export default routes;

@@ -1,0 +1,97 @@
+@import "../../../core/styles/variables";
+
+.btn {
+  border: 2px solid var(--color-primary);
+  padding: 1.6rem 1.6rem;
+  font-size: 1.6rem;
+  line-height: 1.8rem;
+  font-weight: bold;
+  border-radius: 0.7rem;
+  margin: 0 2rem 1rem;
+  outline: 0;
+  transition: all 0.2s ease-out !important;
+  background-color: var(--color-background);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+//////////////////////////////////////// Botão Cheio
+.btn--normal {
+  &--default {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
+  }
+
+  &--artigo {
+    border-color: $color-gold;
+    background-color: $color-gold;
+  }
+
+  &--pbe {
+    border-color: $color-pbe;
+    background-color: $color-pbe;
+  }
+
+  &--riot {
+    border-color: $color-riot;
+    background-color: $color-riot;
+  }
+
+  &:hover {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+}
+
+//////////////////////////////////////// Botão Contornado
+.btn--outline {
+  background-color: var(--color-background);
+  &--default {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+
+    &:hover {
+      background-color: var(--color-primary);
+    }
+  }
+
+  &--artigo {
+    border-color: $color-gold;
+    color: $color-gold;
+
+    &:hover {
+      background-color: $color-gold;
+    }
+  }
+
+  &--pbe {
+    border-color: $color-pbe;
+    color: $color-pbe;
+
+    &:hover {
+      background-color: $color-pbe;
+    }
+  }
+
+  &--riot {
+    border-color: $color-riot;
+    color: $color-riot;
+
+    &:hover {
+      background-color: $color-riot;
+    }
+  }
+
+  &:hover {
+    background-color: var(--color-background);
+  }
+}
+//////////////////////////////////////// Botão Quadradinho com ícone
+.btn--icon {
+  &--default {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
+  }
+}

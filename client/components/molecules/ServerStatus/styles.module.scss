@@ -1,0 +1,62 @@
+@import "../../../core/styles/variables";
+@import "../../../core/styles/mq";
+
+.server-status {
+  @include tab-port {
+    margin: 4.8rem 0 2.4rem 0;
+    text-align: center;
+    display: none;
+  }
+
+  &__servers {
+    @include tab-port {
+      display: flex;
+      justify-content: space-evenly;
+    }
+  }
+
+  &__icon {
+    font-size: 2.4rem;
+    margin-right: 0.8rem;
+    margin-top: 0.8rem;
+    transform: translateY(0.4rem); // Arruma centralização vertical
+
+    &--online {
+      fill: $color-server-online;
+    }
+
+    &--offline {
+      fill: $color-server-offline;
+    }
+  }
+
+  &__server-name {
+    font-size: 2.4rem;
+    font-weight: 600;
+  }
+
+  &__time-ago {
+    margin-top: 0.4rem;
+    margin-left: 3.2rem;
+
+    @include tab-port {
+      display: none;
+    }
+  }
+
+  &__desc {
+    margin-left: 2.4rem;
+    border-left: 0.2rem solid var(--color-primary);
+    padding-left: 0.6rem;
+
+    @include tab-port {
+      display: none;
+    }
+  }
+}
+
+.sidebar__title {
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}

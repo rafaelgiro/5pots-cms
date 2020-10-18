@@ -7,7 +7,8 @@
 
 import clsx from "clsx";
 
-import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+import FaCheckCircle from "@meronex/icons/fa/FaCheckCircle";
+import FaTimesCircle from "@meronex/icons/fa/FaTimesCircle";
 
 import Typography from "../../atoms/Typography";
 

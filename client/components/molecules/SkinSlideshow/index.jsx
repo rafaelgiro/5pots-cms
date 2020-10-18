@@ -1,7 +1,10 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import { useState, useEffect } from "react";
 import clsx from "clsx";
-import { MdKeyboardArrowUp, MdKeyboardArrowDown, MdLens } from "react-icons/md";
+
+import MdKeyboardArrowUp from "@meronex/icons/md/MdKeyboardArrowUp";
+import MdKeyboardArrowDown from "@meronex/icons/md/MdKeyboardArrowDown";
+import MdLens from "@meronex/icons/md/MdLens";
 
 import PropTypes from "prop-types";
 

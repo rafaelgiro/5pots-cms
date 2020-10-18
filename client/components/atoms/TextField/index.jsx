@@ -1,31 +1,30 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import clsx from "clsx";
 import PropTypes from "prop-types";
-import * as MaterialIcons from "react-icons/md";
+import MdVisibilityOff from "@meronex/icons/md/MdVisibilityOff";
+import MdVisibility from "@meronex/icons/md/MdVisibility";
+
 import Typography from "../Typography";
 
 import styles from "./styles.module.scss";
 
-const TextField = React.forwardRef((props, ref) => {
+const TextField = forwardRef((props, ref) => {
   const {
     className,
     type,
     placeholder,
     label,
     required,
-    icon,
+    icon: Icon,
     name,
     id,
     errors,
     ...rest
   } = props;
-  const Icon = icon ? MaterialIcons[icon] : undefined;
   const [hideText, setHideText] = useState(type === "password");
-  const HideIcon = hideText
-    ? MaterialIcons.MdVisibilityOff
-    : MaterialIcons.MdVisibility;
+  const HideIcon = hideText ? MdVisibilityOff : MdVisibility;
 
   const containerClass = clsx(
     styles["text-field"],
@@ -39,7 +38,7 @@ const TextField = React.forwardRef((props, ref) => {
 
   return (
     <div className={containerClass}>
-      {icon ? <Icon className={styles["text-field__icon"]} /> : <></>}
+      {Icon ? <Icon className={styles["text-field__icon"]} /> : <></>}
       <input
         type={hideText ? "password" : "text"}
         className={inputClass}
@@ -79,7 +78,7 @@ TextField.propTypes = {
   // Boolean se o campo é obrigatório ou não
   required: PropTypes.bool,
   // ícone do input (apenas do Material)
-  icon: PropTypes.string,
+  icon: PropTypes.node,
   // Classes extras
   className: PropTypes.string,
   // ID do textField

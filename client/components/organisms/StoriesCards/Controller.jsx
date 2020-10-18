@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-
-import { MdArrowDropDown } from "react-icons/md";
+import MdArrowDropDown from "@meronex/icons/md/MdArrowDropDown";
 
 import Typography from "../../atoms/Typography";
 

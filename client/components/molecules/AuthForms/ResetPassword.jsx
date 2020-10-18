@@ -5,7 +5,9 @@ import Link from "next/link";
 import axios from "axios";
 
 import { useForm } from "react-hook-form";
-import { MdNavigateNext } from "react-icons/md";
+import MdNavigateNext from "@meronex/icons/md/MdNavigateNext";
+import MdLock from "@meronex/icons/md/MdLock";
+import MdLockOutline from "@meronex/icons/md/MdLockOutline";
 import ReCAPTCHA from "react-google-recaptcha";
 
 import Typography from "../../atoms/Typography";
@@ -91,7 +93,7 @@ const FormReset = () => {
               name="password"
               label="Nova senha"
               type="password"
-              icon="MdLock"
+              icon={MdLock}
               ref={register(passwordValidation)}
               errors={errors}
               required
@@ -100,7 +102,7 @@ const FormReset = () => {
               name="confirmation"
               label="Confirme sua senha"
               type="password"
-              icon="MdLockOutline"
+              icon={MdLockOutline}
               ref={register(confirmValidation)}
               errors={errors}
               required

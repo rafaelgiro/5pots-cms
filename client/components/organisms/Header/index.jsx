@@ -1,7 +1,9 @@
 import { useContext, useState, useEffect } from "react";
 import Link from "next/link";
-import { MdNotificationsNone } from "react-icons/md";
-import { FiLogOut } from "react-icons/fi";
+
+import MdNotificationsNone from "@meronex/icons/md/MdNotificationsNone";
+import FiLogOut from "@meronex/icons/fi/FiLogOut";
+
 import clsx from "clsx";
 
 import Logo from "../../atoms/Logo";

@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
-import { MdNavigateNext } from "react-icons/md";
+import MdNavigateNext from "@meronex/icons/md/MdNavigateNext";
+import MdEmail from "@meronex/icons/md/MdEmail";
 import ReCAPTCHA from "react-google-recaptcha";
 
 import Typography from "../../atoms/Typography";
@@ -21,7 +22,7 @@ import styles from "../../templates/AuthPage/styles.module.scss";
 const FormForgot = (props) => {
   const { credential } = props;
   const { register, handleSubmit, errors } = useForm();
-  const recaptchaRef = React.useRef();
+  const recaptchaRef = useRef();
   const { dispatch } = useContext(UIContext);
 
   const title = credential === "password" ? "MINHA SENHA" : "MEU USUÁRIO";
@@ -76,7 +77,7 @@ const FormForgot = (props) => {
           name="email"
           label="E-mail"
           type="email"
-          icon="MdEmail"
+          icon={MdEmail}
           ref={register(emailValidation)}
           errors={errors}
           required

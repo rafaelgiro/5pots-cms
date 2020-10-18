@@ -1,4 +1,6 @@
-import { FaTwitterSquare, FaFacebookSquare, FaDiscord } from "react-icons/fa";
+import FaTwitterSquare from "@meronex/icons/fa/FaTwitterSquare";
+import FaFacebookSquare from "@meronex/icons/fa/FaFacebookSquare";
+import FaDiscord from "@meronex/icons/fa/FaDiscord";
 
 import Typography from "../../atoms/Typography";
 

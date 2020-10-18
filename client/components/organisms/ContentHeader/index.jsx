@@ -2,8 +2,9 @@ import { useContext, useState, useEffect } from "react";
 import Link from "next/link";
 import PropTypes, { string } from "prop-types";
 import clsx from "clsx";
-import { MdNotificationsNone } from "react-icons/md";
-import { FiLogOut } from "react-icons/fi";
+
+import MdNotificationsNone from "@meronex/icons/md/MdNotificationsNone";
+import FiLogOut from "@meronex/icons/fi/FiLogOut";
 
 import UIContext from "../../../core/contexts/UIContext";
 import AuthContext from "../../../core/contexts/AuthContext";

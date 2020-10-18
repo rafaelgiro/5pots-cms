@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-
-import { FaGithub } from "react-icons/fa";
+import FaGithub from "@meronex/icons/fa/FaGithub";
 
 import Logo from "../../atoms/Logo";
 import Typography from "../../atoms/Typography";

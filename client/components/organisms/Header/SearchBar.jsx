@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import clsx from "clsx";
 
-import { MdSearch } from "react-icons/md";
+import MdSearch from "@meronex/icons/md/MdSearch";
 
 import styles from "./search.styles.module.scss";
 

@@ -1,10 +1,15 @@
 /* eslint-disable no-unused-vars */
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { AiFillGoogleSquare, AiFillFacebook } from "react-icons/ai";
-import { MdNavigateNext } from "react-icons/md";
+import AiFillGoogleSquare from "@meronex/icons/ai/AiFillGoogleSquare";
+import AiFillFacebook from "@meronex/icons/ai/AiFillFacebook";
+import MdNavigateNext from "@meronex/icons/md/MdNavigateNext";
+import MdPerson from "@meronex/icons/md/MdPerson";
+import MdLock from "@meronex/icons/md/MdLock";
+import MdLockOutline from "@meronex/icons/md/MdLockOutline";
+import MdEmail from "@meronex/icons/md/MdEmail";
 import ReCAPTCHA from "react-google-recaptcha";
 
 import Typography from "../../atoms/Typography";
@@ -30,7 +35,7 @@ const FormRegister = () => {
   const [snackBarMessage, setSnackBarMessage] = useState("");
   const { setUser } = useContext(AuthContext);
   const { dispatch } = useContext(UIContext);
-  const recaptchaRef = React.useRef();
+  const recaptchaRef = useRef();
   const router = useRouter();
 
   const confirmValidation = {
@@ -87,7 +92,7 @@ const FormRegister = () => {
           name="username"
           label="Nome de Usuário"
           type="text"
-          icon="MdPerson"
+          icon={MdPerson}
           ref={register(usernameValidation)}
           required
           onChange={(e) => setUsernameText(e.target.value)}
@@ -97,7 +102,7 @@ const FormRegister = () => {
           name="password"
           label="Senha"
           type="password"
-          icon="MdLock"
+          icon={MdLock}
           required
           ref={register(passwordValidation)}
           errors={errors}
@@ -106,7 +111,7 @@ const FormRegister = () => {
           name="confirm"
           label="Confirme sua senha"
           type="password"
-          icon="MdLockOutline"
+          icon={MdLockOutline}
           required
           ref={register(confirmValidation)}
           errors={errors}
@@ -115,7 +120,7 @@ const FormRegister = () => {
           name="email"
           label="E-mail (Não é obrigatório)"
           type="email"
-          icon="MdEmail"
+          icon={MdEmail}
           placeholder="Só pra recuperar senha um dia"
           ref={register(emailValidation)}
           errors={errors}

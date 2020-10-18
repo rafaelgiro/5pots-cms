@@ -3,8 +3,11 @@ import { useContext } from "react";
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { AiFillGoogleSquare, AiFillFacebook } from "react-icons/ai";
-import { MdNavigateNext } from "react-icons/md";
+import AiFillGoogleSquare from "@meronex/icons/ai/AiFillGoogleSquare";
+import AiFillFacebook from "@meronex/icons/ai/AiFillFacebook";
+import MdNavigateNext from "@meronex/icons/md/MdNavigateNext";
+import MdPerson from "@meronex/icons/md/MdPerson";
+import MdLock from "@meronex/icons/md/MdLock";
 import { useForm } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
 
@@ -70,7 +73,7 @@ const FormLogin = () => {
           name="username"
           label="Nome de Usuário"
           type="text"
-          icon="MdPerson"
+          icon={MdPerson}
           required
           errors={errors}
           ref={register(usernameValidation)}
@@ -79,7 +82,7 @@ const FormLogin = () => {
           name="password"
           label="Senha"
           type="password"
-          icon="MdLock"
+          icon={MdLock}
           required
           errors={errors}
           ref={register(passwordValidation)}

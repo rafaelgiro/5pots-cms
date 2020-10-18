@@ -1,4 +1,4 @@
-import { MdKeyboardArrowRight } from "react-icons/md";
+import MdKeyboardArrowRight from "@meronex/icons/md/MdKeyboardArrowRight";
 
 import Typography from "../../atoms/Typography";
 

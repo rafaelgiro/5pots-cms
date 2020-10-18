@@ -1,11 +1,9 @@
 import { useEffect, useContext } from "react";
 import clsx from "clsx";
 import PropTypes from "prop-types";
-import {
-  IoMdCheckmarkCircleOutline,
-  IoIosCloseCircleOutline,
-  IoMdInformationCircleOutline,
-} from "react-icons/io";
+import MdCheckmarkCircleOutline from "@meronex/icons/ios/MdCheckmarkCircleOutline";
+import IosCloseCircleOutline from "@meronex/icons/ios/IosCloseCircleOutline";
+import MdInformationCircleOutline from "@meronex/icons/ios/MdInformationCircleOutline";
 
 import UIContext from "../../../core/contexts/UIContext";
 import Typography from "../Typography";
@@ -26,13 +24,13 @@ const Snackbar = (props) => {
   let Icon;
   switch (state.snackbar.variant) {
     case "success":
-      Icon = IoMdCheckmarkCircleOutline;
+      Icon = MdCheckmarkCircleOutline;
       break;
     case "error":
-      Icon = IoIosCloseCircleOutline;
+      Icon = IosCloseCircleOutline;
       break;
     default:
-      Icon = IoMdInformationCircleOutline;
+      Icon = MdInformationCircleOutline;
       break;
   }
 

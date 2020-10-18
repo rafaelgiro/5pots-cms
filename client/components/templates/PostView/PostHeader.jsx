@@ -1,7 +1,10 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 
 import PropTypes from "prop-types";
-import { FaWhatsapp, FaTwitter, FaFacebook } from "react-icons/fa";
+
+import FaWhatsapp from "@meronex/icons/fa/FaWhatsapp";
+import FaTwitter from "@meronex/icons/fa/FaTwitter";
+import FaFacebook from "@meronex/icons/fa/FaFacebook";
 
 import Typography from "../../atoms/Typography";
 import CatIcon from "../../atoms/Icons/CatIcon";

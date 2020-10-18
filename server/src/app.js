@@ -8,6 +8,7 @@ import passport from "passport";
 
 import "./models/User";
 import "./models/Token";
+import "./models/Post";
 import "./services/auth/passport";
 
 import { postRoutes, authRoutes } from "./app/routes";

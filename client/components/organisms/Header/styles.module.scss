@@ -1,0 +1,196 @@
+@import "../../../core/styles/mq";
+@import "../../../core/styles/variables";
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6.4rem;
+  z-index: 1000;
+  padding-top: 0.8rem;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0.8rem;
+    width: 100%;
+    background-color: var(--color-primary);
+  }
+
+  // Container para o Logo e a caixa de busca
+  &__left-actions {
+    margin-left: 4rem;
+    display: flex;
+    align-items: center;
+  }
+
+  // Container para os links de ação de autenticação
+  &__auth-links {
+    display: flex;
+    justify-content: space-between;
+    min-width: 18rem;
+    margin-right: 4rem;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.1s ease-out;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+
+    @include tab-port {
+      display: none;
+    }
+
+    &--hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  &__link {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    letter-spacing: 0.1rem;
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: color 0.2s ease-out;
+
+    @include tab-port {
+      display: none;
+    }
+
+    &:hover {
+      color: $color-gold-dark;
+    }
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 4rem;
+    transition: all 0.2s ease-out;
+
+    @include tab-port {
+      transform: translateX(4.8rem) translateY(-50%);
+      left: -11.2rem;
+    }
+
+    &--hidden {
+      left: -11.2rem;
+
+      .header__user__notifications {
+        background-color: var(--color-background);
+        padding: 0.8rem;
+        border-radius: 50%;
+
+        &--dark {
+          background-color: var(--color-primary);
+          color: var(--color-background);
+        }
+      }
+
+      .header__user__picture {
+        width: 4.8rem;
+        height: 4.8rem;
+      }
+      .header__user__details {
+        visibility: hidden;
+        opacity: 0;
+      }
+      .header__user__logout {
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+
+    &__notifications {
+      width: 2.4rem;
+      height: 2.4rem;
+      transition: all 0.2s ease-out;
+
+      @include tab-port {
+        display: none;
+      }
+    }
+
+    &__picture {
+      background-image: url("https://imgur.com/nafqj1I.png");
+      background-size: cover;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      margin-left: 1.6rem;
+      transition: all 0.2s ease-out;
+
+      @include tab-port {
+        // border-top-right-radius: 0;
+        // border-bottom-right-radius: 0;
+        width: 4.8rem;
+        height: 4.8rem;
+        margin-left: 0;
+      }
+    }
+
+    &__details {
+      margin-left: 0.8rem;
+      margin-top: 0.4rem;
+      transition: all 0.2s ease-out;
+      visibility: visible;
+      opacity: 1;
+
+      @include tab-port {
+        display: none;
+      }
+      &__display-name {
+        font-size: 2rem;
+        text-transform: uppercase;
+      }
+    }
+
+    a,
+    a:link,
+    a:visited {
+      color: var(--color-primary) !important;
+    }
+
+    &__logout {
+      width: 1.6rem;
+      height: 1.6rem;
+      margin-left: 1.6rem;
+      opacity: 0.5;
+      transition: opacity 0.2s ease-out;
+      visibility: visible;
+
+      @include tab-port {
+        display: none;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__cta {
+    position: relative;
+  }
+
+  &__profile-menu {
+    grid-column: 15/-1;
+    display: flex;
+    flex-direction: row-reverse;
+    position: relative;
+  }
+}

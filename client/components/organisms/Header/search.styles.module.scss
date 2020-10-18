@@ -1,0 +1,56 @@
+@import "../../../core/styles/variables";
+@import "../../../core/styles/mq";
+
+.searchbar {
+  display: flex;
+  align-items: center;
+  margin-left: 1.6rem;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s ease-out;
+
+  @include tab-port {
+    display: none;
+  }
+
+  &--hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &__input {
+    height: 3.2rem;
+    border-radius: 2.4rem;
+    border: none;
+    border: 1px solid rgba($color-gold-dark, 0.25);
+    min-width: 20rem;
+    padding-left: 1rem;
+    font-family: $font-primary;
+    font-size: 1.6rem;
+    padding-right: 2.4rem;
+    color: var(--color-primary);
+    background-color: var(--color-background);
+    font-weight: 400;
+
+    @include tab-land {
+      min-width: 16rem;
+      width: 16rem;
+    }
+
+    &::placeholder {
+      color: rgba(var(--color-primary), 0.5);
+    }
+  }
+
+  &__button {
+    font-size: 1.6rem;
+    border: none;
+    background-color: rgba(#fff, 0);
+    transform: translateX(-2.4rem);
+    margin-top: 0.6rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

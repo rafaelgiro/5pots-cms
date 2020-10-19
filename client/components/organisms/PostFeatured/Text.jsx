@@ -7,9 +7,9 @@ import styles from "./text.styles.module.scss";
 const PostFeaturedText = () => {
   // Objeto de post para fins de desenvolvimento
   const post = {
-    title: "MAPA DOS CAMPEÕES: JUNHO DE 2020",
+    title: "SISTEMAS COMPORTAMENTAIS – OUTUBRO DE 2020",
     desc:
-      "Uma caçadora onírica, um assassino mascarado e um atirador aventureiro. E de quem será a próxima AVM?",
+      "Atualizações no sistema de detecção e na confiabilidade das denúncias.",
   };
 
   return (

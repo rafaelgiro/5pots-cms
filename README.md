@@ -1,3 +1,4 @@
+
 # 5Pots
 
 > Portal de notícias de League of Legends
@@ -8,51 +9,79 @@
 
 ## 🚀 Getting Started
 
-O projeto está em containers, por isso instale o [Docker](https://docs.docker.com/get-started/) de acordo com seu sistema operacional. Para Windows 10 home ou menor, utilize o [Docker Toolbox (Windows 10 home ou menor)](https://docs.docker.com/toolbox/toolbox_install_windows/).
+
+O projeto é um monorepo em Lerna com Yarn Workspaces, por isso instale o [Yarn](https://classic.yarnpkg.com/en/docs/install/) junto com o [Node](https://nodejs.org/en/). Para usar o banco de dados local, apenas instale o [MongoDB](https://docs.mongodb.com/manual/installation/) no seu PC.
 
 Clone o projeto
-
 ```
 git clone https://github.com/RafaelGiro/5pots
 ```
 
 Entre na pasta
-
 ```
 cd 5pots
 ```
 
-Builde as imagens do Docker utilizando o Docker Compose
-
+Instale as dependências
 ```
-docker-compose -f docker-compose-dev.yml build
-```
-
-Suba as imagens
-
-```
-docker-compose -f docker-compose-dev.yml up
+yarn
 ```
 
-acesse o http://localhost (ou o IP que o Docker Toolbox te der) e se divirta :D. Não se esqueça de ir para a branch "dev" para contribuir com o desenvolvimento do projeto.
+Linke as dependências com o bootstrap do Lerna
+```
+yarn bootstrap
+```
+
+Inicie o front e servidor
+```
+yarn dev
+```
+---
+Aqui ambos front e back estão de pé, porém precisamos adicionar as variáveis de ambiente:
+
+Adicione o arquivo **.env.local** na pasta **client** com as seguintes chaves:
+```
+NEXT_PUBLIC_RECAPTCHA={sua chave no google recaptcha}
+API_URI=http://localhost:5000/
+NEXT_PUBLIC_API_URI=http://localhost:5000/
+```
+ 
+Para o servidor, adicione o arquivo **dev.js** na pasta **server/src/config**
+```
+expodefault {
+
+googleClientID: {seu client ID no google},
+googleClientSecret: {seu client secret no google},
+mongoURI: "mongodb://localhost:27017/5pots-dev",
+cookieKey: {uma string pra desenvolvimento}
+facebookClientID: {seu client ID no facebook},
+facebookClientSecret: {seu client secret no facebook},
+sendgridUsername: {seu email cadastrado no sendgrid},
+sendgridPassword: {senha do cadastro do sendgrid},
+sendgridEmail: {email que vai enviar os emails de recuperação de senha},
+};
+```
 
 <br>
 
 ## ⚙️ Feito com
 
 - Front-end
-  - [React](https://pt-br.reactjs.org/)
-    - [React Dom](https://pt-br.reactjs.org/docs/react-dom.html)
-    - [React Router Dom](https://reacttraining.com/react-router/web/guides/quick-start)
-  - [SCSS](https://sass-lang.com/guide)
+
+  -  [React](https://pt-br.reactjs.org/)
+
+  -  [Nextjs](https://nextjs.org/)
+
+  -  [SCSS Modules](https://sass-lang.com/guide)
+
 - Back-end
-  - [Node.js](https://nodejs.org/en/)
-    - [Express](https://expressjs.com/pt-br/)
-  - [Docker](https://www.docker.com/)
-    - [Docker Compose](https://docs.docker.com/compose/)
-    - [Docker Toolbox (Windows 10 home ou menor)](https://docs.docker.com/toolbox/toolbox_install_windows/)
-      <br>
-  - [NGINX](https://www.nginx.com/)
+
+  -  [Node.js](https://nodejs.org/en/)
+
+  -  [Express](https://expressjs.com/pt-br/)
+
+  -  [MongoDB](https://www.mongodb.com/)
+
 
 ## ✔️ À fazer
 
@@ -62,8 +91,12 @@ Verifique nossos [issues](https://github.com/RafaelGiro/5pots/issues)!
 
 ## ⚡️ Contribuindo
 
-1. Fork o projeto (<https://github.com/yourname/yourproject/fork>)
+1. Clone o projeto
+
 2. Crie uma branch com nome da sua funcionalidade (`git checkout -b feature/fooBar`)
+
 3. Commit suas mudanças (`git commit -am 'Add some fooBar'`)
+
 4. Push a branch (`git push origin feature/fooBar`)
+
 5. Crie um Pull Request

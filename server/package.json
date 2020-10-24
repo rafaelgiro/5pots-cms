@@ -12,9 +12,8 @@
     }
   ],
   "scripts": {
-    "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "build": "sucrase ./src -d ./dist --transforms imports"
+    "start": "NODE_ENV=production babel-node ./src/server.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -34,6 +33,10 @@
     "passport-local-mongoose": "^6.0.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
     "nodemon": "^2.0.3",
     "prettier": "^2.0.5",
     "sucrase": "^3.13.0"

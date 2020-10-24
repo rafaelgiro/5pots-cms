@@ -16,18 +16,18 @@ const ChampionChange = (props) => {
     },
     p: {
       title: "PASSIVA - GRACIOSIDADE VASTAYA",
-      img:
-        "https://am-a.akamaihd.net/image?f=http://ddragon.leagueoflegends.com/cdn/10.16.1/img/passive/Ahri_SoulEater2.png",
+      // img:
+      //   "https://am-a.akamaihd.net/image?f=http://ddragon.leagueoflegends.com/cdn/10.16.1/img/passive/Ahri_SoulEater2.png",
     },
     q: {
       title: "Q - ORBE DA ILUSÃO",
-      img:
-        "https://am-a.akamaihd.net/image?f=http://ddragon.leagueoflegends.com/cdn/10.16.1/img/spell/AhriOrbofDeception.png",
+      // img:
+      //   "https://am-a.akamaihd.net/image?f=http://ddragon.leagueoflegends.com/cdn/10.16.1/img/spell/AhriOrbofDeception.png",
     },
     w: {
       title: "W - FOGO DE RAPOSA",
-      img:
-        "https://am-a.akamaihd.net/image?f=http://ddragon.leagueoflegends.com/cdn/10.16.1/img/spell/AhriFoxFire.png",
+      // img:
+      //   "https://am-a.akamaihd.net/image?f=http://ddragon.leagueoflegends.com/cdn/10.16.1/img/spell/AhriFoxFire.png",
     },
   };
 

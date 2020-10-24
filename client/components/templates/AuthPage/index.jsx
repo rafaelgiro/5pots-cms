@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import styles from "./styles.module.scss";
 
 const loginGallery = [
-  "https://i.imgur.com/M9dYyaU.jpg",
-  "https://i.imgur.com/NKQhPdG.jpg",
-  "https://i.imgur.com/TpDGGtp.jpg",
-  "https://i.imgur.com/adyjByb.jpg",
-  "https://i.imgur.com/H8dbHe4.jpg",
-  "https://i.imgur.com/iX9pyAR.jpg",
+  "https://f002.backblazeb2.com/file/cincopots/posts/ezreal.jpg",
+  "https://f002.backblazeb2.com/file/cincopots/posts/kaisa.jpg",
+  "https://f002.backblazeb2.com/file/cincopots/posts/mf.jpg",
+  "https://f002.backblazeb2.com/file/cincopots/posts/nunu.jpg",
+  "https://f002.backblazeb2.com/file/cincopots/posts/sg.jpg",
+  "https://f002.backblazeb2.com/file/cincopots/posts/yordles.jpg",
 ];
 
 const AuthPage = (props) => {

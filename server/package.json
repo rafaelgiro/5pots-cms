@@ -16,6 +16,10 @@
     "start": "NODE_ENV=production babel-node ./src/server.js"
   },
   "dependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "cookie-session": "^1.4.0",
@@ -33,10 +37,6 @@
     "passport-local-mongoose": "^6.0.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.1",
-    "@babel/core": "^7.12.3",
-    "@babel/node": "^7.12.1",
-    "@babel/preset-env": "^7.12.1",
     "nodemon": "^2.0.3",
     "prettier": "^2.0.5",
     "sucrase": "^3.13.0"

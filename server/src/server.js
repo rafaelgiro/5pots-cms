@@ -23,7 +23,10 @@ const connectWithRetry = () => {
 
 connectWithRetry();
 
-app.listen(process.env.NODE_PORT || 5000, "localhost");
+app.listen({
+  port: process.env.NODE_PORT || 5000,
+  host: process.env.NODE_HOST || "localhost",
+});
 
 console.log(`Server started at port ${process.env.NODE_PORT || 5000}`);
 

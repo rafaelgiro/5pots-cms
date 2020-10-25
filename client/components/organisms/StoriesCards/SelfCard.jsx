@@ -22,7 +22,7 @@ const SelfCard = (props) => {
       <div className={styles["stories__self-card__info"]}>
         <div className={styles["stories__self-card__info__tags"]}>
           <img
-            src="https://ddragon.leagueoflegends.com/cdn/10.5.1/img/profileicon/535.png"
+            src="https://f002.backblazeb2.com/file/cincopots/profile/535.jpg"
             alt="user avatar"
           />
           <div>

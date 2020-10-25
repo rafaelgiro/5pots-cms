@@ -13,7 +13,7 @@ const connectWithRetry = () => {
       if (err) {
         // eslint-disable-next-line no-console
         console.error(
-          "Não foi possível conectar ao bancom tentando novamente em 5 segundos..."
+          "Não foi possível conectar ao banco, tentando novamente em 5 segundos..."
         );
         setTimeout(connectWithRetry, 5000);
       }
@@ -23,7 +23,10 @@ const connectWithRetry = () => {
 
 connectWithRetry();
 
-app.listen(process.env.NODE_PORT || 5000);
+app.listen({
+  port: process.env.NODE_PORT || 5000,
+  host: process.env.NODE_HOST || "localhost",
+});
 
 console.log(`Server started at port ${process.env.NODE_PORT || 5000}`);
 

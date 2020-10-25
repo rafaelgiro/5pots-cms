@@ -7,7 +7,7 @@ const ChampionIcon = (props) => {
     <div
       style={{
         backgroundImage: `url(
-          http://ddragon.leagueoflegends.com/cdn/10.2.1/img/champion/${name}.png
+          https://f002.backblazeb2.com/file/cincopots/champions/${name}.png
         )`,
       }}
       className={styles["champion-icon"]}

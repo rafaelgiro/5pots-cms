@@ -9,9 +9,10 @@ import passport from "passport";
 import "./models/User";
 import "./models/Token";
 import "./models/Post";
+import "./models/Champion";
 import "./services/auth/passport";
 
-import { postRoutes, authRoutes } from "./app/routes";
+import { postRoutes, authRoutes, championRoutes } from "./app/routes";
 import keys from "./config/keys";
 
 class App {
@@ -40,7 +41,7 @@ class App {
   }
 
   routes() {
-    this.express.use([postRoutes, authRoutes]);
+    this.express.use([postRoutes, authRoutes, championRoutes]);
   }
 }
 

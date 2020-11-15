@@ -8,10 +8,14 @@ import FiLogOut from "@meronex/icons/fi/FiLogOut";
 
 import UIContext from "../../../core/contexts/UIContext";
 import AuthContext from "../../../core/contexts/AuthContext";
+import PostContext from "../../../core/contexts/PostContext";
 import Typography from "../../atoms/Typography";
 import MenuButton from "../Header/MenuButton";
 
+import Tabs from "../../atoms/Tabs/Tabs";
+import TabItem from "../../atoms/Tabs/TabItem";
 import Logo from "../../atoms/Logo";
+import ChampionIcon from "../../atoms/ChampionIcon";
 
 import styles from "./styles.module.scss";
 import headerStyles from "../Header/styles.module.scss";
@@ -19,6 +23,7 @@ import headerStyles from "../Header/styles.module.scss";
 const ContentHeader = ({ titles, title }) => {
   const { menu } = useContext(UIContext).state;
   const { user } = useContext(AuthContext);
+  const { postContent } = useContext(PostContext);
   const [active, setActive] = useState(false);
   const className = clsx(
     styles["content-header"],
@@ -32,20 +37,32 @@ const ContentHeader = ({ titles, title }) => {
   const renderTitles = () => {
     return titles.map((sectionTitle) => (
       <div key={sectionTitle} className={styles["content-header__title"]}>
-        <a
-          // scroll={(el) => {
-          //   const yOffset = -128;
-          //   const y =
-          //     el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-          //   window.scrollTo({ top: y, behavior: "smooth" });
-          //   setActive(false);
-          // }}
-          href={`#${sectionTitle.replace(/,? /gi, "-").toLowerCase()}`}
-        >
-          <Typography component="p" variant="p">
-            {sectionTitle}
-          </Typography>
-        </a>
+        <Tabs>
+          <TabItem title="Campeões" icon="champions">
+            <div className={styles["content-header__champions"]}>
+              {postContent.champions.map((champ) => (
+                <a href={`#${champ.name}`}>
+                  <ChampionIcon
+                    key={`nav-summary-${champ.name}`}
+                    name={champ.name}
+                    small
+                  />
+                </a>
+              ))}
+            </div>
+          </TabItem>
+          <TabItem title="Skins" icon="skins">
+            <div className={styles["content-header__skins"]}>
+              {postContent.skins.map((skin) => (
+                <img
+                  src={`https://f002.backblazeb2.com/file/cincopots/splash/${skin.id}.jpg`}
+                  width="102"
+                  alt="Splash skin"
+                />
+              ))}
+            </div>
+          </TabItem>
+        </Tabs>
       </div>
     ));
   };

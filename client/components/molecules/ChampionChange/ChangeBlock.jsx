@@ -17,7 +17,7 @@ const ChangeBlock = (props) => {
   };
 
   return (
-    <Typography component="p" variant="p">
+    <Typography component="p" variant="p" className={styles["single-change"]}>
       {block.type !== "change" && (
         <span
           className={clsx(

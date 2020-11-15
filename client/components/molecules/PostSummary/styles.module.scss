@@ -1,0 +1,98 @@
+@import "../../../core/styles/variables";
+@import "../../../core/styles/mq";
+
+.post-summary {
+  grid-row: 3;
+  grid-column: 3/14;
+  background-color: var(--color-background);
+  position: relative;
+  z-index: 2;
+  padding: 5rem;
+
+  a {
+    text-decoration: none;
+    color: var(--color-primary);
+  }
+
+  &__changes {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    & > div {
+      margin-top: 4rem;
+      max-width: 33%;
+      min-width: 20%;
+      flex-shrink: 2;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__skins {
+    margin-top: 3.2rem;
+
+    &__splashes {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      & > div {
+        margin: 1.6rem;
+        position: relative;
+
+        p {
+          opacity: 1;
+          margin-left: 0.4rem;
+          margin-bottom: 0.8rem;
+        }
+
+        img {
+          position: relative;
+          z-index: 1;
+        }
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: 1.2rem;
+          bottom: -1.2rem;
+          width: 200px;
+          height: calc(100% - 1.6rem);
+          background-color: $color-grey;
+          border: 1px solid rgba($color-grey-dark, 0.05);
+          z-index: 0;
+        }
+      }
+    }
+  }
+}
+
+.champion-changes {
+  h4 {
+    text-transform: uppercase;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin: 0 0.8rem;
+      height: 4rem;
+      width: 4rem;
+      path {
+        fill: var(--color-primary);
+      }
+    }
+  }
+
+  &__champions {
+    display: flex;
+    flex-wrap: wrap;
+
+    & > a {
+      margin: 0.8rem;
+    }
+  }
+}

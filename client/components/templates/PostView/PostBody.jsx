@@ -1,15 +1,18 @@
 /* eslint-disable react/no-array-index-key */
 import { Fragment } from "react";
-import PropTypes, { string } from "prop-types";
-// import parse from "html-react-parser";
+import PropTypes, { arrayOf, shape, string } from "prop-types";
+
 import Section from "../../organisms/Section";
 import ContentHeader from "../../organisms/ContentHeader";
+import PostSummary from "../../molecules/PostSummary";
 import ChampionChange from "../../molecules/ChampionChange";
+import SectionIcon from "../../atoms/Icons/SectionIcon";
 
 import styles from "./styles.module.scss";
+import SectionTitle from "../../atoms/SectionTitle";
 
 const PostBody = (props) => {
-  const { sections, titles, title, category } = props;
+  const { sections, titles, title, category, champions } = props;
 
   const renderSections = () => {
     const content = sections.map((section, index) => {
@@ -30,10 +33,26 @@ const PostBody = (props) => {
         else return <Fragment key={`${title}-section-${index}`} />;
 
       return (
-        <Section key={`${title}-section-${index}`}>
-          <h2>Campeões</h2>
+        <Section
+          className={styles["post-section"]}
+          key={`${title}-section-${index}`}
+        >
+          <SectionTitle title="Campeões">
+            <SectionIcon section="champions" />
+          </SectionTitle>
           {section.champions &&
-            section.champions.map((champ) => <ChampionChange champ={champ} />)}
+            section.champions.map((change) => {
+              return (
+                <ChampionChange
+                  change={change}
+                  champion={
+                    champions.filter(
+                      (champ) => champ.championName === change.name
+                    )[0]
+                  }
+                />
+              );
+            })}
         </Section>
       );
     });
@@ -43,9 +62,10 @@ const PostBody = (props) => {
 
   return (
     <>
-      {/* <ContentHeader category="riot" titles={titles} title={title} />
+      <ContentHeader category="riot" titles={titles} title={title} />
       {titles[0] === "Introdução" && <div id="introdução" />}
-      <div className={styles["view-post__content"]}>{renderSections()}</div> */}
+      <PostSummary champions={champions} sections={sections} />
+      <div className={styles["view-post__content"]}>{renderSections()}</div>
     </>
   );
 };
@@ -56,6 +76,20 @@ PostBody.propTypes = {
   titles: PropTypes.arrayOf(string),
   title: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
+  champions: PropTypes.arrayOf(
+    shape({
+      abilities: shape({
+        p: string.isRequired,
+        q: string.isRequired,
+        w: string.isRequired,
+        e: string.isRequired,
+        r: string.isRequired,
+      }).isRequired,
+      championName: string.isRequired,
+      tags: arrayOf(string).isRequired,
+      title: string.isRequired,
+    })
+  ).isRequired,
 };
 
 PostBody.defaultProps = {

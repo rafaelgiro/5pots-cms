@@ -1,0 +1,14 @@
+.section-title {
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  display: flex;
+  align-items: flex-start;
+  font-size: 3.2rem;
+
+  svg {
+    width: 2.4rem;
+    height: 2.4rem;
+    margin: 0 2.4rem;
+    fill: var(--color-primary);
+  }
+}

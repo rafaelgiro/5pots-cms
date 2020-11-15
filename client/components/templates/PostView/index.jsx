@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes, { arrayOf, shape, string } from "prop-types";
 import dynamic from "next/dynamic";
 import clsx from "clsx";
 
@@ -9,7 +9,7 @@ import styles from "./styles.module.scss";
 const PostBody = dynamic(() => import("./PostBody"));
 
 const PostView = (props) => {
-  const { post } = props;
+  const { post, champions } = props;
   const {
     category,
     title,
@@ -44,6 +44,7 @@ const PostView = (props) => {
         titles={hasIntro}
         title={title}
         category={category}
+        champions={champions}
       />
     </article>
   );
@@ -65,6 +66,20 @@ PostView.propTypes = {
     subTitles: PropTypes.arrayOf(PropTypes.string),
     postedAt: PropTypes.string,
   }).isRequired,
+  champions: PropTypes.arrayOf(
+    shape({
+      abilities: shape({
+        p: string.isRequired,
+        q: string.isRequired,
+        w: string.isRequired,
+        e: string.isRequired,
+        r: string.isRequired,
+      }).isRequired,
+      championName: string.isRequired,
+      tags: arrayOf(string).isRequired,
+      title: string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default PostView;

@@ -2,13 +2,21 @@
 @import "../../../core/styles/mq";
 
 .champion-change {
+  padding: 4rem 3rem;
+  margin: 5rem 0;
+  background-color: rgba($color-grey, 0.3);
+  border: 1px solid rgba($color-grey-dark, 0.05);
+  position: relative;
+
+  &:first-of-type {
+    margin-top: 3rem;
+  }
+
   &__header {
     display: flex;
-    align-items: center;
-    align-items: center;
     margin-bottom: 4rem;
-    position: relative;
     padding-right: 4rem;
+    width: 85%;
 
     p {
       line-height: 120%;
@@ -24,24 +32,86 @@
 
     img {
       width: 10.4rem;
+      height: 10.4rem;
       margin-right: 1.6rem;
     }
 
     svg {
-      width: 36rem;
-      height: auto;
-      position: absolute;
-      top: 0;
-      right: 0;
-      z-index: 0;
-      opacity: 0.1;
+      width: 2.4rem;
+      opacity: 0.9;
+      fill: var(--color-primary) !important;
+
+      &:first-child {
+        margin-right: 1.6rem;
+      }
+    }
+
+    &--summary {
+      button:first-child {
+        opacity: 1 !important;
+      }
+    }
+
+    &--context {
+      button:last-child {
+        opacity: 1 !important;
+      }
+    }
+
+    &__context {
+      display: flex;
+      position: relative;
+
+      p {
+        margin-top: 0.2rem;
+      }
+
+      & > div {
+        display: flex;
+        flex-direction: column;
+
+        button {
+          background-color: transparent;
+          border: none;
+          outline: none;
+          opacity: 0.4;
+          transition: all 0.2s ease-out;
+
+          &:hover {
+            cursor: pointer;
+            opacity: 0.5;
+          }
+
+          &:first-child {
+            margin-bottom: 0.8rem;
+          }
+        }
+
+        svg {
+          height: 2.4rem;
+        }
+      }
     }
   }
 
   &__change {
-    margin-top: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid #ddd;
+    margin-top: 4rem;
+    position: relative;
+    margin-left: 4.8rem;
+
+    &:not(:last-child) {
+      padding-bottom: 4rem;
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        height: 2px;
+        background-color: #ddd;
+      }
+    }
 
     h5 {
       font-weight: 600;
@@ -70,14 +140,17 @@
 
   &--attribute {
     text-transform: uppercase;
-    letter-spacing: 0.1rem;
-    font-size: 1.4rem;
-    font-weight: bolder;
+    font-size: 1.2rem;
+    font-weight: 700;
+    opacity: 1;
   }
 
   &--before {
     text-decoration: line-through;
     opacity: 0.5;
+  }
+
+  &--after {
   }
 
   &--type {
@@ -96,5 +169,20 @@
     &-new {
       background-color: #42db96;
     }
+  }
+
+  &__logo {
+    position: absolute;
+    right: 5.6rem;
+    top: 4rem;
+    width: 5.6rem !important;
+    height: 5.6rem !important;
+    opacity: 1 !important;
+  }
+}
+
+.single-change {
+  &:not(:last-child) {
+    margin-bottom: 1.6rem;
   }
 }

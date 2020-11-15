@@ -1,76 +1,86 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-
-import PropTypes from "prop-types";
+import { useState } from "react";
+import PropTypes, { arrayOf, shape, string } from "prop-types";
+import MdSubtitles from "@meronex/icons/md/MdSubtitles";
+import MdFormatQuote from "@meronex/icons/md/MdFormatQuote";
 import Typography from "../../atoms/Typography";
-import BuffIcon from "../../atoms/Icons/BuffIcon";
+import ClassIcon from "../../atoms/Icons/ClassIcon";
 
 import styles from "./styles.module.scss";
 
 import ChangeBlock from "./ChangeBlock";
+import Logo from "../../atoms/Logo";
 
 const ChampionChange = (props) => {
-  const temp = {
-    base: {
-      title: "Atributos Base",
-      img: "",
-    },
-    p: {
-      title: "PASSIVA - GRACIOSIDADE VASTAYA",
-      // img:
-      //   "https://am-a.akamaihd.net/image?f=http://ddragon.leagueoflegends.com/cdn/10.16.1/img/passive/Ahri_SoulEater2.png",
-    },
-    q: {
-      title: "Q - ORBE DA ILUSÃO",
-      // img:
-      //   "https://am-a.akamaihd.net/image?f=http://ddragon.leagueoflegends.com/cdn/10.16.1/img/spell/AhriOrbofDeception.png",
-    },
-    w: {
-      title: "W - FOGO DE RAPOSA",
-      // img:
-      //   "https://am-a.akamaihd.net/image?f=http://ddragon.leagueoflegends.com/cdn/10.16.1/img/spell/AhriFoxFire.png",
-    },
-  };
+  const { change, champion } = props;
+  const [summary, setSummary] = useState("summary");
+  const sanitazedChampion = champion.championName
+    .replace(" ", "")
+    .replace("'", "");
 
-  const { champ } = props;
   return (
     <div className={styles["champion-change"]}>
+      <div id={champion.championName} className="anchor" />
       <div className={styles["champion-change__header"]}>
         <img
-          src={`https://f002.backblazeb2.com/file/cincopots/champions/${champ.name}.png`}
-          alt={champ.name}
+          src={`https://f002.backblazeb2.com/file/cincopots/champions/${sanitazedChampion}.png`}
+          alt={champion.championName}
         />
-        <BuffIcon />
+        <Logo className={styles["champion-change__logo"]} />
         <div>
           <Typography variant="h3" component="h4">
-            {champ.name}
+            {champion.championName}{" "}
+            {champion.tags.map((tag) => (
+              <ClassIcon key={`${champion.championName}-${tag}`} tag={tag} />
+            ))}
           </Typography>
-          <Typography variant="p" component="p">
-            {champ.resume}
-          </Typography>
+          <div className={styles["champion-change__header__context"]}>
+            <div className={styles[`champion-change__header--${summary}`]}>
+              <button type="button" onClick={() => setSummary("summary")}>
+                <MdSubtitles />
+              </button>
+              <button type="button" onClick={() => setSummary("context")}>
+                <MdFormatQuote />
+              </button>
+            </div>
+            <Typography variant="p" component="p">
+              {summary === "summary" ? change.resume : `“${change.context}”`}
+            </Typography>
+          </div>
         </div>
       </div>
 
-      {/* <blockquote>{champ.context}</blockquote> */}
-      {champ.changes.map((ability) => {
+      {/* Mapeia todas as mudanças habilidade por habilidade */}
+      {change.changes.map((ability) => {
         const abilityKey = Object.keys(ability)[0];
         const abilityIcon =
           abilityKey !== "base" &&
-          `https://f002.backblazeb2.com/file/cincopots/abilities/${
-            champ.name
-          }${abilityKey.toUpperCase()}.png`;
+          `https://f002.backblazeb2.com/file/cincopots/abilities/${sanitazedChampion}${abilityKey.toUpperCase()}.png`;
         return (
-          <div className={styles["champion-change__change"]}>
+          <div
+            key={`${champion.championName}-${abilityKey}`}
+            className={styles["champion-change__change"]}
+          >
             <div className={styles["champion-change__change__name"]}>
               {abilityIcon && <img src={abilityIcon} alt="ablt" />}
+              {/* Nome da habilidade */}
               <Typography variant="h4" component="h5">
-                {temp[abilityKey].title}
+                {champion.abilities[abilityKey]
+                  ? `${abilityKey} - ${champion.abilities[abilityKey]}`
+                  : "Atributos Base"}
               </Typography>
             </div>
+            {/* Bloco de mudança */}
             <div className={styles["champion-change__change__block"]}>
               {Object.values(ability)
                 .flat()
                 .map((block) => {
-                  return <ChangeBlock block={block} champion={champ.name} />;
+                  return (
+                    <ChangeBlock
+                      block={block}
+                      champion={champion.championName}
+                    />
+                  );
                 })}
             </div>
           </div>
@@ -81,11 +91,23 @@ const ChampionChange = (props) => {
 };
 
 ChampionChange.propTypes = {
-  champ: PropTypes.shape({
+  change: PropTypes.shape({
     name: PropTypes.string,
     resume: PropTypes.string,
     context: PropTypes.string,
     changes: PropTypes.arrayOf(),
+  }).isRequired,
+  champion: shape({
+    abilities: shape({
+      p: string.isRequired,
+      q: string.isRequired,
+      w: string.isRequired,
+      e: string.isRequired,
+      r: string.isRequired,
+    }).isRequired,
+    championName: string.isRequired,
+    tags: arrayOf(string).isRequired,
+    title: string.isRequired,
   }).isRequired,
 };
 

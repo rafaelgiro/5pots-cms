@@ -3,6 +3,8 @@ import { useState } from "react";
 import Typography from "../../atoms/Typography";
 import ChampionIcon from "../../atoms/ChampionIcon";
 
+import styles from "./styles.module.scss";
+
 const championsHC = [
   "Sion",
   "Sylas",
@@ -27,11 +29,11 @@ const BCOverview = () => {
   };
 
   return (
-    <div className="bc-overview">
+    <div className={styles["bc-overview"]}>
       <Typography className="sidebar__title" component="h4" variant="h4">
         Tentativas de Balanceamento
       </Typography>
-      {renderIcons()}
+      <div>{renderIcons()}</div>
     </div>
   );
 };

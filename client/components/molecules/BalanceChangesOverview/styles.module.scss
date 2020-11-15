@@ -3,6 +3,11 @@
 .bc-overview {
   margin-top: 8rem;
 
+  & > div {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   @include tab-port {
     display: none;
   }

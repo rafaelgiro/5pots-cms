@@ -1,15 +1,19 @@
-import PropTypes, { number, string } from "prop-types";
+/* eslint-disable react/forbid-prop-types */
+import PropTypes, { array, arrayOf, number, shape, string } from "prop-types";
 import api from "../../core/services/api";
 
 import PostView from "../../components/templates/PostView";
 
 import styles from "./styles.module.scss";
+import PostContext from "../../core/contexts/PostContext";
 
 function PostPage(props) {
-  const { post } = props;
+  const { post, champions, postContent } = props;
   return (
     <div className={styles["post-page"]}>
-      <PostView post={post} />
+      <PostContext.Provider value={{ postContent }}>
+        <PostView post={post} champions={champions} />
+      </PostContext.Provider>
     </div>
   );
 }
@@ -31,11 +35,30 @@ export async function getStaticPaths() {
 
 // This also gets called at build time
 export async function getStaticProps({ params }) {
-  const res = await api.get(`/posts/${params.slug}`);
-  const post = res.data;
+  const postRes = await api.get(`/posts/${params.slug}`);
+  const post = postRes.data;
+
+  const championsRes = await api.get(
+    `/champions?champions=${post.champions.join()}`
+  );
+  const champions = championsRes.data;
+
+  const champChanges = post.sections.map((section) => section.champions)[0];
+  const skins = [
+    { name: "Ziggs Hextech", id: "Ziggs_23" },
+    { name: "Shen PsyOps", id: "Shen_22" },
+    { name: "Vi PsyOps", id: "Vi_20" },
+    { name: "Ezreal PsyOps", id: "Ezreal_22" },
+    { name: "Ezreal PsyOps Edição de Prestígio", id: "Ezreal_23" },
+    { name: "Master Yi PsyOps", id: "MasterYi_33" },
+    { name: "Sona PsyOps", id: "Sona_17" },
+  ];
 
   // Pass post data to the page via props
-  return { props: { post }, revalidate: 60 };
+  return {
+    props: { post, champions, postContent: { champions: champChanges, skins } },
+    revalidate: 60,
+  };
 }
 
 PostPage.propTypes = {
@@ -53,6 +76,21 @@ PostPage.propTypes = {
     __v: number,
     slug: string,
   }).isRequired,
+  champions: PropTypes.arrayOf(
+    shape({
+      abilities: shape({
+        p: string.isRequired,
+        q: string.isRequired,
+        w: string.isRequired,
+        e: string.isRequired,
+        r: string.isRequired,
+      }).isRequired,
+      championName: string.isRequired,
+      tags: arrayOf(string).isRequired,
+      title: string.isRequired,
+    })
+  ).isRequired,
+  postContent: shape({ skins: array, champions: array }).isRequired,
 };
 
 export default PostPage;

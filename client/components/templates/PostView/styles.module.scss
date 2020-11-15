@@ -5,10 +5,10 @@
   --color-category: #ebc86e;
 }
 .pbe {
+  position: relative;
   --color-category: #3dbdd3;
-
   & > div:first-child::before {
-    background-image: url("https://f002.backblazeb2.com/file/cincopots/backgrounds/dev-light.jpg");
+    background-image: url("https://f002.backblazeb2.com/file/cincopots/backgrounds/pbe-light.jpg");
   }
 }
 .riot {
@@ -27,13 +27,13 @@
 
 .view-post {
   &__content {
-    line-height: 3.6rem;
+    line-height: 3.2rem;
     font-weight: 400;
     font-size: 2.1rem;
-    grid-column: 4/13;
-    margin-top: 6.4rem;
-    margin-left: 4rem;
-    margin-right: 4rem;
+    grid-column: 3/14;
+    z-index: 2;
+    padding: 5rem;
+    background-color: var(--color-background);
 
     @include tab-port {
       margin-top: 3.2rem;
@@ -64,6 +64,36 @@
       opacity: 0.5;
     }
   }
+
+  // Tira o background do header
+  & > div:first-child::after {
+    content: "";
+    position: absolute;
+    top: -10rem;
+    left: -13.5vw;
+    z-index: -2;
+    background-color: var(--color-background);
+    width: 100vw;
+    height: calc(100% + 10rem);
+  }
+
+  // adiciona o background da home na página toda
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: var(--main-bg);
+    background-size: contain;
+    background-blend-mode: var(--blend-background);
+    background-color: var(--color-background);
+    opacity: 0.2;
+    z-index: 0;
+    background-repeat: repeat;
+    height: 100%;
+  }
 }
 
 .post-header {
@@ -74,6 +104,7 @@
   grid-template-columns: repeat(11, 1fr);
   position: relative;
   z-index: 10;
+  background-color: var(--color-background);
 
   @include tab-port {
     margin-top: 0;
@@ -153,11 +184,11 @@
 }
 
 .dev {
-  grid-row: 2;
+  grid-row: 4;
 }
 
 .post-view__content {
-  grid-row: 2;
+  grid-row: 4;
   grid-column: 10/15;
 
   &__sticky {
@@ -175,4 +206,7 @@
       letter-spacing: 0.2rem;
     }
   }
+}
+
+.post-section {
 }

@@ -13,6 +13,7 @@ html {
   font-size: 62.5%;
   background-color: $color-background;
   min-height: 100vh;
+  scroll-behavior: smooth;
 
   @include mid-desktop {
     font-size: 55%;
@@ -82,4 +83,11 @@ a {
 
 .header-offset {
   margin-top: 9.6rem;
+}
+
+.anchor::before {
+  content: "";
+  display: block;
+  padding-top: 9.6rem;
+  margin-top: -9.6rem;
 }

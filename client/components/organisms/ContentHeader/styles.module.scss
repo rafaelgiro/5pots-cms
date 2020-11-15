@@ -5,6 +5,7 @@
   position: sticky;
   top: 0;
   grid-column: 1/-1;
+  grid-row: 2;
   height: 6.4rem;
   background-color: var(--color-primary);
   z-index: 1001;
@@ -87,38 +88,25 @@
 
   &__secondary-nav {
     position: sticky;
-    top: 6.4rem;
+    top: 4.8rem;
     grid-column: 1/-1;
     height: 0;
     overflow: hidden;
     opacity: 0;
     transition: 0.2s;
     background-color: $color-grey;
-    padding: 0rem 5rem 1rem 5rem;
+    padding: 0rem 11vw 0.4rem 11vw;
     z-index: 999;
-
+    grid-row: 3;
     a {
       color: var(--color-primary);
     }
 
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
 
     & > * {
-      margin: 1.6rem 2.4rem 1.6rem 4rem;
+      margin: 1.6rem 4rem;
       position: relative;
-
-      &::before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: -2rem;
-        transform: rotate(45deg) translateY(-100%);
-        width: 0.4rem;
-        height: 0.4rem;
-        border: 2px solid var(--color-primary);
-      }
     }
 
     &--active {
@@ -126,6 +114,20 @@
       height: min-content;
       opacity: 1;
       transition: 0.2s ease-out;
+    }
+  }
+
+  &__champions {
+    display: flex;
+  }
+
+  &__skins {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -0.8rem;
+
+    img {
+      margin: 0.8rem;
     }
   }
 }

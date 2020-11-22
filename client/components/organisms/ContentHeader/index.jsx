@@ -21,10 +21,12 @@ import styles from "./styles.module.scss";
 import headerStyles from "../Header/styles.module.scss";
 
 const ContentHeader = ({ titles, title, category }) => {
-  const { menu } = useContext(UIContext).state;
+  const { state } = useContext(UIContext);
   const { user } = useContext(AuthContext);
   const { postContent } = useContext(PostContext);
   const [active, setActive] = useState(false);
+  const { menu } = state;
+
   const className = clsx(
     styles["content-header"],
     menu && styles["content-header--hidden"]

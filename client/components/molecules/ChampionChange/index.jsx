@@ -2,7 +2,6 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-one-expression-per-line */
 import { useState } from "react";
-import Image from "next/image";
 import clsx from "clsx";
 import PropTypes, { arrayOf, shape, string } from "prop-types";
 import MdSubtitles from "@meronex/icons/md/MdSubtitles";

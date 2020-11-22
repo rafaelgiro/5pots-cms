@@ -10,4 +10,7 @@ module.exports = {
 
     return config;
   },
+  images: {
+    domains: ["f002.backblazeb2.com", "5pots.com"],
+  },
 };

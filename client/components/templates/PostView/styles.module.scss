@@ -38,6 +38,8 @@
     @include tab-port {
       margin-top: 3.2rem;
       grid-column: 1/-1;
+      padding: 0.4rem;
+      margin: 0.8rem;
     }
   }
 }
@@ -206,7 +208,4 @@
       letter-spacing: 0.2rem;
     }
   }
-}
-
-.post-section {
 }

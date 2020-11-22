@@ -29,6 +29,19 @@ body {
   min-height: 100vh;
 }
 
+button {
+  border: none;
+  padding: 0;
+  color: var(--color-primary);
+  background-color: transparent;
+  font-family: $font-primary;
+  outline: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 p,
 h1,
 h2,

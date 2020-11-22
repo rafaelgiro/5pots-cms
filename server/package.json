@@ -14,7 +14,8 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "NODE_ENV=production babel-node ./src/server.js",
-    "champ": "babel-node ./src/scripts/DDToChamp.js"
+    "champ": "babel-node ./src/scripts/DDToChamp.js",
+    "tooltip": "babel-node ./src/scripts/tooltip.js"
   },
   "dependencies": {
     "@babel/cli": "^7.12.1",

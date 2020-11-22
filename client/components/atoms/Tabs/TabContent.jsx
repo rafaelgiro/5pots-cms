@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable import/no-cycle */
 /* eslint-disable react/forbid-prop-types */
 import { array } from "prop-types";
@@ -16,9 +17,15 @@ const TabContent = (props) => {
     const currentContent = content.map((singleContent, i) => {
       if (i === current)
         return (
-          <div className={styles["tab-item--visible"]}>{singleContent}</div>
+          <div key={`tab-${i}`} className={styles["tab-item--visible"]}>
+            {singleContent}
+          </div>
         );
-      return <div className={styles["tab-item"]}>{singleContent}</div>;
+      return (
+        <div key={`tab-${i}`} className={styles["tab-item"]}>
+          {singleContent}
+        </div>
+      );
     });
     return currentContent;
   }

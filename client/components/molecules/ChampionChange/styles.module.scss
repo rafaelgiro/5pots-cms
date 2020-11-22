@@ -18,6 +18,12 @@
     padding-right: 4rem;
     width: 85%;
 
+    @include tab-port {
+      padding: 0;
+      margin-right: 0;
+      width: 100%;
+    }
+
     p {
       line-height: 120%;
       font-style: oblique;
@@ -34,6 +40,31 @@
       width: 10.4rem;
       height: 10.4rem;
       margin-right: 1.6rem;
+      position: relative;
+    }
+
+    &__portrait {
+      display: inline-block;
+
+      div {
+        position: absolute;
+        top: 2.4rem;
+        right: 2.4rem;
+        opacity: 0.2;
+        z-index: -1;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: flex-end;
+        justify-content: center;
+      }
+
+      svg {
+        width: 16rem !important;
+      }
+
+      rect {
+        fill: none;
+      }
     }
 
     svg {
@@ -43,6 +74,40 @@
 
       &:first-child {
         margin-right: 1.6rem;
+      }
+    }
+
+    &__mobile {
+      & > div:first-child {
+        display: none;
+        @include tab-port {
+          display: flex;
+          align-items: center;
+
+          & > div {
+            margin-left: 0.8rem;
+            flex: 1;
+          }
+        }
+      }
+
+      &__context {
+        display: none !important;
+
+        @include tab-port {
+          display: block;
+        }
+      }
+
+      & > div:last-child {
+        margin-top: 2.4rem;
+      }
+    }
+
+    &__desktop {
+      display: block;
+      @include tab-port {
+        display: none;
       }
     }
 
@@ -99,6 +164,10 @@
     position: relative;
     margin-left: 4.8rem;
 
+    @include tab-port {
+      margin-left: 0;
+    }
+
     &:not(:last-child) {
       padding-bottom: 4rem;
       &::after {
@@ -116,6 +185,10 @@
     h5 {
       font-weight: 600;
       text-transform: uppercase;
+
+      @include tab-port {
+        text-align: left;
+      }
     }
 
     &__name {
@@ -124,6 +197,8 @@
       margin-bottom: 0.8rem;
 
       img {
+        position: relative;
+        z-index: 1;
         width: 5.6rem;
         margin-right: -5.6rem;
       }
@@ -135,6 +210,10 @@
 
     &__block {
       margin-left: 8rem;
+
+      @include tab-port {
+        margin-left: 0rem;
+      }
     }
   }
 
@@ -148,9 +227,6 @@
   &--before {
     text-decoration: line-through;
     opacity: 0.5;
-  }
-
-  &--after {
   }
 
   &--type {
@@ -178,11 +254,123 @@
     width: 5.6rem !important;
     height: 5.6rem !important;
     opacity: 1 !important;
+
+    @include tab-port {
+      opacity: 0 !important;
+
+      & ~ div > img {
+        display: none;
+      }
+    }
   }
 }
 
 .single-change {
   &:not(:last-child) {
     margin-bottom: 1.6rem;
+  }
+}
+
+.tooltip {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  max-width: 50rem;
+  min-width: 50rem;
+  background-color: $color-pbe;
+  top: 50%;
+  right: -51rem;
+  transform: translateY(-50%);
+  padding: 1rem;
+  padding-bottom: 2rem;
+  padding-right: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease-out;
+  z-index: 10;
+
+  @include tab-port {
+    right: unset;
+    left: -50%;
+    max-width: 100%;
+    min-width: 100%;
+    top: 4.8rem;
+    transform: translateX(45%);
+  }
+
+  &::before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    background-color: var(--color-primary);
+    position: absolute;
+    right: 0.6rem;
+    bottom: 0.6rem;
+    z-index: -1;
+  }
+
+  span,
+  p {
+    color: var(--color-background);
+  }
+
+  &--open {
+    opacity: 1;
+    visibility: visible;
+    right: -54.5rem;
+
+    @include tab-port {
+      right: unset;
+      left: -50%;
+    }
+  }
+
+  &__container {
+    position: relative;
+  }
+
+  &__title {
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.2rem;
+    margin-bottom: 2rem;
+    font-size: 1.6rem;
+    color: $color-pbe !important;
+  }
+
+  &__desc {
+    font-weight: 400;
+    font-size: 1.6rem;
+  }
+
+  &__skeleton {
+    &-1 {
+      width: 40rem;
+      height: 1.4rem;
+      background-color: var(--color-background);
+      margin-bottom: 0.8rem;
+
+      @include tab-port {
+        width: 90%;
+      }
+    }
+    &-2 {
+      width: 30rem;
+      height: 1.4rem;
+      background-color: var(--color-background);
+      opacity: 0.5;
+      margin-bottom: 0.8rem;
+
+      @include tab-port {
+        width: 66%;
+      }
+    }
+  }
+}
+
+.base {
+  @include tab-port {
+    margin-left: 0 !important;
   }
 }

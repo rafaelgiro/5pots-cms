@@ -1,5 +1,4 @@
-import { useContext, useEffect } from "react";
-import PropTypes from "prop-types";
+import { useContext } from "react";
 import clsx from "clsx";
 import MdTurnedIn from "@meronex/icons/md/MdTurnedIn";
 
@@ -12,8 +11,7 @@ import PostContext from "../../../core/contexts/PostContext";
 
 import styles from "./styles.module.scss";
 
-const PostSummary = (props) => {
-  const { sections } = props;
+const PostSummary = () => {
   const { postContent } = useContext(PostContext);
   const { champions, skins } = postContent;
 
@@ -38,13 +36,12 @@ const PostSummary = (props) => {
         </div>
         <div className={styles["post-summary__skins__splashes"]}>
           {skins.map((skin) => (
-            <div>
+            <div key={skin.id}>
               <Typography component="p" variant="sub">
                 {skin.name}
               </Typography>
               <img
                 src={`https://f002.backblazeb2.com/file/cincopots/splash/${skin.id}.jpg`}
-                width="200"
                 alt="Splash skin"
               />
             </div>
@@ -53,11 +50,6 @@ const PostSummary = (props) => {
       </div>
     </div>
   );
-};
-
-PostSummary.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  sections: PropTypes.array.isRequired,
 };
 
 export default PostSummary;

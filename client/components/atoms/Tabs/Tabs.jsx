@@ -1,5 +1,6 @@
+/* eslint-disable import/no-cycle */
 import React, { useState, useEffect, createContext, Children } from "react";
-import { node, boolean, func, string } from "prop-types";
+import { node, func, string } from "prop-types";
 import clsx from "clsx";
 
 import TabNavigation from "./TabNavigation";
@@ -14,16 +15,12 @@ export const TabsContext = createContext({
 });
 
 const Tabs = (props) => {
-  const { children, isVertical, onClick, className, ...rest } = props;
+  const { children, onClick, className, ...rest } = props;
   const [options, setOptions] = useState([]);
   const [tabContent, setTabContent] = useState([]);
   const [current, setCurrent] = useState(0);
 
-  const tabsClass = clsx(
-    styles.tabs,
-    isVertical && styles["tabs--vertical"],
-    className
-  );
+  const tabsClass = clsx(styles.tabs, className);
 
   // Separa os títulos dos contents em 2 arrays
   useEffect(() => {
@@ -42,7 +39,7 @@ const Tabs = (props) => {
 
   return (
     <div className={tabsClass} {...rest}>
-      <TabsContext.Provider value={{ current, setCurrent, isVertical }}>
+      <TabsContext.Provider value={{ current, setCurrent }}>
         <TabNavigation options={options} onClick={onClick} />
         <TabContent content={tabContent} />
       </TabsContext.Provider>
@@ -52,13 +49,11 @@ const Tabs = (props) => {
 
 Tabs.propTypes = {
   children: node.isRequired,
-  isVertical: boolean,
   onClick: func,
   className: string,
 };
 
 Tabs.defaultProps = {
-  isVertical: false,
   onClick: () => {},
   className: "",
 };

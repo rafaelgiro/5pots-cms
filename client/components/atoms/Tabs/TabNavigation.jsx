@@ -13,12 +13,9 @@ import styles from "./styles.module.scss";
 
 const TabNavigation = (props) => {
   const { options, onClick } = props;
-  const { current, setCurrent, isVertical } = useContext(TabsContext);
+  const { current, setCurrent } = useContext(TabsContext);
 
-  const containerClassName = clsx(
-    styles["tab-navigation"],
-    isVertical && styles["tab-navigation--vertical"]
-  );
+  const containerClassName = clsx(styles["tab-navigation"]);
 
   function handleClick(i) {
     if (onClick) onClick();
@@ -34,6 +31,7 @@ const TabNavigation = (props) => {
 
       return (
         <a
+          key={`tab-${title}`}
           tabIndex={0}
           role="button"
           onKeyPress={() => current !== i && handleClick(i)}

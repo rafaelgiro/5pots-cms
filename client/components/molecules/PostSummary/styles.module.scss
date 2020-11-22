@@ -7,7 +7,14 @@
   background-color: var(--color-background);
   position: relative;
   z-index: 2;
-  padding: 5rem;
+  padding: 4.8rem;
+
+  @include tab-port {
+    grid-column: 1/-1;
+    margin: 0.8rem;
+    grid-row: 2;
+    padding: 2.4rem;
+  }
 
   a {
     text-decoration: none;
@@ -19,6 +26,10 @@
     justify-content: space-between;
     flex-wrap: wrap;
 
+    @include tab-port {
+      flex-direction: column;
+    }
+
     & > div {
       margin-top: 4rem;
       max-width: 33%;
@@ -26,6 +37,11 @@
       flex-shrink: 2;
       display: flex;
       flex-direction: column;
+
+      @include tab-port {
+        min-width: 100%;
+        max-width: 100%;
+      }
     }
   }
 
@@ -40,16 +56,25 @@
       & > div {
         margin: 1.6rem;
         position: relative;
+        max-width: 200px;
+
+        @include tab-port {
+          max-width: 120px;
+        }
 
         p {
           opacity: 1;
           margin-left: 0.4rem;
-          margin-bottom: 0.8rem;
         }
 
         img {
           position: relative;
           z-index: 1;
+          width: 200px;
+
+          @include tab-port {
+            width: 120px;
+          }
         }
 
         &::before {
@@ -58,10 +83,14 @@
           left: 1.2rem;
           bottom: -1.2rem;
           width: 200px;
-          height: calc(100% - 1.6rem);
+          height: calc(100% - 2.4rem);
           background-color: $color-grey;
           border: 1px solid rgba($color-grey-dark, 0.05);
           z-index: 0;
+
+          @include tab-port {
+            width: 120px;
+          }
         }
       }
     }

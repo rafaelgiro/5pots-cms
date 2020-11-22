@@ -41,9 +41,10 @@ const PostBody = (props) => {
             <SectionIcon section="champions" />
           </SectionTitle>
           {section.champions &&
-            section.champions.map((change) => {
+            section.champions.map((change, i) => {
               return (
                 <ChampionChange
+                  key={`champion-${change.name}-change-${i}`}
                   change={change}
                   champion={
                     champions.filter(
@@ -63,8 +64,11 @@ const PostBody = (props) => {
   return (
     <>
       <ContentHeader category="riot" titles={titles} title={title} />
+
       {titles[0] === "Introdução" && <div id="introdução" />}
-      <PostSummary champions={champions} sections={sections} />
+      {category === "pbe" && (
+        <PostSummary champions={champions} sections={sections} />
+      )}
       <div className={styles["view-post__content"]}>{renderSections()}</div>
     </>
   );

@@ -1,6 +1,13 @@
+@import "../../../core/styles/variables";
+@import "../../../core/styles/mq";
+
 .tabs {
   display: flex;
   align-items: flex-start;
+
+  @include tab-port {
+    flex-direction: column;
+  }
 
   a {
     outline: none;
@@ -19,6 +26,16 @@
   flex-direction: column;
   margin-right: 5rem;
   opacity: 1;
+
+  @include tab-port {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-right: 0;
+    margin-bottom: 2.4rem;
+    width: 100%;
+  }
 
   &--not-active {
     opacity: 0.4;
@@ -39,6 +56,10 @@
 
     &:not(:last-child) {
       margin-bottom: 1.6rem;
+    }
+
+    @include tab-port {
+      margin: 0.8rem !important;
     }
   }
 

@@ -11,7 +11,19 @@
   z-index: 1001;
 
   @include tab-port {
-    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    top: unset;
+    width: 100%;
+
+    a {
+      display: none;
+    }
+
+    button {
+      display: none;
+    }
   }
 
   &__logo {
@@ -50,6 +62,11 @@
     position: relative;
     outline: 0;
 
+    @include tab-port {
+      grid-column: 1/-1;
+      margin: 1.6rem;
+    }
+
     .content-header__content__menu {
       position: absolute;
       left: 0;
@@ -80,6 +97,11 @@
       font-size: 1.6rem;
       text-transform: uppercase;
     }
+
+    @include tab-port {
+      margin: 0.8rem !important;
+      text-align: center;
+    }
   }
 
   &--hidden {
@@ -90,6 +112,7 @@
     position: sticky;
     top: 4.8rem;
     grid-column: 1/-1;
+    grid-row: 2/2;
     height: 0;
     overflow: hidden;
     opacity: 0;
@@ -98,6 +121,14 @@
     padding: 0rem 11vw 0.4rem 11vw;
     z-index: 999;
     grid-row: 3;
+
+    @include tab-port {
+      position: fixed;
+      bottom: 0;
+      top: unset;
+      padding: 0rem 0 6.4rem 0rem;
+    }
+
     a {
       color: var(--color-primary);
     }
@@ -110,15 +141,20 @@
     }
 
     &--active {
-      padding-top: 2rem;
+      padding-top: 2.4rem;
       height: min-content;
       opacity: 1;
       transition: 0.2s ease-out;
+
+      @include tab-port {
+        padding-top: 0.8rem;
+      }
     }
   }
 
   &__champions {
     display: flex;
+    flex-wrap: wrap;
   }
 
   &__skins {

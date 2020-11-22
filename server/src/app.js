@@ -12,7 +12,12 @@ import "./models/Post";
 import "./models/Champion";
 import "./services/auth/passport";
 
-import { postRoutes, authRoutes, championRoutes } from "./app/routes";
+import {
+  postRoutes,
+  authRoutes,
+  championRoutes,
+  tooltipRoutes,
+} from "./app/routes";
 import keys from "./config/keys";
 
 class App {
@@ -41,7 +46,7 @@ class App {
   }
 
   routes() {
-    this.express.use([postRoutes, authRoutes, championRoutes]);
+    this.express.use([postRoutes, authRoutes, championRoutes, tooltipRoutes]);
   }
 }
 

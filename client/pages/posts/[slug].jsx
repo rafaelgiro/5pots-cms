@@ -38,10 +38,10 @@ export async function getStaticProps({ params }) {
   const postRes = await api.get(`/posts/${params.slug}`);
   const post = postRes.data;
 
-  const championsRes = await api.get(
-    `/champions?champions=${post.champions.join()}`
-  );
-  const champions = championsRes.data;
+  const championsRes = post.champions
+    ? await api.get(`/champions?champions=${post.champions.join()}`)
+    : null;
+  const champions = championsRes ? championsRes.data : championsRes;
 
   const champChanges = post.sections.map((section) => section.champions)[0];
   const skins = [
@@ -56,7 +56,11 @@ export async function getStaticProps({ params }) {
 
   // Pass post data to the page via props
   return {
-    props: { post, champions, postContent: { champions: champChanges, skins } },
+    props: {
+      post,
+      champions,
+      postContent: { champions: champChanges || null, skins },
+    },
     revalidate: 60,
   };
 }

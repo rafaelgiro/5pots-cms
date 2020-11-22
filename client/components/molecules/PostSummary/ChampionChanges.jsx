@@ -9,9 +9,9 @@ import styles from "./styles.module.scss";
 const ChampionsChanges = (props) => {
   const { changes, type } = props;
 
-  const champions = changes.filter((champ) => champ.goal === type);
+  const champions = changes?.filter((champ) => champ.goal === type);
 
-  if (champions.length > 0)
+  if (champions?.length > 0)
     return (
       <div className={styles["champion-changes"]}>
         <div className={styles["champion-changes__title"]}>
@@ -21,8 +21,8 @@ const ChampionsChanges = (props) => {
           </Typography>
         </div>
         <div className={styles["champion-changes__champions"]}>
-          {champions.map((champ) => (
-            <a href={`#${champ.name}`}>
+          {champions?.map((champ) => (
+            <a key={`champ-title-${champ.name}`} href={`#${champ.name}`}>
               <ChampionIcon name={champ.name} showName />
             </a>
           ))}

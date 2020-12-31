@@ -1,8 +1,8 @@
 {
-  "name": "5pots-puppeteer",
-  "version": "1.0.0",
+  "name": "@5pots/lol-crawler",
+  "version": "0.0.1",
   "description": "Web scraping da 5pots",
-  "main": "index.js",
+  "main": "dist/5pots-lol-crawler.cjs.js",
   "author": "Rafael Giro",
   "license": "MIT",
   "scripts": {
@@ -15,5 +15,6 @@
     "mongoose": "^5.9.18",
     "nodemon": "^2.0.4",
     "puppeteer": "^3.3.0"
-  }
+  },
+  "repository": "https://github.com/RafaelGiro/5pots/tree/master/packages/lol-crawler"
 }

@@ -1,8 +1,8 @@
 {
-  "name": "5pots-client",
+  "name": "@5pots/client",
   "version": "0.1.0",
   "private": true,
-  "repository": "https://github.com/RafaelGiro/5pots",
+  "repository": "https://github.com/RafaelGiro/5pots/tree/master/apps/client",
   "author": "Rafael Giro",
   "licenses": [
     {

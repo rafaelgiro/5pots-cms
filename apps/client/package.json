@@ -29,5 +29,10 @@
     "react-hook-form": "^6.9.2",
     "react-indiana-drag-scroll": "^1.7.0",
     "sass": "^1.27.0"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.0",
+    "ts-migrate": "^0.1.13",
+    "typescript": "^4.1.3"
   }
 }

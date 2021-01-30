@@ -67,12 +67,21 @@
       font-size: 3.2rem;
       cursor: pointer;
       transition: opacity 0.2s ease-out;
+
+      &--disabled {
+        opacity: 0.3;
+      }
     }
 
     &__bullet {
       margin: 0.4rem 0;
       font-size: 1rem;
       transition: opacity 0.2s ease-out;
+      opacity: 0.3;
+
+      &--active {
+        opacity: 1;
+      }
     }
   }
 }

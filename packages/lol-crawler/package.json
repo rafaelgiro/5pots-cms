@@ -5,6 +5,7 @@
   "main": "dist/5pots-lol-crawler.cjs.js",
   "author": "Rafael Giro",
   "license": "MIT",
+  "repository": "https://github.com/RafaelGiro/5pots/tree/master/packages/lol-crawler",
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
@@ -15,6 +16,5 @@
     "mongoose": "^5.9.18",
     "nodemon": "^2.0.4",
     "puppeteer": "^3.3.0"
-  },
-  "repository": "https://github.com/RafaelGiro/5pots/tree/master/packages/lol-crawler"
+  }
 }

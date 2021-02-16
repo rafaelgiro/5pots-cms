@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
@@ -10,4 +10,4 @@ const championSchema = new Schema({
   abilities: { type: {}, required: true },
 });
 
-mongoose.model("champions", championSchema);
+export default mongoose.model("champions", championSchema);

@@ -1,4 +1,5 @@
 import { UIReducerStateI, UIReducerActionsI } from "./interfaces";
+import { createContext, Dispatch } from "react";
 
 export const initialState: UIReducerStateI = {
   theme: "solari",
@@ -50,3 +51,15 @@ export function reducer(
       throw new Error("Passe um tipo de action para o dispatch");
   }
 }
+
+const UIContext = createContext<{
+  uiState: UIReducerStateI;
+  uiDispatch: Dispatch<UIReducerActionsI>;
+}>({
+  uiState: initialState,
+  uiDispatch: () => {
+    return null;
+  },
+});
+
+export default UIContext;

@@ -1,5 +1,4 @@
-node_modules
-dist
 .env
-dev.js
-vscode
+node_modules
+/src/config/keys
+.history

@@ -30,7 +30,7 @@ const Homepage = (props: HomeProps) => {
 
 export async function getStaticProps() {
   const res = await api.get("/posts");
-  const posts: Post[] = res.data;
+  const posts: Post[] = res.data.posts;
 
   return {
     props: {

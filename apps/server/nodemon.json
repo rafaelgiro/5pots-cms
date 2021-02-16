@@ -1,7 +1,6 @@
 {
-  "watch": ["src"],
-  "execMap": {
-    "js": "node -r sucrase/register"
-  },
-  "ext": "js"
+  "watch": ["src", ".env"],
+  "ext": "js,ts,json",
+  "ignore": ["src/**/*.spec.ts", "src/**/*.test.ts"],
+  "exec": "ts-node --transpile-only -r dotenv/config src/server.ts"
 }

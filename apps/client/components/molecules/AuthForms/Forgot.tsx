@@ -1,4 +1,4 @@
-import { useReducer, useRef } from "react";
+import { useContext, useReducer, useRef } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -12,7 +12,7 @@ import Button from "../../atoms/Button";
 import styles from "../../templates/AuthPage/styles.module.scss";
 
 import api from "../../../core/services/api";
-import { initialState, reducer } from "../../../core/contexts/UIContext";
+import UIContext from "../../../core/contexts/UIContext";
 import { emailValidation } from "../../../core/constants/formValidation";
 import { ForgotProps } from "./interfaces";
 
@@ -20,7 +20,7 @@ const FormForgot = (props: ForgotProps) => {
   const { credential } = props;
   const { register, handleSubmit, errors } = useForm();
   const recaptchaRef = useRef<ReCAPTCHA>(null);
-  const [, dispatch] = useReducer(reducer, initialState);
+  const { uiDispatch: dispatch } = useContext(UIContext);
 
   const title = credential === "password" ? "MINHA SENHA" : "MEU USUÁRIO";
   const linkText = credential === "password" ? "meu usuário" : "minha senha";
@@ -46,7 +46,7 @@ const FormForgot = (props: ForgotProps) => {
         dispatch({
           type: "SHOW_SNACKBAR",
           snackbar: {
-            msg: err.response.data.msg,
+            msg: err.response.data.message,
             variant: "error",
           },
         });

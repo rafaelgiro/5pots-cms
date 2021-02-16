@@ -1,4 +1,4 @@
-import { useEffect, useState, useReducer } from "react";
+import { useEffect, useState, useContext } from "react";
 import clsx from "clsx";
 
 import Typography from "../../atoms/Typography";
@@ -8,11 +8,11 @@ import map from "../../../core/assets/images/map_01.svg";
 
 import { FullScreenMenuProps } from "./interfaces";
 import styles from "./styles.module.scss";
-import { initialState, reducer } from "../../../core/contexts/UIContext";
+import UIContext from "../../../core/contexts/UIContext";
 
 const FullScreenMenu = (props: FullScreenMenuProps) => {
   const { className } = props;
-  const [state] = useReducer(reducer, initialState);
+  const { uiState: state } = useContext(UIContext);
   const [zindex, setZIndex] = useState(false);
 
   const fullClass = clsx(

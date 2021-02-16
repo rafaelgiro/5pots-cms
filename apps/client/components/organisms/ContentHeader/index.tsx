@@ -14,7 +14,7 @@ import ChampionIcon from "../../atoms/ChampionIcon";
 
 import AuthContext from "../../../core/contexts/AuthContext";
 import PostContext from "../../../core/contexts/PostContext";
-import { initialState, reducer } from "../../../core/contexts/UIContext";
+import UIContext from "../../../core/contexts/UIContext";
 
 import { ContentHeaderProps } from "./interfaces";
 
@@ -23,7 +23,7 @@ import headerStyles from "../Header/styles.module.scss";
 
 const ContentHeader = (props: ContentHeaderProps) => {
   const { titles, title, category } = props;
-  const [state] = useReducer(reducer, initialState);
+  const { uiState: state } = useContext(UIContext);
   const { user } = useContext(AuthContext);
   const { postContent } = useContext(PostContext);
   const [active, setActive] = useState(false);

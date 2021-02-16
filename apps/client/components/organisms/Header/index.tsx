@@ -15,10 +15,12 @@ import HeaderSearchbar from "./SearchBar";
 import AuthContext from "../../../core/contexts/AuthContext";
 
 import styles from "./styles.module.scss";
+import { useRouter } from "next/router";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const [onTop, setOnTop] = useState(true);
+  const router = useRouter();
 
   const authLinksClass = clsx(
     styles["header__auth-links"],
@@ -29,6 +31,13 @@ const Header = () => {
     styles.header__user,
     !onTop && styles["header__user--hidden"]
   );
+
+  function handleLogout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("expires");
+    setUser && setUser(undefined);
+    router.push("/");
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,9 +74,9 @@ const Header = () => {
                 Configurar Perfil
               </Typography>
             </div>
-            <a href="/api/logout">
+            <button onClick={handleLogout}>
               <FiLogOut className={styles.header__user__logout} />
-            </a>
+            </button>
           </div>
         </div>
       );

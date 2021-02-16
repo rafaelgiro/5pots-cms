@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useContext, useEffect } from "react";
 import clsx from "clsx";
 import MdCheckmarkCircleOutline from "@meronex/icons/ios/MdCheckmarkCircleOutline";
 import IosCloseCircleOutline from "@meronex/icons/ios/IosCloseCircleOutline";
@@ -6,7 +6,7 @@ import MdInformationCircleOutline from "@meronex/icons/ios/MdInformationCircleOu
 
 import Typography from "../Typography";
 
-import { initialState, reducer } from "../../../core/contexts/UIContext";
+import UIContext from "../../../core/contexts/UIContext";
 
 import { SnackbackProps } from "./interfaces";
 
@@ -14,7 +14,7 @@ import styles from "./styles.module.scss";
 
 const Snackbar = (props: SnackbackProps) => {
   const { className } = props;
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const { uiState: state, uiDispatch: dispatch } = useContext(UIContext);
 
   const snaccClass = clsx(
     styles.snackbar,
@@ -44,7 +44,7 @@ const Snackbar = (props: SnackbackProps) => {
         });
       }, state.snackbar.time);
     }
-  }, [state.snackbar.visible, state.snackbar.time, dispatch]);
+  });
 
   return (
     <div className={snaccClass}>

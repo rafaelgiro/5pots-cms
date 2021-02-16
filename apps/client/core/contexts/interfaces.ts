@@ -6,7 +6,7 @@ export interface PostContextI {
 export interface UserContextI {
   user?: User;
   setUser?:
-    | React.Dispatch<React.SetStateAction<User>>
+    | React.Dispatch<React.SetStateAction<User | undefined>>
     | React.Dispatch<React.SetStateAction<undefined>>;
 }
 

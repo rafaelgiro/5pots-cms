@@ -8,6 +8,7 @@ interface Post {
   img: string;
   blurb: string;
   category: string;
+  type: string;
   url: string;
   postedAt: string;
   slug: string;

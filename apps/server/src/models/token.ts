@@ -1,6 +1,13 @@
-import mongoose from "mongoose";
+import mongoose, { Document } from "mongoose";
 
 const { Schema } = mongoose;
+
+export interface TokenI extends Document {
+  _userId: string;
+  token: string;
+  createdAt: Date;
+  passwordReset?: boolean;
+}
 
 const tokenSchema = new Schema({
   _userId: { type: Schema.Types.ObjectId, required: true, ref: "User" },
@@ -9,4 +16,4 @@ const tokenSchema = new Schema({
   passwordReset: { type: Boolean, default: false },
 });
 
-mongoose.model("tokens", tokenSchema);
+export default mongoose.model<TokenI>("tokens", tokenSchema);

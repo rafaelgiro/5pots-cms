@@ -1,8 +1,8 @@
-import { useReducer } from "react";
+import { useContext } from "react";
 import clsx from "clsx";
 
 import Typography from "../../atoms/Typography";
-import { initialState, reducer } from "../../../core/contexts/UIContext";
+import UIContext from "../../../core/contexts/UIContext";
 
 import { MenuButtonProps } from "./interfaces";
 import styles from "./menu-btn.styles.module.scss";
@@ -10,7 +10,7 @@ import styles from "./menu-btn.styles.module.scss";
 const MenuButton = (props: MenuButtonProps) => {
   const { onTop, dark } = props;
 
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const { uiState: state, uiDispatch: dispatch } = useContext(UIContext);
 
   const className = clsx(
     styles["menu-btn"],

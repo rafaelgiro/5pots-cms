@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
@@ -8,10 +8,11 @@ const postSchema = new Schema({
   blurb: { type: String, required: true },
   category: { type: String, required: true },
   author: { type: String, default: "beep boop" },
+  type: { type: String, required: true },
   url: { type: String, required: true },
   sections: { type: [], required: true },
   subTitles: { type: [{ type: String }], required: true },
   postedAt: { type: String, required: true, default: Date.now },
 });
 
-mongoose.model("posts", postSchema);
+export default mongoose.model("posts", postSchema);

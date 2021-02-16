@@ -1,8 +1,7 @@
-import { useState, useEffect, useRef, useReducer } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import axios from "axios";
 
 import { useForm } from "react-hook-form";
 import MdNavigateNext from "@meronex/icons/md/MdNavigateNext";
@@ -14,8 +13,9 @@ import Typography from "../../atoms/Typography";
 import TextField from "../../atoms/TextField";
 import Button from "../../atoms/Button";
 
+import api from "../../../core/services/api";
 import { passwordValidation } from "../../../core/constants/formValidation";
-import { initialState, reducer } from "../../../core/contexts/UIContext";
+import UIContext from "../../../core/contexts/UIContext";
 
 import styles from "../../templates/AuthPage/styles.module.scss";
 
@@ -23,7 +23,7 @@ const FormReset = () => {
   const [status, setStatus] = useState(0);
   const { register, handleSubmit, watch, errors } = useForm();
   const recaptchaRef = useRef<ReCAPTCHA>(null);
-  const [, dispatch] = useReducer(reducer, initialState);
+  const { uiDispatch: dispatch } = useContext(UIContext);
   const router = useRouter();
   const { token } = router.query;
 
@@ -38,26 +38,27 @@ const FormReset = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(`/api/auth/confirmation/validate/${token}`)
-      .then((res) => {
-        setStatus(res.status);
-      })
-      .catch(() => {
-        dispatch({
-          type: "SHOW_SNACKBAR",
-          snackbar: {
-            msg: "O token informado não é mais válido :(",
-            variant: "error",
-          },
+    if (token)
+      api
+        .get(`/auth/reset?token=${token}`)
+        .then((res) => {
+          setStatus(res.status);
+        })
+        .catch(() => {
+          dispatch({
+            type: "SHOW_SNACKBAR",
+            snackbar: {
+              msg: "O token informado não é mais válido :(",
+              variant: "error",
+            },
+          });
         });
-      });
-  }, [token, dispatch]);
+  }, [token]);
 
   const onSubmit = async (data: Record<string, string>) => {
     await recaptchaRef?.current?.executeAsync();
-    axios
-      .post(`/api/auth/forgot/${token}`, data)
+    api
+      .post(`/auth/forgot/${token}`, data)
       .then(() => {
         dispatch({
           type: "SHOW_SNACKBAR",
@@ -72,7 +73,7 @@ const FormReset = () => {
         dispatch({
           type: "SHOW_SNACKBAR",
           snackbar: {
-            msg: err.response.data.msg,
+            msg: err.response.data.message,
             variant: "error",
           },
         });

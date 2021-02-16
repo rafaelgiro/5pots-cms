@@ -1,4 +1,4 @@
-import { useState, useRef, useContext, useReducer } from "react";
+import { useState, useRef, useContext } from "react";
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
@@ -15,9 +15,11 @@ import ReCAPTCHA from "react-google-recaptcha";
 import Typography from "../../atoms/Typography";
 import TextField from "../../atoms/TextField";
 import Button from "../../atoms/Button";
-import api from "../../../core/services/api";
+
+import parseJwt from "../../../core/helpers/parseJwt";
+import api, { baseURL } from "../../../core/services/api";
 import AuthContext from "../../../core/contexts/AuthContext";
-import { reducer, initialState } from "../../../core/contexts/UIContext";
+import UIContext from "../../../core/contexts/UIContext";
 import {
   usernameValidation,
   passwordValidation,
@@ -30,7 +32,7 @@ const FormRegister = () => {
   const { register, handleSubmit, errors, watch } = useForm();
   const [usernameText, setUsernameText] = useState("");
   const { setUser } = useContext(AuthContext);
-  const [, dispatch] = useReducer(reducer, initialState);
+  const { uiDispatch: dispatch } = useContext(UIContext);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   const router = useRouter();
 
@@ -54,11 +56,18 @@ const FormRegister = () => {
     api
       .post("/auth/register", newUser)
       .then((res) => {
-        setUser && setUser(res.data);
+        const { token } = res.data;
+        const user = parseJwt(token);
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("expires", user.exp);
+
+        setUser && setUser(user);
         dispatch({
           type: "SHOW_SNACKBAR",
           snackbar: {
             msg: "Usuário cadastrado com sucesso, bem vindo!",
+            visible: true,
             variant: "success",
           },
         });
@@ -68,7 +77,8 @@ const FormRegister = () => {
         dispatch({
           type: "SHOW_SNACKBAR",
           snackbar: {
-            msg: err.response.data.msg,
+            msg: err.response.data.message,
+            visible: true,
             variant: "error",
           },
         });
@@ -143,7 +153,7 @@ const FormRegister = () => {
             <Typography variant="p" component="p">
               Ou você pode se registrar com:
             </Typography>
-            <a href="/api/auth/google">
+            <a href={`${baseURL}auth/google`}>
               <AiFillGoogleSquare
                 className={clsx(
                   styles["auth-page__cta__icon"],
@@ -151,7 +161,7 @@ const FormRegister = () => {
                 )}
               />
             </a>
-            <a href="/api/auth/facebook">
+            <a href={`${baseURL}auth/facebook`}>
               <AiFillFacebook
                 className={clsx(
                   styles["auth-page__cta__icon"],

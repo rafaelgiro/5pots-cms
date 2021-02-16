@@ -21,7 +21,8 @@ function PostPage(props: PostsPageProps) {
 export async function getStaticPaths() {
   // Call an external API endpoint to get posts
   const res = await api.get("/posts");
-  const posts: Post[] = res.data;
+
+  const posts: Post[] = res.data.posts;
 
   // Get the paths we want to pre-render based on posts
   const paths = posts.map((post: Post) => ({
@@ -39,7 +40,9 @@ export async function getStaticProps({ params }: StaticPropsParams) {
   const championsRes = post.champions
     ? await api.get(`/champions?champions=${post.champions.join()}`)
     : null;
-  const champions: Champion = championsRes ? championsRes.data : championsRes;
+  const champions: Champion = championsRes
+    ? championsRes.data.champions
+    : championsRes;
 
   const champChanges = post.sections.map((section) => section.champions)[0];
   const skins = [

@@ -1,4 +1,4 @@
-import { useRef, useContext, useReducer } from "react";
+import { useRef, useContext } from "react";
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -14,9 +14,10 @@ import Typography from "../../atoms/Typography";
 import TextField from "../../atoms/TextField";
 import Button from "../../atoms/Button";
 
-import api from "../../../core/services/api";
+import api, { baseURL } from "../../../core/services/api";
+import parseJwt from "../../../core/helpers/parseJwt";
 import AuthContext from "../../../core/contexts/AuthContext";
-import { initialState, reducer } from "../../../core/contexts/UIContext";
+import UIContext from "../../../core/contexts/UIContext";
 
 import {
   usernameValidation,
@@ -28,7 +29,7 @@ import styles from "../../templates/AuthPage/styles.module.scss";
 const FormLogin = () => {
   const { register, handleSubmit, errors } = useForm();
   const { setUser } = useContext(AuthContext);
-  const [, dispatch] = useReducer(reducer, initialState);
+  const { uiDispatch: dispatch } = useContext(UIContext);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   const router = useRouter();
 
@@ -37,21 +38,29 @@ const FormLogin = () => {
     api
       .post("/auth/login", data)
       .then((res) => {
-        setUser && setUser(res.data);
+        const { token } = res.data;
+        const user = parseJwt(token);
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("expires", user.exp);
+
+        setUser && setUser(user);
         dispatch({
           type: "SHOW_SNACKBAR",
           snackbar: {
             msg: "Logado com sucesso.",
+            visible: true,
             variant: "success",
           },
         });
         router.push("/");
       })
-      .catch(() => {
+      .catch((err) => {
         dispatch({
           type: "SHOW_SNACKBAR",
           snackbar: {
-            msg: "Usuário ou senha incorretos.",
+            msg: err.response.data.message,
+            visible: true,
             variant: "error",
           },
         });
@@ -119,7 +128,7 @@ const FormLogin = () => {
             <Typography variant="p" component="p">
               Ou você pode entrar com:
             </Typography>
-            <a href="/api/auth/google">
+            <a href={`${baseURL}auth/google`}>
               <AiFillGoogleSquare
                 className={clsx(
                   styles["auth-page__cta__icon"],
@@ -127,7 +136,7 @@ const FormLogin = () => {
                 )}
               />
             </a>
-            <a href="/api/auth/facebook">
+            <a href={`${baseURL}auth/facebook`}>
               <AiFillFacebook
                 className={clsx(
                   styles["auth-page__cta__icon"],

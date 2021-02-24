@@ -1,0 +1,14 @@
+{
+  "tags": ["Mage", "Assassin"],
+  "_id": "5fa6ccb8cffb5c3feb3be3e8",
+  "championName": "Ahri",
+  "title": "a Raposa de Nove Caudas",
+  "abilities": {
+    "p": "Furto de Essência",
+    "q": "Orbe da Ilusão",
+    "w": "Fogo de Raposa",
+    "e": "Encanto",
+    "r": "Ímpeto Espiritual"
+  },
+  "__v": 0
+}

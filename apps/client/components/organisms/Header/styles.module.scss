@@ -116,8 +116,10 @@
     }
 
     &__notifications {
-      width: 2.4rem;
-      height: 2.4rem;
+      width: 4rem;
+      height: 4rem;
+      padding: 0.8rem;
+      border-radius: 50%;
       transition: all 0.2s ease-out;
 
       @include tab-port {

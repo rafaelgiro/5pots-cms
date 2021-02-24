@@ -1,0 +1,18 @@
+.admin-page {
+  padding: 2rem;
+
+  &__test {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 2.4rem;
+
+    & > div:first-child {
+      margin: 0 !important;
+    }
+
+    &__jsons {
+      & > div {
+      }
+    }
+  }
+}

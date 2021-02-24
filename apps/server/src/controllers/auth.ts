@@ -15,7 +15,7 @@ const login = (req: Request, res: Response, next: NextFunction) => {
   const validationErrors = validationResult(req);
 
   if (!validationErrors.isEmpty()) {
-    return next(new HttpException(400, String(validationErrors.array()[0])));
+    return next(new HttpException(400, validationErrors.array()[0].msg));
   }
 
   User.findOne({ username }).then((user) => {
@@ -40,9 +40,7 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
   const validationErrors = validationResult(req);
 
   if (!validationErrors.isEmpty()) {
-    return next(
-      new HttpException(400, String(validationErrors.array()[0].msg))
-    );
+    return next(new HttpException(400, validationErrors.array()[0].msg));
   }
 
   const userExist = await User.exists({ username });
@@ -100,7 +98,7 @@ const forgotPassword = (req: Request, res: Response, next: NextFunction) => {
   const validationErrors = validationResult(req);
 
   if (!validationErrors.isEmpty()) {
-    return next(new HttpException(400, String(validationErrors.array()[0])));
+    return next(new HttpException(400, validationErrors.array()[0].msg));
   }
   // Primeiro acha o usuário
   User.findOne({ email: req.body.email }, (err: Error, foundUser: UserI) => {
@@ -163,7 +161,7 @@ const updatePassword = (req: Request, res: Response, next: NextFunction) => {
   const validationErrors = validationResult(req);
 
   if (!validationErrors.isEmpty()) {
-    return next(new HttpException(400, String(validationErrors.array()[0])));
+    return next(new HttpException(400, validationErrors.array()[0].msg));
   }
   Token.findOne({ token }, (err: Error, foundToken: TokenI) => {
     if (err || !foundToken || !foundToken.passwordReset) {
@@ -212,7 +210,7 @@ const forgotUsername = (req: Request, res: Response, next: NextFunction) => {
   const validationErrors = validationResult(req);
 
   if (!validationErrors.isEmpty()) {
-    return next(new HttpException(400, String(validationErrors.array()[0])));
+    return next(new HttpException(400, validationErrors.array()[0].msg));
   }
 
   User.find({ email }).then((user) => {

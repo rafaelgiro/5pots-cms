@@ -50,6 +50,10 @@ const Layout: React.FC = (props) => {
           localStorage.setItem("expires", user.exp);
 
           setUser && setUser(user);
+        })
+        .catch(() => {
+          localStorage.removeItem("token");
+          localStorage.removeItem("expires");
         });
     }
   }, [setUser, router]);

@@ -1,0 +1,51 @@
+@import "../core/styles/variables";
+@import "../core/styles/mq";
+
+.not-found-page {
+  width: 100vw;
+  height: 85vh;
+  position: relative;
+  z-index: 0;
+  display: grid;
+  grid-template-columns: [content-start] 5fr [content-end img-start] 4fr [img-end];
+  grid-template-rows: 1fr;
+  grid-gap: 6rem;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--color-background);
+
+  @include tab-port {
+    grid-template-columns: [content-start img-start] 1fr [content-end img-end];
+  }
+
+  &__right-image {
+    grid-row: 1 / -1;
+    grid-column: img-start / img-end;
+    height: 90%;
+    background-image: url("https://f002.backblazeb2.com/file/cincopots/posts/nunu.jpg");
+    background-size: cover;
+    background-position: center;
+    margin-right: 2rem;
+
+    @include tab-port {
+      display: none;
+    }
+  }
+
+  &__content {
+    grid-row: 1 / -1;
+    grid-column: content-start / content-end;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    h2 {
+      font-size: 16rem;
+    }
+
+    p {
+      margin-top: 0.8rem;
+    }
+  }
+}

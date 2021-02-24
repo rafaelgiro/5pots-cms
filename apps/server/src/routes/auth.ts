@@ -26,13 +26,6 @@ router.post(
     .escape(),
   check("password", "A senha precisa ter no mínimo 6 caracteres")
     .isLength({ min: 6 })
-    .custom((value, { req }) => {
-      if (value !== req.body.confirm) {
-        throw new Error("As senhas informadas não coincidem");
-      } else {
-        return value;
-      }
-    })
     .trim()
     .escape(),
   login

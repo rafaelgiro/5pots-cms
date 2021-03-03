@@ -3,13 +3,14 @@ export interface ChampionChangeProps {
   change: ChampionChange;
 }
 
-export interface ChampionSingleChange {
-  base?: string;
-  p?: string;
-  q?: string;
-  w?: string;
-  e?: string;
-  r?: string;
+export interface ChampionChangeDevProps {
+  change: ChampionChange;
+  championInfo: {
+    name: string;
+    goal: "buff" | "nerf" | "rework" | "adjusted";
+    context?: string;
+    resume: string;
+  };
 }
 
 export interface ChangeBlockProps {

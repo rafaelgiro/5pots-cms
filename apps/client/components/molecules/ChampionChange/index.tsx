@@ -10,7 +10,7 @@ import Typography from "../../atoms/Typography";
 import ClassIcon from "../../atoms/Icons/ClassIcon";
 import ChangeIcon from "../../atoms/Icons/ChangeIcon";
 
-import { ChampionChangeProps, ChampionSingleChange } from "./interfaces";
+import { ChampionChangeProps, ChangeBlockProps } from "./interfaces";
 
 import styles from "./styles.module.scss";
 import { ChangeIconType, ClassIconType } from "../../atoms/Icons/interfaces";
@@ -21,6 +21,7 @@ const ChampionChange = (props: ChampionChangeProps) => {
   const sanitazedChampion = champion.championName
     .replace(" ", "")
     .replace("'", "");
+  const { changes } = change;
 
   // TODO: refatorar pra css grid
   return (
@@ -113,12 +114,13 @@ const ChampionChange = (props: ChampionChangeProps) => {
       </div>
 
       {/* Mapeia todas as mudanças habilidade por habilidade */}
-      {change.changes.map((ability: ChampionSingleChange) => {
-        const abilityKey = Object.keys(ability)[0] as AbilityKey;
+      {changes.map((change) => {
+        const { blocks, stat: abilityKey } = change;
         const isBase = abilityKey === "base";
         const abilityIcon =
           !isBase &&
           `https://f002.backblazeb2.com/file/cincopots/abilities/${sanitazedChampion}${abilityKey.toUpperCase()}.png`;
+
         return (
           <div
             key={`${champion.championName}-${abilityKey}`}
@@ -138,17 +140,15 @@ const ChampionChange = (props: ChampionChangeProps) => {
             </div>
             {/* Bloco de mudança */}
             <div className={styles["champion-change__change__block"]}>
-              {Object.values(ability)
-                .flat()
-                .map((block, i) => {
-                  return (
-                    <ChangeBlock
-                      key={`champ-${sanitazedChampion}-block-${i}`}
-                      block={block}
-                      champion={champion.championName}
-                    />
-                  );
-                })}
+              {blocks.map((block: ChangeBlockProps["block"], i: number) => {
+                return (
+                  <ChangeBlock
+                    key={`champ-${sanitazedChampion}-block-${i}`}
+                    block={block}
+                    champion={champion.championName}
+                  />
+                );
+              })}
             </div>
           </div>
         );

@@ -12,8 +12,7 @@
           "context": "A mecânica de jogo e identidade da Ahri ficaram opacas com o passar do tempo, e isso não é nada encantador. Realizamos algumas mudanças no kit, principalmente no W, para reforçar a identidade de \"maga evasiva\" que pode entrar e sair de lutas procurando o momento perfeito de brilhar. Também transformamos o Furto de Essência do Q na Passiva dela, para que ela tenha mais oportunidades de se curar ao realizar trocas com Campeões inimigos. No geral, nossa raposa deve realizar seus combos e jogadas de maneira mais eficiente",
           "changes": [
             {
-              "stat": "base",
-              "blocks": [
+              "base": [
                 {
                   "type": "change",
                   "attribute": "REGENERAÇÃO DE VIDA",
@@ -23,8 +22,7 @@
               ]
             },
             {
-              "stat": "p",
-              "blocks": [
+              "p": [
                 {
                   "type": "new",
                   "attribute": "FURTO DE ESSÊNCIA",
@@ -38,8 +36,7 @@
               ]
             },
             {
-              "stat": "q",
-              "blocks": [
+              "q": [
                 {
                   "type": "removed",
                   "attribute": "FURTO DE ESSÊNCIA",
@@ -48,11 +45,10 @@
               ]
             },
             {
-              "stat": "w",
-              "blocks": [
+              "w": [
                 {
                   "type": "new",
-                  "attribute": "A PATROA FAZ O QUE A PATROA FAZ",
+                  "attribute": "A \"PATROA\" FAZ O QUE A PATROA FAZ",
                   "after": "Agora concede 40% de Velocidade de Movimento que decai ao longo de 1,5s ao ser conjurada"
                 },
                 {
@@ -88,8 +84,7 @@
           "context": "Ashe continua sendo uma das principais atiradoras do cenário profissional, então esfriamos as coisas um pouquinho.",
           "changes": [
             {
-              "stat": "base",
-              "blocks": [
+              "base": [
                 {
                   "type": "change",
                   "attribute": "DANO DE ATAQUE",
@@ -99,8 +94,7 @@
               ]
             },
             {
-              "stat": "q",
-              "blocks": [
+              "q": [
                 {
                   "type": "change",
                   "attribute": "CORREÇÃO DE BUG",
@@ -122,8 +116,7 @@
           "context": "Como o Q do Galio permite que ele limpe tropas no início de jogo sem muito risco, reduzimos o dano da habilidade para que ele não saia voando pelo mapa tão facilmente.",
           "changes": [
             {
-              "stat": "q",
-              "blocks": [
+              "q": [
                 {
                   "type": "change",
                   "attribute": "DANO BASE",
@@ -141,8 +134,7 @@
           "context": "Um empurrãozinho básico no príncipe de Demacia para que ele tenha espaço no meta atual da selva.",
           "changes": [
             {
-              "stat": "q",
-              "blocks": [
+              "q": [
                 {
                   "type": "change",
                   "attribute": "DANO BASE",
@@ -160,29 +152,22 @@
           "context": "Removemos o custo de Mana do E para tornar o gerenciamento de Mana da Kayle mais claro; no geral, ela agora depende menos de Mana. Juntamente com um projétil mais veloz, esperamos que a Campeã tenha uma fase de rotas mais saudável e possa trocar melhor contra o oponente.",
           "changes": [
             {
-              "stat": "q",
-              "blocks": [
+              "q": [
                 {
                   "type": "removed",
                   "attribute": "RESTAURAÇÃO DE MANA",
                   "after": "Deixa de restaurar 50% do custo de Mana por cada Campeão inimigo atingido"
                 }
-              ]
-            },
-            {
-              "stat": "w",
-              "blocks": [
+              ],
+              "w": [
                 {
                   "type": "change",
                   "attribute": "CUSTO",
                   "before": "70/80/90/100/110 de Mana",
                   "after": "90/100/110/120/130 de Mana"
                 }
-              ]
-            },
-            {
-              "stat": "e",
-              "blocks": [
+              ],
+              "e": [
                 {
                   "type": "change",
                   "attribute": "CUSTO",
@@ -200,8 +185,7 @@
           "context": "Nosso lagarto cáustico esteve sempre às beiradas do balanceamento, mas agora ele foi longe demais. Decidimos reduzir as defesas dele para que a identidade de atirador frágil e forte fique mais consolidada.",
           "changes": [
             {
-              "stat": "base",
-              "blocks": [
+              "base": [
                 {
                   "type": "change",
                   "attribute": "CRESCIMENTO DE VIDA",
@@ -225,19 +209,15 @@
           "context": "Revertemos os enfraquecimentos das Atualizações 10.3 e 10.10 para que nossa pirata continue brilhando (e desfilando) no início de jogo.",
           "changes": [
             {
-              "stat": "base",
-              "blocks": [
+              "base": [
                 {
                   "type": "change",
                   "attribute": "CRESCIMENTO DE VELOCIDADE DE ATAQUE",
                   "before": "2,25%",
                   "after": "3%"
                 }
-              ]
-            },
-            {
-              "stat": "w",
-              "blocks": [
+              ],
+              "w": [
                 {
                   "type": "change",
                   "attribute": "VELOCIDADE DE MOVIMENTO ADICIONAL MÁXIMA",
@@ -255,8 +235,7 @@
           "context": "Esperamos que um aumento na temperatura do Rumble possa fazer dele uma boa opção de início de jogo no cenário profissional.",
           "changes": [
             {
-              "stat": "q",
-              "blocks": [
+              "q": [
                 {
                   "type": "change",
                   "attribute": "DANO TOTAL",
@@ -274,8 +253,7 @@
           "context": "Sett continua malhando e subindo no cenário profissional, principalmente com itemizações de baixo custo focadas em utilidade e tanque. Como nossos últimos enfraquecimentos nos valores base não foram suficientes, ajustamos os escalamentos de dano e ouro com o intuito de fazer os jogadores priorizarem itemizações de dano. Daremos mais uma olhadinha na situação nele depois do Mundial, só por garantia.",
           "changes": [
             {
-              "stat": "p",
-              "blocks": [
+              "p": [
                 {
                   "type": "change",
                   "attribute": "MULTIPLICADOR DE DANO ADICIONAL DO SOCO DE DIREITA",
@@ -285,8 +263,7 @@
               ]
             },
             {
-              "stat": "q",
-              "blocks": [
+              "q": [
                 {
                   "type": "change",
                   "attribute": "DANO ADICIONAL",
@@ -304,8 +281,7 @@
           "context": "O fortalecimento no Shen durante a 10.15 fez com que ele passasse dos limites, por isso optamos por uma reversão parcial.",
           "changes": [
             {
-              "stat": "p",
-              "blocks": [
+              "p": [
                 {
                   "type": "change",
                   "attribute": "ESCUDO",
@@ -323,8 +299,7 @@
           "context": "Quando encontramos um bug na Shyvana, também descobrimos várias maneiras de melhorar a clareza da Campeã. Como resultado, temos grandes correções visuais e uma pequena alteração nos números. Antigamente, o raio do Hálito Flamejante na Forma Dragoa escalava com o nível da habilidade, mas isso não era representado direito pelos efeitos visuais nem pela dica flutuante. Decidimos remover esse escalamento, já que uma habilidade tão importante não deve mudar tanto ao longo da partida. No geral, esperamos que as mudanças sejam um pequeno enfraquecimento na itemização de PdH e um pequeno fortalecimento na de DdA, tudo isso com muito mais clareza no E.",
           "changes": [
             {
-              "stat": "e",
-              "blocks": [
+              "e": [
                 {
                   "type": "updated",
                   "attribute": "RAIO DE EXPLOSÃO NA FORMA DRAGOA",
@@ -363,19 +338,15 @@
           "context": "Twitch estava se coçando para sair dos esgotos, voltar para o meta e colocar todo mundo pra rexpeitar! Os fortalecimentos na ultimate e no E ajudarão o rato não ficar tão escondido.",
           "changes": [
             {
-              "stat": "e",
-              "blocks": [
+              "e": [
                 {
                   "type": "change",
                   "attribute": "MULTIPLICADOR DE DANO ADICIONAL POR ACÚMULO",
                   "before": "0,2 de Poder de Habilidade (máximo de 1,2 de Poder de Habilidade)",
                   "after": "0,333 de Poder de Habilidade (máximo de 2,0 de Poder de Habilidade)"
                 }
-              ]
-            },
-            {
-              "stat": "r",
-              "blocks": [
+              ],
+              "r": [
                 {
                   "type": "change",
                   "attribute": "REDUÇÃO DE DANO DO PROJÉTIL POR INIMIGO ATINGIDO",
@@ -393,8 +364,7 @@
           "context": "Xin Zhao não é mais tão ameaçador no início de jogo quanto já foi. Isso pede por uma forcinha no dano e, consequentemente, na limpeza de acampamentos.",
           "changes": [
             {
-              "stat": "w",
-              "blocks": [
+              "w": [
                 {
                   "type": "change",
                   "attribute": "DANO DA PERFURAÇÃO",

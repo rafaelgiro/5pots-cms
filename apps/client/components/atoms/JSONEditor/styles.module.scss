@@ -38,6 +38,7 @@
 
     &__key-value {
       display: flex;
+      align-items: center;
       button {
         width: 2rem;
         margin-left: -2rem;
@@ -64,10 +65,59 @@
       }
     }
 
+    &__move-array-item {
+      display: flex;
+
+      svg {
+        width: 2.4rem;
+        height: 2.4rem;
+        opacity: 0.7;
+
+        margin-left: 0.8rem;
+      }
+
+      path {
+        fill: #25b2bc;
+      }
+    }
+
     &__object {
       padding-left: 2.4rem;
       border-left: 1px solid rgba(#fdf0ed, 0.15);
       margin-top: 0.8rem;
+    }
+
+    &__add-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem;
+      border: 2px dashed #2e303e;
+      width: 32rem;
+      margin-top: 0.8rem;
+
+      &:hover {
+        cursor: pointer;
+
+        svg {
+          opacity: 1;
+        }
+      }
+
+      svg {
+        width: 2.4rem;
+        height: 2.4rem;
+        fill: #b877db;
+        opacity: 0.3;
+        transition: all 0.2s ease-out;
+      }
+    }
+
+    &__delete-item {
+      width: 1.8rem !important;
+      height: 1.8rem !important;
+      margin-left: 0.8rem;
+      fill: #f43e5c;
     }
   }
 

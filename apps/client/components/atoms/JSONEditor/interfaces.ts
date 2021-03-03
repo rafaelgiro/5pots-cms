@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export type AnyJson = any;
+export type AnyJson = { [key: string]: any };
 
 export type renderObjectFunction = (
   json: AnyJson,
@@ -33,4 +33,16 @@ export interface RowProps {
   handleValue(path: string[], newValue: string): void;
   handleKey(path: string[], newKey: string): void;
   getValue(path: string[]): string;
+  handleMove(
+    path: string[],
+    currentIndex: number,
+    direction: "up" | "down"
+  ): void;
+  checkArrayMovement(
+    path: string[],
+    currentIndex: number,
+    direction: "up" | "down"
+  ): boolean;
+  handleAdd(path: string[]): void;
+  handleDelete(index: number): void;
 }

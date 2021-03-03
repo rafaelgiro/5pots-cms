@@ -16,6 +16,8 @@ const ConvertChange = () => {
     const text = e.clipboardData?.getData("text/html");
     const soup = new JSSoup(text);
 
+    // console.log(text);
+
     const name = soup.find("b").getText();
     const changes: {
       [x: string]: {
@@ -24,38 +26,41 @@ const ConvertChange = () => {
         after: string;
         type: string;
       }[];
-    }[] = [];
+    }[] = [{ base: [] }, { p: [] }, { q: [] }, { w: [] }, { e: [] }, { r: [] }];
+    const keyMap = ["base", "p", "q", "w", "e", "r"];
 
     function mapChange(soupEl: any) {
-      const abilitySoup = soupEl.find("ul");
-      const isAbility = Boolean(abilitySoup.find("b"));
+      const abilitySoup = soupEl.findAll("li");
 
-      const abilityKey: string = isAbility
-        ? abilitySoup
+      let abilityKey = "base";
+
+      for (let i = 0; i < abilitySoup.length; i++) {
+        const changeSoup = abilitySoup[i];
+        if (changeSoup.find("b")) {
+          abilityKey = changeSoup
             .find("b")
             .getText()
             .match(/\(([^)]+)\)/)[1]
             .split("")[0]
-            .toLowerCase()
-        : "base";
+            .toLowerCase();
+        } else {
+          const changeText = changeSoup.getText().split("from");
+          const attribute: string = changeText[0].trim();
+          const before: string = changeText[1]
+            ? changeText[1].split("to")[0].trim()
+            : changeText[0].trim();
+          const after: string = changeText[1]
+            ? changeText[1].split("to")[1].trim()
+            : changeText[0].trim();
+          const type = "change";
 
-      // if (isAbility) {
-      const changeArr = isAbility
-        ? abilitySoup.find("ul").findAll("li")
-        : abilitySoup.findAll("li");
+          const index = keyMap.indexOf(abilityKey);
+          changes[index][abilityKey].push({ attribute, before, after, type });
 
-      const abilityChanges = changeArr.map((changeSoup: any) => {
-        const changeText = changeSoup.getText().split("from");
-        const attribute: string = changeText[0].trim();
-        const before: string = changeText[1].split("to")[0].trim();
-        const after: string = changeText[1].split("to")[1].trim();
-        const type = "change";
+          console.log({ [abilityKey]: { attribute, before, after, type } });
+        }
+      }
 
-        return { attribute, before, after, type };
-      });
-
-      changes.push({ [abilityKey]: abilityChanges });
-      // }
       return { name, changes };
     }
 

@@ -1,6 +1,10 @@
 import { useState } from "react";
 import clsx from "clsx";
 import MdArrowDropDown from "@meronex/icons/md/MdArrowDropDown";
+import ImMoveUp from "@meronex/icons/im/ImMoveUp";
+import ImMoveDown from "@meronex/icons/im/ImMoveDown";
+import MdAddBox from "@meronex/icons/md/MdAddBox";
+import MdBackspace from "@meronex/icons/md/MdBackspace";
 
 import Key from "./Key";
 import Value from "./Value";
@@ -18,9 +22,15 @@ const Row = (props: RowProps) => {
     handleValue,
     getValue,
     handleKey,
+    handleMove,
+    checkArrayMovement,
+    handleAdd,
+    handleDelete,
   } = props;
   const [collapse, setCollapse] = useState(true);
   const isObject = typeof value === "object";
+  const isArrayItem = !isNaN(Number(jsonKey));
+  const isArray = isObject ? Object.keys(value)[0] === "0" : false;
   const breadcrumb = [...path, jsonKey];
 
   const rowClass = clsx(
@@ -48,6 +58,26 @@ const Row = (props: RowProps) => {
           handleValue={handleValue}
           getValue={getValue}
         />
+        {isArrayItem && (
+          <div className={styles["json-editor__row__move-array-item"]}>
+            {checkArrayMovement(path, Number(jsonKey), "up") && (
+              <ImMoveUp
+                onClick={() => handleMove(path, Number(jsonKey), "up")}
+              />
+            )}
+            {checkArrayMovement(path, Number(jsonKey), "down") && (
+              <ImMoveDown
+                onClick={() => handleMove(path, Number(jsonKey), "down")}
+              />
+            )}
+          </div>
+        )}
+        {isArrayItem && (
+          <MdBackspace
+            className={styles["json-editor__row__delete-item"]}
+            onClick={() => handleDelete(Number(jsonKey))}
+          />
+        )}
       </div>
       {isObject && (
         <Collapse isOpen={collapse}>
@@ -55,6 +85,14 @@ const Row = (props: RowProps) => {
             {renderObject(value, breadcrumb)}
           </div>
         </Collapse>
+      )}
+      {isArray && (
+        <button
+          className={styles["json-editor__row__add-item"]}
+          onClick={() => handleAdd(path)}
+        >
+          <MdAddBox />
+        </button>
       )}
     </div>
   );

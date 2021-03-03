@@ -46,7 +46,7 @@ interface ChampionChange {
   name: string;
   resume: string;
   context: string;
-  changes: [];
+  changes: { stat: AbilityKey; blocks: ChangeBlockProps["block"][] }[];
   goal: string;
 }
 

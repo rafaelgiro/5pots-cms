@@ -1,0 +1,26 @@
+@import "../../../core/styles/variables";
+
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0.8rem;
+  background-color: $color-gold;
+  z-index: 10000;
+
+  &--visible {
+    animation: load 2s linear infinite;
+  }
+}
+
+@keyframes load {
+  from {
+    left: -5%;
+    width: 5%;
+  }
+  to {
+    left: 130%;
+    width: 100%;
+  }
+}

@@ -16,6 +16,7 @@ export interface UIReducerStateI {
   snackbar: { msg?: string; variant?: string; visible: boolean; time?: number };
   menu: boolean;
   setMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  isLoading: boolean;
 }
 
 export type UIReducerActionsType =
@@ -23,7 +24,9 @@ export type UIReducerActionsType =
   | "SHOW_SNACKBAR"
   | "HIDE_SNACKBAR"
   | "OPEN_MENU"
-  | "CLOSE_MENU";
+  | "CLOSE_MENU"
+  | "OPEN_LOADING"
+  | "CLOSE_LOADING";
 
 export interface SnackBarI {
   variant?: "success" | "error" | "default";

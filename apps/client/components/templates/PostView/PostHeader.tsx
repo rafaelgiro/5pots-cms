@@ -20,10 +20,10 @@ const PostHeader = (props: PostHeaderProps) => {
         <div className={styles["post-header__content__cat"]}>
           <div>
             <Typography component="p" variant="p">
-              {category}
+              Categoria
             </Typography>
             <Typography component="p" variant="p">
-              Notícia Oficial
+              {category}
             </Typography>
           </div>
           <CatIcon stroke={colors[category]} />

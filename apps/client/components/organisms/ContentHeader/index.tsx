@@ -22,7 +22,7 @@ import styles from "./styles.module.scss";
 import headerStyles from "../Header/styles.module.scss";
 
 const ContentHeader = (props: ContentHeaderProps) => {
-  const { titles, title, category } = props;
+  const { titles, title, type } = props;
   const { uiState: state } = useContext(UIContext);
   const { user } = useContext(AuthContext);
   const { postContent } = useContext(PostContext);
@@ -41,7 +41,7 @@ const ContentHeader = (props: ContentHeaderProps) => {
   const renderTitles = () => {
     return titles?.map((sectionTitle) => (
       <div key={sectionTitle} className={styles["content-header__title"]}>
-        {category === "pbe" && (
+        {type === "patch-notes" && (
           <Tabs>
             <TabItem title="Campeões" icon="champions">
               <div className={styles["content-header__champions"]}>
@@ -64,7 +64,7 @@ const ContentHeader = (props: ContentHeaderProps) => {
                 {postContent?.skins?.map((skin) => (
                   <img
                     key={`content-skin-anchor-${skin.id}`}
-                    src={`https://f002.backblazeb2.com/file/cincopots/splash/${skin.id}.jpg`}
+                    src={`https://assets.5pots.com/file/cincopots/splash/${skin.id}.jpg`}
                     width="102"
                     alt="Splash skin"
                   />

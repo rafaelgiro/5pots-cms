@@ -9,6 +9,7 @@ import postRoutes from "./routes/post";
 import championRoutes from "./routes/champion";
 import tooltipRoutes from "./routes/tooltip";
 import authRoutes from "./routes/auth";
+import assetsRoutes from "./routes/assets";
 import passportConfig from "./services/passport";
 import "./models/user";
 
@@ -25,13 +26,14 @@ app.use("/posts", postRoutes);
 app.use("/champions", championRoutes);
 app.use("/tooltip", tooltipRoutes);
 app.use("/auth", authRoutes);
+app.use("/assets", assetsRoutes);
 
 // Middleware de erros pras rotas
 app.use(errorHandling);
 
 // Conecta o banco e inicia o servidor
 mongoose
-  .connect(process.env.MONGO_URI || "mongodb://db:27017/5pots-dev", {
+  .connect(process.env.MONGO_URI || "mongodb://localhost:27017/5pots-dev", {
     useNewUrlParser: true,
   })
   .then(() => {

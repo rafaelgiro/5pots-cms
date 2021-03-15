@@ -32,7 +32,7 @@ const ChampionChange = (props: ChampionChangeProps) => {
           <div>
             <div className={styles["champion-change__header__portrait"]}>
               <img
-                src={`https://f002.backblazeb2.com/file/cincopots/champions/${sanitazedChampion}.png`}
+                src={`https://assets.5pots.com/file/cincopots/champions/${sanitazedChampion}.png`}
                 alt={champion.championName}
               />
             </div>
@@ -78,7 +78,7 @@ const ChampionChange = (props: ChampionChangeProps) => {
           )}
         >
           <img
-            src={`https://f002.backblazeb2.com/file/cincopots/champions/${sanitazedChampion}.png`}
+            src={`https://assets.5pots.com/file/cincopots/champions/${sanitazedChampion}.png`}
             alt={champion.championName}
           />
           <div>
@@ -119,7 +119,7 @@ const ChampionChange = (props: ChampionChangeProps) => {
         const isBase = abilityKey === "base";
         const abilityIcon =
           !isBase &&
-          `https://f002.backblazeb2.com/file/cincopots/abilities/${sanitazedChampion}${abilityKey.toUpperCase()}.png`;
+          `https://assets.5pots.com/file/cincopots/abilities/${sanitazedChampion}${abilityKey.toUpperCase()}.png`;
 
         return (
           <div

@@ -28,7 +28,7 @@
   }
 
   &__input {
-    height: 3rem; // O navegador adiciona 2px por algum motivo - padding top
+    height: 4.8rem;
     width: calc(
       100% - 5.2rem
     ); // Width inteiro menos o padding esquerdo e bordas

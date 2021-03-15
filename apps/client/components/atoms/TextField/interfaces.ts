@@ -9,4 +9,5 @@ export interface TextFieldProps {
   name: string;
   errors?: { [key: string]: { message: string } };
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  defaultValue?: string;
 }

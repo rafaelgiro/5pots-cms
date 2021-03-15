@@ -7,8 +7,8 @@ export interface PostBodyProps {
   sections: Post["sections"];
   titles: string[];
   title: Post["title"];
-  category: Post["category"];
   champions: Champion[];
+  type: Post["type"];
 }
 
 export interface PostHeaderProps {
@@ -19,4 +19,5 @@ export interface PostHeaderProps {
   author: Post["author"];
   url: Post["url"];
   postedAt: Post["postedAt"];
+  type: Post["type"];
 }

@@ -7,6 +7,7 @@ export const initialState: UIReducerStateI = {
   snackbar: { msg: "", variant: "default", visible: false, time: 3000 },
   menu: false,
   setMenu: () => false,
+  isLoading: false,
 };
 
 export function reducer(
@@ -46,6 +47,16 @@ export function reducer(
       return {
         ...state,
         menu: false,
+      };
+    case "OPEN_LOADING":
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case "CLOSE_LOADING":
+      return {
+        ...state,
+        isLoading: false,
       };
     default:
       throw new Error("Passe um tipo de action para o dispatch");

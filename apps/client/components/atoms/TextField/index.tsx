@@ -20,6 +20,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
     name,
     id,
     errors,
+    defaultValue,
     ...rest
   } = props;
   const [hideText, setHideText] = useState(type === "password");
@@ -46,6 +47,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
         required={required}
         ref={ref}
         name={name}
+        defaultValue={defaultValue}
         {...rest}
       />
       <label className={styles["text-field__label"]} htmlFor={name || id}>

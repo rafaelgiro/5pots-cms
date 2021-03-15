@@ -8,7 +8,7 @@ import MainCard from "./MainCard";
 import styles from "./styles.module.scss";
 
 const postMain = {
-  image: "https://f002.backblazeb2.com/file/cincopots/posts/mecha.jpg",
+  image: "https://assets.5pots.com/file/cincopots/posts/mecha.jpg",
   category: "Notícias oficiais",
   title: "Criando os Reinos Mech",
   description:
@@ -16,7 +16,7 @@ const postMain = {
 };
 
 const postSelf = {
-  image: "https://f002.backblazeb2.com/file/cincopots/posts/kench_pbe.jpg",
+  image: "https://assets.5pots.com/file/cincopots/posts/kench_pbe.jpg",
   category: "Atualização do PBE",
   title: "Atualização do PBE 19/10: Sion te amo",
   description:
@@ -24,8 +24,7 @@ const postSelf = {
 };
 
 const postLink = {
-  image:
-    "https://f002.backblazeb2.com/file/cincopots/posts/seraphine_splash.jpg",
+  image: "https://assets.5pots.com/file/cincopots/posts/seraphine_splash.jpg",
   category: "Nova Campeã",
   title: "Seraphine",
   description:

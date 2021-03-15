@@ -1,5 +1,5 @@
-export const defaultAbilityChange = {
-  stat: "T",
+export const defaultAbilityChange: ChampionChange["changes"][0] = {
+  stat: "p",
   blocks: [
     {
       type: "change",

@@ -11,7 +11,7 @@ const ChampionIcon = (props: ChampionIconProps) => {
       <img
         alt={`${name} icon`}
         src={`
-          https://f002.backblazeb2.com/file/cincopots/champions/${name
+          https://assets.5pots.com/file/cincopots/champions/${name
             .replace(" ", "")
             .replace("'", "")}.png
         `}

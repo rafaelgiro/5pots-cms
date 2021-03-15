@@ -9,6 +9,7 @@ import AuthContext from "../../../core/contexts/AuthContext";
 import api from "../../../core/services/api";
 import parseJwt from "../../../core/helpers/parseJwt";
 import { useRouter } from "next/router";
+import Loadingbar from "../../atoms/Loadingbar";
 
 const Layout: React.FC = (props) => {
   const { children } = props;
@@ -59,6 +60,7 @@ const Layout: React.FC = (props) => {
   }, [setUser, router]);
   return (
     <>
+      <Loadingbar />
       <Header />
       <div className="header-offset">{children}</div>
       <Snackbar />

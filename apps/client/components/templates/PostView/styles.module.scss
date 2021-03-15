@@ -8,7 +8,7 @@
   position: relative;
   --color-category: #3dbdd3;
   & > div:first-child::before {
-    background-image: url("https://f002.backblazeb2.com/file/cincopots/backgrounds/pbe-light.jpg");
+    background-image: url("https://assets.5pots.com/file/cincopots/backgrounds/pbe-light.jpg");
   }
 }
 .riot {
@@ -18,7 +18,7 @@
   --color-category: #e03f3f;
 
   & > div:first-child::before {
-    background-image: url("https://f002.backblazeb2.com/file/cincopots/backgrounds/dev-light.jpg");
+    background-image: url("https://assets.5pots.com/file/cincopots/backgrounds/dev-light.jpg");
   }
 }
 .default {
@@ -156,10 +156,6 @@
 
       :first-child {
         margin-bottom: 0.4rem;
-      }
-
-      p:last-child {
-        opacity: 0.5;
       }
     }
 

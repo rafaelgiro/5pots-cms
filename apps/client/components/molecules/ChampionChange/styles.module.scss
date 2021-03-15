@@ -375,3 +375,13 @@
     margin-left: 0 !important;
   }
 }
+
+.editable {
+  border: 1px dashed rgba(#3c353d, 0.3);
+  outline: 0;
+  padding: 2px;
+
+  * {
+    outline: 0;
+  }
+}

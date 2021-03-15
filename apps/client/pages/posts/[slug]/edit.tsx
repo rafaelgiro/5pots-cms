@@ -1,20 +1,32 @@
-import PostView from "../../components/templates/PostView";
+import { useContext } from "react";
 
-import api from "../../core/services/api";
-import PostContext from "../../core/contexts/PostContext";
+import BateuNaPortaDaPortaErrada from "../../404";
+import PostEdit from "../../../components/templates/PostEdit";
 
-import styles from "./styles.module.scss";
+import api from "../../../core/services/api";
+import PostContext from "../../../core/contexts/PostContext";
+import AuthContext from "../../../core/contexts/AuthContext";
+
+import styles from "../styles.module.scss";
 
 function PostPage(props: PostsPageProps) {
-  const { post, champions, postContent } = props;
+  const { post, champions, postContent, allChampions } = props;
+  const { user } = useContext(AuthContext);
 
-  return (
-    <div className={styles["post-page"]}>
-      <PostContext.Provider value={{ postContent }}>
-        <PostView post={post} champions={champions} />
-      </PostContext.Provider>
-    </div>
-  );
+  if (user?.isAdmin)
+    return (
+      <div className={styles["post-page"]}>
+        <PostContext.Provider value={{ postContent }}>
+          <PostEdit
+            post={post}
+            champions={champions}
+            allChampions={allChampions || []}
+          />
+        </PostContext.Provider>
+      </div>
+    );
+
+  return <BateuNaPortaDaPortaErrada />;
 }
 
 // This function gets called at build time
@@ -55,12 +67,19 @@ export async function getStaticProps({ params }: StaticPropsParams) {
     { name: "Sona PsyOps", id: "Sona_17" },
   ];
 
+  const allChampionsRes = await api.get("/champions");
+
+  const allChampions = allChampionsRes.data.champions.map(
+    (c: Champion) => c.championName
+  );
+
   // Pass post data to the page via props
   return {
     props: {
       post,
       champions,
       postContent: { champions: champChanges || null, skins },
+      allChampions,
     },
     revalidate: 60,
   };

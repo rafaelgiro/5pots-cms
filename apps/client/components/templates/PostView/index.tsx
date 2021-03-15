@@ -20,6 +20,7 @@ const PostView = (props: PostViewProps) => {
     sections,
     subTitles,
     postedAt,
+    type,
   } = post;
 
   // Checa se tem um parágrafo de introdução sem título
@@ -38,13 +39,14 @@ const PostView = (props: PostViewProps) => {
         author={author}
         url={url}
         postedAt={postedAt}
+        type={type}
       />
       <PostBody
         sections={sections}
         titles={hasIntro}
         title={title}
-        category={category}
         champions={champions}
+        type={type}
       />
     </article>
   );

@@ -3,10 +3,8 @@ import { HttpException } from "../middlewares/error";
 import Champion from "../models/champion";
 
 const getChampions = (req: Request, res: Response, next: NextFunction) => {
-  const currentPage = Number(req.query.page) || 1;
   const queryChampions = req.query.champions || "";
   const champions = queryChampions ? String(queryChampions).split(",") : [];
-  const perPage = champions.length || 20;
   let totalItems: number;
 
   // Acha os campeões específicos do post se tiver
@@ -19,11 +17,7 @@ const getChampions = (req: Request, res: Response, next: NextFunction) => {
     .countDocuments()
     .then((count) => {
       totalItems = count;
-      return query
-        .find({}, { sections: 0 })
-        .skip((currentPage - 1) * perPage)
-        .limit(perPage)
-        .sort({ championName: 1 });
+      return query.find({}, { sections: 0 }).sort({ championName: 1 });
     })
     .then((champions) => {
       if (champions.length === 0)

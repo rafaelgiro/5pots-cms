@@ -1,0 +1,30 @@
+@import "../../../core/styles/variables";
+
+.champions-dev {
+  &__add-champion {
+    display: FLEX;
+    align-items: flex-end;
+    justify-content: center;
+    border: 3px dashed $color-grey;
+    padding: 2.4rem;
+    margin-bottom: 8rem;
+
+    &--disable {
+      svg {
+        color: $color-grey !important;
+        cursor: default !important;
+      }
+    }
+
+    svg {
+      height: 4rem;
+      width: auto;
+      margin-left: 1.6rem;
+
+      &:hover {
+        color: var(--color-category);
+        cursor: pointer;
+      }
+    }
+  }
+}

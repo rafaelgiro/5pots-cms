@@ -1,0 +1,72 @@
+@import "../../../core/styles/variables";
+
+.select {
+  position: relative;
+  width: 24rem;
+  height: 4rem;
+  background-color: $color-grey;
+  border-radius: 0.25rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &--open {
+    .select__options {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &__input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+  }
+
+  &__value {
+    transform: translate(1.6rem, 0.6rem);
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: 0.1rem;
+  }
+
+  &__options {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-height: 24rem;
+    background-color: $color-grey;
+    visibility: hidden;
+    opacity: 0;
+    padding: 1rem;
+    overflow: scroll;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    z-index: 100;
+
+    button {
+      display: block;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      font-size: 1.4rem;
+      padding: 0.8rem 0.4rem;
+      font-weight: 600;
+      text-align: left;
+      letter-spacing: 0.1rem;
+      width: 100%;
+
+      &:first-child {
+        padding-top: 0rem;
+        color: $color-gold;
+      }
+
+      &:hover {
+        color: var(--color-category);
+      }
+    }
+  }
+}

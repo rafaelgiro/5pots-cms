@@ -1,5 +1,5 @@
 interface Post {
-  __v: number;
+  __v?: number;
   _id: string;
   author: string;
   subTitles: string[];
@@ -17,6 +17,7 @@ interface Post {
     content: string | [];
     champions: ChampionChange[];
   }[];
+  type: "crawler" | "patch-notes";
 }
 
 interface Champion {
@@ -46,8 +47,16 @@ interface ChampionChange {
   name: string;
   resume: string;
   context: string;
-  changes: { stat: AbilityKey; blocks: ChangeBlockProps["block"][] }[];
-  goal: string;
+  changes: {
+    stat: AbilityKey;
+    blocks: {
+      type: "removed" | "new" | "updated" | "reworked" | "change";
+      attribute: string;
+      before: string;
+      after: string;
+    }[];
+  }[];
+  goal: "buff" | "nerf" | "rework" | "adjusted";
 }
 
 interface PostContentI {
@@ -64,6 +73,7 @@ interface PostsPageProps {
   post: Post;
   champions: Champion[];
   postContent: PostContentI;
+  allChampions?: string[];
 }
 
 interface StaticPropsParams {

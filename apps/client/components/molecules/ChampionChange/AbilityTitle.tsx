@@ -2,10 +2,11 @@ import { useState } from "react";
 import clsx from "clsx";
 
 import Typography from "../../atoms/Typography";
+
 import api from "../../../core/services/api";
 
-import styles from "./styles.module.scss";
 import { AbilityTitleProps } from "./interfaces";
+import styles from "./styles.module.scss";
 
 const AbilityTitle = (props: AbilityTitleProps) => {
   const { isBase, abilityKey, abilityName, championName } = props;

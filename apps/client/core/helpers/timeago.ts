@@ -16,7 +16,7 @@ const TimeAgo = (function () {
     day: "um dia",
     days: "%d dias",
     month: "por volta de um mês",
-    months: "%d months",
+    months: "%d meses",
     year: "por volta de um ano",
     years: "%d anos",
   };

@@ -1,0 +1,95 @@
+@import "../../../core/styles/variables";
+
+.edit-champion-change {
+  &__container {
+    margin-bottom: 2.4rem;
+    position: relative;
+  }
+
+  &__controls {
+    position: absolute;
+    top: 50%;
+    left: -7.2rem;
+    transform: translateY(-50%);
+
+    &__delete,
+    &__move {
+      padding: 0.8rem;
+      height: 4.8rem;
+      width: 4.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.25rem;
+      margin-bottom: 1rem;
+
+      svg {
+        color: var(--color-background) !important;
+      }
+    }
+
+    &__delete {
+      background-color: $color-riot;
+    }
+  }
+
+  &__change {
+    display: flex;
+    align-items: center;
+    background-color: #1c1e26;
+    padding-left: 1.6rem;
+
+    &__delete {
+      margin-top: 2.4rem !important;
+      path {
+        fill: #f43e5c !important;
+      }
+    }
+
+    &__move {
+      width: 3.2rem;
+
+      & > svg {
+        width: 3.2rem;
+        height: 3.2rem;
+        cursor: pointer;
+        opacity: 0.5;
+        transition: opacity 0.2s ease-out;
+        margin-top: 0.8rem;
+
+        &:hover {
+          opacity: 1;
+        }
+        path {
+          fill: #f09383;
+        }
+      }
+    }
+  }
+
+  &__add-change {
+    background-color: #16161c;
+    border-left: 2.4rem solid #1c1e26;
+    border-right: 2.4rem solid #1c1e26;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.6rem;
+    width: 100%;
+
+    &:hover {
+      cursor: pointer;
+      svg {
+        opacity: 1;
+      }
+    }
+
+    svg {
+      height: 2.4rem;
+      width: 2.4rem;
+      fill: #3fdaa4;
+      opacity: 0.4;
+      transition: all 0.2s ease-out;
+    }
+  }
+}

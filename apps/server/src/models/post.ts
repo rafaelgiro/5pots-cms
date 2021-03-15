@@ -13,6 +13,8 @@ const postSchema = new Schema({
   sections: { type: [], required: true },
   subTitles: { type: [{ type: String }], required: true },
   postedAt: { type: String, required: true, default: Date.now },
+  slug: { type: String, required: true, unique: true },
+  champions: { type: [] },
 });
 
 export default mongoose.model("posts", postSchema);

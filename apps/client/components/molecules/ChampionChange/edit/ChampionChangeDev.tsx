@@ -1,27 +1,114 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import ContentEditable from "react-contenteditable";
 import clsx from "clsx";
 import MdSubtitles from "@meronex/icons/md/MdSubtitles";
 import MdFormatQuote from "@meronex/icons/md/MdFormatQuote";
 
-import AbilityTitle from "./AbilityTitle";
-import ChangeBlock from "./ChangeBlock";
-import Logo from "../../atoms/Logo";
-import Typography from "../../atoms/Typography";
-import ClassIcon from "../../atoms/Icons/ClassIcon";
-import ChangeIcon from "../../atoms/Icons/ChangeIcon";
+import AbilityTitleDev from "./AbilityTitleDev";
+import ChangeBlockDev from "./ChangeBlockDev";
+import Logo from "../../../atoms/Logo";
+import Typography from "../../../atoms/Typography";
+import ClassIcon from "../../../atoms/Icons/ClassIcon";
+import ChangeIcon from "../../../atoms/Icons/ChangeIcon";
+import EditContext from "../../../templates/PostEdit/EditContext";
 
-import { ChampionChangeDevProps, ChangeBlockProps } from "./interfaces";
+import debouce from "../../../../core/helpers/debouce";
+import api from "../../../../core/services/api";
 
-import styles from "./styles.module.scss";
-import { ChangeIconType, ClassIconType } from "../../atoms/Icons/interfaces";
-import api from "../../../core/services/api";
+import { ChangeIconType, ClassIconType } from "../../../atoms/Icons/interfaces";
+import { ChampionChangeDevProps, ChangeBlockProps } from "../interfaces";
+
+import styles from "../styles.module.scss";
 
 const ChampionChangeDev = (props: ChampionChangeDevProps) => {
   const { change, championInfo } = props;
   const [summary, setSummary] = useState("summary");
   const [champion, setChampion] = useState<Champion>();
+  const {
+    postState,
+    setPostState,
+    championSectionIndex,
+    setHasChanged,
+  } = useContext(EditContext);
   const sanitazedChampion = championInfo.name.replace(" ", "").replace("'", "");
   const { changes } = change;
+  const championIndex = postState?.sections[
+    championSectionIndex
+  ].champions.findIndex((c) => c.name === championInfo.name);
+
+  function handleAbilityKey(
+    champion: string,
+    changeIndex: number,
+    newKey: AbilityKey
+  ) {
+    if (postState && (championIndex || championIndex === 0)) {
+      const newPost = { ...postState };
+      newPost.sections[championSectionIndex].champions[championIndex].changes[
+        changeIndex
+      ].stat = newKey;
+
+      setPostState(newPost);
+      setHasChanged(true);
+    }
+  }
+
+  function handleBlockType(
+    changeIndex: number,
+    blockIndex: number,
+    newValue: "removed" | "new" | "updated" | "reworked" | "change"
+  ) {
+    if (postState && (championIndex || championIndex === 0)) {
+      const newPost = { ...postState };
+      newPost.sections[championSectionIndex].champions[championIndex].changes[
+        changeIndex
+      ].blocks[blockIndex].type = newValue;
+
+      setPostState(newPost);
+      setHasChanged(true);
+    }
+  }
+
+  function handleBlockChangeText(
+    changeIndex: number,
+    blockIndex: number,
+    newValue: string,
+    key: "attribute" | "before" | "after"
+  ) {
+    if (postState && (championIndex || championIndex === 0)) {
+      const newPost = { ...postState };
+      newPost.sections[championSectionIndex].champions[championIndex].changes[
+        changeIndex
+      ].blocks[blockIndex][key] = newValue;
+
+      setPostState(newPost);
+      setHasChanged(true);
+    }
+  }
+
+  const handleBlockChange = debouce(handleBlockChangeText, 600);
+
+  function handleInfo(value: string) {
+    const key = summary === "summary" ? "resume" : "context";
+
+    const championIndex = postState?.sections[
+      championSectionIndex
+    ].champions.findIndex((c) => c.name === championInfo.name);
+
+    if (postState && (championIndex || championIndex === 0)) {
+      const newPost = { ...postState };
+      console.log(
+        newPost.sections[championSectionIndex].champions[championIndex][key]
+      );
+      newPost.sections[championSectionIndex].champions[championIndex][
+        key
+      ] = value;
+
+      setPostState(newPost);
+      setHasChanged(true);
+    }
+  }
+
+  const handleHeaderInfo = debouce(handleInfo, 600);
 
   useEffect(() => {
     async function getChampion() {
@@ -41,7 +128,7 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
             <div>
               <div className={styles["champion-change__header__portrait"]}>
                 <img
-                  src={`https://f002.backblazeb2.com/file/cincopots/champions/${sanitazedChampion}.png`}
+                  src={`https://assets.5pots.com/file/cincopots/champions/${sanitazedChampion}.png`}
                   alt={champion.championName}
                 />
               </div>
@@ -74,8 +161,16 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
                   <MdFormatQuote />
                 </button>
               </div>
-              <Typography variant="p" component="p">
-                {summary === "summary" ? change.resume : `“${change.context}”`}
+              <Typography className={styles.editable} variant="p" component="p">
+                <ContentEditable
+                  tagName="span"
+                  html={
+                    summary === "summary"
+                      ? change.resume
+                      : `“${change.context}”`
+                  }
+                  onChange={(e) => handleHeaderInfo(e.target.value)}
+                />
               </Typography>
             </div>
           </div>
@@ -87,7 +182,7 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
             )}
           >
             <img
-              src={`https://f002.backblazeb2.com/file/cincopots/champions/${sanitazedChampion}.png`}
+              src={`https://assets.5pots.com/file/cincopots/champions/${sanitazedChampion}.png`}
               alt={champion.championName}
             />
             <div>
@@ -115,20 +210,28 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
                   <MdFormatQuote />
                 </button>
               </div>
-              <Typography variant="p" component="p">
-                {summary === "summary" ? change.resume : `“${change.context}”`}
+              <Typography className={styles.editable} variant="p" component="p">
+                <ContentEditable
+                  tagName="span"
+                  html={
+                    summary === "summary"
+                      ? change.resume
+                      : `“${change.context}”`
+                  }
+                  onChange={(e) => handleHeaderInfo(e.target.value)}
+                />
               </Typography>
             </div>
           </div>
         </div>
 
         {/* Mapeia todas as mudanças habilidade por habilidade */}
-        {changes.map((change) => {
+        {changes.map((change, changeIndex) => {
           const { blocks, stat: abilityKey } = change;
           const isBase = abilityKey === "base";
           const abilityIcon =
             !isBase &&
-            `https://f002.backblazeb2.com/file/cincopots/abilities/${sanitazedChampion}${abilityKey.toUpperCase()}.png`;
+            `https://assets.5pots.com/file/cincopots/abilities/${sanitazedChampion}${abilityKey.toUpperCase()}.png`;
 
           return (
             <div
@@ -140,21 +243,28 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
                   <img src={abilityIcon} alt="imagem da habilidade" />
                 )}
                 {/* Nome da habilidade */}
-                <AbilityTitle
+                <AbilityTitleDev
                   isBase={isBase}
                   abilityKey={abilityKey}
                   abilityName={champion.abilities[abilityKey]}
                   championName={sanitazedChampion}
+                  unsanitazedChampion={championInfo.name}
+                  changeIndex={changeIndex}
+                  handleAbilityKey={debouce(handleAbilityKey, 400)}
                 />
               </div>
               {/* Bloco de mudança */}
               <div className={styles["champion-change__change__block"]}>
                 {blocks.map((block: ChangeBlockProps["block"], i: number) => {
                   return (
-                    <ChangeBlock
+                    <ChangeBlockDev
                       key={`champ-${sanitazedChampion}-block-${i}`}
                       block={block}
                       champion={champion.championName}
+                      handleBlockType={handleBlockType}
+                      changeIndex={changeIndex}
+                      blockIndex={i}
+                      handleBlockChange={handleBlockChange}
                     />
                   );
                 })}

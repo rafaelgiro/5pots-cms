@@ -140,7 +140,6 @@ const forgotPassword = (req: Request, res: Response, next: NextFunction) => {
           ${process.env.URL}/auth/reset?token=${newToken.token}`,
         };
 
-        console.log(mailOptions);
         transporter.sendMail(mailOptions, (erro) => {
           if (erro) {
             return next(new HttpException(500, "Erro ao enviar o email"));

@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import MdDeleteSweep from "@meronex/icons/md/MdDeleteSweep";
 import SimpleSelect from "../../../atoms/SimpleSelect";
 import Typography from "../../../atoms/Typography";
 
@@ -15,6 +16,7 @@ const ChangeBlockDev = (props: ChangeBlockDevProps) => {
     changeIndex,
     blockIndex,
     handleBlockChange,
+    handleBlockChangeDelete,
   } = props;
 
   const typeOptions = [
@@ -26,6 +28,12 @@ const ChangeBlockDev = (props: ChangeBlockDevProps) => {
 
   return (
     <div className={styles["block-dev"]}>
+      <button
+        onClick={() => handleBlockChangeDelete(changeIndex, blockIndex)}
+        className={styles["block-dev__delete"]}
+      >
+        <MdDeleteSweep />
+      </button>
       <SimpleSelect
         className={clsx(
           styles["block-dev__select"],

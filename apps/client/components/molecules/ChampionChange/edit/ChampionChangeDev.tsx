@@ -3,7 +3,10 @@ import ContentEditable from "react-contenteditable";
 import clsx from "clsx";
 import MdSubtitles from "@meronex/icons/md/MdSubtitles";
 import MdFormatQuote from "@meronex/icons/md/MdFormatQuote";
+import MdBackspace from "@meronex/icons/md/MdBackspace";
 
+import AddChangeBlock from "./AddChangeBlock";
+import AddAbility from "./AddAbility";
 import AbilityTitleDev from "./AbilityTitleDev";
 import ChangeBlockDev from "./ChangeBlockDev";
 import Logo from "../../../atoms/Logo";
@@ -14,11 +17,13 @@ import EditContext from "../../../templates/PostEdit/EditContext";
 
 import debouce from "../../../../core/helpers/debouce";
 import api from "../../../../core/services/api";
+import { defaultAbility, defaultChangeBlock } from "./helpers";
 
 import { ChangeIconType, ClassIconType } from "../../../atoms/Icons/interfaces";
 import { ChampionChangeDevProps, ChangeBlockProps } from "../interfaces";
 
 import styles from "../styles.module.scss";
+import devStyles from "./styles.module.scss";
 
 const ChampionChangeDev = (props: ChampionChangeDevProps) => {
   const { change, championInfo } = props;
@@ -46,6 +51,18 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
       newPost.sections[championSectionIndex].champions[championIndex].changes[
         changeIndex
       ].stat = newKey;
+
+      setPostState(newPost);
+      setHasChanged(true);
+    }
+  }
+
+  function deleteAbility(changeIndex: number) {
+    if (postState && (championIndex || championIndex === 0)) {
+      const newPost = { ...postState };
+      newPost.sections[championSectionIndex].champions[
+        championIndex
+      ].changes.splice(changeIndex, 1);
 
       setPostState(newPost);
       setHasChanged(true);
@@ -87,18 +104,23 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
 
   const handleBlockChange = debouce(handleBlockChangeText, 600);
 
+  function handleBlockChangeDelete(changeIndex: number, blockIndex: number) {
+    if (postState && (championIndex || championIndex === 0)) {
+      const newPost = { ...postState };
+      newPost.sections[championSectionIndex].champions[championIndex].changes[
+        changeIndex
+      ].blocks.splice(blockIndex, 1);
+
+      setPostState(newPost);
+      setHasChanged(true);
+    }
+  }
+
   function handleInfo(value: string) {
     const key = summary === "summary" ? "resume" : "context";
 
-    const championIndex = postState?.sections[
-      championSectionIndex
-    ].champions.findIndex((c) => c.name === championInfo.name);
-
     if (postState && (championIndex || championIndex === 0)) {
       const newPost = { ...postState };
-      console.log(
-        newPost.sections[championSectionIndex].champions[championIndex][key]
-      );
       newPost.sections[championSectionIndex].champions[championIndex][
         key
       ] = value;
@@ -109,6 +131,30 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
   }
 
   const handleHeaderInfo = debouce(handleInfo, 600);
+
+  function addChangeBlock(changeIndex: number) {
+    if (postState && (championIndex || championIndex === 0)) {
+      const newPost = { ...postState };
+      newPost.sections[championSectionIndex].champions[championIndex].changes[
+        changeIndex
+      ].blocks.push(defaultChangeBlock);
+
+      setPostState(newPost);
+      setHasChanged(true);
+    }
+  }
+
+  function addAbility() {
+    if (postState && (championIndex || championIndex === 0)) {
+      const newPost = { ...postState };
+      newPost.sections[championSectionIndex].champions[
+        championIndex
+      ].changes.push(defaultAbility);
+
+      setPostState(newPost);
+      setHasChanged(true);
+    }
+  }
 
   useEffect(() => {
     async function getChampion() {
@@ -238,6 +284,12 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
               key={`${champion.championName}-${abilityKey}`}
               className={styles["champion-change__change"]}
             >
+              <button
+                onClick={() => deleteAbility(changeIndex)}
+                className={devStyles["remove-ability"]}
+              >
+                <MdBackspace />
+              </button>
               <div className={styles["champion-change__change__name"]}>
                 {abilityIcon && (
                   <img src={abilityIcon} alt="imagem da habilidade" />
@@ -265,13 +317,19 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
                       changeIndex={changeIndex}
                       blockIndex={i}
                       handleBlockChange={handleBlockChange}
+                      handleBlockChangeDelete={handleBlockChangeDelete}
                     />
                   );
                 })}
+                <AddChangeBlock
+                  addChangeBlock={addChangeBlock}
+                  changeIndex={changeIndex}
+                />
               </div>
             </div>
           );
         })}
+        <AddAbility addAbility={addAbility} />
       </div>
     );
 

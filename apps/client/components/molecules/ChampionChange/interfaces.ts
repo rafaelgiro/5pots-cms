@@ -54,4 +54,14 @@ export interface ChangeBlockDevProps extends ChangeBlockProps {
     newValue: string,
     key: "attribute" | "before" | "after"
   ) => void;
+  handleBlockChangeDelete(changeIndex: number, blockIndex: number): void;
+}
+
+export interface AddChangeBlockProps {
+  changeIndex: number;
+  addChangeBlock(changeIndex: number): void;
+}
+
+export interface AddAbilityProps {
+  addAbility(): void;
 }

@@ -10,7 +10,7 @@
 
   &__select {
     margin-left: 8rem;
-    width: 10rem;
+    width: 10rem !important;
     border: 1px dashed rgba(#3c353d, 0.3);
     background-color: transparent;
 
@@ -32,6 +32,7 @@
 
   p {
     flex: 1;
+    line-height: 2.8rem;
   }
 
   &__delete {
@@ -61,7 +62,7 @@
 
   &__select {
     padding: 0;
-    height: 2rem;
+    height: 2rem !important;
     width: 10.25rem !important;
     font-size: 1.2rem !important;
     margin-right: 0.8rem;
@@ -72,19 +73,19 @@
     }
 
     &--change {
-      background-color: var(--color-primary);
+      background-color: var(--color-primary) !important;
     }
 
     &--new {
-      background-color: #42db96;
+      background-color: #42db96 !important;
     }
 
     &--updated {
-      background-color: $color-pbe;
+      background-color: $color-pbe !important;
     }
 
     &--removed {
-      background-color: $color-riot;
+      background-color: $color-riot !important;
     }
 
     p {
@@ -125,4 +126,33 @@
   font-size: 3.2rem;
 
   color: $color-riot;
+}
+
+.change-goal {
+  display: flex;
+  align-items: center;
+
+  &__btn {
+    margin-right: 1.6rem;
+    display: flex;
+    align-items: center;
+    opacity: 0.5;
+
+    svg,
+    rect {
+      fill: none !important;
+    }
+
+    span {
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      font-weight: bold;
+      letter-spacing: 0.2rem;
+      margin-left: -0.8rem;
+    }
+
+    &--active {
+      opacity: 1;
+    }
+  }
 }

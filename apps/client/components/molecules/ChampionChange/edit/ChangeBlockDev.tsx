@@ -73,7 +73,7 @@ const ChangeBlockDev = (props: ChangeBlockDevProps) => {
         :{" "}
         <ContentEditable
           tagName="span"
-          html={block.before}
+          html={block.before || ""}
           onChange={(e) =>
             handleBlockChange(changeIndex, blockIndex, e.target.value, "before")
           }

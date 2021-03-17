@@ -1,3 +1,5 @@
+import { ChangeIconProps } from "../../atoms/Icons/interfaces";
+
 export interface ChampionChangeProps {
   champion: Champion;
   change: ChampionChange;
@@ -63,5 +65,12 @@ export interface AddChangeBlockProps {
 }
 
 export interface AddAbilityProps {
-  addAbility(): void;
+  addAbility(abilityKey: AbilityKey): void;
+  currentAbilities: string[];
+}
+
+export interface ChangeChampionGoalProps {
+  handleGoalChange(type: ChangeIconProps["type"]): void;
+  championName: string;
+  goal: ChangeIconProps["type"];
 }

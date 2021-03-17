@@ -7,10 +7,18 @@ import viewStyles from "../styles.module.scss";
 import styles from "./styles.module.scss";
 
 const AddAbility = (props: AddAbilityProps) => {
-  const { addAbility } = props;
+  const { addAbility, currentAbilities } = props;
+
+  const abilitiesMap: AbilityKey[] = ["p", "q", "w", "e", "r", "base"];
+  const availableAbilities = abilitiesMap.filter(
+    (ab) => !currentAbilities.includes(ab)
+  );
 
   return (
-    <button onClick={() => addAbility()} className={styles["add-ability"]}>
+    <button
+      onClick={() => addAbility(availableAbilities[0])}
+      className={styles["add-ability"]}
+    >
       <div className={clsx(viewStyles["champion-change__change"], styles.add)}>
         <div className={viewStyles["champion-change__change__name"]}>
           <img

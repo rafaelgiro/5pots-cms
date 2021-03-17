@@ -9,6 +9,7 @@ import AddChangeBlock from "./AddChangeBlock";
 import AddAbility from "./AddAbility";
 import AbilityTitleDev from "./AbilityTitleDev";
 import ChangeBlockDev from "./ChangeBlockDev";
+import ChangeChampionGoal from "./ChangeChampionGoal";
 import Logo from "../../../atoms/Logo";
 import Typography from "../../../atoms/Typography";
 import ClassIcon from "../../../atoms/Icons/ClassIcon";
@@ -19,12 +20,17 @@ import debouce from "../../../../core/helpers/debouce";
 import api from "../../../../core/services/api";
 import { defaultAbility, defaultChangeBlock } from "./helpers";
 
-import { ChangeIconType, ClassIconType } from "../../../atoms/Icons/interfaces";
+import {
+  ChangeIconProps,
+  ChangeIconType,
+  ClassIconType,
+} from "../../../atoms/Icons/interfaces";
 import { ChampionChangeDevProps, ChangeBlockProps } from "../interfaces";
 
 import styles from "../styles.module.scss";
 import devStyles from "./styles.module.scss";
 
+// TODO dá pra quebrar em menores componentes ainda, ou separar as funções
 const ChampionChangeDev = (props: ChampionChangeDevProps) => {
   const { change, championInfo } = props;
   const [summary, setSummary] = useState("summary");
@@ -40,6 +46,12 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
   const championIndex = postState?.sections[
     championSectionIndex
   ].champions.findIndex((c) => c.name === championInfo.name);
+  const currentAbilities = championIndex
+    ? postState?.sections[championSectionIndex].champions[
+        championIndex
+      ].changes.map((c) => c.stat)
+    : [];
+  const abilitiesMap: AbilityKey[] = ["base", "p", "q", "w", "e", "r"];
 
   function handleAbilityKey(
     champion: string,
@@ -51,6 +63,13 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
       newPost.sections[championSectionIndex].champions[championIndex].changes[
         changeIndex
       ].stat = newKey;
+
+      // Ordena
+      newPost.sections[championSectionIndex].champions[
+        championIndex
+      ].changes.sort(
+        (a, b) => abilitiesMap.indexOf(a.stat) - abilitiesMap.indexOf(b.stat)
+      );
 
       setPostState(newPost);
       setHasChanged(true);
@@ -144,12 +163,31 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
     }
   }
 
-  function addAbility() {
+  function addAbility(abilityKey: AbilityKey) {
     if (postState && (championIndex || championIndex === 0)) {
       const newPost = { ...postState };
       newPost.sections[championSectionIndex].champions[
         championIndex
-      ].changes.push(defaultAbility);
+      ].changes.push({ ...defaultAbility, stat: abilityKey });
+
+      // Ordena
+      newPost.sections[championSectionIndex].champions[
+        championIndex
+      ].changes.sort(
+        (a, b) => abilitiesMap.indexOf(a.stat) - abilitiesMap.indexOf(b.stat)
+      );
+
+      setPostState(newPost);
+      setHasChanged(true);
+    }
+  }
+
+  function changeGoal(newGoal: ChangeIconProps["type"]) {
+    if (postState && (championIndex || championIndex === 0)) {
+      const newPost = { ...postState };
+      newPost.sections[championSectionIndex].champions[
+        championIndex
+      ].goal = newGoal as "buff" | "nerf" | "rework" | "adjusted";
 
       setPostState(newPost);
       setHasChanged(true);
@@ -190,6 +228,11 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
                     />
                   ))}
                 </div>
+                <ChangeChampionGoal
+                  handleGoalChange={changeGoal}
+                  championName={champion.championName}
+                  goal={change.goal as ChangeIconProps["type"]}
+                />
               </div>
             </div>
 
@@ -245,6 +288,11 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
                   tag={tag as ClassIconType}
                 />
               ))}
+              <ChangeChampionGoal
+                handleGoalChange={changeGoal}
+                championName={champion.championName}
+                goal={change.goal as ChangeIconProps["type"]}
+              />
             </Typography>
 
             <div className={styles["champion-change__header__context"]}>
@@ -329,7 +377,12 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
             </div>
           );
         })}
-        <AddAbility addAbility={addAbility} />
+        {currentAbilities && currentAbilities.length < 6 && (
+          <AddAbility
+            addAbility={addAbility}
+            currentAbilities={currentAbilities}
+          />
+        )}
       </div>
     );
 

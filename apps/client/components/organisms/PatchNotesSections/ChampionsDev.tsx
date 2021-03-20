@@ -14,10 +14,15 @@ import { ChampionSectionDevProps } from "./interfaces";
 
 import viewStyles from "../../templates/PostView/styles.module.scss";
 import styles from "./styles.module.scss";
+import ConvertChange from "../../molecules/ConvertChange";
 
 const ChampionsSectionDev = (props: ChampionSectionDevProps) => {
   const { championSection, allChampions } = props;
-  const { handleNewChampion, handleChampionChange } = useContext(EditContext);
+  const {
+    handleNewChampion,
+    handleChampionChange,
+    handleNewFromPaste,
+  } = useContext(EditContext);
 
   const championOptions = useMemo(() => {
     return allChampions.map((champion) => {
@@ -37,18 +42,22 @@ const ChampionsSectionDev = (props: ChampionSectionDevProps) => {
           setChange={handleChampionChange}
         />
       ))}
+
       <div className={styles["champions-dev__add-champion"]}>
-        <div>
-          <Typography component="p" variant="sub">
-            Adicionar novo boneco
-          </Typography>
-          <SimpleSelect
-            options={championOptions}
-            handleChange={handleNewChampion}
-            searchable
-          />
+        <ConvertChange handleNewFromPaste={handleNewFromPaste} />
+        <div className={styles["champions-dev__add-champion__manual"]}>
+          <div>
+            <Typography component="p" variant="sub">
+              Adicionar novo boneco
+            </Typography>
+            <SimpleSelect
+              options={championOptions}
+              handleChange={handleNewChampion}
+              searchable
+            />
+          </div>
+          <MdNoteAdd onClick={handleNewChampion} />
         </div>
-        <MdNoteAdd onClick={handleNewChampion} />
       </div>
     </Section>
   );

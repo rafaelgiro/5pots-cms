@@ -10,6 +10,7 @@ const initialState: EditCotextI = {
   setPostState: () => null,
   championSectionIndex: 0,
   setHasChanged: () => null,
+  handleNewFromPaste: () => null,
 };
 const EditContext = createContext(initialState);
 

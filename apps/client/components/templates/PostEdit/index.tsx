@@ -16,6 +16,7 @@ import { PostEditProps } from "./interfaces";
 import postViewStyles from "../PostView/styles.module.scss";
 import styles from "./styles.module.scss";
 import { defaultChampionChange } from "./helpers";
+import ChampionChange from "../../molecules/ChampionChange";
 
 const PostEdit = (props: PostEditProps) => {
   const { post, champions, allChampions } = props;
@@ -127,6 +128,17 @@ const PostEdit = (props: PostEditProps) => {
     }
   }
 
+  function handleNewFromPaste(championChange: ChampionChange) {
+    if (postState.champions.includes(championChange.name)) return;
+
+    const newState = { ...postState };
+
+    newState.sections[championSectionIndex].champions.push(championChange);
+
+    setPostState(newState);
+    if (!hasChanged) setHasChanged(true);
+  }
+
   const hasIntro =
     sections[0].content && sections[0].content.slice(0, 3) === "<p>"
       ? ["Introdução", ...subTitles]
@@ -149,6 +161,7 @@ const PostEdit = (props: PostEditProps) => {
           setPostState,
           championSectionIndex,
           setHasChanged,
+          handleNewFromPaste,
         }}
       >
         <PostHeaderDev

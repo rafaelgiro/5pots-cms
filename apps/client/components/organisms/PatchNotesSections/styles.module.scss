@@ -3,11 +3,17 @@
 .champions-dev {
   &__add-champion {
     display: FLEX;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     border: 3px dashed $color-grey;
     padding: 2.4rem;
-    margin-bottom: 8rem;
+    // margin-bottom: 8rem;
+
+    &__manual {
+      display: flex;
+      align-items: flex-end;
+      margin-left: 4rem;
+    }
 
     &--disable {
       svg {

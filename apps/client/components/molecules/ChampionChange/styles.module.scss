@@ -3,14 +3,10 @@
 
 .champion-change {
   padding: 4rem 3rem;
-  margin: 5rem 0;
+  margin-bottom: 5.6rem;
   background-color: rgba($color-grey, 0.3);
   border: 1px solid rgba($color-grey-dark, 0.05);
   position: relative;
-
-  &:first-of-type {
-    margin-top: 3rem;
-  }
 
   &__header {
     display: flex;

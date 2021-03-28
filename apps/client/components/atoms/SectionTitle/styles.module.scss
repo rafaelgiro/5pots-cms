@@ -1,14 +1,30 @@
+@import "../../../core/styles/variables";
+
 .section-title {
   text-transform: uppercase;
-  letter-spacing: 0.2rem;
   display: flex;
   align-items: flex-start;
-  font-size: 3.2rem;
+  margin-bottom: 2.4rem;
+
+  // color: $color-gold;
+
+  h2 {
+    font-size: 4rem;
+    letter-spacing: 0.2rem;
+  }
 
   svg {
     width: 2.4rem;
     height: 2.4rem;
-    margin: 0 2.4rem;
+    margin: 0 1.6rem;
     fill: var(--color-primary);
+  }
+
+  &--skins {
+    svg {
+      width: 3.2rem;
+      height: 3.2rem;
+      margin-top: -0.4rem;
+    }
   }
 }

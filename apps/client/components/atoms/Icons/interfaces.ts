@@ -19,3 +19,7 @@ export interface ChangeIconProps {
 export interface ClassIconProps {
   tag: ClassIconType;
 }
+
+export interface CurrencyIconsProps {
+  currency: "be" | "rp" | "prestige" | "gemstone";
+}

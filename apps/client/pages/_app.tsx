@@ -4,6 +4,7 @@ import Layout from "../components/templates/Layout";
 import FivePotsProvider from "../core/contexts";
 
 import "../core/styles/global.scss";
+import "react-photoswipe/lib/photoswipe.css";
 
 function App({ Component, pageProps }: AppProps) {
   return (

@@ -1,0 +1,129 @@
+@import "../../../core/styles/variables";
+@import "../../../core/styles/mq";
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(#000, 0.9);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease-out;
+
+  & > div {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: flex-end;
+
+    svg {
+      width: 3.2rem;
+      height: 3.2rem;
+      color: var(--color-background);
+    }
+
+    &--reset-zoom,
+    &--close {
+      position: absolute;
+      top: 2.4rem;
+      width: 4.8rem;
+      height: 4.8rem;
+      background-color: var(--color-background);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+
+      svg {
+        color: var(--color-primary);
+      }
+    }
+
+    &--close {
+      right: 1.6rem;
+    }
+
+    &--reset-zoom {
+      right: 8rem;
+    }
+
+    &--next,
+    &--previous {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: var(--color-primary);
+      padding: 2.4rem 0rem;
+      transition: all 0.2s ease-out;
+      z-index: 999;
+
+      &:hover {
+        padding: 2.4rem 0.8rem;
+      }
+
+      @include tab-port {
+        opacity: 0.8;
+      }
+    }
+
+    &--next {
+      right: 0;
+    }
+
+    &--previous {
+      left: 0;
+    }
+  }
+
+  &__content {
+    height: calc(100% - 6.4rem);
+    position: relative;
+    overflow: scroll;
+    width: 100%;
+  }
+
+  &__img {
+    max-width: calc(90% - 9.6rem);
+    max-height: 80%;
+    margin-top: 2%;
+    width: auto;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s ease-out;
+
+    @include tab-port {
+      max-width: 95%;
+      max-height: 75%;
+    }
+
+    &--zoom {
+      max-width: unset;
+      max-height: unset;
+      width: 0;
+      left: 0;
+      transform: translateY(-50%);
+      margin-top: 0;
+    }
+
+    &--visible {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &--visible {
+    opacity: 1;
+    visibility: visible;
+    z-index: 10000;
+  }
+}

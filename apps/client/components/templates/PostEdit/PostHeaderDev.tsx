@@ -38,7 +38,7 @@ const PostHeaderDev = (props: PostHeaderDevProps) => {
   const { uiDispatch: dispatch } = useContext(UIContext);
 
   function renderDefaultImages() {
-    const imgs = [...Array(12)].map((_, index) => {
+    const imgs = [...Array(14)].map((_, index) => {
       const url = `https://assets.5pots.com/file/cincopots/posts/${index}.jpg`;
       return (
         <img
@@ -63,8 +63,6 @@ const PostHeaderDev = (props: PostHeaderDevProps) => {
         files.forEach((file, i) => {
           formData.append(`image-${i}`, file);
         });
-        formData.append("folder", "abilities");
-
         dispatch({ type: "OPEN_LOADING" });
 
         api

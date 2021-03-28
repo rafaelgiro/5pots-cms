@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { SectionTitleProps } from "./interfaces";
 
 import styles from "./styles.module.scss";
@@ -5,10 +6,15 @@ import styles from "./styles.module.scss";
 const SectionTitle = (props: SectionTitleProps) => {
   const { children, title } = props;
   return (
-    <h2 className={styles["section-title"]}>
+    <div
+      className={clsx(
+        styles["section-title"],
+        title === "skins" && styles["section-title--skins"]
+      )}
+    >
       {children}
-      {title}
-    </h2>
+      <h2>{title}</h2>
+    </div>
   );
 };
 

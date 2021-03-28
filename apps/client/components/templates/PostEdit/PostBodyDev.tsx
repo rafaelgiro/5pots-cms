@@ -4,6 +4,7 @@ import ChampionsSectionDev from "../../organisms/PatchNotesSections/ChampionsDev
 
 import { PostBodyDevProps } from "./interfaces";
 import postViewstyles from "../PostView/styles.module.scss";
+import SkinsSectionDev from "../../organisms/PatchNotesSections/SkinsDev";
 
 const PostBodyDev = (props: PostBodyDevProps) => {
   const { sections, titles, title, type, allChampions } = props;
@@ -14,11 +15,14 @@ const PostBodyDev = (props: PostBodyDevProps) => {
 
       if (section.champions)
         return (
-          <ChampionsSectionDev
-            championSection={section.champions}
-            key="champions-section"
-            allChampions={allChampions}
-          />
+          <>
+            <SkinsSectionDev />
+            <ChampionsSectionDev
+              championSection={section.champions}
+              key="champions-section"
+              allChampions={allChampions}
+            />
+          </>
         );
     });
 

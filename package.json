@@ -21,7 +21,7 @@
     "release:packages": "yarn build && changeset publish",
     "prettier": "prettier --write \"**/*.{js,json,md,ts,tsx}\"",
     "prettier:check": "prettier --list-different \"**/*.{js,json,md,ts,tsx}\"",
-    "postinstall": "preconstruct dev && manypkg check"
+    "postinstall": "manypkg check"
   },
   "dependencies": {
     "@changesets/cli": "^2.12.0",

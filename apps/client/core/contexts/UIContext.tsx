@@ -8,6 +8,7 @@ export const initialState: UIReducerStateI = {
   menu: false,
   setMenu: () => false,
   isLoading: false,
+  lightbox: { images: [], visible: false, current: 0 },
 };
 
 export function reducer(
@@ -57,6 +58,23 @@ export function reducer(
       return {
         ...state,
         isLoading: false,
+      };
+    case "SHOW_LIGHTBOX":
+      if (!action.lightbox) return { ...state };
+      return {
+        ...state,
+        lightbox: {
+          images: action.lightbox.images,
+          current: action.lightbox.current || 0,
+          visible: true,
+        },
+      };
+    case "HIDE_LIGHTBOX":
+      return {
+        ...state,
+        lightbox: {
+          visible: false,
+        },
       };
     default:
       throw new Error("Passe um tipo de action para o dispatch");

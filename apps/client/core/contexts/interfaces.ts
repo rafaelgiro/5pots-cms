@@ -17,6 +17,7 @@ export interface UIReducerStateI {
   menu: boolean;
   setMenu: React.Dispatch<React.SetStateAction<boolean>>;
   isLoading: boolean;
+  lightbox: LightboxI;
 }
 
 export type UIReducerActionsType =
@@ -26,7 +27,9 @@ export type UIReducerActionsType =
   | "OPEN_MENU"
   | "CLOSE_MENU"
   | "OPEN_LOADING"
-  | "CLOSE_LOADING";
+  | "CLOSE_LOADING"
+  | "SHOW_LIGHTBOX"
+  | "HIDE_LIGHTBOX";
 
 export interface SnackBarI {
   variant?: "success" | "error" | "default";
@@ -35,7 +38,14 @@ export interface SnackBarI {
   time?: number;
 }
 
+export interface LightboxI {
+  images?: string[];
+  visible?: boolean;
+  current?: number;
+}
+
 export interface UIReducerActionsI {
   type: UIReducerActionsType;
   snackbar?: SnackBarI;
+  lightbox?: LightboxI;
 }

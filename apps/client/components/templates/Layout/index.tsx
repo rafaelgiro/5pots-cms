@@ -10,11 +10,19 @@ import api from "../../../core/services/api";
 import parseJwt from "../../../core/helpers/parseJwt";
 import { useRouter } from "next/router";
 import Loadingbar from "../../atoms/Loadingbar";
+import Lightbox from "../../atoms/Lightbox";
 
 const Layout: React.FC = (props) => {
   const { children } = props;
   const { setUser } = useContext(AuthContext);
   const router = useRouter();
+
+  const items = [
+    `https://assets.5pots.com/file/cincopots/pbe/blitz-groove-border.jpg`,
+    `https://assets.5pots.com/file/cincopots/pbe/blitz-groove-splash.jpg`,
+    `https://assets.5pots.com/file/cincopots/pbe/blitz-groove-still.jpg`,
+    `https://assets.5pots.com/file/cincopots/pbe/blitz-groove-turn.jpg`,
+  ];
 
   useEffect(() => {
     const { auth } = router.query;
@@ -65,6 +73,7 @@ const Layout: React.FC = (props) => {
       <div className="header-offset">{children}</div>
       <Snackbar />
       <FullScreenMenu />
+      <Lightbox images={items} />
     </>
   );
 };

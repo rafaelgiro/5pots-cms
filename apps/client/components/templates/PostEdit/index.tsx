@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import clsx from "clsx";
 import MdDashboard from "@meronex/icons/md/MdDashboard";
@@ -11,12 +11,12 @@ import EditContext from "./EditContext";
 import UIContext from "../../../core/contexts/UIContext";
 import debouce from "../../../core/helpers/debouce";
 import api from "../../../core/services/api";
+import { defaultChampionChange } from "./helpers";
 
 import { PostEditProps } from "./interfaces";
+
 import postViewStyles from "../PostView/styles.module.scss";
 import styles from "./styles.module.scss";
-import { defaultChampionChange } from "./helpers";
-import ChampionChange from "../../molecules/ChampionChange";
 
 const PostEdit = (props: PostEditProps) => {
   const { post, champions, allChampions } = props;

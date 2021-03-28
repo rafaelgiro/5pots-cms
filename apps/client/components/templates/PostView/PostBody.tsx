@@ -1,11 +1,12 @@
 import PostSummary from "../../molecules/PostSummary";
 
 import ContentHeader from "../../organisms/ContentHeader";
+import ChampionsSection from "../../organisms/PatchNotesSections/Champions";
 
 import styles from "./styles.module.scss";
 
 import { PostBodyProps } from "./interfaces";
-import ChampionsSection from "../../organisms/PatchNotesSections/Champions";
+import SkinsSection from "../../organisms/PatchNotesSections/Skins";
 
 const PostBody = (props: PostBodyProps) => {
   const { sections, titles, title, champions, type } = props;
@@ -16,11 +17,14 @@ const PostBody = (props: PostBodyProps) => {
 
       if (section.champions)
         return (
-          <ChampionsSection
-            championSection={section.champions}
-            champions={champions}
-            key="champions-section"
-          />
+          <>
+            <SkinsSection />
+            <ChampionsSection
+              championSection={section.champions}
+              champions={champions}
+              key="champions-section"
+            />
+          </>
         );
     });
 

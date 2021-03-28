@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Web scraping da 5pots",
   "main": "dist/5pots-lol-crawler.cjs.js",
+  "module": "dist/5pots-lol-crawler.esm.js",
   "author": "Rafael Giro",
   "license": "MIT",
   "repository": "https://github.com/RafaelGiro/5pots/tree/master/packages/lol-crawler",

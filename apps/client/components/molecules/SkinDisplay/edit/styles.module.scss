@@ -1,0 +1,7 @@
+.editable {
+  &--invisible {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+  }
+}

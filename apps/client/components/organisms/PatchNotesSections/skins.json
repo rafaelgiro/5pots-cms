@@ -1,0 +1,56 @@
+[
+  {
+    "id": "nasus-groove",
+    "name": "Nasus Embalos no Espaço",
+    "price": "1350",
+    "description": "\"A storied disc jockey, music librarian, and leader of the Dog Planet, Nasus was once under Lissandra's thrall-- seizing all his people's grooviest records and hiding them away, never to be heard again. Yet now, with his heart opened to the power of disco, he leads his people in rebellion against the deadly shock troopers Blitz & Crank  \"",
+    "prestige": false,
+    "splash": true,
+    "loading": true,
+    "border": true,
+    "still": true,
+    "turn": true,
+    "pass": true,
+    "spotlight": "https://www.youtube.com/watch?v=Qy6_qWXHl2U",
+    "chromas": [
+      "#E85A43",
+      "#DDCF67",
+      "#EE8E97",
+      "#6CCCDE",
+      "#C076DB",
+      "#96DC60",
+      "#406FA7",
+      "#BDC3DE",
+      "#BFBACE"
+    ],
+    "vo": "",
+    "interactions": ""
+  },
+  {
+    "id": "blitz-groove",
+    "name": "Blitz Embalos no Espaço",
+    "price": "1820",
+    "description": "\"Blitz and Crank are Cat Planet's fiercest warriors, and work together seamlessly (mostly) to pilot their mech, Blitzcrank. While Crank believes that he can overcome his lack of rhythm with the help of his exuberant copilot, Blitz is... well... he's busy dancing to his own beat. Together they plan to take over Dog Planet and claim its sunbeams for themselves.",
+    "prestige": false,
+    "splash": true,
+    "loading": true,
+    "border": true,
+    "still": true,
+    "turn": true,
+    "pass": true,
+    "spotlight": "https://www.youtube.com/watch?v=Qy6_qWXHl2U",
+    "chromas": [
+      "#E85A43",
+      "#DDCF67",
+      "#EE8E97",
+      "#6CCCDE",
+      "#C076DB",
+      "#96DC60",
+      "#406FA7",
+      "#BDC3DE",
+      "#BFBACE"
+    ],
+    "vo": "",
+    "interactions": ""
+  }
+]

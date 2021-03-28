@@ -1,0 +1,31 @@
+{
+  "name": "@5pots/lightbox",
+  "version": "1.0.0",
+  "description": "Lightbox pra 5pots porque eu não achei nenhuma lib que fazia o que eu queria",
+  "main": "dist/5pots-lightbox.cjs.js",
+  "module": "dist/5pots-lightbox.esm.js",
+  "author": "Rafael Giro",
+  "license": "MIT",
+  "repository": "https://github.com/RafaelGiro/5pots/tree/master/packages/lightbox",
+  "scripts": {
+    "build": "preconstruct build",
+    "dev": "preconstruct watch",
+    "tsc": "tsc"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-react": "^7.12.13",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/styled-components": "^5.1.9",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typescript": "^4.2.3"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "dependencies": {
+    "styled-components": "^5.2.1"
+  }
+}

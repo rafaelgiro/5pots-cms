@@ -71,11 +71,11 @@ export async function getUploadURL(credentials: CredentialI) {
 }
 
 export async function uploadFile(
-  file: Express.Multer.File,
+  file: { name: string; size: number; buffer: Buffer },
   uploadUrl: { uploadUrl: string; uploadToken: string },
   dataSet: string
 ) {
-  const fileName = file.originalname;
+  const fileName = file.name;
   const fileSize = file.size;
   const sha1 = crypto.createHash("sha1").update(file.buffer).digest("hex");
 

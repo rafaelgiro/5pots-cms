@@ -40,7 +40,8 @@
     "passport": "^0.4.1",
     "passport-facebook": "^3.0.0",
     "passport-google-oauth20": "^2.0.0",
-    "passport-jwt": "^4.0.0"
+    "passport-jwt": "^4.0.0",
+    "sharp": "^0.28.0"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.0",
@@ -52,6 +53,7 @@
     "@types/nodemailer-sendgrid": "^1.0.0",
     "@types/passport-facebook": "^2.1.10",
     "@types/passport-google-oauth20": "^2.0.6",
+    "@types/sharp": "^0.27.2",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
     "@typescript-eslint/parser": "^4.14.2",
     "cross-env": "^7.0.3",

@@ -20,6 +20,7 @@ import PostViewstyles from "../PostView/styles.module.scss";
 import styles from "./styles.module.scss";
 import TextField from "../../atoms/TextField";
 import TimeAgo from "../../../core/helpers/timeago";
+import { uploadImage } from "../../../core/helpers/uploadImage";
 
 const PostHeaderDev = (props: PostHeaderDevProps) => {
   const {
@@ -52,42 +53,16 @@ const PostHeaderDev = (props: PostHeaderDevProps) => {
     return imgs;
   }
 
+  function handleImageUpload(urls: string[]) {
+    handleChange("img", urls[0]);
+  }
+
   useEffect(() => {
     function handleSubmitFile() {
       const token = localStorage.getItem("token");
 
-      if (image) {
-        const files = Array.from(image);
-        const formData = new FormData();
-
-        files.forEach((file, i) => {
-          formData.append(`image-${i}`, file);
-        });
-        dispatch({ type: "OPEN_LOADING" });
-
-        api
-          .post("/assets/images/posts", formData, {
-            headers: {
-              "Content-type": "multipart/form-data",
-              Authorization: token,
-            },
-          })
-          .then((res) => {
-            handleChange("img", res.data[0]);
-          })
-          .catch((err) => {
-            dispatch({
-              type: "SHOW_SNACKBAR",
-              snackbar: {
-                msg: err.response.data.message || "Deu ruim mano.",
-                variant: "error",
-              },
-            });
-          })
-          .finally(() => {
-            dispatch({ type: "CLOSE_LOADING" });
-          });
-      }
+      if (image && token)
+        uploadImage(image, token, dispatch, false, handleImageUpload);
     }
 
     if (image) handleSubmitFile();

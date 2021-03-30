@@ -1,28 +1,30 @@
+import { Fragment } from "react";
+
 import PostSummary from "../../molecules/PostSummary";
 import ContentHeader from "../../organisms/ContentHeader";
+import SkinsSectionDev from "../../organisms/PatchNotesSections/SkinsDev";
 import ChampionsSectionDev from "../../organisms/PatchNotesSections/ChampionsDev";
 
 import { PostBodyDevProps } from "./interfaces";
 import postViewstyles from "../PostView/styles.module.scss";
-import SkinsSectionDev from "../../organisms/PatchNotesSections/SkinsDev";
 
 const PostBodyDev = (props: PostBodyDevProps) => {
   const { sections, titles, title, type, allChampions } = props;
 
   const renderSections = () => {
-    const content = sections.map((section) => {
+    const content = sections.map((section, i) => {
       if (type !== "patch-notes") return null;
 
       if (section.champions)
         return (
-          <>
+          <Fragment key={`section-${i}`}>
             <SkinsSectionDev />
             <ChampionsSectionDev
               championSection={section.champions}
               key="champions-section"
               allChampions={allChampions}
             />
-          </>
+          </Fragment>
         );
     });
 

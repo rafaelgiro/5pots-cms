@@ -11,6 +11,7 @@ import { SkinDisplayProps } from "../interfaces";
 
 import styles from "../styles.module.scss";
 import editStyles from "./styles.module.scss";
+import { uploadImage } from "../../../../core/helpers/uploadImage";
 
 const SkinDisplayEdit = (props: SkinDisplayProps) => {
   const {
@@ -67,41 +68,9 @@ const SkinDisplayEdit = (props: SkinDisplayProps) => {
 
   function handleUpload(image: FileList | null, type: imgType) {
     const token = localStorage.getItem("token");
+    const fileName = `${id}-${type}`;
 
-    if (image) {
-      const files = Array.from(image);
-      const formData = new FormData();
-
-      files.forEach((file, i) => {
-        formData.append(`image-${i}`, file);
-      });
-      formData.append("name", `${id}-${type}`);
-
-      dispatch({ type: "OPEN_LOADING" });
-
-      api
-        .post("/assets/images/pbe", formData, {
-          headers: {
-            "Content-type": "multipart/form-data",
-            Authorization: token,
-          },
-        })
-        .then((res) => {
-          console.log(res.data[0]);
-        })
-        .catch((err) => {
-          dispatch({
-            type: "SHOW_SNACKBAR",
-            snackbar: {
-              msg: err.response.data.message || "Deu ruim mano.",
-              variant: "error",
-            },
-          });
-        })
-        .finally(() => {
-          dispatch({ type: "CLOSE_LOADING" });
-        });
-    }
+    if (image && token) uploadImage(image, token, dispatch, fileName);
   }
 
   return (

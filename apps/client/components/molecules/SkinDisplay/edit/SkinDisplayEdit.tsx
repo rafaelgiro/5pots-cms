@@ -70,7 +70,8 @@ const SkinDisplayEdit = (props: SkinDisplayProps) => {
     const token = localStorage.getItem("token");
     const fileName = `${id}-${type}`;
 
-    if (image && token) uploadImage(image, token, dispatch, fileName);
+    if (image && token)
+      uploadImage(image, token, dispatch, fileName, true, console.log);
   }
 
   return (

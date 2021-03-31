@@ -62,7 +62,7 @@ const PostHeaderDev = (props: PostHeaderDevProps) => {
       const token = localStorage.getItem("token");
 
       if (image && token)
-        uploadImage(image, token, dispatch, false, handleImageUpload);
+        uploadImage(image, token, dispatch, false, true, handleImageUpload);
     }
 
     if (image) handleSubmitFile();

@@ -6,6 +6,7 @@ export function uploadImage(
   token: string,
   dispatch: React.Dispatch<UIReducerActionsI>,
   fileName: string | false,
+  forceJpg: boolean,
   callback: (urls: string[]) => void
 ) {
   const files = Array.from(image);
@@ -15,6 +16,7 @@ export function uploadImage(
     formData.append(`image-${i}`, file);
   });
   fileName && formData.append("name", fileName);
+  forceJpg && formData.append("format", "jpg");
 
   dispatch({ type: "OPEN_LOADING" });
 

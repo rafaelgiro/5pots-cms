@@ -16,17 +16,18 @@ const PostBodyDev = (props: PostBodyDevProps) => {
     const content = sections.map((section, i) => {
       if (type !== "patch-notes") return null;
 
+      if (section.skins)
+        return (
+          <SkinsSectionDev skinsSection={section.skins} key={`section-skins`} />
+        );
+
       if (section.champions)
         return (
-          <Fragment key={`section-${i}`}>
-            <NewChampion />
-            <SkinsSectionDev />
-            <ChampionsSectionDev
-              championSection={section.champions}
-              key="champions-section"
-              allChampions={allChampions}
-            />
-          </Fragment>
+          <ChampionsSectionDev
+            championSection={section.champions}
+            key="champions-section"
+            allChampions={allChampions}
+          />
         );
     });
 

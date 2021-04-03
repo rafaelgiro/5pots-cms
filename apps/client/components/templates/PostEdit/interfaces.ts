@@ -25,7 +25,6 @@ export interface EditCotextI {
   postState?: Post;
   setPostState: Dispatch<SetStateAction<Post>>;
   championSectionIndex: number;
-  setHasChanged: Dispatch<SetStateAction<boolean>>;
   handleNewFromPaste(championChange: ChampionChange): void;
 }
 

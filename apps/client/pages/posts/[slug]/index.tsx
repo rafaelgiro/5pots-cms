@@ -45,6 +45,7 @@ export async function getStaticProps({ params }: StaticPropsParams) {
     : championsRes;
 
   const champChanges = post.sections.map((section) => section.champions)[0];
+  const newSkins = post.sections.map((section) => section.skins)[0];
   const skins = [
     { name: "Ziggs Hextech", id: "Ziggs_23" },
     { name: "Shen PsyOps", id: "Shen_22" },
@@ -60,7 +61,8 @@ export async function getStaticProps({ params }: StaticPropsParams) {
     props: {
       post,
       champions,
-      postContent: { champions: champChanges || null, skins },
+      skins,
+      postContent: { champions: champChanges || null, skins: newSkins || null },
     },
     revalidate: 60,
   };

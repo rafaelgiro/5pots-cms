@@ -35,12 +35,9 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
   const { change, championInfo } = props;
   const [summary, setSummary] = useState("summary");
   const [champion, setChampion] = useState<Champion>();
-  const {
-    postState,
-    setPostState,
-    championSectionIndex,
-    setHasChanged,
-  } = useContext(EditContext);
+  const { postState, setPostState, championSectionIndex } = useContext(
+    EditContext
+  );
   const sanitazedChampion = championInfo.name.replace(" ", "").replace("'", "");
   const { changes } = change;
   const championIndex = postState?.sections[
@@ -72,7 +69,6 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
       );
 
       setPostState(newPost);
-      setHasChanged(true);
     }
   }
 
@@ -84,7 +80,6 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
       ].changes.splice(changeIndex, 1);
 
       setPostState(newPost);
-      setHasChanged(true);
     }
   }
 
@@ -100,7 +95,6 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
       ].blocks[blockIndex].type = newValue;
 
       setPostState(newPost);
-      setHasChanged(true);
     }
   }
 
@@ -117,7 +111,6 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
       ].blocks[blockIndex][key] = newValue;
 
       setPostState(newPost);
-      setHasChanged(true);
     }
   }
 
@@ -131,7 +124,6 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
       ].blocks.splice(blockIndex, 1);
 
       setPostState(newPost);
-      setHasChanged(true);
     }
   }
 
@@ -145,7 +137,6 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
       ] = value;
 
       setPostState(newPost);
-      setHasChanged(true);
     }
   }
 
@@ -159,7 +150,6 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
       ].blocks.push(defaultChangeBlock);
 
       setPostState(newPost);
-      setHasChanged(true);
     }
   }
 
@@ -178,7 +168,6 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
       );
 
       setPostState(newPost);
-      setHasChanged(true);
     }
   }
 
@@ -190,7 +179,6 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
       ].goal = newGoal as "buff" | "nerf" | "rework" | "adjusted";
 
       setPostState(newPost);
-      setHasChanged(true);
     }
   }
 

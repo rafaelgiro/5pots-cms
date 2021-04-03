@@ -7,11 +7,9 @@ import Lightbox from "../../atoms/Lightbox";
 import Typography from "../../atoms/Typography";
 import Chromas from "./Chromas";
 
-import { SkinDisplayProps } from "./interfaces";
-
 import styles from "./styles.module.scss";
 
-const SkinDisplay = (props: SkinDisplayProps) => {
+const SkinDisplay = (props: Skin) => {
   const {
     border,
     chromas,
@@ -31,7 +29,11 @@ const SkinDisplay = (props: SkinDisplayProps) => {
   } = props;
   const { uiDispatch: dispatch } = useContext(UIContext);
 
-  const skinTier = { 1350: "Épica", 1820: "Lendária", 3250: "Ultimate" };
+  const skinTier: Record<string, string> = {
+    "1350": "Épica",
+    "1820": "Lendária",
+    "3250": "Ultimate",
+  };
 
   const baseURL = "https://assets.5pots.com/file/cincopots/pbe";
 

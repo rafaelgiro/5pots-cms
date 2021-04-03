@@ -16,8 +16,27 @@ interface Post {
     titles: string[];
     content: string | [];
     champions: ChampionChange[];
+    skins: Skin[];
   }[];
   type: "crawler" | "patch-notes";
+}
+
+interface Skin {
+  id: string;
+  name: string;
+  price: "1350" | "975" | "1920" | "3250";
+  description: string;
+  prestige: boolean;
+  gemstone: boolean;
+  splash: boolean;
+  loading: boolean;
+  border: boolean;
+  still: boolean;
+  turn: boolean;
+  spotlight: string;
+  chromas: string[];
+  vo: string;
+  interactions: string;
 }
 
 interface Champion {

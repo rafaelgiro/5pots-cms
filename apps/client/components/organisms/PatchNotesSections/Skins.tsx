@@ -4,19 +4,18 @@ import Section from "../Section";
 
 import styles from "../../templates/PostView/styles.module.scss";
 
-import skins from "./skins.json";
 import SkinDisplay from "../../molecules/SkinDisplay";
+import { SkinsSectionProps } from "./interfaces";
 
-const SkinsSection = () => {
+const SkinsSection = (props: SkinsSectionProps) => {
+  const { skinsSection } = props;
   return (
     <Section className={styles["post-section"]}>
       <SectionTitle title="skins">
         <SectionIcon section="skins" />
       </SectionTitle>
-      {skins.map((skin, i) => (
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        <SkinDisplay {...skins[i]} key={skin.id} />
+      {skinsSection.map((skin) => (
+        <SkinDisplay {...skin} key={skin.id} />
       ))}
     </Section>
   );

@@ -21,7 +21,6 @@ import styles from "./styles.module.scss";
 const PostEdit = (props: PostEditProps) => {
   const { post, champions, allChampions } = props;
   const [postState, setPostState] = useState(post);
-  const [hasChanged, setHasChanged] = useState(false);
   const [jsonMode, setJsonMode] = useState(false);
   const router = useRouter();
   const { slug } = router.query;
@@ -50,7 +49,6 @@ const PostEdit = (props: PostEditProps) => {
     newPost[key] = value;
 
     setPostState(newPost);
-    if (!hasChanged) setHasChanged(true);
   }
 
   function handleChampionChange(newChange: ChampionChange) {
@@ -62,7 +60,6 @@ const PostEdit = (props: PostEditProps) => {
     newState.sections[championSectionIndex].champions[champIndex] = newChange;
 
     setPostState(newState);
-    if (!hasChanged) setHasChanged(true);
   }
 
   function handleNewChampion(champion: string) {
@@ -75,7 +72,6 @@ const PostEdit = (props: PostEditProps) => {
     });
 
     setPostState(newState);
-    if (!hasChanged) setHasChanged(true);
   }
 
   function handleDeleteChampion(champion: string) {
@@ -88,44 +84,40 @@ const PostEdit = (props: PostEditProps) => {
     newState.sections[championSectionIndex].champions.splice(champIndex, 1);
 
     setPostState(newState);
-    if (!hasChanged) setHasChanged(true);
   }
 
   function handleUpdate() {
-    if (hasChanged) {
-      const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
-      dispatch({ type: "OPEN_LOADING" });
+    dispatch({ type: "OPEN_LOADING" });
 
-      api
-        .put(
-          `/posts/${slug}`,
-          { post: postState },
-          {
-            headers: { Authorization: token },
-          }
-        )
-        .then((res) => {
-          setHasChanged(false);
-          setPostState(res.data);
+    api
+      .put(
+        `/posts/${slug}`,
+        { post: postState },
+        {
+          headers: { Authorization: token },
+        }
+      )
+      .then((res) => {
+        setPostState(res.data);
 
-          if (res.data.slug !== slug) {
-            router.push(`/posts/${res.data.slug}/edit`);
-          }
-        })
-        .catch((err) => {
-          dispatch({
-            type: "SHOW_SNACKBAR",
-            snackbar: {
-              msg: err.response.data.message || "Deu ruim mano.",
-              variant: "error",
-            },
-          });
-        })
-        .finally(() => {
-          dispatch({ type: "CLOSE_LOADING" });
+        if (res.data.slug !== slug) {
+          router.push(`/posts/${res.data.slug}/edit`);
+        }
+      })
+      .catch((err) => {
+        dispatch({
+          type: "SHOW_SNACKBAR",
+          snackbar: {
+            msg: err.response.data.message || "Deu ruim mano.",
+            variant: "error",
+          },
         });
-    }
+      })
+      .finally(() => {
+        dispatch({ type: "CLOSE_LOADING" });
+      });
   }
 
   function handleNewFromPaste(championChange: ChampionChange) {
@@ -136,7 +128,6 @@ const PostEdit = (props: PostEditProps) => {
     newState.sections[championSectionIndex].champions.push(championChange);
 
     setPostState(newState);
-    if (!hasChanged) setHasChanged(true);
   }
 
   const hasIntro =
@@ -160,7 +151,6 @@ const PostEdit = (props: PostEditProps) => {
           postState,
           setPostState,
           championSectionIndex,
-          setHasChanged,
           handleNewFromPaste,
         }}
       >
@@ -184,7 +174,7 @@ const PostEdit = (props: PostEditProps) => {
           type={type}
           allChampions={allChampions}
         />
-        <SavePostButton hasChanged={hasChanged} handleUpdate={handleUpdate} />
+        <SavePostButton hasChanged={true} handleUpdate={handleUpdate} />
         <div className={styles["json-mode"]}>
           <MdDeveloperMode
             className={clsx(jsonMode && styles["json-mode--active"])}

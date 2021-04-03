@@ -7,3 +7,7 @@ export interface ChampionSectionDevProps {
   championSection: ChampionChange[];
   allChampions: string[];
 }
+
+export interface SkinsSectionProps {
+  skinsSection: Skin[];
+}

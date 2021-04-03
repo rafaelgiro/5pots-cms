@@ -5,3 +5,10 @@
     position: absolute;
   }
 }
+
+.edit {
+  button {
+    min-width: 10rem !important;
+    min-height: 4rem !important;
+  }
+}

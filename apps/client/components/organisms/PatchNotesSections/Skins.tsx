@@ -14,6 +14,8 @@ const SkinsSection = () => {
         <SectionIcon section="skins" />
       </SectionTitle>
       {skins.map((skin, i) => (
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         <SkinDisplay {...skins[i]} key={skin.id} />
       ))}
     </Section>

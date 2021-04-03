@@ -7,6 +7,7 @@ import styles from "./styles.module.scss";
 
 import { PostBodyProps } from "./interfaces";
 import SkinsSection from "../../organisms/PatchNotesSections/Skins";
+import NewChampion from "../../molecules/NewChampion/NewChampion";
 
 const PostBody = (props: PostBodyProps) => {
   const { sections, titles, title, champions, type } = props;
@@ -18,6 +19,7 @@ const PostBody = (props: PostBodyProps) => {
       if (section.champions)
         return (
           <>
+            <NewChampion />
             <SkinsSection />
             <ChampionsSection
               championSection={section.champions}

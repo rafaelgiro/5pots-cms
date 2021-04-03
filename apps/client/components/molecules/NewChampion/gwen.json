@@ -1,0 +1,76 @@
+{
+  "name": "Gwen",
+  "goal": "Ajuste",
+  "resume": "Passiva agora é o efeito passivo do Q, o que faz qualquer habilidade poder curar. W agora concede Velocidade de Movimento, causa 200% de dano a tropas com Vida baixa e as foca de maneira mais eficaz.",
+  "context": "A mecânica de jogo e identidade da Ahri ficaram opacas com o passar do tempo, e isso não é nada encantador. Realizamos algumas mudanças no kit, principalmente no W, para reforçar a identidade de \"maga evasiva\" que pode entrar e sair de lutas procurando o momento perfeito de brilhar. Também transformamos o Furto de Essência do Q na Passiva dela, para que ela tenha mais oportunidades de se curar ao realizar trocas com Campeões inimigos. No geral, nossa raposa deve realizar seus combos e jogadas de maneira mais eficiente.",
+  "changes": [
+    {
+      "stat": "base",
+      "blocks": [
+        {
+          "type": "change",
+          "attribute": "REGENERAÇÃO DE VIDA",
+          "before": "6,5",
+          "after": "5,5"
+        }
+      ]
+    },
+    {
+      "stat": "p",
+      "blocks": [
+        {
+          "type": "new",
+          "attribute": "FURTO DE ESSÊNCIA",
+          "after": "Ahri recebe um acúmulo de Furto de Essência sempre que atinge um inimigo com uma de suas habilidades, até um máximo de 3 acúmulos por conjuração e 9 no total. Quando Ahri atinge 9 acúmulos de Furto de Essência, sua próxima habilidade consome as essências para curá-la em 3/5/9/18 (níveis 1/6/11/16) (+0,09 de Poder de Habilidade) para cada inimigo atingido."
+        },
+        {
+          "type": "removed",
+          "attribute": "GRACIOSIDADE VASTAYA",
+          "after": "Ahri deixa de receber 20% de Velocidade de Movimento adicional por 3s sempre que acertar 2 habilidades em um Campeão inimigo dentro de 1,5s."
+        }
+      ]
+    },
+    {
+      "stat": "q",
+      "blocks": [
+        {
+          "type": "removed",
+          "attribute": "FURTO DE ESSÊNCIA",
+          "after": "Furto de Essência agora é a Passiva."
+        }
+      ]
+    },
+    {
+      "stat": "w",
+      "blocks": [
+        {
+          "type": "new",
+          "attribute": "A PATROA FAZ O QUE A PATROA FAZ",
+          "after": "Agora concede 40% de Velocidade de Movimento que decai ao longo de 1,5s ao ser conjurada"
+        },
+        {
+          "type": "new",
+          "attribute": "PISA NAS TROPAS",
+          "after": "Agora causa 200% de dano a tropas com menos de 20% de Vida"
+        },
+        {
+          "type": "updated",
+          "attribute": "MELHOR ALVEJAMENTO DE TROPAS",
+          "after": "O alvejamento agora prioriza melhor tropas com Vida baixa que podem ser abatidas por Fogo de Raposa caso não haja Campeões (Campeões sob o efeito de Encanto ainda são a primeira prioridade da habilidade)"
+        },
+        {
+          "type": "change",
+          "attribute": "TEMPO DE RECARGA",
+          "before": "9/8/7/6/5s",
+          "after": "10/9/8/7/6s"
+        },
+        {
+          "type": "change",
+          "attribute": "CUSTO",
+          "before": "40 de Mana",
+          "after": "55 de Mana"
+        }
+      ]
+    }
+  ]
+}

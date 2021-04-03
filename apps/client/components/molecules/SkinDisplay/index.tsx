@@ -27,7 +27,6 @@ const SkinDisplay = (props: SkinDisplayProps) => {
     turn,
     vo,
     description,
-    pass,
     gemstone,
   } = props;
   const { uiDispatch: dispatch } = useContext(UIContext);
@@ -37,16 +36,16 @@ const SkinDisplay = (props: SkinDisplayProps) => {
   const baseURL = "https://assets.5pots.com/file/cincopots/pbe";
 
   const images = [
-    `https://assets.5pots.com/file/cincopots/pbe/blitz-groove-loading.jpg`,
-    `https://assets.5pots.com/file/cincopots/pbe/blitz-groove-splash.jpg`,
-    `https://assets.5pots.com/file/cincopots/pbe/blitz-groove-still.jpg`,
-    `https://assets.5pots.com/file/cincopots/pbe/blitz-groove-turn.jpg`,
-    `https://assets.5pots.com/file/cincopots/pbe/blitz-groove-border.jpg`,
+    `https://assets.5pots.com/file/cincopots/pbe/${id}-loading.jpg`,
+    `https://assets.5pots.com/file/cincopots/pbe/${id}-splash.jpg`,
+    `https://assets.5pots.com/file/cincopots/pbe/${id}-still.jpg`,
+    // `https://assets.5pots.com/file/cincopots/pbe/${id}-turn.jpg`,
+    `https://assets.5pots.com/file/cincopots/pbe/${id}-border.jpg`,
   ];
 
   const splashClass = clsx(
     styles["skin-display__splash"],
-    (border || loading) && styles["skin-display__splash--border"]
+    styles["skin-display__splash--border"]
   );
 
   const skinCurrency: {
@@ -86,7 +85,7 @@ const SkinDisplay = (props: SkinDisplayProps) => {
         {description}
       </Typography>
       <div className={splashClass}>
-        {loading && (
+        {loading ? (
           <button
             onClick={() =>
               dispatch({
@@ -97,8 +96,23 @@ const SkinDisplay = (props: SkinDisplayProps) => {
           >
             <img src={`${baseURL}/${id}-loading.jpg`} />
           </button>
+        ) : (
+          <div
+            className={clsx(
+              styles["skin-display__missing"],
+              styles["skin-display__missing--loading"]
+            )}
+          >
+            <img
+              alt="Não existe asset de loading no client"
+              src="https://assets.5pots.com/file/cincopots/backgrounds/missing-asset.jpg"
+            />
+            <Typography component="p" variant="sub">
+              Nenhum asset para tela de carregamento no client
+            </Typography>
+          </div>
         )}
-        {splash && (
+        {splash ? (
           <button
             onClick={() =>
               dispatch({
@@ -109,10 +123,20 @@ const SkinDisplay = (props: SkinDisplayProps) => {
           >
             <img src={`${baseURL}/${id}-splash.jpg`} />
           </button>
+        ) : (
+          <div className={styles["skin-display__missing"]}>
+            <img
+              alt="Não existe asset de loading no client"
+              src="https://assets.5pots.com/file/cincopots/backgrounds/missing-asset.jpg"
+            />
+            <Typography component="p" variant="sub">
+              Nenhum asset para splash art no client
+            </Typography>
+          </div>
         )}
       </div>
       <div className={styles["skin-display__screenshots"]}>
-        {still && (
+        {still ? (
           <button
             onClick={() =>
               dispatch({
@@ -123,9 +147,19 @@ const SkinDisplay = (props: SkinDisplayProps) => {
           >
             <img src={`${baseURL}/${id}-still.jpg`} />
           </button>
+        ) : (
+          <div className={styles["skin-display__missing"]}>
+            <img
+              alt="Não existe asset de loading no client"
+              src="https://assets.5pots.com/file/cincopots/backgrounds/missing-asset.jpg"
+            />
+            <Typography component="p" variant="sub">
+              Jajá é pra ter um print do campeão parado de frente
+            </Typography>
+          </div>
         )}
 
-        {turn && (
+        {turn ? (
           <button
             onClick={() =>
               dispatch({
@@ -136,8 +170,18 @@ const SkinDisplay = (props: SkinDisplayProps) => {
           >
             <img src={`${baseURL}/${id}-turn.jpg`} />
           </button>
+        ) : (
+          <div className={styles["skin-display__missing"]}>
+            <img
+              alt="Não existe asset de loading no client"
+              src="https://assets.5pots.com/file/cincopots/backgrounds/missing-asset.jpg"
+            />
+            <Typography component="p" variant="sub">
+              Ainda não temos nenhum print com o 360 da skins
+            </Typography>
+          </div>
         )}
-        {spotlight && (
+        {spotlight ? (
           <div className={styles["skin-display__video"]}>
             <iframe
               src={`https://www.youtube.com/embed/${spotlight.split("v=")[1]}`}
@@ -147,6 +191,21 @@ const SkinDisplay = (props: SkinDisplayProps) => {
               allowFullScreen
             />
           </div>
+        ) : (
+          <div
+            className={clsx(
+              styles["skin-display__missing"],
+              styles["skin-display__missing--video"]
+            )}
+          >
+            <img
+              alt="Não existe asset de loading no client"
+              src="https://assets.5pots.com/file/cincopots/backgrounds/missing-asset.jpg"
+            />
+            <Typography component="p" variant="sub">
+              Ainda não temos nenhum vídeo demonstrando a skin
+            </Typography>
+          </div>
         )}
       </div>
       <Typography
@@ -154,14 +213,16 @@ const SkinDisplay = (props: SkinDisplayProps) => {
         component="p"
         className={styles["skin-display__p"]}
       >
-        A skin {name} {!pass ? "não" : ""} faz parte de um passe, por isso{" "}
-        {!pass ? "não" : ""} teremos uma borda para acompanhar a linha de skin!
-        Também {!chromas.length ? "não" : ""} teremos chromas{" "}
-        {!chromas.length ? ":(" : "que você confere logo abaixo :D"}
+        A skin {name} {!border ? "(por enquanto?) não" : ""} possui uma borda
+        para acompanhar a linha de skin.
+        {!chromas.length ? " E (por enquanto?) não" : "Também"} teremos chromas{" "}
+        {!chromas.length
+          ? "inclusos no client :("
+          : "que você confere logo abaixo :D"}
       </Typography>
       <div className={styles["skin-display__chromas-border"]}>
         <div>
-          {border && (
+          {border ? (
             <button
               onClick={() =>
                 dispatch({
@@ -172,6 +233,21 @@ const SkinDisplay = (props: SkinDisplayProps) => {
             >
               <img src={`${baseURL}/${id}-border.jpg`} />
             </button>
+          ) : (
+            <div
+              className={clsx(
+                styles["skin-display__missing"],
+                styles["skin-display__missing--border"]
+              )}
+            >
+              <img
+                alt="Não existe asset de loading no client"
+                src="https://assets.5pots.com/file/cincopots/backgrounds/missing-asset.jpg"
+              />
+              <Typography component="p" variant="sub">
+                (Por enquanto?) Não tem nenhum asset de borda no PBE
+              </Typography>
+            </div>
           )}
         </div>
         <Chromas chromas={chromas} id={id} />

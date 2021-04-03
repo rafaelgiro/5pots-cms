@@ -40,6 +40,10 @@ const SkinDisplayEdit = (props: SkinDisplayProps) => {
   } = useContext(EditContext);
   const { uiDispatch: dispatch } = useContext(UIContext);
   const loadingUploadRef = useRef<HTMLInputElement>(null);
+  const splashUploadRef = useRef<HTMLInputElement>(null);
+  const stillUploadRef = useRef<HTMLInputElement>(null);
+  const turnUploadRef = useRef<HTMLInputElement>(null);
+  const borderUploadRef = useRef<HTMLInputElement>(null);
 
   const skinTier = { 1350: "Épica", 1820: "Lendária", 3250: "Ultimate" };
 
@@ -75,7 +79,7 @@ const SkinDisplayEdit = (props: SkinDisplayProps) => {
   }
 
   return (
-    <div className={styles["skin-display"]}>
+    <div className={clsx(styles["skin-display"], editStyles.edit)}>
       <div className={styles["skin-display__title"]}>
         <Typography variant="h4" component="h4">
           {name}
@@ -95,48 +99,56 @@ const SkinDisplayEdit = (props: SkinDisplayProps) => {
         {description}
       </Typography>
       <div className={splashClass}>
-        {loading && (
-          <>
-            <button onClick={() => loadingUploadRef.current?.click()}>
-              <img src={`${baseURL}/${id}-loading.jpg`} />
-            </button>
-            <input
-              ref={loadingUploadRef}
-              className={editStyles["editable--invisible"]}
-              type="file"
-              onChange={(e) => handleUpload(e.target.files, "loading")}
-            />
-          </>
-        )}
-        {splash && (
-          <button>
-            <img src={`${baseURL}/${id}-splash.jpg`} />
-          </button>
-        )}
+        <button onClick={() => loadingUploadRef.current?.click()}>
+          <img src={`${baseURL}/${id}-loading.jpg`} />
+        </button>
+        <input
+          ref={loadingUploadRef}
+          className={editStyles["editable--invisible"]}
+          type="file"
+          onChange={(e) => handleUpload(e.target.files, "loading")}
+        />
+
+        <button onClick={() => splashUploadRef.current?.click()}>
+          <img src={`${baseURL}/${id}-splash.jpg`} />
+        </button>
+        <input
+          ref={splashUploadRef}
+          className={editStyles["editable--invisible"]}
+          type="file"
+          onChange={(e) => handleUpload(e.target.files, "splash")}
+        />
       </div>
       <div className={styles["skin-display__screenshots"]}>
-        {still && (
-          <button>
-            <img src={`${baseURL}/${id}-still.jpg`} />
-          </button>
-        )}
+        <button onClick={() => stillUploadRef.current?.click()}>
+          <img src={`${baseURL}/${id}-still.jpg`} />
+        </button>
+        <input
+          ref={stillUploadRef}
+          className={editStyles["editable--invisible"]}
+          type="file"
+          onChange={(e) => handleUpload(e.target.files, "still")}
+        />
 
-        {turn && (
-          <button>
-            <img src={`${baseURL}/${id}-turn.jpg`} />
-          </button>
-        )}
-        {spotlight && (
-          <div className={styles["skin-display__video"]}>
-            <iframe
-              src={`https://www.youtube.com/embed/${spotlight.split("v=")[1]}`}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        )}
+        <button onClick={() => turnUploadRef.current?.click()}>
+          <img src={`${baseURL}/${id}-turn.jpg`} />
+        </button>
+        <input
+          ref={turnUploadRef}
+          className={editStyles["editable--invisible"]}
+          type="file"
+          onChange={(e) => handleUpload(e.target.files, "turn")}
+        />
+
+        <div className={styles["skin-display__video"]}>
+          <iframe
+            src={`https://www.youtube.com/embed/${spotlight.split("v=")[1]}`}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
       </div>
       <Typography
         variant="p"
@@ -151,9 +163,17 @@ const SkinDisplayEdit = (props: SkinDisplayProps) => {
       <div className={styles["skin-display__chromas-border"]}>
         <div>
           {border && (
-            <button>
-              <img src={`${baseURL}/${id}-border.jpg`} />
-            </button>
+            <>
+              <button onClick={() => borderUploadRef.current?.click()}>
+                <img src={`${baseURL}/${id}-border.jpg`} />
+              </button>
+              <input
+                ref={borderUploadRef}
+                className={editStyles["editable--invisible"]}
+                type="file"
+                onChange={(e) => handleUpload(e.target.files, "border")}
+              />
+            </>
           )}
         </div>
         <Chromas chromas={chromas} id={id} />

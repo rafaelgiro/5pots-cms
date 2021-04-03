@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { useState } from "react";
 import SwipeHandler from "../../atoms/SwipeHandler";
+import Typography from "../../atoms/Typography";
 import { ChromasProps } from "./interfaces";
 import styles from "./styles.module.scss";
 
@@ -14,29 +15,45 @@ const Chromas = (props: ChromasProps) => {
     >
       <div className={styles["chromas-container"]}>
         <div className={styles.chromas}>
-          {chromas.map((_, i) => (
+          {chromas.length ? (
+            chromas.map((_, i) => (
+              <img
+                key={`chroma-img-${id}-${i}`}
+                className={clsx(
+                  styles.chromas__img,
+                  active === i && styles["chromas__img--active"]
+                )}
+                src={`https://assets.5pots.com/file/cincopots/pbe/${id}-chroma-${i}.png`}
+              />
+            ))
+          ) : (
             <img
-              key={`chroma-img-${id}-${i}`}
               className={clsx(
                 styles.chromas__img,
-                active === i && styles["chromas__img--active"]
+                styles["chromas__img--missing"]
               )}
-              src={`https://assets.5pots.com/file/cincopots/pbe/${id}-chroma-${i}.png`}
+              src="https://1.bp.blogspot.com/-arXSfUM-P7k/YDaylGBLGnI/AAAAAAAB2ME/iXeZxfJgDHUSXpfVjsKZfkRq9mnN493rACLcBGAsYHQ/s303/96033.png"
             />
-          ))}
+          )}
         </div>
         <div className={styles.chromas__controls}>
-          {chromas.map((color, i) => (
-            <div
-              className={clsx(
-                styles.chromas__controls__color,
-                active === i && styles["chromas__controls__color--active"]
-              )}
-              key={`${id}-${color}`}
-              style={{ backgroundColor: color }}
-              onMouseEnter={() => setActive(i)}
-            />
-          ))}
+          {chromas.length ? (
+            chromas.map((color, i) => (
+              <div
+                className={clsx(
+                  styles.chromas__controls__color,
+                  active === i && styles["chromas__controls__color--active"]
+                )}
+                key={`${id}-${color}`}
+                style={{ backgroundColor: color }}
+                onMouseEnter={() => setActive(i)}
+              />
+            ))
+          ) : (
+            <Typography component="p" variant="sub">
+              Por enquanto nenhum asset encontrado
+            </Typography>
+          )}
         </div>
 
         <svg

@@ -130,7 +130,9 @@ const PostHeaderDev = (props: PostHeaderDevProps) => {
               {TimeAgo.inWords && TimeAgo.inWords(Date.parse(postedAt))}{" "}
               {refUrl && (
                 <a href={refUrl} target="_blank" rel="noopener noreferrer">
-                  no site oficial
+                  {category === "pbe"
+                    ? "no surrender at 20"
+                    : "no site oficial"}
                 </a>
               )}
             </em>

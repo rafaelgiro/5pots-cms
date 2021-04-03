@@ -7,6 +7,7 @@ import ChampionsSectionDev from "../../organisms/PatchNotesSections/ChampionsDev
 
 import { PostBodyDevProps } from "./interfaces";
 import postViewstyles from "../PostView/styles.module.scss";
+import NewChampion from "../../molecules/NewChampion/NewChampion";
 
 const PostBodyDev = (props: PostBodyDevProps) => {
   const { sections, titles, title, type, allChampions } = props;
@@ -18,6 +19,7 @@ const PostBodyDev = (props: PostBodyDevProps) => {
       if (section.champions)
         return (
           <Fragment key={`section-${i}`}>
+            <NewChampion />
             <SkinsSectionDev />
             <ChampionsSectionDev
               championSection={section.champions}

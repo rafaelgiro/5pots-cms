@@ -11,6 +11,8 @@ import { imgType } from "./interfaces";
 import styles from "../styles.module.scss";
 import editStyles from "./styles.module.scss";
 import { uploadImage } from "../../../../core/helpers/uploadImage";
+import ContentEditable from "react-contenteditable";
+import SimpleSelect from "../../../atoms/SimpleSelect";
 
 const SkinDisplayEdit = (props: Skin) => {
   const {
@@ -70,7 +72,12 @@ const SkinDisplayEdit = (props: Skin) => {
     skinCurrency.currency = "rp";
   }
 
-  postState && console.log(postState.sections);
+  const priceOptions = [
+    { value: "975", label: "975" },
+    { value: "1350", label: "1350" },
+    { value: "1920", label: "1820" },
+    { value: "3250", label: "3250" },
+  ];
 
   function setAsset(asset: imgType) {
     if (postState && (skinSectionIndex || skinSectionIndex === 0)) {
@@ -109,25 +116,123 @@ const SkinDisplayEdit = (props: Skin) => {
       uploadImage(image, token, dispatch, fileName, true, () => setAsset(type));
   }
 
+  function handleDetailChange(key: string, value: string) {
+    if (postState && (skinSectionIndex || skinSectionIndex === 0)) {
+      const newPost = { ...postState };
+      const skinIndex = newPost.sections[skinSectionIndex].skins.findIndex(
+        (s) => s.id === id
+      );
+
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      newPost.sections[skinSectionIndex].skins[skinIndex][key] = value;
+      setPostState(newPost);
+    }
+  }
+
+  function handleCurrency(currency: "rp" | "gemstone" | "prestige") {
+    if (postState && (skinSectionIndex || skinSectionIndex === 0)) {
+      const newPost = { ...postState };
+      const skinIndex = newPost.sections[skinSectionIndex].skins.findIndex(
+        (s) => s.id === id
+      );
+
+      if (currency === "rp") {
+        newPost.sections[skinSectionIndex].skins[skinIndex].gemstone = false;
+        newPost.sections[skinSectionIndex].skins[skinIndex].prestige = false;
+      } else if (currency === "gemstone") {
+        newPost.sections[skinSectionIndex].skins[skinIndex].gemstone = true;
+        newPost.sections[skinSectionIndex].skins[skinIndex].prestige = false;
+      } else {
+        newPost.sections[skinSectionIndex].skins[skinIndex].gemstone = false;
+        newPost.sections[skinSectionIndex].skins[skinIndex].prestige = true;
+      }
+
+      setPostState(newPost);
+    }
+  }
+
   return (
     <div className={clsx(styles["skin-display"], editStyles.edit)}>
       <div className={styles["skin-display__title"]}>
-        <Typography variant="h4" component="h4">
-          {name}
+        <Typography
+          variant="sub"
+          component="h6"
+          className={editStyles.editable}
+        >
+          <ContentEditable
+            tagName="span"
+            html={id}
+            onChange={(e) => handleDetailChange("id", e.target.value)}
+          />
         </Typography>
-        <div className={styles["skin-display__title__price"]}>
+        <Typography variant="h4" component="h4" className={editStyles.editable}>
+          <ContentEditable
+            tagName="span"
+            html={name}
+            onChange={(e) => handleDetailChange("name", e.target.value)}
+          />
+        </Typography>
+        <div className={editStyles.currency}>
+          <input
+            type="radio"
+            name="currency"
+            value="rp"
+            id="rp"
+            checked={!gemstone && !prestige}
+            onChange={() => handleCurrency("rp")}
+          />
+          <label htmlFor="rp">Riot Points</label>
+          <input
+            type="radio"
+            name="currency"
+            value="hextech"
+            id="hextech"
+            checked={gemstone}
+            onChange={() => handleCurrency("gemstone")}
+          />
+          <label htmlFor="hextech">Hextech Gems</label>
+          <input
+            type="radio"
+            name="currency"
+            value="prestige"
+            id="prestige"
+            checked={prestige}
+            onChange={() => handleCurrency("prestige")}
+          />
+          <label htmlFor="prestige">Prestige Points</label>
+        </div>
+        <div
+          className={clsx(
+            styles["skin-display__title__price"],
+            editStyles["skin-price"]
+          )}
+        >
           <Typography variant="h4" component="h5">
-            Skin {skinCurrency.price}
+            Skin{" "}
           </Typography>
+          <SimpleSelect
+            className={clsx(editStyles.select)}
+            options={priceOptions}
+            handleChange={(val) => console.log(val)}
+            defaultValue={price}
+          />
           <CurrencyIcons currency={skinCurrency.currency} />
         </div>
       </div>
       <Typography
         variant="p"
         component="p"
-        className={styles["skin-display__description"]}
+        className={clsx(
+          styles["skin-display__description"],
+          editStyles.editable
+        )}
       >
-        {description}
+        <ContentEditable
+          tagName="span"
+          html={description}
+          onChange={(e) => handleDetailChange("description", e.target.value)}
+        />
       </Typography>
       <div className={splashClass}>
         <div className={editStyles["asset-container"]}>

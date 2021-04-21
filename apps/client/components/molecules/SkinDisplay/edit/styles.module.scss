@@ -1,8 +1,16 @@
 @import "../../../../core/styles/variables";
 
 .editable {
+  border: 1px dashed rgba(#3c353d, 0.3);
+  outline: 0;
+  padding: 2px;
+  * {
+    outline: 0;
+  }
+
   &--invisible {
     opacity: 0;
+    left: 0;
     visibility: hidden;
     position: absolute;
   }
@@ -29,4 +37,25 @@
   font-size: 3.2rem;
 
   color: var(--color-background);
+}
+
+.select {
+  margin-left: 0.8rem;
+  width: 8rem;
+  * {
+    font-size: 2.4rem !important;
+    border: none !important;
+  }
+}
+
+.skin-price {
+  display: flex;
+  align-items: center;
+}
+
+.currency {
+  label {
+    margin-right: 1.6rem;
+    margin-left: 0.4rem;
+  }
 }

@@ -209,6 +209,30 @@ const SkinDisplay = (props: Skin) => {
             </Typography>
           </div>
         )}
+        {vo && (
+          <div className={styles["skin-display__video"]}>
+            <iframe
+              src={`https://www.youtube.com/embed/${vo.split("v=")[1]}`}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        )}
+        {interactions && (
+          <div className={styles["skin-display__video"]}>
+            <iframe
+              src={`https://www.youtube.com/embed/${
+                interactions.split("v=")[1]
+              }`}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        )}
       </div>
       <Typography
         variant="p"

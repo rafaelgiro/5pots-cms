@@ -308,25 +308,93 @@ const SkinDisplayEdit = (props: Skin) => {
           )}
         </div>
 
+        <div className={editStyles.url}>
+          <Typography variant="p" component="p">
+            Spotlight
+          </Typography>
+          <Typography variant="sub" component="p">
+            <ContentEditable
+              tagName="span"
+              html={spotlight}
+              onChange={(e) => handleDetailChange("spotlight", e.target.value)}
+            />
+          </Typography>
+        </div>
         <div
           className={clsx(
             styles["skin-display__video"],
             editStyles["asset-container"]
           )}
         >
-          <iframe
-            src={`https://www.youtube.com/embed/${spotlight.split("v=")[1]}`}
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-          {/* {spotlight && (
-            <MdDelete
-              onClick={() => unsetAsset("spotlight", "")}
-              className={editStyles["remove-btn"]}
+          {spotlight && (
+            <iframe
+              src={`https://www.youtube.com/embed/${spotlight.split("v=")[1]}`}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
             />
-          )} */}
+          )}
+        </div>
+        <div className={editStyles.url}>
+          <Typography variant="p" component="p">
+            Voice over
+          </Typography>
+          <Typography variant="sub" component="p">
+            <ContentEditable
+              tagName="span"
+              html={vo}
+              onChange={(e) => handleDetailChange("vo", e.target.value)}
+            />
+          </Typography>
+        </div>
+        <div
+          className={clsx(
+            styles["skin-display__video"],
+            editStyles["asset-container"]
+          )}
+        >
+          {vo && (
+            <iframe
+              src={`https://www.youtube.com/embed/${vo.split("v=")[1]}`}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          )}
+        </div>
+        <div className={editStyles.url}>
+          <Typography variant="p" component="p">
+            Special interactions
+          </Typography>
+          <Typography variant="sub" component="p">
+            <ContentEditable
+              tagName="span"
+              html={interactions}
+              onChange={(e) =>
+                handleDetailChange("interactions", e.target.value)
+              }
+            />
+          </Typography>
+        </div>
+        <div
+          className={clsx(
+            styles["skin-display__video"],
+            editStyles["asset-container"]
+          )}
+        >
+          {interactions && (
+            <iframe
+              src={`https://www.youtube.com/embed/${
+                interactions.split("v=")[1]
+              }`}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          )}
         </div>
       </div>
       <Typography

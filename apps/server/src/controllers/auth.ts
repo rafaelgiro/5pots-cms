@@ -252,7 +252,7 @@ Facebook: ${
     const mailOptions = {
       from:
         process.env.SENDGRID_EMAIL ||
-        "Hey! crie um dev.js na pasta config/keys com suas chaves",
+        "Crie sua API no sendgrid e inclua no aquivo .env!",
       to: user[0].email,
       subject: "Seu usuário cadastrado na 5pots",
       text: `Olá,

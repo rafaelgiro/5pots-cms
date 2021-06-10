@@ -38,30 +38,38 @@ yarn start
 
 ---
 
-Com ambos front e back de pé, ainda é necessário adicionar as variáveis de ambiente:
+#### Variáveis de ambiente
 
-Adicione o arquivo **.env.local** na pasta **client** com as seguintes chaves:
+Mesmo com ambos front e back de pé, ainda é necessário adicionar as variáveis de ambiente:
 
-```end
-NEXT_PUBLIC_RECAPTCHA={sua chave no google recaptcha}
+##### Client
+Renomeie o arquivo ***.env.example*** para ***.env*** na pasta **/app/client** e inclua suas chaves.
+Para o frontend é necessário ter uma chave do [Google recaptcha](https://www.google.com/recaptcha/about/).
+
+```env
+NEXT_PUBLIC_RECAPTCHA=
 API_URI=http://localhost:5000/
 NEXT_PUBLIC_API_URI=http://localhost:5000/
 ```
 
-Para o servidor, adicione o arquivo **dev.js** na pasta **server/src/config**
+##### Server
+Renomeie o arquivo ***.env.example*** para ***.env*** na pasta **/app/server** e inclua suas chaves.
+Para o servidor, é necessário ter chave nos seguintes serviços:
+| [Google recaptcha](https://www.google.com/recaptcha/about/) | [Google OAuth2](https://developers.google.com/identity/protocols/oauth2) | [Facebook OAuth2](https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow/) | [B2 Cloud Storage](https://www.backblaze.com/b2/cloud-storage.html) | [Sendgrid](https://sendgrid.com/docs/api-reference/)
 
-```javascript
-export default {
-googleClientID: // {seu client ID no google},
-googleClientSecret: // {seu client secret no google},
-mongoURI: "mongodb://localhost:27017/5pots-dev",
-cookieKey: // {uma string pra desenvolvimento}
-facebookClientID: // {seu client ID no facebook},
-facebookClientSecret: // {seu client secret no facebook},
-sendgridUsername: // {seu email cadastrado no sendgrid},
-sendgridPassword: // {senha do cadastro do sendgrid},
-sendgridEmail: // {email que vai enviar os emails de recuperação de senha},
-};
+```env
+MONGO_URI=mongodb://localhost:27017/5pots-dev
+NODE_HOST=localhost
+NODE_PORT=5000
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+FACEBOOK_CLIENT_ID=
+FACEBOOK_CLIENT_SECRET=
+B2_KEY_ID=
+B2_APP_KEY=
+B2_BUCKET_ID=
+SENDGRID_API_KEY=
+SENDGRID_EMAIL=
 ```
 
 ---

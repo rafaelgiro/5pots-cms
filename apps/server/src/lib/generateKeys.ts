@@ -21,13 +21,13 @@ function genKeyPair() {
 
   // Create the public key file
   fs.writeFileSync(
-    __dirname + "/../config/keys/id_rsa_pub.pem",
+    __dirname + "/config/keys/id_rsa_pub.pem",
     keyPair.publicKey
   );
 
   // Create the private key file
   fs.writeFileSync(
-    __dirname + "/../config/keys/id_rsa_priv.pem",
+    __dirname + "/config/keys/id_rsa_priv.pem",
     keyPair.privateKey
   );
 }

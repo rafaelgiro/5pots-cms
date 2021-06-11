@@ -1,8 +1,8 @@
-import { AxiosError } from "axios";
 import dynamic from "next/dynamic";
 
 import PostFeatured from "../../components/organisms/PostFeatured";
 
+import { handleErrorConsole } from "../../core/helpers/handleErrorConsole";
 import api from "../../core/services/api";
 
 import styles from "./styles.module.scss";
@@ -32,8 +32,12 @@ const Homepage = (props: HomeProps) => {
 export async function getStaticProps() {
   let posts: Post[] = [];
 
-  const res = await api.get<{ posts: Post[] }>("/posts");
-  posts = res.data.posts;
+  try {
+    const res = await api.get<{ posts: Post[] }>("/posts");
+    posts = res.data.posts;
+  } catch (error) {
+    handleErrorConsole(error);
+  }
 
   return {
     props: {

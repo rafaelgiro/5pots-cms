@@ -1,5 +1,7 @@
 .env
 node_modules
-/src/config/keys
 .history
 google_credentials.json
+
+id_rsa_priv.pem
+id_rsa_pub.pem

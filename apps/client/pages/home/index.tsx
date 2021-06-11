@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import dynamic from "next/dynamic";
 
 import PostFeatured from "../../components/organisms/PostFeatured";
@@ -29,8 +30,10 @@ const Homepage = (props: HomeProps) => {
 };
 
 export async function getStaticProps() {
-  const res = await api.get("/posts");
-  const posts: Post[] = res.data.posts;
+  let posts: Post[] = [];
+
+  const res = await api.get<{ posts: Post[] }>("/posts");
+  posts = res.data.posts;
 
   return {
     props: {

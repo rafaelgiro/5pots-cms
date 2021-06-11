@@ -10,7 +10,7 @@ import User from "../models/user";
 const JwtStrategy = passportJwt.Strategy;
 const ExtractJwt = passportJwt.ExtractJwt;
 
-const pathToKey = path.join(__dirname, "/../config/keys/id_rsa_pub.pem");
+const pathToKey = path.join(__dirname, "/../lib/config/keys/id_rsa_pub.pem");
 const PUB_KEY = fs.readFileSync(pathToKey, "utf8");
 
 const options = {

@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import { UserI } from "../models/user";
 
-const pathToKey = path.join(__dirname, "/../config/keys/id_rsa_priv.pem");
+const pathToKey = path.join(__dirname, "/config/keys/id_rsa_priv.pem");
 const PRIV_KEY = fs.readFileSync(pathToKey, "utf8");
 
 export function issueJWT(user: UserI) {

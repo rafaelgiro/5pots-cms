@@ -40,10 +40,10 @@ yarn start
 
 #### Variáveis de ambiente
 
-Mesmo com ambos front e back de pé, ainda é necessário adicionar as variáveis de ambiente:
+Antes de rodar a primeira vez o projeto, ainda é necessário adicionar as variáveis de ambiente:
 
 ##### Client
-Renomeie o arquivo ***.env.example*** para ***.env*** na pasta **/app/client** e inclua suas chaves.
+Renomeie o arquivo `.env.example` para `.env` na pasta **/apps/client** e inclua suas chaves.
 Para o frontend é necessário ter uma chave do [Google recaptcha](https://www.google.com/recaptcha/about/).
 
 ```env
@@ -53,7 +53,7 @@ NEXT_PUBLIC_API_URI=http://localhost:5000/
 ```
 
 ##### Server
-Renomeie o arquivo ***.env.example*** para ***.env*** na pasta **/app/server** e inclua suas chaves.
+Renomeie o arquivo `.env.example` para `.env` na pasta **/apps/server** e inclua suas chaves.
 Para o servidor, é necessário ter chave nos seguintes serviços:
 | [Google recaptcha](https://www.google.com/recaptcha/about/) | [Google OAuth2](https://developers.google.com/identity/protocols/oauth2) | [Facebook OAuth2](https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow/) | [B2 Cloud Storage](https://www.backblaze.com/b2/cloud-storage.html) | [Sendgrid](https://sendgrid.com/docs/api-reference/)
 
@@ -70,6 +70,14 @@ B2_APP_KEY=
 B2_BUCKET_ID=
 SENDGRID_API_KEY=
 SENDGRID_EMAIL=
+```
+
+#### Chaves RSA
+Para a autenticação é necessário gerar as chaves RSA. Existe um script dentro de `/apps/server/lib/config/keys`, para gerar as chaves, vamos apenas rodar os seguintes comandos:
+
+```
+cd apps/server
+yarn generate-keys
 ```
 
 ---

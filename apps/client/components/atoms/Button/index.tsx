@@ -5,7 +5,14 @@ import { ButtonProps } from "./interfaces";
 import styles from "./styles.module.scss";
 
 const Button = (props: ButtonProps) => {
-  const { className, children, variant, type, color } = props;
+  const {
+    className,
+    children,
+    variant = "normal",
+    type = "button",
+    color = "default",
+    ...rest
+  } = props;
 
   const btnClass = clsx(
     styles.btn,
@@ -14,7 +21,7 @@ const Button = (props: ButtonProps) => {
   );
 
   return (
-    <button type={type} className={btnClass}>
+    <button type={type} className={btnClass} {...rest}>
       {children}
     </button>
   );

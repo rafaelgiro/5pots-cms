@@ -35,6 +35,37 @@ const getPost = (req: Request, res: Response, next: NextFunction) => {
   });
 };
 
+const createPost = (req: Request, res: Response, next: NextFunction) => {
+  const { post } = req.body;
+
+  // Ordena as mudanças de campeões
+  const sectionIndex = post.sections.findIndex(
+    (section: Record<string, unknown>) => section.champions
+  );
+
+  if (sectionIndex !== -1)
+    post.sections[
+      sectionIndex
+    ].champions.sort((a: Record<string, string>, b: Record<string, string>) =>
+      a.name > b.name ? 1 : -1
+    );
+
+  let newChampArr = post.champions;
+
+  if (post.champions && sectionIndex !== -1) {
+    newChampArr = post.sections[sectionIndex].champions.map(
+      (c: Record<string, string>) => c.name
+    );
+  }
+
+  newChampArr.sort((a: string, b: string) => (a > b ? 1 : -1));
+
+  Post.create({ ...post, champions: newChampArr }).then((newPost) => {
+    if (newPost) res.status(200).json(newPost);
+    else next(new HttpException(500, "Ocorreu um erro ao criar um novo post"));
+  });
+};
+
 const updatePost = (req: Request, res: Response, next: NextFunction) => {
   const { slug } = req.params;
   const { post } = req.body;
@@ -73,4 +104,4 @@ const updatePost = (req: Request, res: Response, next: NextFunction) => {
   });
 };
 
-export { getPosts, getPost, updatePost };
+export { getPosts, getPost, createPost, updatePost };

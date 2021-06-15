@@ -68,3 +68,14 @@
     }
   }
 }
+
+.new-post {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  button {
+    margin-top: 1rem;
+    margin-left: 0;
+  }
+}

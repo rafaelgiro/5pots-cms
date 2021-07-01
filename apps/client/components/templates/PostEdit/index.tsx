@@ -57,7 +57,11 @@ const PostEdit = (props: PostEditProps) => {
     ].champions?.findIndex((champ) => champ.name === newChange.name);
 
     const newState = { ...postState };
-    newState.sections[championSectionIndex].champions[champIndex] = newChange;
+    if (newState.sections[championSectionIndex].champions && champIndex) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      newState.sections[championSectionIndex].champions[champIndex] = newChange;
+    }
 
     setPostState(newState);
   }
@@ -66,7 +70,7 @@ const PostEdit = (props: PostEditProps) => {
     if (postState.champions.includes(champion)) return;
 
     const newState = { ...postState };
-    newState.sections[championSectionIndex].champions.push({
+    newState.sections[championSectionIndex].champions?.push({
       ...defaultChampionChange,
       name: champion,
     });
@@ -81,7 +85,8 @@ const PostEdit = (props: PostEditProps) => {
 
     const newState = { ...postState };
 
-    newState.sections[championSectionIndex].champions.splice(champIndex, 1);
+    if (champIndex)
+      newState.sections[championSectionIndex].champions?.splice(champIndex, 1);
 
     setPostState(newState);
   }
@@ -125,13 +130,13 @@ const PostEdit = (props: PostEditProps) => {
 
     const newState = { ...postState };
 
-    newState.sections[championSectionIndex].champions.push(championChange);
+    newState.sections[championSectionIndex].champions?.push(championChange);
 
     setPostState(newState);
   }
 
   const hasIntro =
-    sections[0].content && sections[0].content.slice(0, 3) === "<p>"
+    sections[0]?.content && sections[0]?.content.slice(0, 3) === "<p>"
       ? ["Introdução", ...subTitles]
       : subTitles;
 

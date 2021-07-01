@@ -13,10 +13,10 @@ interface Post {
   postedAt: string;
   slug: string;
   sections: {
-    titles: string[];
-    content: string | [];
-    champions: ChampionChange[];
-    skins: Skin[];
+    titles?: string[];
+    content?: string | [];
+    champions?: ChampionChange[];
+    skins?: Skin[];
   }[];
   type: "crawler" | "patch-notes";
 }

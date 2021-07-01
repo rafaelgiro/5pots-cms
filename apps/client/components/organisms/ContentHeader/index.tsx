@@ -95,18 +95,7 @@ const ContentHeader = (props: ContentHeaderProps) => {
               )}
             />
             <div className={headerStyles.header__user__picture} />
-            <div className={headerStyles.header__user__details}>
-              <Typography
-                className={headerStyles["header__user__details__display-name"]}
-                variant="h4"
-                component="p"
-              >
-                {user.displayName}
-              </Typography>
-              <Typography variant="sub" component="p">
-                Configurar Perfil
-              </Typography>
-            </div>
+
             <a href="/api/logout">
               <FiLogOut className={headerStyles.header__user__logout} />
             </a>

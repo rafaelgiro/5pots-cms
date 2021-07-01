@@ -1,20 +1,23 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import clsx from "clsx";
 import { useContext, useRef } from "react";
 import MdDelete from "@meronex/icons/md/MdDelete";
+import MdRemoveCircle from "@meronex/icons/md/MdRemoveCircle";
 import UIContext from "../../../../core/contexts/UIContext";
 import CurrencyIcons from "../../../atoms/Icons/CurrencyIcons";
 import Typography from "../../../atoms/Typography";
 import EditContext from "../../../templates/PostEdit/EditContext";
 import Chromas from "../Chromas";
-import { imgType } from "./interfaces";
+import { imgType, SkinDisplayEditProps } from "./interfaces";
 
 import styles from "../styles.module.scss";
 import editStyles from "./styles.module.scss";
 import { uploadImage } from "../../../../core/helpers/uploadImage";
 import ContentEditable from "react-contenteditable";
 import SimpleSelect from "../../../atoms/SimpleSelect";
+import debouce from "../../../../core/helpers/debouce";
 
-const SkinDisplayEdit = (props: Skin) => {
+const SkinDisplayEdit = (props: SkinDisplayEditProps) => {
   const {
     border,
     chromas,
@@ -31,6 +34,7 @@ const SkinDisplayEdit = (props: Skin) => {
     vo,
     description,
     gemstone,
+    index: skinIndex,
   } = props;
   const { postState, setPostState } = useContext(EditContext);
   const { uiDispatch: dispatch } = useContext(UIContext);
@@ -82,16 +86,24 @@ const SkinDisplayEdit = (props: Skin) => {
   function setAsset(asset: imgType) {
     if (postState && (skinSectionIndex || skinSectionIndex === 0)) {
       const newPost = { ...postState };
-      const skinIndex = newPost.sections[skinSectionIndex].skins.findIndex(
-        (s) => s.id === id
-      );
+      if (
+        newPost.sections &&
+        skinSectionIndex &&
+        newPost.sections[skinSectionIndex].skins
+      ) {
+        const skinIndex = newPost.sections[skinSectionIndex].skins?.findIndex(
+          (s) => s.id === id
+        );
 
-      const assetAlreadyExists =
-        newPost.sections[skinSectionIndex].skins[skinIndex][asset];
+        const assetAlreadyExists =
+          // @ts-ignore
+          newPost.sections[skinSectionIndex].skins[skinIndex][asset];
 
-      if (!assetAlreadyExists) {
-        newPost.sections[skinSectionIndex].skins[skinIndex][asset] = true;
-        setPostState(newPost);
+        if (!assetAlreadyExists) {
+          // @ts-ignore
+          newPost.sections[skinSectionIndex].skins[skinIndex][asset] = true;
+          setPostState(newPost);
+        }
       }
     }
   }
@@ -99,10 +111,8 @@ const SkinDisplayEdit = (props: Skin) => {
   function unsetAsset(asset: imgType) {
     if (postState && (skinSectionIndex || skinSectionIndex === 0)) {
       const newPost = { ...postState };
-      const skinIndex = newPost.sections[skinSectionIndex].skins.findIndex(
-        (s) => s.id === id
-      );
 
+      // @ts-ignore
       newPost.sections[skinSectionIndex].skins[skinIndex][asset] = false;
       setPostState(newPost);
     }
@@ -119,9 +129,6 @@ const SkinDisplayEdit = (props: Skin) => {
   function handleDetailChange(key: string, value: string) {
     if (postState && (skinSectionIndex || skinSectionIndex === 0)) {
       const newPost = { ...postState };
-      const skinIndex = newPost.sections[skinSectionIndex].skins.findIndex(
-        (s) => s.id === id
-      );
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
@@ -129,26 +136,45 @@ const SkinDisplayEdit = (props: Skin) => {
       setPostState(newPost);
     }
   }
+  const debouncedDetailChange = debouce(handleDetailChange, 500);
 
   function handleCurrency(currency: "rp" | "gemstone" | "prestige") {
     if (postState && (skinSectionIndex || skinSectionIndex === 0)) {
       const newPost = { ...postState };
-      const skinIndex = newPost.sections[skinSectionIndex].skins.findIndex(
-        (s) => s.id === id
-      );
 
       if (currency === "rp") {
+        // @ts-ignore
         newPost.sections[skinSectionIndex].skins[skinIndex].gemstone = false;
+        // @ts-ignore
         newPost.sections[skinSectionIndex].skins[skinIndex].prestige = false;
       } else if (currency === "gemstone") {
+        // @ts-ignore
         newPost.sections[skinSectionIndex].skins[skinIndex].gemstone = true;
+        // @ts-ignore
         newPost.sections[skinSectionIndex].skins[skinIndex].prestige = false;
       } else {
+        // @ts-ignore
         newPost.sections[skinSectionIndex].skins[skinIndex].gemstone = false;
+        // @ts-ignore
         newPost.sections[skinSectionIndex].skins[skinIndex].prestige = true;
       }
 
       setPostState(newPost);
+    }
+  }
+
+  function handleDeleteSkin() {
+    if (
+      postState &&
+      postState.sections &&
+      (skinSectionIndex || skinSectionIndex === 0)
+    ) {
+      console.log("rodo", skinIndex);
+      const newState = { ...postState };
+
+      newState.sections[skinSectionIndex].skins?.splice(skinIndex, 1);
+
+      setPostState(newState);
     }
   }
 
@@ -163,14 +189,14 @@ const SkinDisplayEdit = (props: Skin) => {
           <ContentEditable
             tagName="span"
             html={id}
-            onChange={(e) => handleDetailChange("id", e.target.value)}
+            onChange={(e) => debouncedDetailChange("id", e.target.value)}
           />
         </Typography>
         <Typography variant="h4" component="h4" className={editStyles.editable}>
           <ContentEditable
             tagName="span"
             html={name}
-            onChange={(e) => handleDetailChange("name", e.target.value)}
+            onChange={(e) => debouncedDetailChange("name", e.target.value)}
           />
         </Typography>
         <div className={editStyles.currency}>
@@ -231,13 +257,13 @@ const SkinDisplayEdit = (props: Skin) => {
         <ContentEditable
           tagName="span"
           html={description}
-          onChange={(e) => handleDetailChange("description", e.target.value)}
+          onChange={(e) => debouncedDetailChange("description", e.target.value)}
         />
       </Typography>
       <div className={splashClass}>
         <div className={editStyles["asset-container"]}>
           <button onClick={() => loadingUploadRef.current?.click()}>
-            {loading && <img src={`${baseURL}/${id}-loading.jpg`} />}
+            {loading ? <img src={`${baseURL}/${id}-loading.jpg`} /> : "loading"}
           </button>
           <input
             ref={loadingUploadRef}
@@ -255,7 +281,7 @@ const SkinDisplayEdit = (props: Skin) => {
 
         <div className={editStyles["asset-container"]}>
           <button onClick={() => splashUploadRef.current?.click()}>
-            {splash && <img src={`${baseURL}/${id}-splash.jpg`} />}
+            {splash ? <img src={`${baseURL}/${id}-splash.jpg`} /> : "splash"}
           </button>
           <input
             ref={splashUploadRef}
@@ -274,7 +300,7 @@ const SkinDisplayEdit = (props: Skin) => {
       <div className={styles["skin-display__screenshots"]}>
         <div className={editStyles["asset-container"]}>
           <button onClick={() => stillUploadRef.current?.click()}>
-            {still && <img src={`${baseURL}/${id}-still.jpg`} />}
+            {still ? <img src={`${baseURL}/${id}-still.jpg`} /> : "still"}
           </button>
           <input
             ref={stillUploadRef}
@@ -292,7 +318,7 @@ const SkinDisplayEdit = (props: Skin) => {
 
         <div className={editStyles["asset-container"]}>
           <button onClick={() => turnUploadRef.current?.click()}>
-            {turn && <img src={`${baseURL}/${id}-turn.jpg`} />}
+            {turn ? <img src={`${baseURL}/${id}-turn.jpg`} /> : "turn 360"}
           </button>
           <input
             ref={turnUploadRef}
@@ -316,7 +342,9 @@ const SkinDisplayEdit = (props: Skin) => {
             <ContentEditable
               tagName="span"
               html={spotlight}
-              onChange={(e) => handleDetailChange("spotlight", e.target.value)}
+              onChange={(e) =>
+                debouncedDetailChange("spotlight", e.target.value)
+              }
             />
           </Typography>
         </div>
@@ -344,7 +372,7 @@ const SkinDisplayEdit = (props: Skin) => {
             <ContentEditable
               tagName="span"
               html={vo}
-              onChange={(e) => handleDetailChange("vo", e.target.value)}
+              onChange={(e) => debouncedDetailChange("vo", e.target.value)}
             />
           </Typography>
         </div>
@@ -373,7 +401,7 @@ const SkinDisplayEdit = (props: Skin) => {
               tagName="span"
               html={interactions}
               onChange={(e) =>
-                handleDetailChange("interactions", e.target.value)
+                debouncedDetailChange("interactions", e.target.value)
               }
             />
           </Typography>
@@ -412,7 +440,11 @@ const SkinDisplayEdit = (props: Skin) => {
       <div className={styles["skin-display__chromas-border"]}>
         <div className={editStyles["asset-container"]}>
           <button onClick={() => borderUploadRef.current?.click()}>
-            {border && <img src={`${baseURL}/${id}-border.jpg`} />}
+            {border ? (
+              <img src={`${baseURL}/${id}-border.jpg`} />
+            ) : (
+              "borda de carregamento"
+            )}
           </button>
           <input
             ref={borderUploadRef}
@@ -429,6 +461,11 @@ const SkinDisplayEdit = (props: Skin) => {
         </div>
         <Chromas chromas={chromas} id={id} />
       </div>
+      <button onClick={() => handleDeleteSkin()}>
+        <MdRemoveCircle
+          className={clsx(editStyles["remove-btn"], editStyles.edit__remove)}
+        />
+      </button>
     </div>
   );
 };

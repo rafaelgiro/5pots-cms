@@ -13,12 +13,16 @@ const PostBodyDev = (props: PostBodyDevProps) => {
   const { sections, titles, title, type, allChampions } = props;
 
   const renderSections = () => {
-    const content = sections.map((section) => {
+    const content = sections.map((section, i) => {
       if (type !== "patch-notes") return null;
 
       if (section.skins)
         return (
-          <SkinsSectionDev skinsSection={section.skins} key={`section-skins`} />
+          <SkinsSectionDev
+            sectionIndex={i}
+            skinsSection={section.skins}
+            key={`section-skins`}
+          />
         );
 
       if (section.champions)
@@ -27,6 +31,7 @@ const PostBodyDev = (props: PostBodyDevProps) => {
             championSection={section.champions}
             key="champions-section"
             allChampions={allChampions}
+            sectionIndex={i}
           />
         );
     });

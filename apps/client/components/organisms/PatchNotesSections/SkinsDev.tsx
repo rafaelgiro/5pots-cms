@@ -6,17 +6,22 @@ import AddNewSkin from "./AddNewSkin";
 
 import styles from "../../templates/PostView/styles.module.scss";
 
-import { SkinsSectionProps } from "./interfaces";
+import { SkinsSectionDevProps } from "./interfaces";
 
-const SkinsSectionDev = (props: SkinsSectionProps) => {
-  const { skinsSection } = props;
+const SkinsSectionDev = (props: SkinsSectionDevProps) => {
+  const { skinsSection, sectionIndex } = props;
   return (
     <Section className={styles["post-section"]}>
       <SectionTitle title="skins">
         <SectionIcon section="skins" />
       </SectionTitle>
       {skinsSection.map((skin, i) => (
-        <SkinDisplayEdit {...skin} key={skin.id} index={i} />
+        <SkinDisplayEdit
+          {...skin}
+          key={skin.id}
+          index={i}
+          sectionIndex={sectionIndex}
+        />
       ))}
       <AddNewSkin />
     </Section>

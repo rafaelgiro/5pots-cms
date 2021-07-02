@@ -19,13 +19,8 @@ export interface PostHeaderDevProps extends PostHeaderProps {
 
 export interface EditCotextI {
   json?: boolean;
-  handleChampionChange: (newChange: ChampionChange) => void;
-  handleNewChampion: (champion: string) => void;
-  handleDeleteChampion: (champion: string) => void;
   postState?: Post;
   setPostState: Dispatch<SetStateAction<Post>>;
-  championSectionIndex: number;
-  handleNewFromPaste(championChange: ChampionChange): void;
 }
 
 export interface PostBodyDevProps extends PostBodyProps {

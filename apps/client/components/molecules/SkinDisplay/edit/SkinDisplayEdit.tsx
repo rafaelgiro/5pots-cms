@@ -35,6 +35,7 @@ const SkinDisplayEdit = (props: SkinDisplayEditProps) => {
     description,
     gemstone,
     index: skinIndex,
+    sectionIndex: skinSectionIndex,
   } = props;
   const { postState, setPostState } = useContext(EditContext);
   const { uiDispatch: dispatch } = useContext(UIContext);
@@ -43,9 +44,6 @@ const SkinDisplayEdit = (props: SkinDisplayEditProps) => {
   const stillUploadRef = useRef<HTMLInputElement>(null);
   const turnUploadRef = useRef<HTMLInputElement>(null);
   const borderUploadRef = useRef<HTMLInputElement>(null);
-  const skinSectionIndex = postState?.sections.findIndex(
-    (section) => section.skins
-  );
 
   const skinTier: Record<string, string> = {
     "1350": "Épica",

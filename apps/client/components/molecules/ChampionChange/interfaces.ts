@@ -13,6 +13,8 @@ export interface ChampionChangeDevProps {
     context?: string;
     resume: string;
   };
+  championSectionIndex: number;
+  championChangeIndex: number;
 }
 
 export interface ChangeBlockProps {

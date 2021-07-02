@@ -16,8 +16,13 @@ import { EditChampionChangeProps } from "./interfaces";
 import styles from "./styles.module.scss";
 
 const EditChampionChange = (props: EditChampionChangeProps) => {
-  const { change, setChange } = props;
-  const { json, handleDeleteChampion } = useContext(EditContext);
+  const {
+    change,
+    setChange,
+    championSectionIndex,
+    championChangeIndex,
+  } = props;
+  const { json, postState, setPostState } = useContext(EditContext);
 
   const championInfo = {
     name: change.name,
@@ -70,6 +75,24 @@ const EditChampionChange = (props: EditChampionChangeProps) => {
     setChange({ ...championInfo, changes: [...newArray] });
   }
 
+  function handleDeleteChampion(champion: string) {
+    if (postState) {
+      const champIndex = postState.sections[
+        championSectionIndex
+      ].champions?.findIndex((champ) => champ.name === champion);
+
+      const newState = { ...postState };
+
+      if (champIndex || champIndex === 0)
+        newState.sections[championSectionIndex].champions?.splice(
+          champIndex,
+          1
+        );
+
+      setPostState(newState);
+    }
+  }
+
   return (
     <div className={styles["edit-champion-change__container"]}>
       <div className={styles["edit-champion-change__controls"]}>
@@ -85,6 +108,8 @@ const EditChampionChange = (props: EditChampionChangeProps) => {
         <ChampionChangeDev
           championInfo={championInfo}
           change={{ ...championInfo, changes }}
+          championSectionIndex={championSectionIndex}
+          championChangeIndex={championChangeIndex}
         />
       ) : (
         <div className={styles["edit-champion-change__test__jsons"]}>

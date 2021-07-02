@@ -51,46 +51,6 @@ const PostEdit = (props: PostEditProps) => {
     setPostState(newPost);
   }
 
-  function handleChampionChange(newChange: ChampionChange) {
-    const champIndex = postState.sections[
-      championSectionIndex
-    ].champions?.findIndex((champ) => champ.name === newChange.name);
-
-    const newState = { ...postState };
-    if (newState.sections[championSectionIndex].champions && champIndex) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      newState.sections[championSectionIndex].champions[champIndex] = newChange;
-    }
-
-    setPostState(newState);
-  }
-
-  function handleNewChampion(champion: string) {
-    if (postState.champions.includes(champion)) return;
-
-    const newState = { ...postState };
-    newState.sections[championSectionIndex].champions?.push({
-      ...defaultChampionChange,
-      name: champion,
-    });
-
-    setPostState(newState);
-  }
-
-  function handleDeleteChampion(champion: string) {
-    const champIndex = postState.sections[
-      championSectionIndex
-    ].champions?.findIndex((champ) => champ.name === champion);
-
-    const newState = { ...postState };
-
-    if (champIndex)
-      newState.sections[championSectionIndex].champions?.splice(champIndex, 1);
-
-    setPostState(newState);
-  }
-
   function handleUpdate() {
     const token = localStorage.getItem("token");
 
@@ -125,16 +85,6 @@ const PostEdit = (props: PostEditProps) => {
       });
   }
 
-  function handleNewFromPaste(championChange: ChampionChange) {
-    if (postState.champions.includes(championChange.name)) return;
-
-    const newState = { ...postState };
-
-    newState.sections[championSectionIndex].champions?.push(championChange);
-
-    setPostState(newState);
-  }
-
   const hasIntro =
     sections[0]?.content && sections[0]?.content.slice(0, 3) === "<p>"
       ? ["Introdução", ...subTitles]
@@ -150,13 +100,8 @@ const PostEdit = (props: PostEditProps) => {
       <EditContext.Provider
         value={{
           json: jsonMode,
-          handleChampionChange,
-          handleNewChampion,
-          handleDeleteChampion,
           postState,
           setPostState,
-          championSectionIndex,
-          handleNewFromPaste,
         }}
       >
         <PostHeaderDev

@@ -1,1 +1,0 @@
-/Users/rafaelgiro/Documents/5pots/packages/lol-crawler/src/index.js

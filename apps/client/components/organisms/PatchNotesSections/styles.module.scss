@@ -7,7 +7,6 @@
     justify-content: center;
     border: 3px dashed $color-grey;
     padding: 2.4rem;
-    // margin-bottom: 8rem;
 
     &__manual {
       display: flex;
@@ -32,5 +31,24 @@
         cursor: pointer;
       }
     }
+  }
+}
+
+.add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 4rem;
+  opacity: 0.2;
+  border: 2px dashed rgba($color-grey-dark, 0.2);
+  transition: all 0.3s ease-out;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  svg {
+    margin-left: 1.6rem;
   }
 }

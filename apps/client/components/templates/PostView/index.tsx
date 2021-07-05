@@ -25,7 +25,7 @@ const PostView = (props: PostViewProps) => {
 
   // Checa se tem um parágrafo de introdução sem título
   const hasIntro =
-    sections[0].content && sections[0].content.slice(0, 3) === "<p>"
+    sections[0]?.content && sections[0]?.content.slice(0, 3) === "<p>"
       ? ["Introdução", ...subTitles]
       : subTitles;
 

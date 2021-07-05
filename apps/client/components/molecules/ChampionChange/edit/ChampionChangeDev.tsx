@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useContext, useEffect, useState } from "react";
 import ContentEditable from "react-contenteditable";
 import clsx from "clsx";
@@ -32,19 +33,21 @@ import devStyles from "./styles.module.scss";
 
 // TODO dá pra quebrar em menores componentes ainda, ou separar as funções
 const ChampionChangeDev = (props: ChampionChangeDevProps) => {
-  const { change, championInfo } = props;
+  const {
+    change,
+    championInfo,
+    championSectionIndex,
+    championChangeIndex: championIndex,
+  } = props;
   const [summary, setSummary] = useState("summary");
   const [champion, setChampion] = useState<Champion>();
-  const { postState, setPostState, championSectionIndex } = useContext(
-    EditContext
-  );
+  const { postState, setPostState } = useContext(EditContext);
   const sanitazedChampion = championInfo.name.replace(" ", "").replace("'", "");
   const { changes } = change;
-  const championIndex = postState?.sections[
-    championSectionIndex
-  ].champions.findIndex((c) => c.name === championInfo.name);
+
   const currentAbilities = championIndex
-    ? postState?.sections[championSectionIndex].champions[
+    ? // @ts-ignore
+      postState?.sections[championSectionIndex].champions[
         championIndex
       ].changes.map((c) => c.stat)
     : [];
@@ -57,11 +60,13 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
   ) {
     if (postState && (championIndex || championIndex === 0)) {
       const newPost = { ...postState };
+      // @ts-ignore
       newPost.sections[championSectionIndex].champions[championIndex].changes[
         changeIndex
       ].stat = newKey;
 
       // Ordena
+      // @ts-ignore
       newPost.sections[championSectionIndex].champions[
         championIndex
       ].changes.sort(
@@ -75,6 +80,7 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
   function deleteAbility(changeIndex: number) {
     if (postState && (championIndex || championIndex === 0)) {
       const newPost = { ...postState };
+      // @ts-ignore
       newPost.sections[championSectionIndex].champions[
         championIndex
       ].changes.splice(changeIndex, 1);
@@ -90,6 +96,7 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
   ) {
     if (postState && (championIndex || championIndex === 0)) {
       const newPost = { ...postState };
+      // @ts-ignore
       newPost.sections[championSectionIndex].champions[championIndex].changes[
         changeIndex
       ].blocks[blockIndex].type = newValue;
@@ -106,6 +113,7 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
   ) {
     if (postState && (championIndex || championIndex === 0)) {
       const newPost = { ...postState };
+      // @ts-ignore
       newPost.sections[championSectionIndex].champions[championIndex].changes[
         changeIndex
       ].blocks[blockIndex][key] = newValue;
@@ -119,6 +127,7 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
   function handleBlockChangeDelete(changeIndex: number, blockIndex: number) {
     if (postState && (championIndex || championIndex === 0)) {
       const newPost = { ...postState };
+      // @ts-ignore
       newPost.sections[championSectionIndex].champions[championIndex].changes[
         changeIndex
       ].blocks.splice(blockIndex, 1);
@@ -132,6 +141,7 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
 
     if (postState && (championIndex || championIndex === 0)) {
       const newPost = { ...postState };
+      // @ts-ignore
       newPost.sections[championSectionIndex].champions[championIndex][
         key
       ] = value;
@@ -145,6 +155,7 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
   function addChangeBlock(changeIndex: number) {
     if (postState && (championIndex || championIndex === 0)) {
       const newPost = { ...postState };
+      // @ts-ignore
       newPost.sections[championSectionIndex].champions[championIndex].changes[
         changeIndex
       ].blocks.push(defaultChangeBlock);
@@ -156,11 +167,13 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
   function addAbility(abilityKey: AbilityKey) {
     if (postState && (championIndex || championIndex === 0)) {
       const newPost = { ...postState };
+      // @ts-ignore
       newPost.sections[championSectionIndex].champions[
         championIndex
       ].changes.push({ ...defaultAbility, stat: abilityKey });
 
       // Ordena
+      // @ts-ignore
       newPost.sections[championSectionIndex].champions[
         championIndex
       ].changes.sort(
@@ -174,6 +187,7 @@ const ChampionChangeDev = (props: ChampionChangeDevProps) => {
   function changeGoal(newGoal: ChangeIconProps["type"]) {
     if (postState && (championIndex || championIndex === 0)) {
       const newPost = { ...postState };
+      // @ts-ignore
       newPost.sections[championSectionIndex].champions[
         championIndex
       ].goal = newGoal as "buff" | "nerf" | "rework" | "adjusted";

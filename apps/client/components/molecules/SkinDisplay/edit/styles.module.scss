@@ -17,9 +17,21 @@
 }
 
 .edit {
-  button {
-    min-width: 10rem !important;
-    min-height: 4rem !important;
+  position: relative;
+
+  &__remove {
+    position: absolute;
+    top: 8rem !important;
+    left: -7.2rem !important;
+    padding: 1.4rem !important;
+    font-size: 4rem !important;
+    width: 4.8rem;
+    height: 4.8rem;
+  }
+
+  & > button {
+    background-color: transparent;
+    border: none;
   }
 }
 
@@ -37,8 +49,11 @@
   border-radius: 0.4rem;
   padding: 0.4rem;
   font-size: 3.2rem;
-
   color: var(--color-background);
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .select {
@@ -74,5 +89,62 @@
     height: 4rem;
     background-color: rgba(#3c353d, 0.1);
     padding: 0.5rem;
+  }
+}
+
+.manage-chromas {
+  margin-top: 4rem;
+
+  & > div {
+    margin-top: 2.4rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.chroma {
+  margin: 0 1.6rem;
+  width: 16rem;
+  position: relative;
+
+  &__add {
+    border: 2px dashed var(--color-primary) !important;
+    background-color: transparent !important;
+    border-radius: 0.8rem;
+    padding: 3.2rem !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      font-size: 4.8rem;
+    }
+
+    p {
+      margin-top: 3.2rem;
+      font-weight: bold;
+    }
+  }
+
+  &__input {
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: transparent !important;
+  }
+
+  &__color {
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 0.8rem;
   }
 }

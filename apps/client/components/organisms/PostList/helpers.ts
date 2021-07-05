@@ -56,3 +56,15 @@ export function createMock() {
     }
   );
 }
+
+export function createChampions() {
+  const token = localStorage.getItem("token");
+
+  return api.post(
+    "/ddragon/make",
+    {},
+    {
+      headers: { Authorization: token },
+    }
+  );
+}

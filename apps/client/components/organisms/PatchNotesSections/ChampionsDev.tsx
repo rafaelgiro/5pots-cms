@@ -7,22 +7,23 @@ import SectionIcon from "../../atoms/Icons/SectionIcon";
 import Typography from "../../atoms/Typography";
 import SectionTitle from "../../atoms/SectionTitle";
 import SimpleSelect from "../../atoms/SimpleSelect";
+import ConvertChange from "../../molecules/ConvertChange";
 
 import EditContext from "../../templates/PostEdit/EditContext";
 
+import { defaultChampionChange } from "../../templates/PostEdit/helpers";
 import { ChampionSectionDevProps } from "./interfaces";
 
 import viewStyles from "../../templates/PostView/styles.module.scss";
 import styles from "./styles.module.scss";
-import ConvertChange from "../../molecules/ConvertChange";
 
 const ChampionsSectionDev = (props: ChampionSectionDevProps) => {
-  const { championSection, allChampions } = props;
   const {
-    handleNewChampion,
-    handleChampionChange,
-    handleNewFromPaste,
-  } = useContext(EditContext);
+    championSection,
+    allChampions,
+    sectionIndex: championSectionIndex,
+  } = props;
+  const { postState, setPostState } = useContext(EditContext);
 
   const championOptions = useMemo(() => {
     return allChampions.map((champion) => {
@@ -30,16 +31,61 @@ const ChampionsSectionDev = (props: ChampionSectionDevProps) => {
     });
   }, [allChampions]);
 
+  function handleChampionChange(newChange: ChampionChange) {
+    if (postState) {
+      const champIndex = postState.sections[
+        championSectionIndex
+      ].champions?.findIndex((champ) => champ.name === newChange.name);
+
+      const newState = { ...postState };
+      if (newState.sections[championSectionIndex].champions && champIndex) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        newState.sections[championSectionIndex].champions[
+          champIndex
+        ] = newChange;
+      }
+
+      setPostState(newState);
+    }
+  }
+
+  function handleNewChampion(champion: string) {
+    if (postState?.champions.includes(champion)) return;
+
+    if (postState) {
+      const newState = { ...postState };
+      newState.sections[championSectionIndex].champions?.push({
+        ...defaultChampionChange,
+        name: champion,
+      });
+
+      setPostState(newState);
+    }
+  }
+
+  function handleNewFromPaste(championChange: ChampionChange) {
+    if (postState?.champions.includes(championChange.name)) return;
+
+    if (postState) {
+      const newState = { ...postState };
+      newState.sections[championSectionIndex].champions?.push(championChange);
+      setPostState(newState);
+    }
+  }
+
   return (
     <Section className={viewStyles["post-section"]}>
       <SectionTitle title="Campeões">
         <SectionIcon section="champions" />
       </SectionTitle>
-      {championSection.map((section) => (
+      {championSection.map((section, i) => (
         <EditChampionChange
           key={`champ-edit-${section.name}`}
           change={section}
           setChange={handleChampionChange}
+          championSectionIndex={championSectionIndex}
+          championChangeIndex={i}
         />
       ))}
 

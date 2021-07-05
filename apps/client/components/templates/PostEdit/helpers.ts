@@ -17,3 +17,21 @@ export const defaultChampionChange: ChampionChange = {
     },
   ],
 };
+
+export const defaultSkinChange: Skin = {
+  id: "new-skin-id",
+  description: "Descrição da skin",
+  name: "Nova skin",
+  price: "1350",
+  prestige: false,
+  gemstone: false,
+  splash: false,
+  loading: false,
+  border: false,
+  still: false,
+  turn: false,
+  spotlight: "",
+  vo: "",
+  chromas: [],
+  interactions: "",
+};

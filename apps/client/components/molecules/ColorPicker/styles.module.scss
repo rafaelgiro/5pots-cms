@@ -1,0 +1,11 @@
+.picker {
+  z-index: 100;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.2s ease-out;
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+}

@@ -8,6 +8,8 @@ import CurrencyIcons from "../../../atoms/Icons/CurrencyIcons";
 import Typography from "../../../atoms/Typography";
 import EditContext from "../../../templates/PostEdit/EditContext";
 import Chromas from "../Chromas";
+import ManageChromas from "./ManageChromas";
+
 import { imgType, SkinDisplayEditProps } from "./interfaces";
 
 import styles from "../styles.module.scss";
@@ -459,6 +461,12 @@ const SkinDisplayEdit = (props: SkinDisplayEditProps) => {
         </div>
         <Chromas chromas={chromas} id={id} />
       </div>
+      <ManageChromas
+        chromas={chromas}
+        skinIndex={skinIndex}
+        sectionIndex={skinSectionIndex}
+        id={id}
+      />
       <button onClick={() => handleDeleteSkin()}>
         <MdRemoveCircle
           className={clsx(editStyles["remove-btn"], editStyles.edit__remove)}

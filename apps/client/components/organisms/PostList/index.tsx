@@ -7,7 +7,7 @@ import Post, { PostSkeleton } from "../../molecules/Post";
 import AuthContext from "../../../core/contexts/AuthContext";
 import UIContext from "../../../core/contexts/UIContext";
 
-import { createMock } from "./helpers";
+import { createChampions, createMock } from "./helpers";
 
 import { PostListProps } from "./interfaces";
 
@@ -27,6 +27,28 @@ const PostList = (props: PostListProps) => {
           type: "SHOW_SNACKBAR",
           snackbar: {
             msg: "Post criado com sucesso!",
+            variant: "success",
+          },
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: "SHOW_SNACKBAR",
+          snackbar: {
+            msg: err.response.data.message,
+            variant: "error",
+          },
+        });
+      });
+  };
+
+  const updateChampions = () => {
+    createChampions()
+      .then(() => {
+        dispatch({
+          type: "SHOW_SNACKBAR",
+          snackbar: {
+            msg: "Banco de campeões criado com sucesso",
             variant: "success",
           },
         });
@@ -65,6 +87,7 @@ const PostList = (props: PostListProps) => {
           <Typography variant="h3" component="h5">
             Crie o seu primeiro post!
           </Typography>
+          <Button onClick={updateChampions}>Criar banco de campeões</Button>
           <Button onClick={updatePosts}>Criar post de exemplo</Button>
         </div>
       );

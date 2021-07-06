@@ -3,11 +3,12 @@
 
 .skin-display {
   margin-bottom: 10rem;
-  button {
+  a {
     background-color: $color-grey;
     border: 1px solid rgba($color-grey-dark, 0.05);
     padding: 0.4rem;
     line-height: 0;
+    height: fit-content;
   }
 
   &:first-child {
@@ -125,12 +126,11 @@
     align-items: center;
 
     & > * {
-      min-height: 26rem;
       width: 90%;
       margin-bottom: 1.5rem;
     }
 
-    button {
+    a {
       line-height: 0;
       max-width: 90rem;
       margin-bottom: 1.5rem;

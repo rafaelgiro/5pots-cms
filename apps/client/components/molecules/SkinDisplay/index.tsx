@@ -1,9 +1,5 @@
 import clsx from "clsx";
-import { useContext, useState } from "react";
-import { PhotoSwipe } from "react-photoswipe";
-import UIContext from "../../../core/contexts/UIContext";
 import CurrencyIcons from "../../atoms/Icons/CurrencyIcons";
-import Lightbox from "../../atoms/Lightbox";
 import Typography from "../../atoms/Typography";
 import Chromas from "./Chromas";
 
@@ -27,7 +23,6 @@ const SkinDisplay = (props: Skin) => {
     description,
     gemstone,
   } = props;
-  const { uiDispatch: dispatch } = useContext(UIContext);
 
   const skinTier: Record<string, string> = {
     "1350": "Épica",
@@ -36,14 +31,6 @@ const SkinDisplay = (props: Skin) => {
   };
 
   const baseURL = "https://assets.5pots.com/file/cincopots/pbe";
-
-  const images = [
-    `https://assets.5pots.com/file/cincopots/pbe/${id}-loading.jpg`,
-    `https://assets.5pots.com/file/cincopots/pbe/${id}-splash.jpg`,
-    `https://assets.5pots.com/file/cincopots/pbe/${id}-still.jpg`,
-    // `https://assets.5pots.com/file/cincopots/pbe/${id}-turn.jpg`,
-    `https://assets.5pots.com/file/cincopots/pbe/${id}-border.jpg`,
-  ];
 
   const splashClass = clsx(
     styles["skin-display__splash"],
@@ -88,16 +75,9 @@ const SkinDisplay = (props: Skin) => {
       </Typography>
       <div className={splashClass}>
         {loading ? (
-          <button
-            onClick={() =>
-              dispatch({
-                type: "SHOW_LIGHTBOX",
-                lightbox: { images, current: 0 },
-              })
-            }
-          >
+          <a href={`${baseURL}/${id}-loading.jpg`} target="blank">
             <img src={`${baseURL}/${id}-loading.jpg`} />
-          </button>
+          </a>
         ) : (
           <div
             className={clsx(
@@ -115,16 +95,9 @@ const SkinDisplay = (props: Skin) => {
           </div>
         )}
         {splash ? (
-          <button
-            onClick={() =>
-              dispatch({
-                type: "SHOW_LIGHTBOX",
-                lightbox: { images, current: 1 },
-              })
-            }
-          >
+          <a href={`${baseURL}/${id}-splash.jpg`} target="blank">
             <img src={`${baseURL}/${id}-splash.jpg`} />
-          </button>
+          </a>
         ) : (
           <div className={styles["skin-display__missing"]}>
             <img
@@ -139,16 +112,9 @@ const SkinDisplay = (props: Skin) => {
       </div>
       <div className={styles["skin-display__screenshots"]}>
         {still ? (
-          <button
-            onClick={() =>
-              dispatch({
-                type: "SHOW_LIGHTBOX",
-                lightbox: { images, current: 2 },
-              })
-            }
-          >
+          <a href={`${baseURL}/${id}-still.jpg`} target="blank">
             <img src={`${baseURL}/${id}-still.jpg`} />
-          </button>
+          </a>
         ) : (
           <div className={styles["skin-display__missing"]}>
             <img
@@ -162,16 +128,9 @@ const SkinDisplay = (props: Skin) => {
         )}
 
         {turn ? (
-          <button
-            onClick={() =>
-              dispatch({
-                type: "SHOW_LIGHTBOX",
-                lightbox: { images, current: 3 },
-              })
-            }
-          >
+          <a href={`${baseURL}/${id}-turn.jpg`} target="blank">
             <img src={`${baseURL}/${id}-turn.jpg`} />
-          </button>
+          </a>
         ) : (
           <div className={styles["skin-display__missing"]}>
             <img
@@ -249,16 +208,9 @@ const SkinDisplay = (props: Skin) => {
       <div className={styles["skin-display__chromas-border"]}>
         <div>
           {border ? (
-            <button
-              onClick={() =>
-                dispatch({
-                  type: "SHOW_LIGHTBOX",
-                  lightbox: { images, current: 0 },
-                })
-              }
-            >
+            <a href={`${baseURL}/${id}-border.jpg`} target="blank">
               <img src={`${baseURL}/${id}-border.jpg`} />
-            </button>
+            </a>
           ) : (
             <div
               className={clsx(

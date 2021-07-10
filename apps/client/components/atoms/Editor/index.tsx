@@ -13,7 +13,8 @@ export const useEditor = (
     data,
     editorRef,
   }: { data: OutputData | undefined; editorRef: React.Dispatch<any> },
-  options: Record<string, any> = {}
+  options: Record<string, any> = {},
+  onChange: () => void
 ) => {
   const [editorInstance, setEditor] = useState<EditorJS | null>(null);
   const {
@@ -44,6 +45,8 @@ export const useEditor = (
       data: data || undefined,
 
       initialBlock: "paragraph",
+
+      onChange,
 
       // Override editor options
       ...editorOptions,

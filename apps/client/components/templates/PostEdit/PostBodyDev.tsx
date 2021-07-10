@@ -1,10 +1,10 @@
-import { Fragment } from "react";
-
 import AddSection from "./AddSection";
 import PostSummary from "../../molecules/PostSummary";
 import ContentHeader from "../../organisms/ContentHeader";
 import SkinsSectionDev from "../../organisms/PatchNotesSections/SkinsDev";
 import ChampionsSectionDev from "../../organisms/PatchNotesSections/ChampionsDev";
+
+import GeneralSectionDev from "../../organisms/GeneralSection/dev";
 
 import { PostBodyDevProps } from "./interfaces";
 import postViewstyles from "../PostView/styles.module.scss";
@@ -15,6 +15,15 @@ const PostBodyDev = (props: PostBodyDevProps) => {
   const renderSections = () => {
     const content = sections.map((section, i) => {
       if (type !== "patch-notes") return null;
+
+      if (section.content)
+        return (
+          <GeneralSectionDev
+            sectionIndex={i}
+            key={`${i}-section-general`}
+            content={section.content}
+          />
+        );
 
       if (section.skins)
         return (

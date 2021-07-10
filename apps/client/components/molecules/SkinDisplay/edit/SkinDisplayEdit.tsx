@@ -20,12 +20,6 @@ import ContentEditable from "react-contenteditable";
 import SimpleSelect from "../../../atoms/SimpleSelect";
 import debouce from "../../../../core/helpers/debouce";
 
-import { options } from "../../../atoms/Editor/options";
-
-const Editor = dynamic(() => import("../../../atoms/Editor/editor"), {
-  ssr: false,
-});
-
 const SkinDisplayEdit = (props: SkinDisplayEditProps) => {
   const {
     border,
@@ -53,7 +47,6 @@ const SkinDisplayEdit = (props: SkinDisplayEditProps) => {
   const stillUploadRef = useRef<HTMLInputElement>(null);
   const turnUploadRef = useRef<HTMLInputElement>(null);
   const borderUploadRef = useRef<HTMLInputElement>(null);
-  const [editor, setEditor] = useState(null);
 
   const skinTier: Record<string, string> = {
     "1350": "Épica",
@@ -480,7 +473,6 @@ const SkinDisplayEdit = (props: SkinDisplayEditProps) => {
           className={clsx(editStyles["remove-btn"], editStyles.edit__remove)}
         />
       </button>
-      <Editor editorRef={setEditor} options={options} />
     </div>
   );
 };

@@ -14,7 +14,7 @@ interface Post {
   slug: string;
   sections: {
     titles?: string[];
-    content?: string | [];
+    content?: OutputData;
     champions?: ChampionChange[];
     skins?: Skin[];
   }[];

@@ -14,3 +14,4 @@ declare module "@editorjs/marker";
 declare module "@editorjs/check";
 declare module "@editorjs/delimiter";
 declare module "@editorjs/inline-code";
+declare module "editorjs-html";

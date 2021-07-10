@@ -3,8 +3,8 @@ import { EditorContainerProps } from "./interfaces";
 import { tools } from "./tools";
 
 const EditorContainer = (props: EditorContainerProps) => {
-  const { editorRef, children, data, options } = props;
-  useEditor(tools, { data, editorRef }, options);
+  const { editorRef, children, data, options, onChange } = props;
+  useEditor(tools, { data, editorRef }, options, onChange);
 
   return (
     <>

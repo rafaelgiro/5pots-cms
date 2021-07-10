@@ -3,6 +3,7 @@ import PostSummary from "../../molecules/PostSummary";
 import ContentHeader from "../../organisms/ContentHeader";
 import ChampionsSection from "../../organisms/PatchNotesSections/Champions";
 import SkinsSection from "../../organisms/PatchNotesSections/Skins";
+import GeneralSection from "../../organisms/GeneralSection";
 
 import styles from "./styles.module.scss";
 
@@ -12,8 +13,16 @@ const PostBody = (props: PostBodyProps) => {
   const { sections, titles, title, champions, type } = props;
 
   const renderSections = () => {
-    const content = sections.map((section) => {
+    const content = sections.map((section, i) => {
       if (type !== "patch-notes") return null;
+
+      if (section.content)
+        return (
+          <GeneralSection
+            key={`${i}-section-general`}
+            content={section.content}
+          />
+        );
 
       if (section.skins)
         return (

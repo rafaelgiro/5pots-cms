@@ -6,4 +6,5 @@ export interface EditorContainerProps {
   children?: ReactNode;
   data?: OutputData | undefined;
   options: Record<string, any>;
+  onChange: () => void;
 }

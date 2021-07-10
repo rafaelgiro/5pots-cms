@@ -11,6 +11,7 @@ import tooltipRoutes from "./routes/tooltip";
 import authRoutes from "./routes/auth";
 import assetsRoutes from "./routes/assets";
 import ddragonRoutes from "./routes/ddragon";
+import editorjsRoutes from "./routes/editorjs";
 import passportConfig from "./services/passport";
 import "./models/user";
 
@@ -28,6 +29,7 @@ app.use("/champions", championRoutes);
 app.use("/tooltip", tooltipRoutes);
 app.use("/auth", authRoutes);
 app.use("/assets", assetsRoutes);
+app.use("/editorjs", editorjsRoutes);
 app.use("/ddragon", ddragonRoutes);
 
 // Middleware de erros pras rotas

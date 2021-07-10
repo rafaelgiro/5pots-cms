@@ -105,3 +105,46 @@ a {
   padding-top: 9.6rem;
   margin-top: -9.6rem;
 }
+
+h1 {
+  font-size: 5.6rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 4.8rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 3.2rem;
+  font-weight: 700;
+}
+
+h4 {
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+h5 {
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+h5 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+p {
+  font-size: 1.8rem;
+}
+
+.ce-block__content,
+.ce-toolbar__content {
+  max-width: 100% !important;
+}
+
+.codex-editor__redactor {
+  border: 1px dashed rgba(#333, 0.5);
+}

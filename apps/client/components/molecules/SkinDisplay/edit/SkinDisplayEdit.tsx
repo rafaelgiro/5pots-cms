@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import clsx from "clsx";
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import MdDelete from "@meronex/icons/md/MdDelete";
 import MdRemoveCircle from "@meronex/icons/md/MdRemoveCircle";
 import UIContext from "../../../../core/contexts/UIContext";
@@ -18,6 +19,12 @@ import { uploadImage } from "../../../../core/helpers/uploadImage";
 import ContentEditable from "react-contenteditable";
 import SimpleSelect from "../../../atoms/SimpleSelect";
 import debouce from "../../../../core/helpers/debouce";
+
+import { options } from "../../../atoms/Editor/options";
+
+const Editor = dynamic(() => import("../../../atoms/Editor/editor"), {
+  ssr: false,
+});
 
 const SkinDisplayEdit = (props: SkinDisplayEditProps) => {
   const {
@@ -46,6 +53,7 @@ const SkinDisplayEdit = (props: SkinDisplayEditProps) => {
   const stillUploadRef = useRef<HTMLInputElement>(null);
   const turnUploadRef = useRef<HTMLInputElement>(null);
   const borderUploadRef = useRef<HTMLInputElement>(null);
+  const [editor, setEditor] = useState(null);
 
   const skinTier: Record<string, string> = {
     "1350": "Épica",
@@ -472,6 +480,7 @@ const SkinDisplayEdit = (props: SkinDisplayEditProps) => {
           className={clsx(editStyles["remove-btn"], editStyles.edit__remove)}
         />
       </button>
+      <Editor editorRef={setEditor} options={options} />
     </div>
   );
 };

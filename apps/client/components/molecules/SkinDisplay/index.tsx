@@ -2,7 +2,6 @@ import clsx from "clsx";
 import CurrencyIcons from "../../atoms/Icons/CurrencyIcons";
 import Typography from "../../atoms/Typography";
 import Chromas from "./Chromas";
-
 import styles from "./styles.module.scss";
 
 const SkinDisplay = (props: Skin) => {

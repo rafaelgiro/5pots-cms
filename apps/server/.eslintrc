@@ -14,6 +14,12 @@
     "@typescript-eslint/no-unused-vars": [
       "error",
       { "argsIgnorePattern": "next" }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
     ]
   }
 }

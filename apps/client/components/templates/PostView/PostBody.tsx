@@ -21,12 +21,17 @@ const PostBody = (props: PostBodyProps) => {
           <GeneralSection
             key={`${i}-section-general`}
             content={section.content}
+            title={section.title}
           />
         );
 
       if (section.skins)
         return (
-          <SkinsSection skinsSection={section.skins} key={`section-skins`} />
+          <SkinsSection
+            skinsSection={section.skins}
+            key={`section-skins`}
+            title={section.title}
+          />
         );
 
       if (section.champions)
@@ -35,6 +40,7 @@ const PostBody = (props: PostBodyProps) => {
             championSection={section.champions}
             champions={champions}
             key="champions-section"
+            title={section.title}
           />
         );
     });

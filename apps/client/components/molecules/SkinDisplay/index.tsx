@@ -192,7 +192,7 @@ const SkinDisplay = (props: Skin) => {
           </div>
         )}
       </div>
-      <Typography
+      {/* <Typography
         variant="p"
         component="p"
         className={styles["skin-display__p"]}
@@ -203,7 +203,7 @@ const SkinDisplay = (props: Skin) => {
         {!chromas.length
           ? "inclusos no client :("
           : "que você confere logo abaixo :D"}
-      </Typography>
+      </Typography> */}
       <div className={styles["skin-display__chromas-border"]}>
         <div>
           {border ? (

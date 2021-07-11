@@ -31,12 +31,37 @@ const SkinsIcon = () => (
   </svg>
 );
 
+const NormalIcon = () => (
+  <svg viewBox="0 0 41 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect
+      x="14.1423"
+      y="14.1422"
+      width="17"
+      height="17"
+      transform="rotate(-45 14.1423 14.1422)"
+      stroke="#3C353D"
+      strokeWidth="3"
+    />
+    <rect
+      x="2.12132"
+      y="14.1717"
+      width="17"
+      height="17"
+      transform="rotate(-45 2.12132 14.1717)"
+      stroke="#3C353D"
+      strokeWidth="3"
+    />
+  </svg>
+);
+
 const SectionIcon = (props: SectionIconProps) => {
   const { section } = props;
 
   switch (section) {
     case "skins":
       return <SkinsIcon />;
+    case "normal":
+      return <NormalIcon />;
     default:
       return <ChampionIcon />;
   }

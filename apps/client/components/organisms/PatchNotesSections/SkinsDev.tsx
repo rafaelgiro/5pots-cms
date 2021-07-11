@@ -1,6 +1,6 @@
-import Section from "../Section";
+import SectionDev from "../Section/dev";
 import SectionIcon from "../../atoms/Icons/SectionIcon";
-import SectionTitle from "../../atoms/SectionTitle";
+import SectionTitleDev from "../../atoms/SectionTitle/dev";
 import SkinDisplayEdit from "../../molecules/SkinDisplay/edit/SkinDisplayEdit";
 import AddNewSkin from "./AddNewSkin";
 
@@ -9,12 +9,12 @@ import styles from "../../templates/PostView/styles.module.scss";
 import { SkinsSectionDevProps } from "./interfaces";
 
 const SkinsSectionDev = (props: SkinsSectionDevProps) => {
-  const { skinsSection, sectionIndex } = props;
+  const { skinsSection, sectionIndex, title } = props;
   return (
-    <Section className={styles["post-section"]}>
-      <SectionTitle title="skins">
+    <SectionDev className={styles["post-section"]} sectionIndex={sectionIndex}>
+      <SectionTitleDev title={title} sectionIndex={sectionIndex}>
         <SectionIcon section="skins" />
-      </SectionTitle>
+      </SectionTitleDev>
       {skinsSection.map((skin, i) => (
         <SkinDisplayEdit
           {...skin}
@@ -24,7 +24,7 @@ const SkinsSectionDev = (props: SkinsSectionDevProps) => {
         />
       ))}
       <AddNewSkin />
-    </Section>
+    </SectionDev>
   );
 };
 

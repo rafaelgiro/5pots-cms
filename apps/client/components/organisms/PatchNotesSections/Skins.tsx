@@ -8,10 +8,10 @@ import SkinDisplay from "../../molecules/SkinDisplay";
 import { SkinsSectionProps } from "./interfaces";
 
 const SkinsSection = (props: SkinsSectionProps) => {
-  const { skinsSection } = props;
+  const { skinsSection, title } = props;
   return (
     <Section className={styles["post-section"]}>
-      <SectionTitle title="skins">
+      <SectionTitle title={title}>
         <SectionIcon section="skins" />
       </SectionTitle>
       {skinsSection.map((skin) => (

@@ -21,6 +21,7 @@ const PostBodyDev = (props: PostBodyDevProps) => {
           <GeneralSectionDev
             sectionIndex={i}
             key={`${i}-section-general`}
+            title={section.title}
             content={section.content}
           />
         );
@@ -30,6 +31,7 @@ const PostBodyDev = (props: PostBodyDevProps) => {
           <SkinsSectionDev
             sectionIndex={i}
             skinsSection={section.skins}
+            title={section.title}
             key={`section-skins`}
           />
         );
@@ -41,6 +43,7 @@ const PostBodyDev = (props: PostBodyDevProps) => {
             key="champions-section"
             allChampions={allChampions}
             sectionIndex={i}
+            title={section.title}
           />
         );
     });

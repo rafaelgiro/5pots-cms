@@ -9,7 +9,6 @@ import { HttpException } from "../middlewares/error";
 import User, { UserI } from "../models/user";
 import Token, { TokenI } from "../models/token";
 import { issueJWT } from "../lib/utils";
-import mongoose from "mongoose";
 
 const login = (req: Request, res: Response, next: NextFunction) => {
   const { username, password } = req.body;
@@ -39,8 +38,6 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
   const salt = bcrypt.genSaltSync(12);
   const hash = bcrypt.hashSync(password, salt);
   const validationErrors = validationResult(req);
-  const firstUser =
-    (await mongoose.connection.db.collection("users").count()) > 0;
 
   if (!validationErrors.isEmpty()) {
     return next(new HttpException(400, validationErrors.array()[0].msg));
@@ -56,7 +53,7 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
     hash,
     email,
     displayName: displayName || username,
-    isAdmin: firstUser,
+    isAdmin: false,
   });
 
   newUser

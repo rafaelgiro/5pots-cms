@@ -29,7 +29,15 @@ export const tools = {
     class: Paragraph,
     inlineToolbar: true,
   },
-  embed: Embed,
+  embed: {
+    class: Embed,
+    config: {
+      services: {
+        youtube: true,
+        twitter: true,
+      },
+    },
+  },
   table: Table,
   warning: Warning,
   code: Code,

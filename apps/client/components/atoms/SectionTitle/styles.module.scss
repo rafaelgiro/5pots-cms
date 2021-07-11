@@ -27,4 +27,11 @@
       margin-top: -0.4rem;
     }
   }
+
+  &--dev {
+    padding: 1.6rem;
+    border: 1px dashed var(--color-primary);
+    width: fit-content;
+    // line-height: 0;
+  }
 }

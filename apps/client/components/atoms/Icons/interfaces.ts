@@ -1,4 +1,4 @@
-export type SectionIconsType = "champions" | "skins";
+export type SectionIconsType = "champions" | "skins" | "normal";
 export type ChangeIconType = "buff" | "nerf" | "adjust" | "rework";
 export type ClassIconType =
   | "Tank"

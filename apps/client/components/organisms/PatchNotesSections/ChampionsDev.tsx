@@ -1,11 +1,11 @@
 import { useContext, useMemo } from "react";
 import MdNoteAdd from "@meronex/icons/md/MdNoteAdd";
 
-import Section from "../Section";
+import SectionDev from "../Section/dev";
 import EditChampionChange from "../EditChampionChange";
 import SectionIcon from "../../atoms/Icons/SectionIcon";
 import Typography from "../../atoms/Typography";
-import SectionTitle from "../../atoms/SectionTitle";
+import SectionTitleEdit from "../../atoms/SectionTitle/dev";
 import SimpleSelect from "../../atoms/SimpleSelect";
 import ConvertChange from "../../molecules/ConvertChange";
 
@@ -22,6 +22,7 @@ const ChampionsSectionDev = (props: ChampionSectionDevProps) => {
     championSection,
     allChampions,
     sectionIndex: championSectionIndex,
+    title,
   } = props;
   const { postState, setPostState } = useContext(EditContext);
 
@@ -75,10 +76,13 @@ const ChampionsSectionDev = (props: ChampionSectionDevProps) => {
   }
 
   return (
-    <Section className={viewStyles["post-section"]}>
-      <SectionTitle title="Campeões">
+    <SectionDev
+      className={viewStyles["post-section"]}
+      sectionIndex={championSectionIndex}
+    >
+      <SectionTitleEdit title={title} sectionIndex={championSectionIndex}>
         <SectionIcon section="champions" />
-      </SectionTitle>
+      </SectionTitleEdit>
       {championSection.map((section, i) => (
         <EditChampionChange
           key={`champ-edit-${section.name}`}
@@ -105,7 +109,7 @@ const ChampionsSectionDev = (props: ChampionSectionDevProps) => {
           <MdNoteAdd onClick={handleNewChampion} />
         </div>
       </div>
-    </Section>
+    </SectionDev>
   );
 };
 

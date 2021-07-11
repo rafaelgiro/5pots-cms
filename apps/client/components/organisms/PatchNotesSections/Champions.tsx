@@ -7,11 +7,11 @@ import { ChampionsSectionProps } from "./interfaces";
 import styles from "../../templates/PostView/styles.module.scss";
 
 const ChampionsSection = (props: ChampionsSectionProps) => {
-  const { championSection, champions } = props;
+  const { championSection, champions, title } = props;
 
   return (
     <Section className={styles["post-section"]}>
-      <SectionTitle title="Campeões">
+      <SectionTitle title={title}>
         <SectionIcon section="champions" />
       </SectionTitle>
       {championSection &&

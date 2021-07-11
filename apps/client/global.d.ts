@@ -13,7 +13,7 @@ interface Post {
   postedAt: string;
   slug: string;
   sections: {
-    titles?: string[];
+    title: string;
     content?: OutputData;
     champions?: ChampionChange[];
     skins?: Skin[];

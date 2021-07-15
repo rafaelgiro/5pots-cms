@@ -41,8 +41,15 @@ mongoose
     useNewUrlParser: true,
   })
   .then(() => {
-    app.listen({
-      port: process.env.NODE_PORT,
-      host: process.env.NODE_HOST,
-    });
+    app.listen(
+      {
+        port: process.env.NODE_PORT,
+        host: process.env.NODE_HOST,
+      },
+      () => {
+        console.log(
+          `Server now running on ${process.env.NODE_HOST}:${process.env.NODE_PORT}`
+        );
+      }
+    );
   });

@@ -73,7 +73,6 @@ const Layout: React.FC = (props) => {
       <div className="header-offset">{children}</div>
       <Snackbar />
       <FullScreenMenu />
-      <Lightbox images={items} />
     </>
   );
 };

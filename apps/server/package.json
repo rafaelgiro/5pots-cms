@@ -16,7 +16,7 @@
     "tooltip": "babel-node ./src/scripts/tooltip.js",
     "start": "npm run build && cross-env NODE_ENV=production node dist/app.js",
     "dev": "nodemon",
-    "build": "ts-node ./src/server.ts",
+    "build": "tsc -p . --project ./tsconfig.json ",
     "test": "jest --forceExit --detectOpenHandles",
     "lint": "eslint --ignore-path .gitignore --ext .ts src/",
     "lint:fix": "npm run lint -- --fix",

@@ -63,6 +63,7 @@
     "@babel/helper-define-map": "^7.13.12",
     "@babel/preset-typescript": "^7.13.0",
     "@types/editorjs__header": "^2.6.0",
+    "@types/gtag.js": "^0.0.7",
     "@types/js-cookie": "^2.2.6",
     "@types/react": "^17.0.1",
     "@types/react-color": "^3.0.4",
